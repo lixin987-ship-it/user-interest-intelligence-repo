@@ -248,6 +248,67 @@
             line-height: 1.5;
         }
 
+        .interest-item {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3498db;
+        }
+
+        .interest-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .interest-name {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .interest-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .meta-badge {
+            background: #3498db;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+
+        .interest-rationale {
+            background: #ecf0f1;
+            padding: 12px;
+            border-radius: 6px;
+            font-style: italic;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .interest-keywords {
+            margin-bottom: 10px;
+        }
+
+        .keyword-tag {
+            display: inline-block;
+            background: #95a5a6;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.75em;
+            margin: 2px;
+        }
+
         @media (max-width: 768px) {
             .container {
                 margin: 10px;
@@ -313,11 +374,18 @@
                         <option value="user-interest-intelligence-prompt_testV1.md">用户兴趣智能分析 v1.0</option>
                     </select>
                 </div>
+                <div class="form-group" id="promptEditSection" style="display: none;">
+                    <label for="promptData">分析提示内容：</label>
+                    <textarea id="promptData" class="data-textarea" placeholder="提示内容将在这里显示..." style="min-height: 150px;"></textarea>
+                </div>
                 <div class="prompt-preview" id="promptPreview" style="display: none;">
                     <strong>提示预览：</strong><br>
                     <span id="promptContent"></span>
                 </div>
                 <div class="button-group">
+                    <button id="editPromptBtn" onclick="togglePromptEdit()" style="display: none;">编辑提示</button>
+                    <button id="savePromptBtn" onclick="savePrompt()" style="display: none;" class="btn-success">保存提示</button>
+                    <button id="cancelPromptBtn" onclick="cancelPromptEdit()" style="display: none;" class="btn-secondary">取消编辑</button>
                     <button id="runAnalysisBtn" onclick="runAnalysis()" disabled class="btn-warning">🚀 运行分析</button>
                 </div>
             </div>
@@ -327,9 +395,11 @@
 
             <!-- 结果展示区域 -->
             <div class="output-section" id="outputSection" style="display: none;">
-                <h3><span class="status-indicator status-ready"></span>分析结果</h3>
+                <h3><span class="status-indicator status-ready"></span>User Profile</h3>
                 <div class="result-summary" id="resultSummary"></div>
-                <div class="output-content" id="outputContent"></div>
+                <div class="interests-display" id="interestsDisplay"></div>
+                <div class="output-content" id="outputContent" style="display: none;"></div>
+                <button onclick="toggleRawOutput()" class="btn-secondary" style="margin-top: 15px;">Show/Hide Raw JSON</button>
             </div>
         </div>
     </div>
@@ -379,6 +449,8 @@ Return ONLY valid, parseable JSON.`
 
         let isEditing = false;
         let originalData = '';
+        let isPromptEditing = false;
+        let originalPromptData = '';
 
         // 用户选择变化
         document.getElementById('userSelect').addEventListener('change', function() {
@@ -397,14 +469,23 @@ Return ONLY valid, parseable JSON.`
             const runBtn = document.getElementById('runAnalysisBtn');
             const preview = document.getElementById('promptPreview');
             const content = document.getElementById('promptContent');
+            const editSection = document.getElementById('promptEditSection');
+            const editBtn = document.getElementById('editPromptBtn');
+            const promptData = document.getElementById('promptData');
             
             if (this.value) {
                 runBtn.disabled = false;
                 preview.style.display = 'block';
+                editSection.style.display = 'block';
+                editBtn.style.display = 'inline-block';
                 content.textContent = prompts[this.value].substring(0, 200) + '...';
+                promptData.value = prompts[this.value];
+                promptData.readOnly = true;
             } else {
                 runBtn.disabled = true;
                 preview.style.display = 'none';
+                editSection.style.display = 'none';
+                editBtn.style.display = 'none';
             }
         });
 
@@ -489,12 +570,77 @@ Return ONLY valid, parseable JSON.`
             cancelBtn.style.display = 'none';
         }
 
+        // 切换提示编辑模式
+        function togglePromptEdit() {
+            const textarea = document.getElementById('promptData');
+            const editBtn = document.getElementById('editPromptBtn');
+            const saveBtn = document.getElementById('savePromptBtn');
+            const cancelBtn = document.getElementById('cancelPromptBtn');
+
+            if (!isPromptEditing) {
+                // 进入编辑模式
+                isPromptEditing = true;
+                originalPromptData = textarea.value;
+                textarea.readOnly = false;
+                textarea.style.borderColor = '#f39c12';
+                textarea.focus();
+                
+                editBtn.style.display = 'none';
+                saveBtn.style.display = 'inline-block';
+                cancelBtn.style.display = 'inline-block';
+            }
+        }
+
+        // 保存提示
+        function savePrompt() {
+            const textarea = document.getElementById('promptData');
+            const editBtn = document.getElementById('editPromptBtn');
+            const saveBtn = document.getElementById('savePromptBtn');
+            const cancelBtn = document.getElementById('cancelPromptBtn');
+            const promptSelect = document.getElementById('promptSelect');
+
+            // 更新提示数据
+            prompts[promptSelect.value] = textarea.value;
+            
+            // 退出编辑模式
+            isPromptEditing = false;
+            textarea.readOnly = true;
+            textarea.style.borderColor = '#ddd';
+            
+            editBtn.style.display = 'inline-block';
+            saveBtn.style.display = 'none';
+            cancelBtn.style.display = 'none';
+
+            alert('提示已保存！');
+        }
+
+        // 取消提示编辑
+        function cancelPromptEdit() {
+            const textarea = document.getElementById('promptData');
+            const editBtn = document.getElementById('editPromptBtn');
+            const saveBtn = document.getElementById('savePromptBtn');
+            const cancelBtn = document.getElementById('cancelPromptBtn');
+
+            // 恢复原始数据
+            textarea.value = originalPromptData;
+            
+            // 退出编辑模式
+            isPromptEditing = false;
+            textarea.readOnly = true;
+            textarea.style.borderColor = '#ddd';
+            
+            editBtn.style.display = 'inline-block';
+            saveBtn.style.display = 'none';
+            cancelBtn.style.display = 'none';
+        }
+
         // 运行分析
         function runAnalysis() {
             const userData = document.getElementById('userData').value;
             const promptSelect = document.getElementById('promptSelect').value;
+            const promptData = document.getElementById('promptData').value;
             
-            if (!userData || !promptSelect) {
+            if (!userData || !promptSelect || !promptData) {
                 alert('请确保已选择用户数据和分析提示');
                 return;
             }
@@ -517,6 +663,9 @@ Return ONLY valid, parseable JSON.`
                 
                 // 显示结果摘要
                 displayResultSummary(analysisResult);
+                
+                // 显示个别兴趣
+                displayIndividualInterests(analysisResult.Profile);
                 
                 // 显示完整JSON结果
                 document.getElementById('outputContent').textContent = JSON.stringify(analysisResult, null, 2);
@@ -607,10 +756,60 @@ Return ONLY valid, parseable JSON.`
             summaryContainer.appendChild(interestsCard);
         }
 
+        // 显示个别兴趣
+        function displayIndividualInterests(interests) {
+            const container = document.getElementById('interestsDisplay');
+            container.innerHTML = '';
+
+            interests.forEach((interest, index) => {
+                const interestDiv = document.createElement('div');
+                interestDiv.className = 'interest-item';
+                
+                interestDiv.innerHTML = `
+                    <div class="interest-header">
+                        <div class="interest-name">${interest.Name}</div>
+                        <span class="meta-badge">Weight: ${interest.Weight.toFixed(3)}</span>
+                    </div>
+                    <div class="interest-meta">
+                        <span class="meta-badge">${interest.Duration}</span>
+                        <span class="meta-badge">${interest.Intent}</span>
+                        <span class="meta-badge">${interest.Lifecycle}</span>
+                        <span class="meta-badge">${interest.Domain}</span>
+                    </div>
+                    <div class="interest-rationale">
+                        ${interest.Rationale}
+                    </div>
+                    <div class="interest-keywords">
+                        <strong>Keywords:</strong> 
+                        ${interest.Keywords.map(keyword => 
+                            `<span class="keyword-tag">${keyword}</span>`
+                        ).join('')}
+                    </div>
+                    <div style="font-size: 0.9em; color: #7f8c8d;">
+                        <strong>Sources:</strong> ${interest.Sources.join(', ')} | 
+                        <strong>Period:</strong> ${interest.FromDate} to ${interest.ToDate}
+                    </div>
+                `;
+                
+                container.appendChild(interestDiv);
+            });
+        }
+
+        // 切换原始JSON显示
+        function toggleRawOutput() {
+            const rawOutput = document.getElementById('outputContent');
+            if (rawOutput.style.display === 'none') {
+                rawOutput.style.display = 'block';
+            } else {
+                rawOutput.style.display = 'none';
+            }
+        }
+
         // 初始化页面
         document.addEventListener('DOMContentLoaded', function() {
             // 设置文本域为只读
             document.getElementById('userData').readOnly = true;
+            document.getElementById('promptData').readOnly = true;
         });
     </script>
 </body>
