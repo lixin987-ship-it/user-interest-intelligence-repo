@@ -385,9 +385,9 @@
                 </div>
                 
                 <div class="form-group" id="customEndpointSection" style="display: none;">
-                    <label for="customEndpoint">自定义API端点：</label>
-                    <input type="text" id="customEndpoint" placeholder="例如: https://internal-api.microsoft.com/pyparus/v1/chat" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;">
-                    <small style="color: #7f8c8d;">输入完整的API端点URL</small>
+                    <label for="customEndpoint">Azure OpenAI端点：</label>
+                    <input type="text" id="customEndpoint" placeholder="例如: https://your-resource.openai.azure.com/openai/deployments/model-name/chat/completions?api-version=2024-12-01-preview" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;">
+                    <small style="color: #7f8c8d;">输入完整的Azure OpenAI部署端点URL</small>
                 </div>
                 
                 <div class="form-group" id="modelSection" style="display: none;">
@@ -1092,7 +1092,7 @@ Return ONLY valid, parseable JSON.`
             return null;
         }
         
-        // 自定义API调用 (支持Pyparus等内部服务)
+        // 自定义API调用 (支持Azure OpenAI等内部服务)
         async function callCustomAPI(apiKey, prompt, model, provider) {
             let customEndpoint = document.getElementById('customEndpoint').value;
             let finalApiKey = apiKey;
@@ -1111,58 +1111,95 @@ Return ONLY valid, parseable JSON.`
                 throw new Error('请输入自定义API端点');
             }
             
-            // 适配不同的API格式
+            // 构建Azure OpenAI兼容的请求体
             const requestBody = {
-                model: model,
                 messages: [{
                     role: 'user',
                     content: prompt
                 }],
                 temperature: 0.7,
-                max_tokens: modelConfig?.maxTokens || 2000
+                max_tokens: modelConfig?.maxTokens || 2000,
+                stream: false
             };
             
-            const response = await fetch(customEndpoint, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${finalApiKey}`,
-                    // 添加微软内部可能需要的头部
-                    'User-Agent': 'User-Interest-Intelligence/1.0',
-                    'X-Request-Source': 'user-behavior-analysis'
-                },
-                body: JSON.stringify(requestBody)
-            });
+            // 检查是否是Azure OpenAI格式的端点
+            const isAzureEndpoint = customEndpoint.includes('openai.azure.com');
             
-            if (!response.ok) {
-                const errorText = await response.text();
-                throw new Error(`自定义API错误 (${response.status}): ${errorText}`);
+            let headers = {
+                'Content-Type': 'application/json',
+                'User-Agent': 'User-Interest-Intelligence/1.0',
+                'X-Request-Source': 'user-behavior-analysis'
+            };
+            
+            // 根据端点类型设置认证头
+            if (isAzureEndpoint) {
+                headers['api-key'] = finalApiKey;
+            } else {
+                headers['Authorization'] = `Bearer ${finalApiKey}`;
             }
             
-            const data = await response.json();
-            
-            // 尝试不同的响应格式
-            let result;
-            if (data.choices && data.choices[0] && data.choices[0].message) {
-                // OpenAI格式
-                result = data.choices[0].message.content;
-            } else if (data.content && data.content[0] && data.content[0].text) {
-                // Claude格式
-                result = data.content[0].text;
-            } else if (data.candidates && data.candidates[0] && data.candidates[0].content) {
-                // Gemini格式
-                result = data.candidates[0].content.parts[0].text;
-            } else if (data.response) {
-                // 简单格式
-                result = data.response;
-            } else {
-                throw new Error('无法解析API响应格式');
+            // 对于非Azure端点，添加model参数
+            if (!isAzureEndpoint) {
+                requestBody.model = model;
             }
             
             try {
-                return JSON.parse(result);
-            } catch (e) {
-                throw new Error('自定义API返回的不是有效的JSON格式');
+                const response = await fetch(customEndpoint, {
+                    method: 'POST',
+                    headers: headers,
+                    body: JSON.stringify(requestBody)
+                });
+                
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    let errorMessage;
+                    try {
+                        const errorJson = JSON.parse(errorText);
+                        errorMessage = errorJson.error?.message || errorJson.message || errorText;
+                    } catch {
+                        errorMessage = errorText;
+                    }
+                    throw new Error(`API调用错误 (${response.status}): ${errorMessage}`);
+                }
+                
+                const data = await response.json();
+                
+                // 尝试不同的响应格式
+                let result;
+                if (data.choices && data.choices[0]) {
+                    // OpenAI/Azure OpenAI格式
+                    if (data.choices[0].message) {
+                        result = data.choices[0].message.content;
+                    } else if (data.choices[0].text) {
+                        result = data.choices[0].text;
+                    }
+                } else if (data.content && data.content[0] && data.content[0].text) {
+                    // Claude格式
+                    result = data.content[0].text;
+                } else if (data.candidates && data.candidates[0] && data.candidates[0].content) {
+                    // Gemini格式
+                    result = data.candidates[0].content.parts[0].text;
+                } else if (data.response) {
+                    // 简单格式
+                    result = data.response;
+                } else {
+                    throw new Error('无法解析API响应格式: ' + JSON.stringify(data));
+                }
+                
+                if (!result) {
+                    throw new Error('API返回了空的响应内容');
+                }
+                
+                try {
+                    return JSON.parse(result);
+                } catch (e) {
+                    console.error('JSON解析错误:', e);
+                    console.error('原始响应:', result);
+                    throw new Error('API返回的不是有效的JSON格式，请检查模型配置');
+                }
+            } catch (error) {
+                console.error('API调用详细错误:', error);
+                throw error;
             }
         }
 
