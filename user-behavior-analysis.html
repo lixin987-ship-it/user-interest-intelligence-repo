@@ -366,7 +366,26 @@
 
             <!-- 提示选择和运行区域 -->
             <div class="section" id="promptSection" style="display: none;">
-                <h3><span class="status-indicator status-ready"></span>步骤 3: 选择分析模型</h3>
+                <h3><span class="status-indicator status-ready"></span>步骤 3: 配置AI服务</h3>
+                
+                <!-- API配置区域 -->
+                <div class="form-group">
+                    <label for="aiProvider">选择AI服务商：</label>
+                    <select id="aiProvider">
+                        <option value="">-- 请选择AI服务 --</option>
+                        <option value="openai">OpenAI (GPT-4/3.5)</option>
+                        <option value="claude">Anthropic Claude</option>
+                        <option value="gemini">Google Gemini</option>
+                        <option value="local">本地模拟（测试用）</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" id="apiKeySection" style="display: none;">
+                    <label for="apiKey">API密钥：</label>
+                    <input type="password" id="apiKey" placeholder="输入你的API密钥" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;">
+                    <small style="color: #7f8c8d;">密钥仅在本地存储，不会上传到服务器</small>
+                </div>
+                
                 <div class="form-group">
                     <label for="promptSelect">选择分析提示：</label>
                     <select id="promptSelect">
@@ -464,9 +483,35 @@ Return ONLY valid, parseable JSON.`
             }
         });
 
+        // AI服务商选择变化
+        document.getElementById('aiProvider').addEventListener('change', function() {
+            const apiKeySection = document.getElementById('apiKeySection');
+            
+            if (this.value && this.value !== 'local') {
+                apiKeySection.style.display = 'block';
+            } else {
+                apiKeySection.style.display = 'none';
+            }
+            
+            updateRunButton();
+        });
+        
+        // 更新运行按钮状态
+        function updateRunButton() {
+            const aiProvider = document.getElementById('aiProvider').value;
+            const promptSelect = document.getElementById('promptSelect').value;
+            const apiKey = document.getElementById('apiKey').value;
+            const runBtn = document.getElementById('runAnalysisBtn');
+            
+            const isReady = promptSelect && aiProvider && (aiProvider === 'local' || apiKey.trim());
+            runBtn.disabled = !isReady;
+        }
+        
+        // API密钥输入变化
+        document.getElementById('apiKey').addEventListener('input', updateRunButton);
+
         // 提示选择变化
         document.getElementById('promptSelect').addEventListener('change', function() {
-            const runBtn = document.getElementById('runAnalysisBtn');
             const preview = document.getElementById('promptPreview');
             const content = document.getElementById('promptContent');
             const editSection = document.getElementById('promptEditSection');
@@ -474,7 +519,6 @@ Return ONLY valid, parseable JSON.`
             const promptData = document.getElementById('promptData');
             
             if (this.value) {
-                runBtn.disabled = false;
                 preview.style.display = 'block';
                 editSection.style.display = 'block';
                 editBtn.style.display = 'inline-block';
@@ -482,11 +526,12 @@ Return ONLY valid, parseable JSON.`
                 promptData.value = prompts[this.value];
                 promptData.readOnly = true;
             } else {
-                runBtn.disabled = true;
                 preview.style.display = 'none';
                 editSection.style.display = 'none';
                 editBtn.style.display = 'none';
             }
+            
+            updateRunButton();
         });
 
         // 获取用户行为数据
@@ -635,45 +680,60 @@ Return ONLY valid, parseable JSON.`
         }
 
         // 运行分析
-        function runAnalysis() {
+        async function runAnalysis() {
             const userData = document.getElementById('userData').value;
             const promptSelect = document.getElementById('promptSelect').value;
             const promptData = document.getElementById('promptData').value;
+            const aiProvider = document.getElementById('aiProvider').value;
+            const apiKey = document.getElementById('apiKey').value;
             
-            if (!userData || !promptSelect || !promptData) {
-                alert('请确保已选择用户数据和分析提示');
+            if (!userData || !promptSelect || !promptData || !aiProvider) {
+                alert('请确保已配置所有必要信息');
+                return;
+            }
+            
+            if (aiProvider !== 'local' && !apiKey.trim()) {
+                alert('请输入API密钥');
                 return;
             }
 
             // 显示加载状态
             const loading = document.getElementById('loadingIndicator');
             const outputSection = document.getElementById('outputSection');
+            const loadingText = document.querySelector('.loading');
             
             loading.style.display = 'block';
             outputSection.style.display = 'none';
+            loadingText.innerHTML = `🤖 正在调用 ${getProviderName(aiProvider)} 进行分析...`;
 
-            // 模拟AI分析过程
-            setTimeout(() => {
-                // 生成模拟分析结果
-                const analysisResult = generateMockAnalysis();
+            try {
+                let analysisResult;
+                
+                if (aiProvider === 'local') {
+                    // 本地模拟
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    analysisResult = generateMockAnalysis();
+                } else {
+                    // 真实AI调用
+                    analysisResult = await callRealAI(aiProvider, apiKey, promptData, userData);
+                }
                 
                 // 隐藏加载，显示结果
                 loading.style.display = 'none';
                 outputSection.style.display = 'block';
                 
-                // 显示结果摘要
+                // 显示结果
                 displayResultSummary(analysisResult);
-                
-                // 显示个别兴趣
                 displayIndividualInterests(analysisResult.Profile);
-                
-                // 显示完整JSON结果
                 document.getElementById('outputContent').textContent = JSON.stringify(analysisResult, null, 2);
                 
                 // 滚动到结果区域
                 outputSection.scrollIntoView({ behavior: 'smooth' });
                 
-            }, 3000); // 3秒模拟分析时间
+            } catch (error) {
+                loading.style.display = 'none';
+                alert(`分析失败: ${error.message}`);
+            }
         }
 
         // 生成模拟分析结果
@@ -802,6 +862,132 @@ Return ONLY valid, parseable JSON.`
                 rawOutput.style.display = 'block';
             } else {
                 rawOutput.style.display = 'none';
+            }
+        }
+
+        // 获取服务商名称
+        function getProviderName(provider) {
+            const names = {
+                'openai': 'OpenAI GPT',
+                'claude': 'Anthropic Claude', 
+                'gemini': 'Google Gemini',
+                'local': '本地模拟'
+            };
+            return names[provider] || provider;
+        }
+        
+        // 调用真实AI服务
+        async function callRealAI(provider, apiKey, prompt, userData) {
+            const fullPrompt = `${prompt}\n\n# USER DATA\n${userData}`;
+            
+            switch (provider) {
+                case 'openai':
+                    return await callOpenAI(apiKey, fullPrompt);
+                case 'claude':
+                    return await callClaude(apiKey, fullPrompt);
+                case 'gemini':
+                    return await callGemini(apiKey, fullPrompt);
+                default:
+                    throw new Error('不支持的AI服务商');
+            }
+        }
+        
+        // OpenAI API调用
+        async function callOpenAI(apiKey, prompt) {
+            const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiKey}`
+                },
+                body: JSON.stringify({
+                    model: 'gpt-4',
+                    messages: [{
+                        role: 'user',
+                        content: prompt
+                    }],
+                    temperature: 0.7,
+                    max_tokens: 2000
+                })
+            });
+            
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(`OpenAI API错误: ${error.error?.message || 'Unknown error'}`);
+            }
+            
+            const data = await response.json();
+            const result = data.choices[0].message.content;
+            
+            try {
+                return JSON.parse(result);
+            } catch (e) {
+                throw new Error('AI返回的不是有效的JSON格式');
+            }
+        }
+        
+        // Claude API调用
+        async function callClaude(apiKey, prompt) {
+            const response = await fetch('https://api.anthropic.com/v1/messages', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-api-key': apiKey,
+                    'anthropic-version': '2023-06-01'
+                },
+                body: JSON.stringify({
+                    model: 'claude-3-sonnet-20240229',
+                    max_tokens: 2000,
+                    messages: [{
+                        role: 'user',
+                        content: prompt
+                    }]
+                })
+            });
+            
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(`Claude API错误: ${error.error?.message || 'Unknown error'}`);
+            }
+            
+            const data = await response.json();
+            const result = data.content[0].text;
+            
+            try {
+                return JSON.parse(result);
+            } catch (e) {
+                throw new Error('AI返回的不是有效的JSON格式');
+            }
+        }
+        
+        // Gemini API调用
+        async function callGemini(apiKey, prompt) {
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    contents: [{
+                        parts: [{
+                            text: prompt
+                        }]
+                    }]
+                })
+            });
+            
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(`Gemini API错误: ${error.error?.message || 'Unknown error'}`);
+            }
+            
+            const data = await response.json();
+            const result = data.candidates[0].content.parts[0].text;
+            
+            try {
+                return JSON.parse(result);
+            } catch (e) {
+                throw new Error('AI返回的不是有效的JSON格式');
             }
         }
 
