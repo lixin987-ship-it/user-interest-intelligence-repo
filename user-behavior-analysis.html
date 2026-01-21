@@ -531,15 +531,15 @@ Return ONLY valid, parseable JSON.`
         function generateMockAnalysis() {
             return {
                 "CurrentDate": "2026-01-14",
-                "Demographic": "专业技术导向个体，对AI和云计算有浓厚兴趣，可能在技术领域或数据分析领域工作。展现出精致的时尚品味，专注于高端运动装和设计师配饰，表明中高收入水平。显示出对金融规划和财富管理的新兴兴趣，表明职业发展和财务意识。",
+                "Demographic": "Professional technology-oriented individual with strong interest in AI and cloud computing, likely working in tech sector or data analytics. Demonstrates sophisticated fashion sense with focus on premium activewear and designer accessories, suggesting middle to upper-middle income bracket. Shows emerging interest in financial planning and wealth management, indicating career progression and financial awareness.",
                 "Profile": [
                     {
-                        "Name": "AI就业影响分析",
-                        "Rationale": "用户参与了关于AI对失业和资本主义影响的内容，建立在现有AI兴趣基础上。这表明对工作场所技术颠覆和经济影响的担忧。用户可能正在跟踪AI发展如何影响工作安全和经济系统。",
+                        "Name": "AI Employment Impact Analysis",
+                        "Rationale": "User engaged with content about AI's impact on unemployment and capitalism, building on existing AI interest. This signals concern about technological disruption in the workplace and economic implications. User likely tracking how AI developments affect job security and economic systems.",
                         "Duration": "emerging",
                         "Lifecycle": "normal",
                         "Domain": "Technology > Artificial Intelligence",
-                        "Keywords": ["AI教父", "失业", "资本主义", "AI影响"],
+                        "Keywords": ["Godfather of AI", "unemployment", "capitalism", "AI impact"],
                         "Intent": "stay_updated",
                         "FromDate": "2026-01-13",
                         "ToDate": "2026-01-13",
@@ -547,8 +547,8 @@ Return ONLY valid, parseable JSON.`
                         "Weight": 0.8
                     },
                     {
-                        "Name": "高端运动服装时尚",
-                        "Rationale": "对Lululemon等高质量运动服装品牌的长期持续兴趣。用户展示出对功能性且时尚的运动服装的偏好，表明活跃的生活方式结合时尚意识。",
+                        "Name": "Premium Activewear Fashion",
+                        "Rationale": "Long-term sustained interest in high-quality activewear brands like Lululemon. User demonstrates preference for functional yet stylish workout clothing, suggesting active lifestyle combined with fashion consciousness.",
                         "Duration": "stable",
                         "Lifecycle": "normal",
                         "Domain": "Fashion & Style > Activewear",
@@ -571,7 +571,7 @@ Return ONLY valid, parseable JSON.`
             const demoCard = document.createElement('div');
             demoCard.className = 'summary-card';
             demoCard.innerHTML = `
-                <h4>👤 用户画像</h4>
+                <h4>👤 User Profile</h4>
                 <p>${result.Demographic}</p>
             `;
             
@@ -583,10 +583,10 @@ Return ONLY valid, parseable JSON.`
             const emergingCount = result.Profile.filter(p => p.Duration === 'emerging').length;
             
             statsCard.innerHTML = `
-                <h4>📊 兴趣统计</h4>
-                <p>总兴趣数: ${interestCount}<br>
-                稳定兴趣: ${stableCount}<br>
-                新兴兴趣: ${emergingCount}</p>
+                <h4>📊 Interest Statistics</h4>
+                <p>Total Interests: ${interestCount}<br>
+                Stable Interests: ${stableCount}<br>
+                Emerging Interests: ${emergingCount}</p>
             `;
             
             // 主要兴趣领域
@@ -594,7 +594,7 @@ Return ONLY valid, parseable JSON.`
             const interestsCard = document.createElement('div');
             interestsCard.className = 'summary-card';
             interestsCard.innerHTML = `
-                <h4>🎯 主要兴趣</h4>
+                <h4>🎯 Main Interests</h4>
                 <p>${topInterests.map(interest => 
                     `• ${interest.Name} (${interest.Intent})`
                 ).join('<br>')}</p>
