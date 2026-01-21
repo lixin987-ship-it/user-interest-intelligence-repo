@@ -506,9 +506,11 @@ Return ONLY valid, parseable JSON.`
             },
             'microsoft-internal': {
                 models: {
-                    'pyparus-gpt-4': { name: 'Pyparus GPT-4', description: '微软内部GPT-4服务', maxTokens: 4000 },
-                    'pyparus-gpt-35-turbo': { name: 'Pyparus GPT-3.5 Turbo', description: '微软内部GPT-3.5服务', maxTokens: 2000 },
-                    'internal-model': { name: 'Internal Model', description: '微软内部模型', maxTokens: 2000 }
+                    'gpt-5.2': { name: 'GPT-5.2', description: '最新的GPT-5.2模型', maxTokens: 4000 },
+                    'gpt-5.1': { name: 'GPT-5.1', description: 'GPT-5.1模型', maxTokens: 4000 },
+                    'gpt-5': { name: 'GPT-5', description: 'GPT-5基础模型', maxTokens: 4000 },
+                    'o4-mini': { name: 'O4-Mini', description: 'O4-Mini轻量级模型', maxTokens: 2000 },
+                    'o1-mini': { name: 'O1-Mini', description: 'O1-Mini推理模型', maxTokens: 2000 }
                 }
             },
             custom: {
@@ -1150,6 +1152,132 @@ Return ONLY valid, parseable JSON.`
                 return JSON.parse(result);
             } catch (e) {
                 throw new Error('AI返回的不是有效的JSON格式');
+            }
+        }
+        
+        // 解密配置文件
+        function decryptConfig(encryptedContent) {
+            try {
+                // 移除注释行
+                const lines = encryptedContent.split('\n');
+                const dataLine = lines.find(line => !line.startsWith('#') && line.trim());
+                if (!dataLine) return null;
+                
+                // 反转字符移位
+                const unscrambled = dataLine.split('').map(char => 
+                    String.fromCharCode(char.charCodeAt(0) - 3)
+                ).join('');
+                
+                // Base64解码
+                const decoded = atob(unscrambled);
+                return decoded;
+            } catch (e) {
+                console.error('解密失败:', e);
+                return null;
+            }
+        }
+        
+        // 加载内部配置
+        async function loadInternalConfig() {
+            try {
+                const response = await fetch('./resources/key.txt');
+                const encryptedContent = await response.text();
+                const config = decryptConfig(encryptedContent);
+                
+                if (config) {
+                    // 解析配置信息
+                    const lines = config.split('\n').filter(line => line.trim());
+                    const endpoints = {};
+                    
+                    for (let i = 0; i < lines.length; i += 3) {
+                        if (i + 2 < lines.length) {
+                            const modelName = lines[i].trim();
+                            const endpoint = lines[i + 1].trim();
+                            const key = lines[i + 2].trim();
+                            
+                            endpoints[modelName] = { endpoint, key };
+                        }
+                    }
+                    
+                    return endpoints;
+                }
+            } catch (e) {
+                console.log('未找到内部配置文件，使用手动配置模式');
+            }
+            return null;
+        }
+        
+        // 自定义API调用 (支持Pyparus等内部服务)
+        async function callCustomAPI(apiKey, prompt, model, provider) {
+            let customEndpoint = document.getElementById('customEndpoint').value;
+            let finalApiKey = apiKey;
+            
+            // 尝试加载内部配置
+            const internalConfig = await loadInternalConfig();
+            if (internalConfig && internalConfig[model]) {
+                customEndpoint = internalConfig[model].endpoint;
+                finalApiKey = internalConfig[model].key;
+                console.log('使用内部配置:', model);
+            }
+            
+            const modelConfig = modelConfigs[provider]?.models[model];
+            
+            if (!customEndpoint) {
+                throw new Error('请输入自定义API端点');
+            }
+            
+            // 适配不同的API格式
+            const requestBody = {
+                model: model,
+                messages: [{
+                    role: 'user',
+                    content: prompt
+                }],
+                temperature: 0.7,
+                max_tokens: modelConfig?.maxTokens || 2000
+            };
+            
+            const response = await fetch(customEndpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${finalApiKey}`,
+                    // 添加微软内部可能需要的头部
+                    'User-Agent': 'User-Interest-Intelligence/1.0',
+                    'X-Request-Source': 'user-behavior-analysis'
+                },
+                body: JSON.stringify(requestBody)
+            });
+            
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`自定义API错误 (${response.status}): ${errorText}`);
+            }
+            
+            const data = await response.json();
+            
+            // 尝试不同的响应格式
+            let result;
+            if (data.choices && data.choices[0] && data.choices[0].message) {
+                // OpenAI格式
+                result = data.choices[0].message.content;
+            } else if (data.content && data.content[0] && data.content[0].text) {
+                // Claude格式
+                result = data.content[0].text;
+            } else if (data.candidates && data.candidates[0] && data.candidates[0].content) {
+                // Gemini格式
+                result = data.candidates[0].content.parts[0].text;
+            } else if (data.response) {
+                // 简单格式
+                result = data.response;
+            } else {
+                throw new Error('无法解析API响应格式');
+            }
+            
+            try {
+                return JSON.parse(result);
+            } catch (e) {
+                throw new Error('自定义API返回的不是有效的JSON格式');
             }
         }
 
