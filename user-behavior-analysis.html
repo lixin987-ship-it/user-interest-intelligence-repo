@@ -382,34 +382,24 @@
                     </select>
                 </div>
                 
-                
-                <div class="form-group" id="modelSection" style="display: none;">
-                    <label for="modelSelect">选择LLM模型：</label>
-                    <select id="modelSelect">
-                        <option value="">-- 请先选择AI服务商 --</option>
-                    </select>
-                    <div id="modelInfo" style="margin-top: 8px; padding: 8px; background: #f8f9fa; border-radius: 4px; font-size: 0.9em; color: #6c757d;"></div>
-                </div>
-                
                 <div class="form-group">
-                    <label for="promptSelect">选择分析提示：</label>
+                    <label for="promptSelect">选择分析方法：</label>
                     <select id="promptSelect">
-                        <option value="">-- 请选择分析模型 --</option>
-                        <option value="user-interest-intelligence-prompt_testV1.md">用户兴趣智能分析 v1.0</option>
+                        <option value="">-- 请选择分析方法 --</option>
+                        <option value="userInterestIntelligence">用户兴趣智能分析</option>
                     </select>
                 </div>
-                <div class="form-group" id="promptEditSection" style="display: none;">
-                    <label for="promptData">分析提示内容：</label>
-                    <textarea id="promptData" class="data-textarea" placeholder="提示内容将在这里显示..." style="min-height: 150px;"></textarea>
+                
+                <!-- 提示预览区域 -->
+                <div id="promptPreview" style="display: none;">
+                    <h4>分析方法预览：</h4>
+                    <div class="prompt-preview-box" style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; max-height: 300px; overflow-y: auto; font-family: 'Courier New', monospace; font-size: 0.9em; line-height: 1.4; white-space: pre-wrap;"></div>
                 </div>
-                <div class="prompt-preview" id="promptPreview" style="display: none;">
-                    <strong>提示预览：</strong><br>
-                    <span id="promptContent"></span>
-                </div>
+                
+                <!-- 隐藏的提示数据存储 -->
+                <textarea id="promptData" style="display: none;"></textarea>
+                
                 <div class="button-group">
-                    <button id="editPromptBtn" onclick="togglePromptEdit()" style="display: none;">编辑提示</button>
-                    <button id="savePromptBtn" onclick="savePrompt()" style="display: none;" class="btn-success">保存提示</button>
-                    <button id="cancelPromptBtn" onclick="cancelPromptEdit()" style="display: none;" class="btn-secondary">取消编辑</button>
                     <button id="runAnalysisBtn" onclick="runAnalysis()" disabled class="btn-warning">🚀 运行分析</button>
                 </div>
             </div>
@@ -526,7 +516,10 @@ Return ONLY valid, parseable JSON.`
             
             if (!this.value) {
                 document.getElementById('dataSection').style.display = 'none';
-                document.getElementById('promptSection').style.display = 'none';
+                const promptSection = document.getElementById('promptSection');
+                if (promptSection) {
+                    promptSection.style.display = 'none';
+                }
                 document.getElementById('outputSection').style.display = 'none';
             }
         });
@@ -674,7 +667,12 @@ Return ONLY valid, parseable JSON.`
                 const data = userData[userId];
                 document.getElementById('userData').value = data;
                 document.getElementById('dataSection').style.display = 'block';
-                document.getElementById('promptSection').style.display = 'block';
+                
+                // 显示AI配置区域
+                const promptSection = document.getElementById('promptSection');
+                if (promptSection) {
+                    promptSection.style.display = 'block';
+                }
                 
                 // 滚动到数据区域
                 document.getElementById('dataSection').scrollIntoView({ behavior: 'smooth' });
