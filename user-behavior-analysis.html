@@ -321,8 +321,18 @@
             }
 
             try {
-                // 使用GitHub raw content URL读取文件
-                const response = await fetch(`https://raw.githubusercontent.com/lixin987-ship-it/user-interest-intelligence-repo/main/user-data/${selectedUserId}.txt`);
+                // 优先尝试相对路径（GitHub Pages），然后尝试GitHub raw URL
+                let response;
+                let dataSource = 'GitHub Pages';
+                
+                try {
+                    response = await fetch(`./user-data/${selectedUserId}.txt`);
+                    if (!response.ok) throw new Error('GitHub Pages failed');
+                } catch (e) {
+                    console.log('GitHub Pages失败，尝试GitHub Raw URL...');
+                    dataSource = 'GitHub Raw';
+                    response = await fetch(`https://raw.githubusercontent.com/lixin987-ship-it/user-interest-intelligence-repo/main/user-data/${selectedUserId}.txt`);
+                }
                 
                 if (!response.ok) {
                     throw new Error(`HTTP ${response.status}: ${response.statusText}`);
@@ -340,7 +350,7 @@
                 promptSection.style.display = 'block';
                 
                 // 显示成功消息
-                showMessage('success', `成功从GitHub加载 ${selectedUserId} 的用户行为数据`);
+                showMessage('success', `成功从 ${dataSource} 加载 ${selectedUserId} 的用户行为数据`);
                 
             } catch (error) {
                 console.error('读取用户数据失败:', error);
