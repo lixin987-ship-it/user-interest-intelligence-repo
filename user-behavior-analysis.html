@@ -255,40 +255,8 @@
     </div>
 
     <script>
-        // 用户数据存储
-        const userData = {
-            userid1: `用户ID: userid1
-浏览历史:
-- 科技新闻和AI相关文章 (频率: 每日)
-- 机器学习教程和编程资料 (频率: 高)
-- 数据分析工具和技术文档 (频率: 中等)
-
-购买行为:
-- 技术书籍: Python编程、机器学习实战
-- 在线课程: AI基础课程、数据科学专业课
-- 软件订阅: 开发工具、云服务
-
-搜索关键词:
-- "人工智能应用"、"机器学习算法"
-- "Python数据分析"、"深度学习框架"
-- "AI工程师职业发展"
-
-社交互动:
-- 点赞: 48次 (主要关注技术内容)
-- 分享: 15次 (分享学习资源)
-- 评论: 12次 (技术讨论和问题解答)
-
-设备使用:
-- 主要设备: 笔记本电脑 (工作日)
-- 移动设备: 手机 (通勤时间)
-- 活跃时间: 工作日晚间 19:00-23:00
-
-兴趣标签:
-- 人工智能: 95%置信度
-- 编程开发: 90%置信度  
-- 数据科学: 85%置信度
-- 在线学习: 80%置信度`
-        };
+        // 用户数据存储（仅作为备用，主要从文件读取）
+        const userData = {};
 
         // Prompt模板
         const prompts = {
@@ -353,50 +321,30 @@
             }
 
             try {
-                // 尝试从文件读取数据
-                const response = await fetch(`user-data/${selectedUserId}.txt`);
-                let userDataContent;
+                // 从GitHub Pages读取数据文件
+                const response = await fetch(`./user-data/${selectedUserId}.txt`);
                 
-                if (response.ok) {
-                    userDataContent = await response.text();
-                } else {
-                    // 如果文件读取失败，使用内存中的数据
-                    userDataContent = userData[selectedUserId];
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
                 }
+                
+                const userDataContent = await response.text();
                 
                 const userDataTextarea = document.getElementById('userDataTextarea');
                 const userDataSection = document.getElementById('userDataSection');
                 const promptSection = document.getElementById('promptSection');
                 
-                // 1.3 显示用户数据
-                if (userDataContent) {
-                    userDataTextarea.value = userDataContent;
-                    // 同时更新内存中的数据
-                    userData[selectedUserId] = userDataContent;
-                    
-                    userDataSection.style.display = 'block';
-                    promptSection.style.display = 'block';
-                    
-                    // 显示成功消息
-                    showMessage('success', `成功加载 ${selectedUserId} 的用户行为数据`);
-                } else {
-                    showMessage('error', `未找到用户 ${selectedUserId} 的数据文件`);
-                }
+                // 显示用户数据
+                userDataTextarea.value = userDataContent;
+                userDataSection.style.display = 'block';
+                promptSection.style.display = 'block';
+                
+                // 显示成功消息
+                showMessage('success', `成功从 user-data/${selectedUserId}.txt 加载用户行为数据`);
+                
             } catch (error) {
                 console.error('读取用户数据失败:', error);
-                // 降级到内存数据
-                const userDataTextarea = document.getElementById('userDataTextarea');
-                const userDataSection = document.getElementById('userDataSection');
-                const promptSection = document.getElementById('promptSection');
-                
-                if (userData[selectedUserId]) {
-                    userDataTextarea.value = userData[selectedUserId];
-                    userDataSection.style.display = 'block';
-                    promptSection.style.display = 'block';
-                    showMessage('success', `从内存加载 ${selectedUserId} 的用户行为数据`);
-                } else {
-                    showMessage('error', `无法加载用户 ${selectedUserId} 的数据`);
-                }
+                showMessage('error', `无法读取文件 user-data/${selectedUserId}.txt: ${error.message}`);
             }
         }
 
@@ -419,16 +367,13 @@
             const selectedUserId = document.getElementById('userIdSelect').value;
             const userDataTextarea = document.getElementById('userDataTextarea');
             
-            // 更新内存中的数据
-            userData[selectedUserId] = userDataTextarea.value;
-            
             // 退出编辑模式
             cancelEdit();
             
-            showMessage('success', '用户数据保存成功');
+            showMessage('success', '用户数据保存成功（注意：仅保存在页面中，刷新后会重置）');
             
             // 这里可以添加保存到文件的逻辑
-            console.log('保存数据到文件:', selectedUserId, userDataTextarea.value);
+            console.log('保存数据:', selectedUserId, userDataTextarea.value);
         }
 
         // 1.4 取消编辑
@@ -438,8 +383,11 @@
             const editControls = document.getElementById('editControls');
             const selectedUserId = document.getElementById('userIdSelect').value;
             
-            // 恢复原始数据
-            userDataTextarea.value = userData[selectedUserId] || '';
+            // 提示用户需要重新加载原始数据
+            if (selectedUserId) {
+                showMessage('success', '已取消编辑，如需恢复原始数据请重新点击"Get User Behavior"');
+            }
+            
             userDataTextarea.readOnly = true;
             userDataTextarea.classList.add('readonly');
             editBtn.style.display = 'inline-block';
