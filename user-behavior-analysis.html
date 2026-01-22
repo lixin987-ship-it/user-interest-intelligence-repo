@@ -370,10 +370,14 @@
                 
                 <!-- API配置区域 -->
                 <div class="form-group">
-                    <label for="aiProvider">选择AI服务商：</label>
+                    <label for="aiProvider">选择AI模型：</label>
                     <select id="aiProvider">
-                        <option value="">-- 请选择AI服务 --</option>
-                        <option value="gpt-models">GPT模型</option>
+                        <option value="">-- 请选择AI模型 --</option>
+                        <option value="gpt-5.2">GPT-5.2</option>
+                        <option value="gpt-5.1">GPT-5.1</option>
+                        <option value="gpt-5">GPT-5</option>
+                        <option value="o4-mini">O4-Mini</option>
+                        <option value="o1-mini">O1-Mini</option>
                         <option value="local">本地模拟（测试用）</option>
                     </select>
                 </div>
@@ -615,10 +619,9 @@ Return ONLY valid, parseable JSON.`
         function updateRunButton() {
             const aiProvider = document.getElementById('aiProvider').value;
             const promptSelect = document.getElementById('promptSelect').value;
-            const modelSelect = document.getElementById('modelSelect').value;
             const runBtn = document.getElementById('runAnalysisBtn');
             
-            const isReady = promptSelect && aiProvider && modelSelect;
+            const isReady = promptSelect && aiProvider;
             runBtn.disabled = !isReady;
         }
         
@@ -807,10 +810,9 @@ Return ONLY valid, parseable JSON.`
             const userData = document.getElementById('userData').value;
             const promptSelect = document.getElementById('promptSelect').value;
             const promptData = document.getElementById('promptData').value;
-            const aiProvider = document.getElementById('aiProvider').value;
-            const selectedModel = document.getElementById('modelSelect').value;
+            const selectedModel = document.getElementById('aiProvider').value; // 现在aiProvider就是模型
             
-            if (!userData || !promptSelect || !promptData || !aiProvider || !selectedModel) {
+            if (!userData || !promptSelect || !promptData || !selectedModel) {
                 alert('请确保已配置所有必要信息，包括选择模型');
                 return;
             }
@@ -1067,7 +1069,7 @@ Return ONLY valid, parseable JSON.`
             }
             
             const { endpoint: customEndpoint, key: finalApiKey } = internalConfig[model];
-            const modelConfig = modelConfigs['gpt-models']?.models[model];
+            const modelConfig = modelConfigs[model];
             
             console.log('使用内部配置:', model);
             
