@@ -570,59 +570,22 @@ Return ONLY valid, parseable JSON.`
             updateRunButton();
         });
         
-        // 填充模型下拉菜单
-        function populateModelDropdown(provider) {
-            const modelSelect = document.getElementById('modelSelect');
-            const models = modelConfigs[provider]?.models || {};
-            
-            modelSelect.innerHTML = '<option value="">-- 请选择模型 --</option>';
-            
-            Object.entries(models).forEach(([modelId, config]) => {
-                const option = document.createElement('option');
-                option.value = modelId;
-                option.textContent = config.name;
-                modelSelect.appendChild(option);
-            });
-            
-            // 默认选择第一个模型
-            const firstModel = Object.keys(models)[0];
-            if (firstModel) {
-                modelSelect.value = firstModel;
-                updateModelInfo(provider, firstModel);
-            }
-        }
-        
-        // 模型选择变化
-        document.getElementById('modelSelect').addEventListener('change', function() {
-            const provider = document.getElementById('aiProvider').value;
-            updateModelInfo(provider, this.value);
-            updateRunButton();
-        });
-        
-        // 更新模型信息显示
-        function updateModelInfo(provider, modelId) {
-            const modelInfo = document.getElementById('modelInfo');
-            const config = modelConfigs[provider]?.models[modelId];
-            
-            if (config) {
-                modelInfo.innerHTML = `
-                    <strong>${config.name}</strong><br>
-                    ${config.description}<br>
-                    <small>最大输出tokens: ${config.maxTokens.toLocaleString()}</small>
-                `;
-            } else {
-                modelInfo.innerHTML = '';
-            }
-        }
+        // 模型选择变化 - 已移除，因为modelSelect不存在
         
         // 更新运行按钮状态
         function updateRunButton() {
-            const aiProvider = document.getElementById('aiProvider').value;
-            const promptSelect = document.getElementById('promptSelect').value;
+            const aiProvider = document.getElementById('aiProvider');
+            const promptSelect = document.getElementById('promptSelect');
             const runBtn = document.getElementById('runAnalysisBtn');
             
-            const isReady = promptSelect && aiProvider;
+            if (!aiProvider || !promptSelect || !runBtn) {
+                console.log('找不到必要的元素');
+                return;
+            }
+            
+            const isReady = promptSelect.value && aiProvider.value;
             runBtn.disabled = !isReady;
+            console.log('按钮状态更新:', isReady ? '启用' : '禁用');
         }
         
         // API密钥输入变化
@@ -1191,9 +1154,11 @@ Return ONLY valid, parseable JSON.`
             // 检查关键元素是否存在
             const userSelect = document.getElementById('userSelect');
             const getUserBtn = document.getElementById('getUserBehaviorBtn');
+            const runAnalysisBtn = document.getElementById('runAnalysisBtn');
             
             console.log('userSelect元素:', userSelect ? '存在' : '不存在');
             console.log('getUserBehaviorBtn元素:', getUserBtn ? '存在' : '不存在');
+            console.log('runAnalysisBtn元素:', runAnalysisBtn ? '存在' : '不存在');
             
             if (getUserBtn) {
                 console.log('初始按钮状态:', getUserBtn.disabled ? '禁用' : '启用');
@@ -1210,7 +1175,7 @@ Return ONLY valid, parseable JSON.`
                 });
             }
             
-            // 设置文本域为只读
+            // 安全设置文本域为只读
             const userData = document.getElementById('userData');
             const promptData = document.getElementById('promptData');
             if (userData) userData.readOnly = true;
