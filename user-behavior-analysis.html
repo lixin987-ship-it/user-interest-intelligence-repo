@@ -824,6 +824,26 @@ Return ONLY valid, parseable JSON.`
             
             loading.style.display = 'block';
             outputSection.style.display = 'none';
+            loadingText.innerHTML = `🤖 正在调用 ${modelConfigs[selectedModel]?.name || selectedModel} 进行分析...`;
+
+            try {
+                let analysisResult;
+                if (selectedModel === 'local') {
+                    // 本地模拟
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    analysisResult = generateMockAnalysis();
+                } else {
+                    // 真实AI调用
+                    analysisResult = await callGPTModels(promptData + '\n\n# USER DATA\n' + userData, selectedModel);
+                }
+
+            // 显示加载状态
+            const loading = document.getElementById('loadingIndicator');
+            const outputSection = document.getElementById('outputSection');
+            const loadingText = document.querySelector('.loading');
+            
+            loading.style.display = 'block';
+            outputSection.style.display = 'none';
             loadingText.innerHTML = `🤖 正在调用 ${getProviderName(aiProvider)} (${modelConfigs[aiProvider]?.models[selectedModel]?.name}) 进行分析...`;
 
             try {
