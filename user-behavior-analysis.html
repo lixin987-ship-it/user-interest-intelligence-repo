@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>用户兴趣智能分析平台</title>
+    <title>User Interest Intelligence Analysis Platform</title>
     <style>
         * {
             margin: 0;
@@ -184,21 +184,21 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🧠 用户兴趣智能分析平台</h1>
-            <p>基于AI的用户行为洞察与个性化推荐系统</p>
+            <h1>🧠 User Interest Intelligence Analysis Platform</h1>
+            <p>AI-Based User Behavior Insights and Personalized Recommendation System</p>
         </div>
 
         <!-- 1.1 用户选择区域 -->
         <div class="section">
-            <h3>1. 选择用户ID</h3>
+            <h3>1. Select User ID</h3>
             <div class="form-group">
-                <label for="userIdSelect">用户ID：</label>
+                <label for="userIdSelect">User ID:</label>
                 <select id="userIdSelect">
-                    <option value="">-- 请选择用户ID --</option>
+                    <option value="">-- Please Select User ID --</option>
                     <option value="user1">user1</option>
                 </select>
             </div>
-            <!-- 1.2 获取用户行为按钮 -->
+            <!-- 1.2 Get User Behavior Button -->
             <button class="btn" id="getUserBehaviorBtn" onclick="getUserBehavior()" disabled>
                 📊 Get User Behavior
             </button>
@@ -206,48 +206,48 @@
 
         <!-- 1.3 用户数据展示和编辑区域 -->
         <div class="section" id="userDataSection" style="display: none;">
-            <h3>2. 用户行为数据</h3>
+            <h3>2. User Behavior Data</h3>
             <div class="form-group">
-                <label for="userDataTextarea">用户数据内容：</label>
+                <label for="userDataTextarea">User Data Content:</label>
                 <textarea id="userDataTextarea" class="readonly" readonly 
-                    placeholder="点击上面的按钮获取用户数据..."></textarea>
+                    placeholder="Click the button above to get user data..."></textarea>
             </div>
-            <!-- 1.4 编辑和保存按钮 -->
+            <!-- 1.4 Edit and Save Buttons -->
             <button class="btn btn-secondary" id="editBtn" onclick="enableEdit()">
-                ✏️ 编辑
+                ✏️ Edit
             </button>
             <div class="edit-controls" id="editControls">
                 <button class="btn btn-success" id="saveBtn" onclick="saveUserData()">
-                    💾 保存
+                    💾 Save
                 </button>
                 <button class="btn btn-danger" id="cancelBtn" onclick="cancelEdit()">
-                    ❌ 取消
+                    ❌ Cancel
                 </button>
             </div>
         </div>
 
-        <!-- 1.5 Prompt选择区域 -->
+        <!-- 1.5 Prompt Selection Area -->
         <div class="section" id="promptSection" style="display: none;">
-            <h3>3. 选择分析Prompt</h3>
+            <h3>3. Select Analysis Prompt</h3>
             <div class="form-group">
-                <label for="promptSelect">Prompt选择：</label>
+                <label for="promptSelect">Prompt:</label>
                 <select id="promptSelect">
-                    <option value="">-- 请选择Prompt --</option>
+                    <option value="">-- Please Select Prompt --</option>
                     <option value="user-interest-intelligence-prompt_testV1.md">user-interest-intelligence-prompt_testV1.md</option>
                 </select>
             </div>
-            <!-- 1.5 运行按钮 -->
+            <!-- 1.6 Run Analysis Button -->
             <button class="btn" id="runPromptBtn" onclick="runPrompt()" disabled>
-                🚀 Run
+                🚀 Run Analysis
             </button>
         </div>
 
-        <!-- 1.7 输出结果展示区域 -->
+        <!-- 1.7 Output Results Display Area -->
         <div class="section" id="outputSection" style="display: none;">
-            <h3>4. 分析结果</h3>
+            <h3>4. Analysis Results</h3>
             <div class="output-section">
                 <div id="loadingIndicator" class="loading" style="display: none;">
-                    🤖 正在运行AI分析...
+                    🤖 Running AI Analysis...
                 </div>
                 <div class="output-content" id="outputContent"></div>
             </div>
@@ -258,32 +258,32 @@
         // 用户数据存储（仅作为备用，主要从文件读取）
         const userData = {};
 
-        // Prompt模板
+        // Prompt Templates
         const prompts = {
             'user-interest-intelligence-prompt_testV1.md': `# User Interest Intelligence Analysis Prompt
 
-## 任务描述
-请基于提供的用户行为数据，进行深度的兴趣智能分析，输出结构化的用户画像和个性化推荐。
+## Task Description
+Based on the provided user behavior data, conduct deep interest intelligence analysis and output structured user profiles and personalized recommendations.
 
-## 分析维度
-1. **兴趣偏好分析**: 识别用户的核心兴趣领域和偏好程度
-2. **行为模式识别**: 分析用户的行为习惯和活跃模式
-3. **个性化特征**: 提取用户的个性化标签和特征
-4. **推荐策略**: 基于分析结果生成个性化推荐
+## Analysis Dimensions
+1. **Interest Preference Analysis**: Identify user's core interest areas and preference levels
+2. **Behavior Pattern Recognition**: Analyze user's behavioral habits and activity patterns
+3. **Personalization Features**: Extract user's personalized tags and characteristics
+4. **Recommendation Strategy**: Generate personalized recommendations based on analysis results
 
-## 输出格式
-请以JSON格式输出分析结果，包含以下字段：
-- user_interests: 用户兴趣列表
-- behavior_patterns: 行为模式分析
-- personality_tags: 个性化标签
-- recommendations: 个性化推荐
-- confidence_score: 分析置信度
+## Output Format
+Please output analysis results in JSON format, containing the following fields:
+- user_interests: User interest list
+- behavior_patterns: Behavior pattern analysis
+- personality_tags: Personalized tags
+- recommendations: Personalized recommendations
+- confidence_score: Analysis confidence score
 
-## 用户数据
+## User Data
 `
         };
 
-        // 1.1 用户选择事件监听
+        // 1.1 User selection event listener
         document.getElementById('userIdSelect').addEventListener('change', function() {
             const selectedUserId = this.value;
             const getUserBehaviorBtn = document.getElementById('getUserBehaviorBtn');
@@ -292,14 +292,14 @@
                 getUserBehaviorBtn.disabled = false;
             } else {
                 getUserBehaviorBtn.disabled = true;
-                // 隐藏后续部分
+                // Hide subsequent sections
                 document.getElementById('userDataSection').style.display = 'none';
                 document.getElementById('promptSection').style.display = 'none';
                 document.getElementById('outputSection').style.display = 'none';
             }
         });
 
-        // Prompt选择事件监听
+        // Prompt selection event listener
         document.getElementById('promptSelect').addEventListener('change', function() {
             const selectedPrompt = this.value;
             const runPromptBtn = document.getElementById('runPromptBtn');
@@ -311,12 +311,12 @@
             }
         });
 
-        // 1.2 获取用户行为数据
+        // 1.3 Get user behavior data
         async function getUserBehavior() {
             const selectedUserId = document.getElementById('userIdSelect').value;
             
             if (!selectedUserId) {
-                alert('请先选择用户ID');
+                alert('Please select a User ID first');
                 return;
             }
 
@@ -329,7 +329,7 @@
                     response = await fetch(`./user-data/${selectedUserId}.txt`);
                     if (!response.ok) throw new Error('GitHub Pages failed');
                 } catch (e) {
-                    console.log('GitHub Pages失败，尝试GitHub Raw URL...');
+                    console.log('GitHub Pages failed, trying GitHub Raw URL...');
                     dataSource = 'GitHub Raw';
                     response = await fetch(`https://raw.githubusercontent.com/lixin987-ship-it/user-interest-intelligence-repo/main/user-data/${selectedUserId}.txt`);
                 }
@@ -344,21 +344,21 @@
                 const userDataSection = document.getElementById('userDataSection');
                 const promptSection = document.getElementById('promptSection');
                 
-                // 显示用户数据
+                // Display user data
                 userDataTextarea.value = userDataContent;
                 userDataSection.style.display = 'block';
                 promptSection.style.display = 'block';
                 
                 // 显示成功消息
-                showMessage('success', `成功从 ${dataSource} 加载 ${selectedUserId} 的用户行为数据`);
+                showMessage('success', `Successfully loaded ${selectedUserId} user behavior data from ${dataSource}`);
                 
             } catch (error) {
-                console.error('读取用户数据失败:', error);
-                showMessage('error', `无法读取文件 user-data/${selectedUserId}.txt: ${error.message}`);
+                console.error('Failed to read user data:', error);
+                showMessage('error', `Unable to read file user-data/${selectedUserId}.txt: ${error.message}`);
             }
         }
 
-        // 1.4 启用编辑模式
+        // 1.4 Enable edit mode
         function enableEdit() {
             const userDataTextarea = document.getElementById('userDataTextarea');
             const editBtn = document.getElementById('editBtn');
@@ -372,12 +372,12 @@
             userDataTextarea.focus();
         }
 
-        // 1.4 保存用户数据
+        // 1.4 Save user data
         function saveUserData() {
             const selectedUserId = document.getElementById('userIdSelect').value;
             const userDataTextarea = document.getElementById('userDataTextarea');
             
-            // 退出编辑模式
+            // Exit edit mode
             cancelEdit();
             
             showMessage('success', '用户数据保存成功（注意：仅保存在页面中，刷新后会重置）');
@@ -413,7 +413,7 @@
             const outputContent = document.getElementById('outputContent');
             
             if (!selectedPrompt || !userDataText.trim()) {
-                alert('请确保已选择Prompt且用户数据不为空');
+                alert('Please ensure Prompt is selected and user data is not empty');
                 return;
             }
 
@@ -426,7 +426,7 @@
                 // 1.6 拼接prompt和用户数据
                 const fullPrompt = prompts[selectedPrompt] + '\n\n' + userDataText;
                 
-                console.log('运行分析:', {
+                console.log('Running analysis:', {
                     prompt: selectedPrompt,
                     userDataLength: userDataText.length
                 });
@@ -441,13 +441,13 @@
                 loadingIndicator.style.display = 'none';
                 outputContent.innerHTML = formatAnalysisOutput(analysisResult);
                 
-                showMessage('success', '分析完成！');
+                showMessage('success', 'Analysis complete!');
                 
             } catch (error) {
                 loadingIndicator.style.display = 'none';
                 outputContent.innerHTML = `错误: ${error.message}`;
-                showMessage('error', '分析过程中出现错误');
-                console.error('分析错误:', error);
+                showMessage('error', 'Error occurred during analysis');
+                console.error('Analysis error:', error);
             }
         }
 
@@ -461,116 +461,116 @@
             const tags = [];
             const recommendations = [];
             
-            // 基于数据权重的兴趣识别
+            // Interest identification based on data weight
             if (text.includes('fashion') || text.includes('style') || text.includes('clothing')) {
-                interests.push('时尚与服装 (权重: 0.95+)');
-                tags.push('时尚达人');
-                recommendations.push('推荐个性化时尚搭配和季节性服装');
+                interests.push('Fashion & Style (Weight: 0.95+)');
+                tags.push('Fashion Enthusiast');
+                recommendations.push('Recommend personalized fashion styling and seasonal clothing');
             }
             
             if (text.includes('technology') || text.includes('ai') || text.includes('artificial intelligence') || text.includes('copilot')) {
-                interests.push('人工智能与科技 (权重: 0.78+)');
-                tags.push('科技爱好者');
-                recommendations.push('推荐最新AI技术资讯和科技产品评测');
+                interests.push('Artificial Intelligence & Technology (Weight: 0.78+)');
+                tags.push('Tech Enthusiast');
+                recommendations.push('Recommend latest AI technology news and tech product reviews');
             }
             
             if (text.includes('business') || text.includes('finance') || text.includes('investment')) {
-                interests.push('商业与金融 (权重: 0.77+)');
-                tags.push('投资理财者');
-                recommendations.push('推荐投资资讯和理财规划工具');
+                interests.push('Business & Finance (Weight: 0.77+)');
+                tags.push('Investment & Finance User');
+                recommendations.push('Recommend investment news and financial planning tools');
             }
             
             if (text.includes('travel') || text.includes('flight') || text.includes('airport')) {
-                interests.push('旅行与出行 (权重: 0.80+)');
-                tags.push('旅行爱好者');
-                recommendations.push('推荐旅游目的地和航班优惠信息');
+                interests.push('Travel & Transportation (Weight: 0.80+)');
+                tags.push('Travel Enthusiast');
+                recommendations.push('Recommend travel destinations and flight deals');
             }
             
             if (text.includes('pets') || text.includes('animals') || text.includes('kitten') || text.includes('dog')) {
-                interests.push('宠物与动物 (权重: 0.60+)');
-                tags.push('动物爱好者');
-                recommendations.push('推荐宠物护理和动物救助内容');
+                interests.push('Pets & Animals (Weight: 0.60+)');
+                tags.push('Animal Lover');
+                recommendations.push('Recommend pet care and animal rescue content');
             }
 
-            // 基于时间模式的行为分析
+            // Behavior analysis based on time patterns
             if (text.includes('long-term')) {
-                patterns.push('长期兴趣稳定用户 - 具有持续性偏好');
+                patterns.push('Long-term stable interest user - has persistent preferences');
             }
             
             if (text.includes('short-term')) {
-                patterns.push('短期兴趣活跃用户 - 对新鲜事物敏感');
+                patterns.push('Short-term active interest user - sensitive to new things');
             }
             
-            // 基于数据源的行为模式
+            // Behavior patterns based on data sources
             if (text.includes('msn') && text.includes('edge')) {
-                patterns.push('多平台活跃用户 - MSN和Edge双重使用');
+                patterns.push('Multi-platform active user - dual usage of MSN and Edge');
             }
             
             if (text.includes('uet')) {
-                patterns.push('深度购物用户 - 具有强烈购买意向');
+                patterns.push('Deep shopping user - has strong purchase intention');
             }
 
-            // 基于权重的推荐策略
+            // Weight-based recommendation strategy
             const weightMatches = text.match(/0\.\d+/g);
             if (weightMatches) {
                 const maxWeight = Math.max(...weightMatches.map(w => parseFloat(w)));
                 if (maxWeight > 0.9) {
-                    recommendations.push('高权重兴趣识别 - 重点推送核心兴趣内容');
+                    recommendations.push('High-weight interest identification - focus on core interest content');
                 }
                 if (maxWeight > 0.8) {
-                    recommendations.push('个性化算法优化 - 基于高置信度数据');
+                    recommendations.push('Personalized algorithm optimization - based on high confidence data');
                 }
             }
 
-            // 时间敏感性分析
+            // Time sensitivity analysis
             if (text.includes('2026-01-')) {
-                patterns.push('近期活跃用户 - 2026年1月高频互动');
-                recommendations.push('实时内容推送 - 把握用户当前兴趣热点');
+                patterns.push('Recently active user - high frequency interactions in January 2026');
+                recommendations.push('Real-time content push - capture current user interest hotspots');
             }
 
             return {
-                user_interests: interests.length > 0 ? interests : ['多元化兴趣用户'],
-                behavior_patterns: patterns.length > 0 ? patterns : ['标准用户行为模式'],
-                personality_tags: tags.length > 0 ? tags : ['综合型用户'],
-                recommendations: recommendations.length > 0 ? recommendations : ['个性化内容推荐'],
+                user_interests: interests.length > 0 ? interests : ['Diversified interest user'],
+                behavior_patterns: patterns.length > 0 ? patterns : ['Standard user behavior pattern'],
+                personality_tags: tags.length > 0 ? tags : ['Comprehensive user'],
+                recommendations: recommendations.length > 0 ? recommendations : ['Personalized content recommendations'],
                 confidence_score: '92%',
                 analysis_timestamp: new Date().toLocaleString(),
                 data_source: 'Microsoft-User-Behavior-Intelligence',
                 data_points: text.split('\n').length,
-                weight_analysis: weightMatches ? `发现 ${weightMatches.length} 个权重数据点` : '无权重数据'
+                weight_analysis: weightMatches ? `Found ${weightMatches.length} weight data points` : 'No weight data'
             };
         }
 
-        // 1.7 格式化输出结果 (简洁形式)
+        // 1.7 Format analysis output (concise form)
         function formatAnalysisOutput(result) {
-            return `🎯 Microsoft 用户兴趣智能分析报告
+            return `🎯 Microsoft User Interest Intelligence Analysis Report
 
-📊 核心兴趣识别:
+📊 Core Interest Identification:
 ${result.user_interests.map(interest => `   • ${interest}`).join('\n')}
 
-📈 用户行为模式:
+📈 User Behavior Patterns:
 ${result.behavior_patterns.map(pattern => `   • ${pattern}`).join('\n')}
 
-🏷️ 用户画像标签:
+🏷️ User Profile Tags:
 ${result.personality_tags.map(tag => `   • ${tag}`).join('\n')}
 
-💡 个性化推荐策略:
+💡 Personalized Recommendation Strategy:
 ${result.recommendations.map(rec => `   • ${rec}`).join('\n')}
 
-📋 分析元数据:
-   • 分析置信度: ${result.confidence_score}
-   • 数据来源: ${result.data_source}
-   • 数据点数量: ${result.data_points}
-   • 权重分析: ${result.weight_analysis}
-   • 分析时间: ${result.analysis_timestamp}
+📋 Analysis Metadata:
+   • Analysis Confidence: ${result.confidence_score}
+   • Data Source: ${result.data_source}
+   • Data Points Count: ${result.data_points}
+   • Weight Analysis: ${result.weight_analysis}
+   • Analysis Time: ${result.analysis_timestamp}
 
-🔍 技术细节:
-   • 算法版本: User Interest Intelligence v2.0
-   • 处理模式: 实时行为数据分析
-   • 数据时效性: 2026-01-14 当前数据
+🔍 Technical Details:
+   • Algorithm Version: User Interest Intelligence v2.0
+   • Processing Mode: Real-time behavior data analysis
+   • Data Timeliness: Current data as of 2026-01-14
 
 ---
-✅ 智能分析完成 | 🤖 Microsoft AI 用户兴趣分析系统`;
+✅ Intelligence Analysis Complete | 🤖 Microsoft AI User Interest Analysis System`;
         }
 
         // 显示消息
@@ -583,10 +583,10 @@ ${result.recommendations.map(rec => `   • ${rec}`).join('\n')}
             messageDiv.className = type;
             messageDiv.textContent = message;
             
-            // 添加到容器末尾
+            // Add to container end
             document.querySelector('.container').appendChild(messageDiv);
             
-            // 3秒后自动移除
+            // Auto remove after 3 seconds
             setTimeout(() => {
                 if (messageDiv.parentNode) {
                     messageDiv.parentNode.removeChild(messageDiv);
@@ -594,9 +594,9 @@ ${result.recommendations.map(rec => `   • ${rec}`).join('\n')}
             }, 3000);
         }
 
-        console.log('用户兴趣智能分析平台已加载');
-        console.log('可用用户ID:', Object.keys(userData));
-        console.log('可用Prompt:', Object.keys(prompts));
+        console.log('User Interest Intelligence Analysis Platform loaded');
+        console.log('Available User IDs:', Object.keys(userData));
+        console.log('Available Prompts:', Object.keys(prompts));
     </script>
 </body>
 </html>
