@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户行为分析系统 - 最新配置</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        select, textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+        
+        select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .analyze-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .analyze-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .analyze-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+            color: #667eea;
+        }
+        
+        .results {
+            margin-top: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            display: none;
+        }
+        
+        .results h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #dc3545;
+            display: none;
+        }
+        
+        .status {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #28a745;
+        }
+        
+        .config-info {
+            background: #e7f3ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #007bff;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧠 用户行为分析系统</h1>
+        <p class="subtitle">基于最新Azure OpenAI配置的智能分析平台</p>
+        
+        <div class="status">
+            <strong>✅ 系统状态:</strong> 使用最新提供的API端点和密钥配置
+        </div>
+        
+        <div class="config-info">
+            <strong>📡 配置说明:</strong>
+            <br>• GPT-5.2/5.1: 使用 /openai/responses 端点
+            <br>• GPT-5/O4-mini/O1-mini: 使用 /openai/deployments/{model}/chat/completions 端点
+            <br>• 统一API密钥: 0f4dccd...44d
+        </div>
+        
+        <form id="analysisForm">
+            <div class="form-group">
+                <label for="modelSelect">选择AI模型:</label>
+                <select id="modelSelect" required>
+                    <option value="">请选择模型...</option>
+                    <option value="gpt-5.2">GPT-5.2 (responses端点)</option>
+                    <option value="gpt-5.1">GPT-5.1 (responses端点)</option>
+                    <option value="gpt-5">GPT-5 (chat/completions端点)</option>
+                    <option value="o4-mini">O4-Mini (chat/completions端点)</option>
+                    <option value="o1-mini">O1-Mini (chat/completions端点)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="behaviorData">用户行为数据:</label>
+                <textarea 
+                    id="behaviorData" 
+                    placeholder="请输入用户行为数据，例如：&#10;- 浏览历史&#10;- 点击记录&#10;- 购买行为&#10;- 搜索关键词&#10;- 页面停留时间等..."
+                    required
+                ></textarea>
+            </div>
+            
+            <button type="submit" class="analyze-btn" id="analyzeBtn">
+                🔍 开始智能分析
+            </button>
+        </form>
+        
+        <div class="loading" id="loading">
+            <p>🤖 AI正在分析用户行为数据...</p>
+        </div>
+        
+        <div class="results" id="results">
+            <h3>📊 分析结果</h3>
+            <div id="analysisResults"></div>
+        </div>
+        
+        <div class="error" id="error">
+            <h4>❌ 错误信息</h4>
+            <div id="errorMessage"></div>
+        </div>
+    </div>
+
+    <script>
+        // 最新的API配置 - 基于用户提供的准确URI和Key
+        const API_CONFIGS = {
+            'gpt-5.2': {
+                uri: 'https://csnf-singularity-aoai-eastus2.openai.azure.com/openai/responses?api-version=2025-04-01-preview',
+                key: '0f4dccd08abf409db477243f1340a44d',
+                endpointType: 'responses'
+            },
+            'gpt-5.1': {
+                uri: 'https://csnf-singularity-aoai-eastus2.openai.azure.com/openai/responses?api-version=2025-04-01-preview',
+                key: '0f4dccd08abf409db477243f1340a44d',
+                endpointType: 'responses'
+            },
+            'gpt-5': {
+                uri: 'https://csnf-singularity-aoai-eastus2.openai.azure.com/openai/deployments/gpt-5/chat/completions?api-version=2025-01-01-preview',
+                key: '0f4dccd08abf409db477243f1340a44d',
+                endpointType: 'chat/completions'
+            },
+            'o4-mini': {
+                uri: 'https://csnf-singularity-aoai-eastus2.openai.azure.com/openai/deployments/o4-mini/chat/completions?api-version=2025-01-01-preview',
+                key: '0f4dccd08abf409db477243f1340a44d',
+                endpointType: 'chat/completions'
+            },
+            'o1-mini': {
+                uri: 'https://csnf-singularity-aoai-eastus2.openai.azure.com/openai/deployments/o1-mini/chat/completions?api-version=2025-01-01-preview',
+                key: '0f4dccd08abf409db477243f1340a44d',
+                endpointType: 'chat/completions'
+            }
+        };
+
+        // 主要分析函数
+        async function analyzeUserBehavior(modelKey, behaviorData) {
+            const config = API_CONFIGS[modelKey];
+            
+            if (!config) {
+                throw new Error(`未找到模型配置: ${modelKey}`);
+            }
+            
+            console.log(`使用模型: ${modelKey}`, config);
+            
+            // 构建分析提示
+            const analysisPrompt = `
+作为用户行为分析专家，请分析以下用户数据并生成详细的兴趣洞察报告。
+
+用户行为数据：
+${behaviorData}
+
+请提供以下格式的JSON分析报告：
+{
+    "user_interests": ["兴趣1", "兴趣2", "兴趣3"],
+    "behavior_patterns": ["模式1", "模式2", "模式3"],
+    "preferences": {
+        "product_categories": ["类别1", "类别2"],
+        "content_types": ["类型1", "类型2"],
+        "engagement_level": "高/中/低"
+    },
+    "recommendations": ["建议1", "建议2", "建议3"],
+    "insights": "深度分析洞察"
+}
+
+请确保分析准确、实用，并提供可操作的建议。
+            `;
+            
+            // 构建请求体 - 根据端点类型调整
+            let requestBody;
+            
+            if (config.endpointType === 'responses') {
+                // responses端点格式
+                requestBody = {
+                    messages: [
+                        { 
+                            role: "system", 
+                            content: "你是一个专业的用户行为分析师，擅长从用户数据中提取有价值的洞察和模式。请始终以JSON格式返回分析结果。" 
+                        },
+                        { 
+                            role: "user", 
+                            content: analysisPrompt 
+                        }
+                    ],
+                    max_tokens: 2000,
+                    temperature: 0.7
+                };
+            } else {
+                // chat/completions端点格式
+                requestBody = {
+                    messages: [
+                        { 
+                            role: "system", 
+                            content: "你是一个专业的用户行为分析师，擅长从用户数据中提取有价值的洞察和模式。请始终以JSON格式返回分析结果。" 
+                        },
+                        { 
+                            role: "user", 
+                            content: analysisPrompt 
+                        }
+                    ],
+                    max_tokens: 2000,
+                    temperature: 0.7,
+                    model: modelKey
+                };
+            }
+            
+            console.log('请求URI:', config.uri);
+            console.log('请求体:', requestBody);
+            
+            // 调用API - 尝试多种认证方式
+            const authMethods = [
+                { name: 'api-key', headers: { 'api-key': config.key } },
+                { name: 'Bearer', headers: { 'Authorization': `Bearer ${config.key}` } },
+                { name: 'Ocp-Apim-Subscription-Key', headers: { 'Ocp-Apim-Subscription-Key': config.key } }
+            ];
+            
+            let lastError;
+            
+            for (const authMethod of authMethods) {
+                try {
+                    console.log(`尝试认证方式: ${authMethod.name}`);
+                    
+                    const response = await fetch(config.uri, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            ...authMethod.headers
+                        },
+                        body: JSON.stringify(requestBody)
+                    });
+                    
+                    console.log(`${authMethod.name} - 响应状态:`, response.status);
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        console.log('API响应成功:', data);
+                        
+                        // 提取AI回复内容
+                        const analysisText = data.choices?.[0]?.message?.content || 
+                                           data.content || 
+                                           JSON.stringify(data);
+                        
+                        // 尝试解析JSON响应
+                        try {
+                            const jsonMatch = analysisText.match(/\{[\s\S]*\}/);
+                            if (jsonMatch) {
+                                return JSON.parse(jsonMatch[0]);
+                            } else {
+                                return {
+                                    raw_analysis: analysisText,
+                                    note: "AI返回的是文本格式而非JSON",
+                                    auth_method: authMethod.name
+                                };
+                            }
+                        } catch (e) {
+                            return {
+                                raw_analysis: analysisText,
+                                parse_error: "JSON解析失败",
+                                error: e.message,
+                                auth_method: authMethod.name
+                            };
+                        }
+                        
+                    } else {
+                        const errorText = await response.text();
+                        console.log(`${authMethod.name} - 错误响应:`, errorText);
+                        lastError = new Error(`${authMethod.name}认证失败 (${response.status}): ${errorText}`);
+                    }
+                    
+                } catch (error) {
+                    console.error(`${authMethod.name} - 网络错误:`, error);
+                    lastError = error;
+                }
+            }
+            
+            // 如果所有认证方式都失败
+            throw lastError || new Error('所有认证方式都失败');
+        }
+
+        // 显示结果函数
+        function displayResults(analysis) {
+            const resultsDiv = document.getElementById('analysisResults');
+            
+            if (analysis.user_interests) {
+                // 标准JSON格式结果
+                resultsDiv.innerHTML = `
+                    <div style="margin-bottom: 20px;">
+                        <h4>🎯 用户兴趣</h4>
+                        <ul>
+                            ${analysis.user_interests.map(interest => `<li>${interest}</li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h4>📈 行为模式</h4>
+                        <ul>
+                            ${analysis.behavior_patterns.map(pattern => `<li>${pattern}</li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h4>⚙️ 偏好设置</h4>
+                        <p><strong>产品类别:</strong> ${analysis.preferences?.product_categories?.join(', ') || '未识别'}</p>
+                        <p><strong>内容类型:</strong> ${analysis.preferences?.content_types?.join(', ') || '未识别'}</p>
+                        <p><strong>参与度:</strong> ${analysis.preferences?.engagement_level || '未评估'}</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h4>💡 推荐建议</h4>
+                        <ul>
+                            ${analysis.recommendations?.map(rec => `<li>${rec}</li>`).join('') || '<li>暂无建议</li>'}
+                        </ul>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h4>🔍 深度洞察</h4>
+                        <p>${analysis.insights || '暂无深度洞察'}</p>
+                    </div>
+                    
+                    ${analysis.auth_method ? `<div style="margin-top: 20px; font-size: 0.9em; color: #666;"><strong>成功认证方式:</strong> ${analysis.auth_method}</div>` : ''}
+                `;
+            } else {
+                // 原始文本结果
+                resultsDiv.innerHTML = `
+                    <div style="margin-bottom: 20px;">
+                        <h4>📋 分析报告</h4>
+                        <div style="white-space: pre-wrap; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                            ${analysis.raw_analysis || JSON.stringify(analysis, null, 2)}
+                        </div>
+                        ${analysis.auth_method ? `<div style="margin-top: 10px; font-size: 0.9em; color: #666;"><strong>认证方式:</strong> ${analysis.auth_method}</div>` : ''}
+                    </div>
+                `;
+            }
+        }
+
+        // 表单处理
+        document.getElementById('analysisForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const modelSelect = document.getElementById('modelSelect');
+            const behaviorData = document.getElementById('behaviorData');
+            const analyzeBtn = document.getElementById('analyzeBtn');
+            const loading = document.getElementById('loading');
+            const results = document.getElementById('results');
+            const error = document.getElementById('error');
+            
+            // 重置显示状态
+            results.style.display = 'none';
+            error.style.display = 'none';
+            loading.style.display = 'block';
+            analyzeBtn.disabled = true;
+            
+            try {
+                console.log('开始分析，模型:', modelSelect.value);
+                
+                const analysis = await analyzeUserBehavior(modelSelect.value, behaviorData.value);
+                
+                console.log('分析完成:', analysis);
+                
+                displayResults(analysis);
+                results.style.display = 'block';
+                
+            } catch (err) {
+                console.error('分析失败:', err);
+                
+                document.getElementById('errorMessage').innerHTML = `
+                    <p><strong>错误详情:</strong> ${err.message}</p>
+                    <p><strong>模型:</strong> ${modelSelect.value}</p>
+                    <p><strong>端点类型:</strong> ${API_CONFIGS[modelSelect.value]?.endpointType || '未知'}</p>
+                    <p><strong>时间:</strong> ${new Date().toLocaleTimeString()}</p>
+                `;
+                error.style.display = 'block';
+            } finally {
+                loading.style.display = 'none';
+                analyzeBtn.disabled = false;
+            }
+        });
+
+        console.log('用户行为分析系统已加载 - 最新配置版本');
+        console.log('支持的模型:', Object.keys(API_CONFIGS));
+        console.log('API配置:', API_CONFIGS);
+    </script>
+</body>
+</html>

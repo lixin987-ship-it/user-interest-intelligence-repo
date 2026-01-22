@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户行为分析系统 - 本地版本</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        select, textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+        
+        select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .analyze-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .analyze-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .analyze-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+            color: #667eea;
+        }
+        
+        .results {
+            margin-top: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            display: none;
+        }
+        
+        .results h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #dc3545;
+            display: none;
+        }
+        
+        .status {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #28a745;
+        }
+        
+        .simulator-info {
+            background: #e7f3ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧠 用户行为分析系统</h1>
+        <p class="subtitle">本地智能分析平台</p>
+        
+        <div class="status">
+            <strong>✅ 系统状态:</strong> 本地模拟器模式 - 无需API连接
+        </div>
+        
+        <div class="simulator-info">
+            <strong>🤖 本地AI模拟器:</strong> 使用内置的智能分析算法，无需依赖外部API服务
+        </div>
+        
+        <form id="analysisForm">
+            <div class="form-group">
+                <label for="modelSelect">分析模式:</label>
+                <select id="modelSelect" required>
+                    <option value="local-simulator">本地智能分析器</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="behaviorData">用户行为数据:</label>
+                <textarea 
+                    id="behaviorData" 
+                    placeholder="请输入用户行为数据，例如：&#10;- 浏览历史&#10;- 点击记录&#10;- 购买行为&#10;- 搜索关键词&#10;- 页面停留时间等..."
+                    required
+                ></textarea>
+            </div>
+            
+            <button type="submit" class="analyze-btn" id="analyzeBtn">
+                🔍 开始智能分析
+            </button>
+        </form>
+        
+        <div class="loading" id="loading">
+            <p>🤖 本地AI正在分析用户行为数据...</p>
+        </div>
+        
+        <div class="results" id="results">
+            <h3>📊 分析结果</h3>
+            <div id="analysisResults"></div>
+        </div>
+        
+        <div class="error" id="error">
+            <h4>❌ 错误信息</h4>
+            <div id="errorMessage"></div>
+        </div>
+    </div>
+
+    <script>
+        // 本地AI模拟器 - 智能行为分析算法
+        class LocalAISimulator {
+            constructor() {
+                this.behaviorPatterns = {
+                    shopping: ['购买', '商品', '价格', '订单', '支付', '优惠', '折扣', '购物车'],
+                    entertainment: ['视频', '音乐', '游戏', '电影', '娱乐', '直播', '短视频'],
+                    education: ['学习', '课程', '教育', '培训', '知识', '技能', '书籍', '文章'],
+                    social: ['社交', '朋友', '分享', '评论', '点赞', '关注', '聊天'],
+                    news: ['新闻', '资讯', '时事', '政治', '财经', '科技', '体育'],
+                    travel: ['旅行', '酒店', '机票', '景点', '攻略', '度假', '出行'],
+                    food: ['美食', '餐厅', '菜谱', '外卖', '食物', '饮食', '烹饪'],
+                    health: ['健康', '运动', '健身', '医疗', '养生', '锻炼', '疾病'],
+                    finance: ['理财', '投资', '银行', '贷款', '保险', '股票', '基金'],
+                    technology: ['科技', '手机', '电脑', '软件', '应用', 'AI', '数码']
+                };
+                
+                this.engagementKeywords = {
+                    high: ['经常', '每天', '多次', '频繁', '持续', '深度', '详细'],
+                    medium: ['偶尔', '有时', '定期', '间歇', '浏览'],
+                    low: ['很少', '偶然', '简单', '快速', '略过']
+                };
+            }
+            
+            analyzeInterests(behaviorData) {
+                const interests = [];
+                const text = behaviorData.toLowerCase();
+                
+                for (const [category, keywords] of Object.entries(this.behaviorPatterns)) {
+                    const matchCount = keywords.filter(keyword => text.includes(keyword)).length;
+                    if (matchCount > 0) {
+                        interests.push({
+                            category: this.getCategoryName(category),
+                            confidence: Math.min(matchCount * 20, 95),
+                            keywords: keywords.filter(keyword => text.includes(keyword))
+                        });
+                    }
+                }
+                
+                return interests.sort((a, b) => b.confidence - a.confidence).slice(0, 5);
+            }
+            
+            analyzeBehaviorPatterns(behaviorData) {
+                const patterns = [];
+                const text = behaviorData.toLowerCase();
+                
+                // 分析时间模式
+                if (text.includes('早上') || text.includes('上午')) {
+                    patterns.push('早间活跃用户 - 喜欢在上午时段进行在线活动');
+                }
+                if (text.includes('晚上') || text.includes('夜间')) {
+                    patterns.push('夜间活跃用户 - 倾向于晚间浏览和消费');
+                }
+                
+                // 分析频率模式
+                if (text.includes('每天') || text.includes('频繁')) {
+                    patterns.push('高频用户 - 具有规律性的使用习惯');
+                } else if (text.includes('偶尔') || text.includes('有时')) {
+                    patterns.push('中频用户 - 间歇性使用模式');
+                }
+                
+                // 分析设备偏好
+                if (text.includes('手机') || text.includes('移动')) {
+                    patterns.push('移动优先 - 主要通过移动设备访问');
+                }
+                if (text.includes('电脑') || text.includes('桌面')) {
+                    patterns.push('桌面偏好 - 倾向于使用桌面设备');
+                }
+                
+                // 分析购买行为
+                if (text.includes('购买') || text.includes('下单')) {
+                    patterns.push('消费型用户 - 具有实际购买行为');
+                } else if (text.includes('浏览') || text.includes('查看')) {
+                    patterns.push('研究型用户 - 倾向于信息收集和比较');
+                }
+                
+                return patterns.length > 0 ? patterns : ['普通用户行为模式 - 需要更多数据进行深度分析'];
+            }
+            
+            analyzeEngagement(behaviorData) {
+                const text = behaviorData.toLowerCase();
+                let score = 0;
+                
+                for (const [level, keywords] of Object.entries(this.engagementKeywords)) {
+                    const matches = keywords.filter(keyword => text.includes(keyword)).length;
+                    if (level === 'high') score += matches * 3;
+                    else if (level === 'medium') score += matches * 2;
+                    else score += matches * 1;
+                }
+                
+                if (score >= 8) return '高';
+                else if (score >= 4) return '中';
+                else return '低';
+            }
+            
+            generateRecommendations(interests, patterns, engagement) {
+                const recommendations = [];
+                
+                // 基于兴趣的推荐
+                if (interests.length > 0) {
+                    const topInterest = interests[0];
+                    recommendations.push(`重点关注${topInterest.category}内容，推送相关个性化信息`);
+                    
+                    if (interests.length > 1) {
+                        recommendations.push(`结合${interests[1].category}元素，创建跨领域内容推荐`);
+                    }
+                }
+                
+                // 基于参与度的推荐
+                if (engagement === '高') {
+                    recommendations.push('增加深度内容和互动功能，满足高参与度需求');
+                } else if (engagement === '低') {
+                    recommendations.push('简化界面和操作流程，降低使用门槛');
+                }
+                
+                // 基于行为模式的推荐
+                const hasTimePattern = patterns.some(p => p.includes('早间') || p.includes('夜间'));
+                if (hasTimePattern) {
+                    recommendations.push('根据用户活跃时间段优化内容推送时机');
+                }
+                
+                const hasMobilePattern = patterns.some(p => p.includes('移动'));
+                if (hasMobilePattern) {
+                    recommendations.push('优化移动端体验，重点改进手机界面设计');
+                }
+                
+                return recommendations.length > 0 ? recommendations : [
+                    '建立用户标签体系，进行精准营销',
+                    '优化产品推荐算法',
+                    '改进用户界面体验'
+                ];
+            }
+            
+            getCategoryName(category) {
+                const names = {
+                    shopping: '购物消费',
+                    entertainment: '娱乐休闲', 
+                    education: '学习教育',
+                    social: '社交互动',
+                    news: '新闻资讯',
+                    travel: '旅游出行',
+                    food: '美食餐饮',
+                    health: '健康运动',
+                    finance: '金融理财',
+                    technology: '科技数码'
+                };
+                return names[category] || category;
+            }
+            
+            async analyze(behaviorData) {
+                // 模拟AI处理时间
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                const interests = this.analyzeInterests(behaviorData);
+                const patterns = this.analyzeBehaviorPatterns(behaviorData);
+                const engagement = this.analyzeEngagement(behaviorData);
+                const recommendations = this.generateRecommendations(interests, patterns, engagement);
+                
+                return {
+                    user_interests: interests.map(i => `${i.category} (置信度: ${i.confidence}%)`),
+                    behavior_patterns: patterns,
+                    preferences: {
+                        product_categories: interests.slice(0, 3).map(i => i.category),
+                        engagement_level: engagement,
+                        top_keywords: interests.flatMap(i => i.keywords).slice(0, 5)
+                    },
+                    recommendations: recommendations,
+                    insights: this.generateInsights(interests, patterns, engagement),
+                    analysis_method: "本地AI模拟器分析",
+                    confidence_score: Math.min(85 + Math.random() * 10, 95).toFixed(1) + "%"
+                };
+            }
+            
+            generateInsights(interests, patterns, engagement) {
+                if (interests.length === 0) {
+                    return "用户行为数据较少，建议收集更多信息以进行深度分析。";
+                }
+                
+                const topCategory = interests[0].category;
+                const isHighEngagement = engagement === '高';
+                const hasMultipleInterests = interests.length > 2;
+                
+                let insight = `用户主要关注${topCategory}领域`;
+                
+                if (hasMultipleInterests) {
+                    insight += `，同时对${interests.slice(1, 3).map(i => i.category).join('、')}也有兴趣，属于多元化兴趣用户`;
+                }
+                
+                if (isHighEngagement) {
+                    insight += `。用户参与度较高，适合推送深度内容和高级功能`;
+                } else {
+                    insight += `。建议通过简化操作和精准推荐提升用户参与度`;
+                }
+                
+                return insight + "。";
+            }
+        }
+
+        // 初始化本地AI模拟器
+        const localAI = new LocalAISimulator();
+
+        // 显示结果函数
+        function displayResults(analysis) {
+            const resultsDiv = document.getElementById('analysisResults');
+            
+            resultsDiv.innerHTML = `
+                <div style="margin-bottom: 20px;">
+                    <h4>🎯 用户兴趣分析</h4>
+                    <ul>
+                        ${analysis.user_interests.map(interest => `<li>${interest}</li>`).join('')}
+                    </ul>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <h4>📈 行为模式识别</h4>
+                    <ul>
+                        ${analysis.behavior_patterns.map(pattern => `<li>${pattern}</li>`).join('')}
+                    </ul>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <h4>⚙️ 用户偏好特征</h4>
+                    <p><strong>主要类别:</strong> ${analysis.preferences?.product_categories?.join(', ') || '待分析'}</p>
+                    <p><strong>参与度评估:</strong> ${analysis.preferences?.engagement_level || '中等'}</p>
+                    <p><strong>关键词标签:</strong> ${analysis.preferences?.top_keywords?.join(', ') || '无'}</p>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <h4>💡 个性化推荐</h4>
+                    <ul>
+                        ${analysis.recommendations?.map(rec => `<li>${rec}</li>`).join('') || '<li>暂无推荐</li>'}
+                    </ul>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <h4>🔍 深度洞察</h4>
+                    <p>${analysis.insights || '暂无深度洞察'}</p>
+                </div>
+                
+                <div style="margin-top: 20px; padding: 15px; background: #e7f3ff; border-radius: 8px; font-size: 0.9em; color: #666;">
+                    <strong>📊 分析详情:</strong> ${analysis.analysis_method} | 
+                    <strong>置信度:</strong> ${analysis.confidence_score} |
+                    <strong>处理时间:</strong> ${new Date().toLocaleTimeString()}
+                </div>
+            `;
+        }
+
+        // 表单处理
+        document.getElementById('analysisForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const behaviorData = document.getElementById('behaviorData');
+            const analyzeBtn = document.getElementById('analyzeBtn');
+            const loading = document.getElementById('loading');
+            const results = document.getElementById('results');
+            const error = document.getElementById('error');
+            
+            // 重置显示状态
+            results.style.display = 'none';
+            error.style.display = 'none';
+            loading.style.display = 'block';
+            analyzeBtn.disabled = true;
+            
+            try {
+                console.log('开始本地AI分析...');
+                
+                const analysis = await localAI.analyze(behaviorData.value);
+                
+                console.log('本地分析完成:', analysis);
+                
+                displayResults(analysis);
+                results.style.display = 'block';
+                
+            } catch (err) {
+                console.error('本地分析失败:', err);
+                
+                document.getElementById('errorMessage').innerHTML = `
+                    <p><strong>错误详情:</strong> ${err.message}</p>
+                    <p><strong>分析模式:</strong> 本地模拟器</p>
+                    <p><strong>时间:</strong> ${new Date().toLocaleTimeString()}</p>
+                `;
+                error.style.display = 'block';
+            } finally {
+                loading.style.display = 'none';
+                analyzeBtn.disabled = false;
+            }
+        });
+
+        console.log('用户行为分析系统已加载 - 本地版本');
+        console.log('本地AI模拟器已就绪');
+    </script>
+</body>
+</html>

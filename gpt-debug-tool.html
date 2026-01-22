@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPT API 测试工具（修复版）</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        select, textarea, button {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        button {
+            background: #007cba;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #005a87;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border: 1px solid #dee2e6;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border-color: #c3e6cb;
+        }
+        .warning {
+            background: #fff3cd;
+            color: #856404;
+            border-color: #ffeaa7;
+        }
+        .loading {
+            text-align: center;
+            color: #007cba;
+            font-weight: bold;
+        }
+        pre {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 12px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .debug-section {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-left: 4px solid #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 GPT API 测试工具（修复版）</h1>
+        
+        <div class="form-group">
+            <label for="modelSelect">选择GPT模型：</label>
+            <select id="modelSelect">
+                <option value="">-- 选择模型 --</option>
+                <option value="gpt-5.2">GPT-5.2</option>
+                <option value="gpt-5.1">GPT-5.1</option>
+                <option value="gpt-5">GPT-5</option>
+                <option value="o4-mini">O4-Mini</option>
+                <option value="o1-mini">O1-Mini</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="promptInput">测试提示词：</label>
+            <textarea id="promptInput" placeholder="输入你想测试的提示词">Hello, please respond with a simple greeting.</textarea>
+        </div>
+
+        <button id="testButton" onclick="testGPTAPI()">🚀 测试 GPT API</button>
+        <button id="configButton" onclick="debugConfig()" style="background: #28a745;">🔧 调试配置</button>
+        <button id="rawButton" onclick="showRawConfig()" style="background: #fd7e14;">📄 显示原始配置</button>
+
+        <div id="result" style="display: none;"></div>
+    </div>
+
+    <script>
+        // 从配置文件直接读取的加密数据（保持原始格式）
+        const RAW_ENCRYPTED_CONFIG = `]6E3OWXxPjsrgKUzf}ryO5Q}ep\\wf5ox]6Yv\\[MsgKnw\\Z<kdV4o\\[Q3g[P|Op<z]Z8kdV8khqY|]V8me53ye6EoepIsO6Mof6EyeqQof}<kfJnwgpY|f5oyem3|PGL4OWD3OWD{O[E|][]s][fNPJ\\3]JQm]GD7\\ZMpQGD8]JL3Q}f|QGQpPWP3PJH3QJTNFpgzgF34OmHNdKU3fKP9O|<mf58pO[Qsepg4eJI|d[U8OZIy\\Znw]ZI}gKY}Pl8yfJYx\\Znx\\[s4fpXx\\5<wO5<z]Z8kdV<|][Qze58}][P2\\[EsO[]ofqQse57<PmD|QV3zQF3zPV4zfpY5dZY6FmEpQJUm\\5TzRJIl]mTzRZUlQGf6PmT}]mH}QGEkQGUnFjsqfKTwQTsrgKUzf}ryO5Q}ep\\wf5ox]6Yv\\[MsgKnw\\Z<kdV4o\\[Q3g[P|Op<z]Z8kdV8khqY|]V8me53ye6EoepIsO5UofJ{yhZ4oeqU}O5gzgF34O5Qr\\[Ty\\5<wfJ{ogJoyeqP2\\[EsO[]ofqQse57<PmD|QV3zPV3zPV4zfpY5dZY6FmEpQJUm\\5TzRJIl]mTzRZUlQGf6PmT}]mH}QGEkQGUnFjsyQF4wdZ8sFpk3gKE}Rl;y\\6Qx]l4}dZ8qgZ{kfpo3hV4ke5IsOZYkf6U4f}Lxe6EoepIsOpI9g[MoOpQyeV<yfJYx\\Zny]JYzeJ<8eZYxgKPye}TweZoxdV<mdJI3O5Qye[Ev][Use58}S5IzdV45][M}dZ<xSWLzPmXwPGHwPGHwfKMogpoogzrz]mUn\\5QnPGkk\\p\\3PGon\\mT6Q}L3P5\\{P}Tz\\WT3]DrNe}HweZoxdTsrgKUzf}ryO5Q}ep\\wf5ox]6Yv\\[MsgKnw\\Z<kdV4o\\[Q3g[P|Op<z]Z8kdV8khqY|]V8me53ye6EoepIsO5UofJ{yhZ4oeqU}O5;{OZ4sepny\\5kkgF<me54zeJY3dZ<xf}<kfJnwgpY|f5oyem3|PGL4OWD{OWD{O[E|][]s][f@`;
+
+        // 调试配置解析过程
+        function debugConfig() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<div class="loading">🔍 正在调试配置解析过程...</div>';
+
+            try {
+                console.log('=== 开始配置调试 ===');
+                
+                // 步骤1：清理数据
+                const cleanData = RAW_ENCRYPTED_CONFIG.trim();
+                console.log('步骤1 - 清理后数据长度:', cleanData.length);
+                console.log('步骤1 - 前50个字符:', cleanData.substring(0, 50));
+                
+                // 步骤2：Base64解码
+                let base64Decoded;
+                try {
+                    base64Decoded = atob(cleanData);
+                    console.log('步骤2 - Base64解码成功，长度:', base64Decoded.length);
+                    console.log('步骤2 - 解码后前50个字符:', base64Decoded.substring(0, 50));
+                } catch (e) {
+                    throw new Error(`Base64解码失败: ${e.message}`);
+                }
+                
+                // 步骤3：字符偏移解密（偏移-3）
+                let decrypted = '';
+                for (let i = 0; i < base64Decoded.length; i++) {
+                    decrypted += String.fromCharCode(base64Decoded.charCodeAt(i) - 3);
+                }
+                console.log('步骤3 - 字符偏移解密完成，长度:', decrypted.length);
+                console.log('步骤3 - 解密后前100个字符:', decrypted.substring(0, 100));
+                console.log('步骤3 - 解密后最后100个字符:', decrypted.substring(decrypted.length - 100));
+                
+                // 步骤4：查找模型配置段
+                const modelSections = decrypted.split('[model:');
+                console.log('步骤4 - 找到配置段数:', modelSections.length);
+                console.log('步骤4 - 所有段的开头:', modelSections.map(s => s.substring(0, 30)));
+                
+                // 步骤5：解析每个模型
+                const configs = {};
+                modelSections.slice(1).forEach((section, index) => {
+                    console.log(`\\n--- 解析模型 ${index + 1} ---`);
+                    console.log('原始段内容前200字符:', section.substring(0, 200));
+                    
+                    const lines = section.split('\\n').filter(line => line.trim());
+                    console.log('有效行数:', lines.length);
+                    
+                    if (lines.length === 0) {
+                        console.log('跳过空段');
+                        return;
+                    }
+                    
+                    const modelName = lines[0].replace(']', '').trim();
+                    console.log('模型名称:', modelName);
+                    
+                    const config = {};
+                    lines.slice(1).forEach((line, lineIndex) => {
+                        console.log(`  行 ${lineIndex + 2}: "${line}"`);
+                        if (line.includes('=')) {
+                            const equalIndex = line.indexOf('=');
+                            const key = line.substring(0, equalIndex).trim();
+                            const value = line.substring(equalIndex + 1).trim();
+                            if (key && value) {
+                                config[key] = value;
+                                console.log(`    解析: ${key} = ${value.substring(0, 20)}...`);
+                            }
+                        }
+                    });
+                    
+                    console.log('配置完整性检查:');
+                    console.log('  endpoint:', !!config.endpoint);
+                    console.log('  apiKey:', !!config.apiKey);
+                    
+                    if (config.endpoint && config.apiKey) {
+                        configs[modelName] = config;
+                        console.log(`✅ 模型 ${modelName} 配置成功`);
+                    } else {
+                        console.log(`❌ 模型 ${modelName} 配置不完整`);
+                    }
+                });
+                
+                console.log('\\n=== 最终结果 ===');
+                console.log('成功解析的模型:', Object.keys(configs));
+                
+                // 显示调试结果
+                resultDiv.innerHTML = `
+                    <div class="success">
+                        <h3>🔍 配置调试完成</h3>
+                        <div class="debug-section">
+                            <h4>解析步骤：</h4>
+                            <p><strong>1. 数据清理：</strong> 长度 ${cleanData.length} 字符</p>
+                            <p><strong>2. Base64解码：</strong> 长度 ${base64Decoded.length} 字节</p>
+                            <p><strong>3. 字符偏移：</strong> 长度 ${decrypted.length} 字符</p>
+                            <p><strong>4. 配置段数：</strong> ${modelSections.length - 1} 个</p>
+                            <p><strong>5. 成功解析：</strong> ${Object.keys(configs).length} 个模型</p>
+                        </div>
+                        <div class="debug-section">
+                            <h4>可用模型：</h4>
+                            <p>${Object.keys(configs).length > 0 ? Object.keys(configs).join(', ') : '无'}</p>
+                        </div>
+                        <details>
+                            <summary>详细配置信息 (点击展开)</summary>
+                            <pre>${JSON.stringify(configs, (key, value) => {
+                                if (key === 'apiKey') return value.substring(0, 10) + '...';
+                                return value;
+                            }, 2)}</pre>
+                        </details>
+                        <details>
+                            <summary>解密后原始数据 (点击展开)</summary>
+                            <pre>${decrypted}</pre>
+                        </details>
+                    </div>
+                `;
+                
+                // 将配置保存到全局变量供其他函数使用
+                window.debuggedConfigs = configs;
+                
+            } catch (error) {
+                console.error('调试失败:', error);
+                resultDiv.innerHTML = `
+                    <div class="error">
+                        <h3>❌ 配置调试失败</h3>
+                        <p><strong>错误:</strong> ${error.message}</p>
+                        <details>
+                            <summary>错误堆栈 (点击展开)</summary>
+                            <pre>${error.stack}</pre>
+                        </details>
+                    </div>
+                `;
+            }
+        }
+
+        // 显示原始配置
+        function showRawConfig() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = `
+                <div class="warning">
+                    <h3>📄 原始配置数据</h3>
+                    <p><strong>数据长度:</strong> ${RAW_ENCRYPTED_CONFIG.length} 字符</p>
+                    <details>
+                        <summary>加密数据 (点击展开)</summary>
+                        <pre>${RAW_ENCRYPTED_CONFIG}</pre>
+                    </details>
+                </div>
+            `;
+        }
+
+        // 测试GPT API
+        async function testGPTAPI() {
+            const model = document.getElementById('modelSelect').value;
+            const prompt = document.getElementById('promptInput').value;
+            const resultDiv = document.getElementById('result');
+            const testButton = document.getElementById('testButton');
+
+            if (!model || !prompt) {
+                alert('请选择模型并输入提示词');
+                return;
+            }
+
+            // 确保已经调试过配置
+            if (!window.debuggedConfigs) {
+                alert('请先点击"🔧 调试配置"按钮解析配置');
+                return;
+            }
+
+            if (!window.debuggedConfigs[model]) {
+                alert(`未找到模型 ${model} 的配置，请检查调试结果`);
+                return;
+            }
+
+            testButton.disabled = true;
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = `<div class="loading">🤖 正在调用 ${model} 模型...</div>`;
+
+            try {
+                const config = window.debuggedConfigs[model];
+                console.log(`开始调用模型: ${model}`);
+                console.log('使用配置:', {
+                    endpoint: config.endpoint,
+                    apiKey: config.apiKey.substring(0, 10) + '...',
+                    maxTokens: config.maxTokens
+                });
+                
+                const requestBody = {
+                    messages: [
+                        {
+                            role: 'user',
+                            content: prompt
+                        }
+                    ],
+                    max_tokens: parseInt(config.maxTokens) || 4000,
+                    temperature: 0.7
+                };
+
+                console.log('请求体:', requestBody);
+                
+                const response = await fetch(config.endpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'api-key': config.apiKey
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+
+                console.log('API响应状态:', response.status);
+                console.log('API响应头:', Object.fromEntries(response.headers));
+
+                const responseText = await response.text();
+                console.log('API响应原始文本:', responseText);
+
+                if (!response.ok) {
+                    throw new Error(`API调用失败: ${response.status} ${response.statusText}\\n响应: ${responseText}`);
+                }
+
+                const data = JSON.parse(responseText);
+                console.log('API响应数据:', data);
+                
+                if (data.choices && data.choices[0] && data.choices[0].message) {
+                    resultDiv.innerHTML = `
+                        <div class="success">
+                            <h3>✅ GPT API 调用成功！</h3>
+                            <p><strong>使用模型:</strong> ${model}</p>
+                            <p><strong>响应内容:</strong></p>
+                            <div style="background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 10px 0;">
+                                ${data.choices[0].message.content}
+                            </div>
+                            <details>
+                                <summary>完整响应数据 (点击展开)</summary>
+                                <pre>${JSON.stringify(data, null, 2)}</pre>
+                            </details>
+                        </div>
+                    `;
+                } else {
+                    throw new Error('API返回数据格式错误，未找到预期的响应结构');
+                }
+                
+            } catch (error) {
+                console.error('API调用失败:', error);
+                resultDiv.innerHTML = `
+                    <div class="error">
+                        <h3>❌ GPT API 调用失败</h3>
+                        <p><strong>错误:</strong> ${error.message}</p>
+                        <details>
+                            <summary>详细错误信息 (点击展开)</summary>
+                            <pre>${error.stack || error.toString()}</pre>
+                        </details>
+                    </div>
+                `;
+            } finally {
+                testButton.disabled = false;
+            }
+        }
+
+        console.log('GPT API 测试工具（修复版）加载完成');
+        console.log('使用说明：');
+        console.log('1. 先点击"🔧 调试配置"解析配置文件');
+        console.log('2. 查看可用模型列表');
+        console.log('3. 选择模型并测试API调用');
+    </script>
+</body>
+</html>

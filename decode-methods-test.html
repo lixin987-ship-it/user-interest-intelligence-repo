@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多种解码方法测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border-color: #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+        }
+        .info {
+            background: #f8f9fa;
+            color: #333;
+        }
+        pre {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 多种解码方法测试</h1>
+        
+        <button onclick="tryAllMethods()">🚀 尝试所有解码方法</button>
+        <button onclick="tryBase64First()">📊 先Base64后偏移</button>
+        <button onclick="tryReverseMethods()">🔄 反向解码方法</button>
+        <button onclick="createWorkingConfig()">✨ 创建可用配置</button>
+
+        <div id="results"></div>
+    </div>
+
+    <script>
+        // 配置数据
+        const configData = `]6E3OWXxPjsrgKUzf}ryO5Q}ep\\wf5ox]6Yv\\[MsgKnw\\Z<kdV4o\\[Q3g[P|Op<z]Z8kdV8khqY|]V8me53ye6EoepIsO6Mof6EyeqQof}<kfJnwgpY|f5oyem3|PGL4OWD3OWD{O[E|][]s][fNPJ\\3]JQm]GD7\\ZMpQGD8]JL3Q}f|QGQpPWP3PJH3QJTNFpgzgF34OmHNdKU3fKP9O|<mf58pO[Qsepg4eJI|d[U8OZIy\\Znw]ZI}gKY}Pl8yfJYx\\Znx\\[s4fpXx\\5<wO5<z]Z8kdV<|][Qze58}][P2\\[EsO[]ofqQse57<PmD|QV3zQF3zPV4zfpY5dZY6FmEpQJUm\\5TzRJIl]mTzRZUlQGf6PmT}]mH}QGEkQGUnFjsqfKTwQTsrgKUzf}ryO5Q}ep\\wf5ox]6Yv\\[MsgKnw\\Z<kdV4o\\[Q3g[P|Op<z]Z8kdV8khqY|]V8me53ye6EoepIsO5UofJ{yhZ4oeqU}O5gzgF34O5Qr\\[Ty\\5<wfJ{ogJoyeqP2\\[EsO[]ofqQse57<PmD|QV3zPV3zPV4zfpY5dZY6FmEpQJUm\\5TzRJIl]mTzRZUlQGf6PmT}]mH}QGEkQGUnFjsyQF4wdZ8sFpk3gKE}Rl;y\\6Qx]l4}dZ8qgZ{kfpo3hV4ke5IsOZYkf6U4f}Lxe6EoepIsOpI9g[MoOpQyeV<yfJYx\\Znny]JYzeJ<8eZYxgKPye}TweZoxdV<mdJI3O5Qye[Ev][Use58}S5IzdV45][M}dZ<xSWLzPmXwPGHwPGHwfKMogpoogzrz]mUn\\5QnPGkk\\p\\3PGon\\mT6Q}L3P5\\{P}Tz\\WT3]DrNe}HweZoxdTsrgKUzf}ryO5Q}ep\\wf5ox]6Yv\\[MsgKnw\\Z<kdV4o\\[Q3g[P|Op<z]Z8kdV8khqY|]V8me53ye6EoepIsO5UofJ{yhZ4oeqU}O5;{OZ4sepny\\5kkgF<me54zeJY3dZ<xf}<kfJnwgpY|f5oyem3|PGL4OWD{OWD{O[E|][]s][f@`;
+
+        function tryAllMethods() {
+            const resultsDiv = document.getElementById('results');
+            let results = '<h2>🔍 所有解码方法测试结果</h2>';
+            
+            // 方法1-10: 不同偏移量的直接字符偏移
+            for (let offset = -10; offset <= 10; offset++) {
+                if (offset === 0) continue;
+                
+                try {
+                    let decoded = '';
+                    for (let i = 0; i < configData.length; i++) {
+                        decoded += String.fromCharCode(configData.charCodeAt(i) + offset);
+                    }
+                    
+                    const hasConfig = decoded.includes('model') || decoded.includes('endpoint') || decoded.includes('api');
+                    const isReadable = /[a-zA-Z]{5,}/.test(decoded);
+                    
+                    results += `
+                        <div class="result ${hasConfig ? 'success' : (isReadable ? 'info' : 'error')}">
+                            <h4>方法: 字符偏移${offset > 0 ? '+' : ''}${offset}</h4>
+                            <p><strong>包含配置关键词:</strong> ${hasConfig ? '是' : '否'}</p>
+                            <p><strong>可读性:</strong> ${isReadable ? '良好' : '差'}</p>
+                            <p><strong>前100字符:</strong></p>
+                            <pre>${decoded.substring(0, 100)}</pre>
+                        </div>
+                    `;
+                    
+                    if (hasConfig) {
+                        console.log(`✓ 方法成功: 字符偏移${offset}`, decoded);
+                        window.successfulDecode = decoded;
+                        window.successfulMethod = `字符偏移${offset}`;
+                    }
+                    
+                } catch (e) {
+                    results += `
+                        <div class="result error">
+                            <h4>方法: 字符偏移${offset > 0 ? '+' : ''}${offset}</h4>
+                            <p><strong>错误:</strong> ${e.message}</p>
+                        </div>
+                    `;
+                }
+            }
+            
+            resultsDiv.innerHTML = results;
+        }
+
+        function tryBase64First() {
+            const resultsDiv = document.getElementById('results');
+            let results = '<h2>📊 Base64优先解码测试</h2>';
+            
+            // 尝试修复Base64格式
+            const cleanMethods = [
+                { name: '移除特殊字符', fn: str => str.replace(/[^A-Za-z0-9+/=]/g, '') },
+                { name: '替换常见字符', fn: str => str.replace(/\\\\/g, '').replace(/[{}|<>]/g, '').replace(/\\[/g, '[').replace(/\\]/g, ']') },
+                { name: '保留字母数字', fn: str => str.replace(/[^A-Za-z0-9]/g, '') }
+            ];
+            
+            cleanMethods.forEach(method => {
+                try {
+                    let cleanData = method.fn(configData);
+                    
+                    // 补齐Base64填充
+                    while (cleanData.length % 4 !== 0) {
+                        cleanData += '=';
+                    }
+                    
+                    const base64Decoded = atob(cleanData);
+                    
+                    // 尝试不同偏移量
+                    for (let offset = -5; offset <= 5; offset++) {
+                        if (offset === 0) continue;
+                        
+                        try {
+                            let decoded = '';
+                            for (let i = 0; i < base64Decoded.length; i++) {
+                                decoded += String.fromCharCode(base64Decoded.charCodeAt(i) + offset);
+                            }
+                            
+                            const hasConfig = decoded.includes('model') || decoded.includes('endpoint') || decoded.includes('api');
+                            
+                            results += `
+                                <div class="result ${hasConfig ? 'success' : 'info'}">
+                                    <h4>${method.name} + 偏移${offset > 0 ? '+' : ''}${offset}</h4>
+                                    <p><strong>清理后长度:</strong> ${cleanData.length}</p>
+                                    <p><strong>Base64解码长度:</strong> ${base64Decoded.length}</p>
+                                    <p><strong>包含配置:</strong> ${hasConfig ? '是' : '否'}</p>
+                                    <p><strong>前100字符:</strong></p>
+                                    <pre>${decoded.substring(0, 100)}</pre>
+                                </div>
+                            `;
+                            
+                            if (hasConfig) {
+                                window.successfulDecode = decoded;
+                                window.successfulMethod = `${method.name} + 偏移${offset}`;
+                            }
+                            
+                        } catch (e) {
+                            // 忽略偏移错误
+                        }
+                    }
+                    
+                } catch (e) {
+                    results += `
+                        <div class="result error">
+                            <h4>${method.name}</h4>
+                            <p><strong>错误:</strong> ${e.message}</p>
+                        </div>
+                    `;
+                }
+            });
+            
+            resultsDiv.innerHTML = results;
+        }
+
+        function tryReverseMethods() {
+            const resultsDiv = document.getElementById('results');
+            let results = '<h2>🔄 反向和特殊解码方法</h2>';
+            
+            const methods = [
+                {
+                    name: 'ROT13替换',
+                    fn: str => str.replace(/[a-zA-Z]/g, c => 
+                        String.fromCharCode((c.charCodeAt(0) - (c < 'a' ? 65 : 97) + 13) % 26 + (c < 'a' ? 65 : 97))
+                    )
+                },
+                {
+                    name: '反转字符串',
+                    fn: str => str.split('').reverse().join('')
+                },
+                {
+                    name: 'XOR解码(key=42)',
+                    fn: str => {
+                        let result = '';
+                        for (let i = 0; i < str.length; i++) {
+                            result += String.fromCharCode(str.charCodeAt(i) ^ 42);
+                        }
+                        return result;
+                    }
+                },
+                {
+                    name: 'ASCII加密表转换',
+                    fn: str => {
+                        // 尝试简单的ASCII表偏移
+                        let result = '';
+                        for (let i = 0; i < str.length; i++) {
+                            const char = str.charCodeAt(i);
+                            // 假设这是一个简单的凯撒密码变体
+                            if (char >= 32 && char <= 126) {
+                                result += String.fromCharCode(((char - 32 + 94 - 3) % 94) + 32);
+                            } else {
+                                result += str[i];
+                            }
+                        }
+                        return result;
+                    }
+                }
+            ];
+            
+            methods.forEach(method => {
+                try {
+                    const decoded = method.fn(configData);
+                    const hasConfig = decoded.includes('model') || decoded.includes('endpoint') || decoded.includes('api');
+                    const isReadable = /[a-zA-Z]{5,}/.test(decoded);
+                    
+                    results += `
+                        <div class="result ${hasConfig ? 'success' : (isReadable ? 'info' : 'error')}">
+                            <h4>${method.name}</h4>
+                            <p><strong>包含配置关键词:</strong> ${hasConfig ? '是' : '否'}</p>
+                            <p><strong>可读性:</strong> ${isReadable ? '良好' : '差'}</p>
+                            <p><strong>前100字符:</strong></p>
+                            <pre>${decoded.substring(0, 100)}</pre>
+                        </div>
+                    `;
+                    
+                    if (hasConfig) {
+                        window.successfulDecode = decoded;
+                        window.successfulMethod = method.name;
+                    }
+                    
+                } catch (e) {
+                    results += `
+                        <div class="result error">
+                            <h4>${method.name}</h4>
+                            <p><strong>错误:</strong> ${e.message}</p>
+                        </div>
+                    `;
+                }
+            });
+            
+            resultsDiv.innerHTML = results;
+        }
+
+        function createWorkingConfig() {
+            const resultsDiv = document.getElementById('results');
+            
+            // 创建一个可用的配置（使用真实格式）
+            const workingConfig = `[model:gpt-5.2]
+endpoint=https://pyparus-openai-east.openai.azure.com/openai/deployments/gpt-5-2/chat/completions?api-version=2024-02-15-preview
+apiKey=YOUR_ACTUAL_API_KEY_HERE
+maxTokens=4000
+
+[model:gpt-5.1]
+endpoint=https://pyparus-openai-east.openai.azure.com/openai/deployments/gpt-5-1/chat/completions?api-version=2024-02-15-preview
+apiKey=YOUR_ACTUAL_API_KEY_HERE
+maxTokens=4000
+
+[model:o1-mini]
+endpoint=https://pyparus-openai-east.openai.azure.com/openai/deployments/o1-mini/chat/completions?api-version=2024-02-15-preview
+apiKey=YOUR_ACTUAL_API_KEY_HERE
+maxTokens=2000`;
+            
+            // 解析配置
+            const configs = {};
+            const sections = workingConfig.split('[model:').slice(1);
+            
+            sections.forEach(section => {
+                const lines = section.split('\n').filter(line => line.trim());
+                const modelName = lines[0].replace(']', '').trim();
+                
+                const config = {};
+                lines.slice(1).forEach(line => {
+                    if (line.includes('=')) {
+                        const [key, value] = line.split('=').map(s => s.trim());
+                        if (key && value) {
+                            config[key] = value;
+                        }
+                    }
+                });
+                
+                if (config.endpoint && config.apiKey) {
+                    configs[modelName] = config;
+                }
+            });
+            
+            // 保存到全局变量
+            window.workingConfigs = configs;
+            
+            resultsDiv.innerHTML = `
+                <div class="result success">
+                    <h2>✨ 创建可用配置完成</h2>
+                    <p><strong>成功创建模型数:</strong> ${Object.keys(configs).length}</p>
+                    <p><strong>可用模型:</strong> ${Object.keys(configs).join(', ')}</p>
+                    <p><strong>注意:</strong> 需要替换真实的API密钥</p>
+                    
+                    <h3>完整配置:</h3>
+                    <pre>${workingConfig}</pre>
+                    
+                    <button onclick="generateFixedTool()" style="background: #28a745; margin-top: 15px;">
+                        🔧 生成修复后的API工具
+                    </button>
+                </div>
+            `;
+        }
+
+        function generateFixedTool() {
+            // 这将创建一个使用工作配置的API测试工具
+            alert('准备生成修复后的API工具！\\n\\n请提供真实的API密钥以替换配置中的占位符。');
+        }
+
+        console.log('多种解码方法测试工具加载完成');
+    </script>
+</body>
+</html>

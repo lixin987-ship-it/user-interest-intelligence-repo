@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPT API 测试工具</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        select, textarea, button {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        button {
+            background: #007cba;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #005a87;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border: 1px solid #dee2e6;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border-color: #c3e6cb;
+        }
+        .loading {
+            text-align: center;
+            color: #007cba;
+            font-weight: bold;
+        }
+        pre {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 GPT API 测试工具</h1>
+        
+        <div class="form-group">
+            <label for="modelSelect">选择GPT模型：</label>
+            <select id="modelSelect">
+                <option value="">-- 选择模型 --</option>
+                <option value="gpt-5.2">GPT-5.2</option>
+                <option value="gpt-5.1">GPT-5.1</option>
+                <option value="gpt-5">GPT-5</option>
+                <option value="o4-mini">O4-Mini</option>
+                <option value="o1-mini">O1-Mini</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="promptInput">测试提示词：</label>
+            <textarea id="promptInput" placeholder="输入你想测试的提示词，例如：请说 Hello World 并解释什么是人工智能">请说 Hello World 并解释什么是人工智能</textarea>
+        </div>
+
+        <button id="testButton" onclick="testGPTAPI()">🚀 测试 GPT API</button>
+        <button id="configButton" onclick="testConfig()" style="background: #28a745;">🔧 测试配置文件</button>
+
+        <div id="result" style="display: none;"></div>
+    </div>
+
+    <script>
+        // 测试配置文件
+        async function testConfig() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<div class="loading">🔍 正在测试配置文件...</div>';
+
+            try {
+                // 读取配置文件
+                const response = await fetch('resources/key.txt');
+                if (!response.ok) {
+                    throw new Error(`配置文件读取失败: ${response.status}`);
+                }
+                
+                const encryptedData = await response.text();
+                console.log('配置文件原始数据长度:', encryptedData.length);
+                
+                // 解密配置
+                const decryptedData = decryptConfig(encryptedData);
+                const configs = parseConfigs(decryptedData);
+                
+                const availableModels = Object.keys(configs);
+                
+                resultDiv.innerHTML = `
+                    <div class="success">
+                        <h3>✅ 配置文件测试成功！</h3>
+                        <p><strong>可用模型数量:</strong> ${availableModels.length}</p>
+                        <p><strong>可用模型:</strong> ${availableModels.join(', ')}</p>
+                        <details>
+                            <summary>配置详情 (点击展开)</summary>
+                            <pre>${JSON.stringify(configs, null, 2)}</pre>
+                        </details>
+                    </div>
+                `;
+                
+            } catch (error) {
+                console.error('配置测试失败:', error);
+                resultDiv.innerHTML = `
+                    <div class="error">
+                        <h3>❌ 配置文件测试失败</h3>
+                        <p><strong>错误:</strong> ${error.message}</p>
+                        <p>请检查 resources/key.txt 文件是否存在且格式正确</p>
+                    </div>
+                `;
+            }
+        }
+
+        // 测试GPT API
+        async function testGPTAPI() {
+            const model = document.getElementById('modelSelect').value;
+            const prompt = document.getElementById('promptInput').value;
+            const resultDiv = document.getElementById('result');
+            const testButton = document.getElementById('testButton');
+
+            if (!model || !prompt) {
+                alert('请选择模型并输入提示词');
+                return;
+            }
+
+            testButton.disabled = true;
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = `<div class="loading">🤖 正在调用 ${model} 模型...</div>`;
+
+            try {
+                console.log(`开始调用模型: ${model}`);
+                console.log(`提示词: ${prompt}`);
+                
+                const result = await callGPTModels(prompt, model);
+                
+                resultDiv.innerHTML = `
+                    <div class="success">
+                        <h3>✅ GPT API 调用成功！</h3>
+                        <p><strong>使用模型:</strong> ${model}</p>
+                        <p><strong>响应:</strong></p>
+                        <pre>${JSON.stringify(result, null, 2)}</pre>
+                    </div>
+                `;
+                
+            } catch (error) {
+                console.error('API调用失败:', error);
+                resultDiv.innerHTML = `
+                    <div class="error">
+                        <h3>❌ GPT API 调用失败</h3>
+                        <p><strong>错误:</strong> ${error.message}</p>
+                        <p>请检查网络连接、API密钥和端点配置</p>
+                        <details>
+                            <summary>详细错误信息 (点击展开)</summary>
+                            <pre>${error.stack || error.toString()}</pre>
+                        </details>
+                    </div>
+                `;
+            } finally {
+                testButton.disabled = false;
+            }
+        }
+
+        // 调用GPT模型
+        async function callGPTModels(prompt, model) {
+            try {
+                console.log(`正在调用模型: ${model}`);
+                
+                // 获取API配置
+                const config = await getAPIConfig(model);
+                console.log('API配置获取成功');
+                
+                const requestBody = {
+                    messages: [
+                        {
+                            role: 'user',
+                            content: prompt
+                        }
+                    ],
+                    max_tokens: parseInt(config.maxTokens) || 4000,
+                    temperature: 0.7
+                };
+
+                console.log('请求体:', requestBody);
+                
+                const response = await fetch(config.endpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'api-key': config.apiKey
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+
+                console.log('API响应状态:', response.status);
+                console.log('API响应头:', response.headers);
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('API错误响应:', errorText);
+                    throw new Error(`API调用失败: ${response.status} ${response.statusText}\n详细信息: ${errorText}`);
+                }
+
+                const data = await response.json();
+                console.log('API响应数据:', data);
+                
+                if (data.choices && data.choices[0] && data.choices[0].message) {
+                    return {
+                        model: model,
+                        content: data.choices[0].message.content,
+                        usage: data.usage || {},
+                        raw_response: data
+                    };
+                } else {
+                    throw new Error('API返回数据格式错误，未找到预期的响应结构');
+                }
+            } catch (error) {
+                console.error('GPT API调用错误:', error);
+                throw error;
+            }
+        }
+
+        // 获取API配置
+        async function getAPIConfig(model) {
+            try {
+                console.log('正在获取API配置...');
+                const response = await fetch('resources/key.txt');
+                if (!response.ok) {
+                    throw new Error(`无法读取配置文件: ${response.status} ${response.statusText}`);
+                }
+                
+                const encryptedData = await response.text();
+                console.log('配置文件读取成功');
+                
+                // 解密配置数据
+                const decryptedData = decryptConfig(encryptedData);
+                const configs = parseConfigs(decryptedData);
+                
+                console.log('可用的模型配置:', Object.keys(configs));
+                
+                if (!configs[model]) {
+                    throw new Error(`未找到模型 ${model} 的配置。可用模型: ${Object.keys(configs).join(', ')}`);
+                }
+                
+                return configs[model];
+            } catch (error) {
+                console.error('获取API配置失败:', error);
+                throw new Error(`获取API配置失败: ${error.message}`);
+            }
+        }
+
+        // 解密配置数据
+        function decryptConfig(encryptedData) {
+            try {
+                console.log('开始解密配置...');
+                // 移除注释和空行
+                const cleanData = encryptedData
+                    .split('\n')
+                    .filter(line => !line.startsWith('#') && line.trim())
+                    .join('');
+                
+                console.log('清理后的数据长度:', cleanData.length);
+                
+                // Base64解码
+                const base64Decoded = atob(cleanData);
+                console.log('Base64解码完成');
+                
+                // 字符偏移解密（偏移-3）
+                let decrypted = '';
+                for (let i = 0; i < base64Decoded.length; i++) {
+                    decrypted += String.fromCharCode(base64Decoded.charCodeAt(i) - 3);
+                }
+                
+                console.log('解密完成，数据长度:', decrypted.length);
+                return decrypted;
+            } catch (error) {
+                console.error('配置解密失败:', error);
+                throw new Error(`配置解密失败: ${error.message}`);
+            }
+        }
+
+        // 解析配置数据
+        function parseConfigs(configText) {
+            try {
+                console.log('开始解析配置文件...');
+                const configs = {};
+                const sections = configText.split('[model:').slice(1);
+                
+                console.log('找到配置段数:', sections.length);
+                
+                sections.forEach((section, index) => {
+                    console.log(`解析第${index + 1}个配置段...`);
+                    const lines = section.split('\n');
+                    const modelName = lines[0].replace(']', '').trim();
+                    
+                    console.log(`模型名称: ${modelName}`);
+                    
+                    const config = {};
+                    lines.slice(1).forEach(line => {
+                        if (line.includes('=')) {
+                            const [key, value] = line.split('=').map(s => s.trim());
+                            if (key && value) {
+                                config[key] = value;
+                                // 隐藏敏感信息
+                                const displayValue = key === 'apiKey' ? value.substring(0, 10) + '...' : value.substring(0, 50) + '...';
+                                console.log(`  ${key}: ${displayValue}`);
+                            }
+                        }
+                    });
+                    
+                    if (config.endpoint && config.apiKey) {
+                        configs[modelName] = config;
+                        console.log(`模型 ${modelName} 配置解析成功`);
+                    } else {
+                        console.warn(`模型 ${modelName} 配置不完整，跳过`);
+                        console.warn('缺少:', !config.endpoint ? 'endpoint' : '', !config.apiKey ? 'apiKey' : '');
+                    }
+                });
+                
+                console.log('配置解析完成，可用模型:', Object.keys(configs));
+                return configs;
+            } catch (error) {
+                console.error('配置解析失败:', error);
+                throw new Error(`配置解析失败: ${error.message}`);
+            }
+        }
+
+        console.log('GPT API 测试工具加载完成');
+    </script>
+</body>
+</html>

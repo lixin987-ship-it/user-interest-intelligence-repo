@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>获取Azure AD Token指南</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .step {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #007bff;
+        }
+        .command {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+        }
+        .important {
+            background: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border: 1px solid #ffeaa7;
+        }
+        .test-area {
+            background: #e7f3ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #007bff;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        button:hover {
+            background: #218838;
+        }
+        .result {
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border-color: #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔑 Azure AD Token 获取指南</h1>
+        
+        <div class="important">
+            <h3>💡 为什么需要Azure AD Token？</h3>
+            <p>由于Azure OpenAI资源禁用了API密钥认证，我们需要使用Azure Active Directory (Entra ID) 认证。</p>
+        </div>
+
+        <div class="step">
+            <h3>步骤 1: 安装Azure CLI</h3>
+            <p>如果还没有安装Azure CLI，请前往 <a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli" target="_blank">官方文档</a> 下载安装。</p>
+        </div>
+
+        <div class="step">
+            <h3>步骤 2: 登录Azure账户</h3>
+            <p>在命令行中运行：</p>
+            <div class="command">az login</div>
+            <p>这会打开浏览器窗口，使用你的Azure账户登录。</p>
+        </div>
+
+        <div class="step">
+            <h3>步骤 3: 获取Access Token</h3>
+            <p>运行以下命令获取Azure Cognitive Services的访问令牌：</p>
+            <div class="command">az account get-access-token --resource https://cognitiveservices.azure.com/</div>
+            <p>这会返回一个JSON响应，包含 <code>accessToken</code> 字段。</p>
+        </div>
+
+        <div class="step">
+            <h3>步骤 4: 复制Token</h3>
+            <p>从JSON响应中复制 <code>accessToken</code> 的值（不包括引号），类似这样：</p>
+            <div class="command">eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6...</div>
+        </div>
+
+        <div class="test-area">
+            <h3>🧪 测试Azure AD Token</h3>
+            <p>将获得的Token粘贴到下面的输入框中进行测试：</p>
+            <input type="text" id="tokenInput" placeholder="粘贴Azure AD Token到这里..." />
+            <br>
+            <button onclick="testAzureADToken()">测试Token</button>
+            
+            <div id="testResults"></div>
+        </div>
+
+        <div class="important">
+            <h3>⚠️ 重要说明</h3>
+            <ul>
+                <li>Token通常在1小时后过期，需要重新获取</li>
+                <li>确保你的Azure账户有访问Azure OpenAI资源的权限</li>
+                <li>Token包含敏感信息，不要分享给他人</li>
+                <li>如果遇到权限错误，请联系Azure管理员</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        async function testAzureADToken() {
+            const token = document.getElementById('tokenInput').value.trim();
+            const resultsDiv = document.getElementById('testResults');
+            
+            if (!token) {
+                resultsDiv.innerHTML = `
+                    <div class="result error">
+                        <h4>❌ 错误</h4>
+                        <p>请输入Azure AD Token</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // 显示加载状态
+            resultsDiv.innerHTML = `
+                <div class="result" style="background: #fff3cd; color: #856404;">
+                    <h4>⏳ 测试中...</h4>
+                    <p>正在使用Azure AD Token调用API...</p>
+                </div>
+            `;
+            
+            try {
+                console.log('测试Azure AD Token...');
+                console.log('Token长度:', token.length);
+                console.log('Token前缀:', token.substring(0, 20) + '...');
+                
+                const endpoint = 'https://csnf-singularity-aoai-eastus2.openai.azure.com/openai/deployments/gpt-5/chat/completions?api-version=2024-12-01-preview';
+                
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        messages: [
+                            { role: "system", content: "You are a helpful assistant." },
+                            { role: "user", content: "Say hello in Chinese" }
+                        ],
+                        max_tokens: 50,
+                        model: "gpt-5"
+                    })
+                });
+                
+                console.log('响应状态:', response.status);
+                console.log('响应头:', Object.fromEntries(response.headers));
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('API响应:', data);
+                    
+                    const aiMessage = data.choices[0].message.content;
+                    
+                    resultsDiv.innerHTML = `
+                        <div class="result success">
+                            <h4>✅ 成功！Azure AD Token有效</h4>
+                            <p><strong>AI回复:</strong> ${aiMessage}</p>
+                            <p><strong>测试时间:</strong> ${new Date().toLocaleTimeString()}</p>
+                            <p><strong>Token状态:</strong> 有效且具有正确权限</p>
+                        </div>
+                    `;
+                    
+                } else {
+                    const errorText = await response.text();
+                    console.error('API错误:', errorText);
+                    
+                    let errorMessage = errorText;
+                    try {
+                        const errorData = JSON.parse(errorText);
+                        errorMessage = errorData.error?.message || errorText;
+                    } catch (e) {
+                        // 如果不是JSON，使用原始文本
+                    }
+                    
+                    resultsDiv.innerHTML = `
+                        <div class="result error">
+                            <h4>❌ Token测试失败</h4>
+                            <p><strong>HTTP状态:</strong> ${response.status}</p>
+                            <p><strong>错误信息:</strong> ${errorMessage}</p>
+                            <p><strong>可能原因:</strong></p>
+                            <ul>
+                                <li>Token已过期（需要重新获取）</li>
+                                <li>Token权限不足</li>
+                                <li>资源访问限制</li>
+                            </ul>
+                        </div>
+                    `;
+                }
+                
+            } catch (error) {
+                console.error('网络错误:', error);
+                
+                resultsDiv.innerHTML = `
+                    <div class="result error">
+                        <h4>❌ 网络错误</h4>
+                        <p><strong>错误:</strong> ${error.message}</p>
+                        <p>请检查网络连接和Token格式</p>
+                    </div>
+                `;
+            }
+        }
+        
+        console.log('Azure AD Token测试页面已加载');
+    </script>
+</body>
+</html>

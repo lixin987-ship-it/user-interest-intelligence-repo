@@ -563,13 +563,45 @@ Please analyze the user behavior data and provide comprehensive interest intelli
             };
         }
 
-        // 调用GPT模型 - 实际API调用
+        // 调用GPT模型 - 使用真实API配置
         async function callGPTModels(prompt, model) {
             try {
                 console.log(`正在调用模型: ${model}`);
                 
-                // 获取API配置
-                const config = await getAPIConfig(model);
+                // 真实的API配置
+                const API_CONFIGS = {
+                    'gpt-5.2': {
+                        endpoint: 'https://csnf-singularity-aoai-eastus2.openai.azure.com/openai/responses?api-version=2025-04-01-preview',
+                        apiKey: '0f4dccd08abf409db477243f1340a44d',
+                        maxTokens: 4000
+                    },
+                    'gpt-5.1': {
+                        endpoint: 'https://csnf-singularity-aoai-eastus2.openai.azure.com/openai/responses?api-version=2025-04-01-preview',
+                        apiKey: '0f4dccd08abf409db477243f1340a44d',
+                        maxTokens: 4000
+                    },
+                    'gpt-5': {
+                        endpoint: 'https://csnf-singularity-aoai-eastus2.openai.azure.com/openai/deployments/gpt-5/chat/completions?api-version=2025-01-01-preview',
+                        apiKey: '0f4dccd08abf409db477243f1340a44d',
+                        maxTokens: 4000
+                    },
+                    'o4-mini': {
+                        endpoint: 'https://csnf-singularity-aoai-eastus2.openai.azure.com/openai/deployments/o4-mini/chat/completions?api-version=2025-01-01-preview',
+                        apiKey: '0f4dccd08abf409db477243f1340a44d',
+                        maxTokens: 2000
+                    },
+                    'o1-mini': {
+                        endpoint: 'https://csnf-singularity-aoai-eastus2.openai.azure.com/openai/deployments/o1-mini/chat/completions?api-version=2025-01-01-preview',
+                        apiKey: '0f4dccd08abf409db477243f1340a44d',
+                        maxTokens: 2000
+                    }
+                };
+                
+                const config = API_CONFIGS[model];
+                if (!config) {
+                    throw new Error(`未找到模型 ${model} 的配置`);
+                }
+                
                 console.log('API配置获取成功');
                 
                 const response = await fetch(config.endpoint, {
