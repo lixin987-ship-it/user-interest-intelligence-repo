@@ -19,73 +19,46 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
-        }
-
-        .header {
-            text-align: center;
-            color: white;
-            margin-bottom: 40px;
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        .main-content {
             background: white;
             border-radius: 20px;
             padding: 40px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
 
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
         .section {
             margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #e1e5e9;
+            border-radius: 12px;
+            background: #f8f9fa;
         }
 
         .section h3 {
             color: #333;
-            margin-bottom: 20px;
-            font-size: 1.3rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .status-indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-
-        .status-pending {
-            background: #ffc107;
-        }
-
-        .status-ready {
-            background: #28a745;
-        }
-
-        .status-active {
-            background: #007bff;
-            animation: pulse 1.5s ease-in-out infinite alternate;
-        }
-
-        @keyframes pulse {
-            from { opacity: 0.6; }
-            to { opacity: 1; }
+            margin-bottom: 15px;
+            font-size: 1.2rem;
         }
 
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         label {
@@ -95,7 +68,7 @@
             color: #333;
         }
 
-        input, select, textarea {
+        select, textarea, input {
             width: 100%;
             padding: 12px;
             border: 2px solid #e1e5e9;
@@ -104,15 +77,16 @@
             transition: all 0.3s ease;
         }
 
-        input:focus, select:focus, textarea:focus {
+        select:focus, textarea:focus, input:focus {
             outline: none;
             border-color: #667eea;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
         textarea {
+            min-height: 150px;
             resize: vertical;
-            min-height: 100px;
+            font-family: 'Courier New', monospace;
         }
 
         .btn {
@@ -126,6 +100,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             margin-right: 10px;
+            margin-bottom: 10px;
         }
 
         .btn:hover {
@@ -147,24 +122,35 @@
             background: linear-gradient(45deg, #28a745, #20c997);
         }
 
-        .loading {
-            text-align: center;
-            padding: 40px;
-            color: #667eea;
-            font-size: 16px;
-            display: none;
+        .btn-danger {
+            background: linear-gradient(45deg, #dc3545, #c82333);
         }
 
-        .output {
+        .output-section {
             background: #f8f9fa;
             border: 1px solid #dee2e6;
             border-radius: 8px;
             padding: 20px;
             margin-top: 20px;
+        }
+
+        .output-content {
+            background: white;
+            border: 1px solid #e1e5e9;
+            border-radius: 6px;
+            padding: 15px;
             font-family: 'Courier New', monospace;
             white-space: pre-wrap;
-            max-height: 500px;
+            max-height: 400px;
             overflow-y: auto;
+            font-size: 13px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #667eea;
+            font-style: italic;
         }
 
         .error {
@@ -172,35 +158,26 @@
             color: #721c24;
             padding: 15px;
             border-radius: 8px;
-            margin-top: 20px;
             border-left: 4px solid #dc3545;
+            margin-top: 10px;
         }
 
-        .user-card {
-            background: #e7f3ff;
-            border-left: 4px solid #007bff;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 0 8px 8px 0;
-        }
-
-        .user-card h4 {
-            margin: 0 0 8px 0;
-            color: #0056b3;
-        }
-
-        .user-card p {
-            margin: 5px 0;
-            font-size: 14px;
-        }
-
-        .local-mode {
+        .success {
             background: #d4edda;
             color: #155724;
             padding: 15px;
             border-radius: 8px;
-            margin-bottom: 20px;
             border-left: 4px solid #28a745;
+            margin-top: 10px;
+        }
+
+        .edit-controls {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .readonly {
+            background-color: #f8f9fa;
         }
     </style>
 </head>
@@ -211,369 +188,386 @@
             <p>基于AI的用户行为洞察与个性化推荐系统</p>
         </div>
 
-        <div class="main-content">
-            <div class="local-mode">
-                <strong>🤖 本地智能分析模式</strong> - 使用内置AI算法，无需网络连接，数据安全可靠
+        <!-- 1.1 用户选择区域 -->
+        <div class="section">
+            <h3>1. 选择用户ID</h3>
+            <div class="form-group">
+                <label for="userIdSelect">用户ID：</label>
+                <select id="userIdSelect">
+                    <option value="">-- 请选择用户ID --</option>
+                    <option value="userid1">userid1</option>
+                </select>
             </div>
+            <!-- 1.2 获取用户行为按钮 -->
+            <button class="btn" id="getUserBehaviorBtn" onclick="getUserBehavior()" disabled>
+                📊 Get User Behavior
+            </button>
+        </div>
 
-            <!-- 用户数据输入区域 -->
-            <div class="section">
-                <h3><span class="status-indicator status-ready"></span>步骤 1: 输入用户数据</h3>
-                <div class="form-group">
-                    <label for="userData">用户行为数据 (JSON格式):</label>
-                    <textarea id="userData" placeholder='请输入用户数据，例如：
-{
-  "userId": "user_001", 
-  "browsing_history": ["科技新闻", "数码产品评测"], 
-  "purchase_history": ["智能手机", "笔记本电脑"],
-  "search_keywords": ["AI技术", "机器学习", "编程"],
-  "interaction_data": {"likes": 45, "shares": 12, "comments": 8}
-}'></textarea>
-                </div>
-                <button class="btn" onclick="validateUserData()">✓ 验证数据格式</button>
+        <!-- 1.3 用户数据展示和编辑区域 -->
+        <div class="section" id="userDataSection" style="display: none;">
+            <h3>2. 用户行为数据</h3>
+            <div class="form-group">
+                <label for="userDataTextarea">用户数据内容：</label>
+                <textarea id="userDataTextarea" class="readonly" readonly 
+                    placeholder="点击上面的按钮获取用户数据..."></textarea>
             </div>
-
-            <!-- 提示选择和运行区域 -->
-            <div class="section" id="promptSection" style="display: none;">
-                <h3><span class="status-indicator status-ready"></span>步骤 2: 配置分析参数</h3>
-                
-                <div class="form-group">
-                    <label for="aiProvider">AI分析模式:</label>
-                    <select id="aiProvider">
-                        <option value="local">本地智能分析器 (推荐)</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="promptSelect">选择分析方法:</label>
-                    <select id="promptSelect">
-                        <option value="">-- 请选择分析方法 --</option>
-                        <option value="userInterestIntelligence">用户兴趣智能分析</option>
-                        <option value="behaviorPattern">行为模式识别</option>
-                        <option value="personalizedRecommend">个性化推荐</option>
-                        <option value="comprehensiveAnalysis">综合深度分析</option>
-                    </select>
-                </div>
-
-                <div class="form-group" id="promptDataGroup" style="display: none;">
-                    <label for="promptData">分析指令 (可自定义):</label>
-                    <textarea id="promptData" placeholder="分析指令将根据选择的方法自动生成，也可以手动修改..."></textarea>
-                </div>
-
-                <button class="btn" onclick="startAnalysis()" id="analyzeBtn" disabled>
-                    🚀 开始智能分析
+            <!-- 1.4 编辑和保存按钮 -->
+            <button class="btn btn-secondary" id="editBtn" onclick="enableEdit()">
+                ✏️ 编辑
+            </button>
+            <div class="edit-controls" id="editControls">
+                <button class="btn btn-success" id="saveBtn" onclick="saveUserData()">
+                    💾 保存
+                </button>
+                <button class="btn btn-danger" id="cancelBtn" onclick="cancelEdit()">
+                    ❌ 取消
                 </button>
             </div>
+        </div>
 
-            <!-- 加载和结果显示区域 -->
-            <div class="loading" id="loadingIndicator">
-                🤖 本地AI正在深度分析用户数据...
+        <!-- 1.5 Prompt选择区域 -->
+        <div class="section" id="promptSection" style="display: none;">
+            <h3>3. 选择分析Prompt</h3>
+            <div class="form-group">
+                <label for="promptSelect">Prompt选择：</label>
+                <select id="promptSelect">
+                    <option value="">-- 请选择Prompt --</option>
+                    <option value="user-interest-intelligence-prompt_testV1.md">user-interest-intelligence-prompt_testV1.md</option>
+                </select>
             </div>
+            <!-- 1.5 运行按钮 -->
+            <button class="btn" id="runPromptBtn" onclick="runPrompt()" disabled>
+                🚀 Run
+            </button>
+        </div>
 
-            <div class="section" id="outputSection" style="display: none;">
-                <h3><span class="status-indicator status-ready"></span>分析结果</h3>
-                <div class="output" id="analysisOutput"></div>
+        <!-- 1.7 输出结果展示区域 -->
+        <div class="section" id="outputSection" style="display: none;">
+            <h3>4. 分析结果</h3>
+            <div class="output-section">
+                <div id="loadingIndicator" class="loading" style="display: none;">
+                    🤖 正在运行AI分析...
+                </div>
+                <div class="output-content" id="outputContent"></div>
             </div>
         </div>
     </div>
 
     <script>
-        // 分析方法配置
+        // 用户数据存储
+        const userData = {
+            userid1: `用户ID: userid1
+浏览历史:
+- 科技新闻和AI相关文章 (频率: 每日)
+- 机器学习教程和编程资料 (频率: 高)
+- 数据分析工具和技术文档 (频率: 中等)
+
+购买行为:
+- 技术书籍: Python编程、机器学习实战
+- 在线课程: AI基础课程、数据科学专业课
+- 软件订阅: 开发工具、云服务
+
+搜索关键词:
+- "人工智能应用"、"机器学习算法"
+- "Python数据分析"、"深度学习框架"
+- "AI工程师职业发展"
+
+社交互动:
+- 点赞: 48次 (主要关注技术内容)
+- 分享: 15次 (分享学习资源)
+- 评论: 12次 (技术讨论和问题解答)
+
+设备使用:
+- 主要设备: 笔记本电脑 (工作日)
+- 移动设备: 手机 (通勤时间)
+- 活跃时间: 工作日晚间 19:00-23:00
+
+兴趣标签:
+- 人工智能: 95%置信度
+- 编程开发: 90%置信度  
+- 数据科学: 85%置信度
+- 在线学习: 80%置信度`
+        };
+
+        // Prompt模板
         const prompts = {
-            userInterestIntelligence: `You are a User Interest Intelligence System. Analyze the provided user behavior data and generate a comprehensive interest profile.
+            'user-interest-intelligence-prompt_testV1.md': `# User Interest Intelligence Analysis Prompt
 
-Output Format: JSON with these exact fields:
-{
-  "user_interests": ["interest1", "interest2", "interest3"],
-  "behavior_patterns": ["pattern1", "pattern2"],
-  "preferences": {
-    "product_categories": ["category1", "category2"],
-    "content_types": ["type1", "type2"],
-    "engagement_level": "high/medium/low"
-  },
-  "recommendations": ["rec1", "rec2", "rec3"],
-  "insights": "Deep behavioral insights and predictions"
-}
+## 任务描述
+请基于提供的用户行为数据，进行深度的兴趣智能分析，输出结构化的用户画像和个性化推荐。
 
-Please analyze the user behavior data and provide comprehensive interest intelligence.`,
-            
-            behaviorPattern: `Analyze user behavior patterns and identify key behavioral trends.
-Output detailed behavioral analysis in JSON format with patterns, trends, and predictions.`,
-            
-            personalizedRecommend: `Generate personalized recommendations based on user behavior data.
-Output personalized suggestions in JSON format with specific product/content recommendations.`,
-            
-            comprehensiveAnalysis: `Perform comprehensive user analysis including interests, behavior, and recommendations.
-Output complete user profile analysis in structured JSON format.`
+## 分析维度
+1. **兴趣偏好分析**: 识别用户的核心兴趣领域和偏好程度
+2. **行为模式识别**: 分析用户的行为习惯和活跃模式
+3. **个性化特征**: 提取用户的个性化标签和特征
+4. **推荐策略**: 基于分析结果生成个性化推荐
+
+## 输出格式
+请以JSON格式输出分析结果，包含以下字段：
+- user_interests: 用户兴趣列表
+- behavior_patterns: 行为模式分析
+- personality_tags: 个性化标签
+- recommendations: 个性化推荐
+- confidence_score: 分析置信度
+
+## 用户数据
+`
         };
 
-        // 本地AI模拟器配置
-        const modelConfigs = {
-            'local': { 
-                name: '本地智能分析器', 
-                description: '内置AI算法，无需网络连接，数据完全本地处理', 
-                maxTokens: 4000 
+        // 1.1 用户选择事件监听
+        document.getElementById('userIdSelect').addEventListener('change', function() {
+            const selectedUserId = this.value;
+            const getUserBehaviorBtn = document.getElementById('getUserBehaviorBtn');
+            
+            if (selectedUserId) {
+                getUserBehaviorBtn.disabled = false;
+            } else {
+                getUserBehaviorBtn.disabled = true;
+                // 隐藏后续部分
+                document.getElementById('userDataSection').style.display = 'none';
+                document.getElementById('promptSection').style.display = 'none';
+                document.getElementById('outputSection').style.display = 'none';
             }
-        };
-
-        // 初始化页面
-        document.addEventListener('DOMContentLoaded', function() {
-            // 设置默认模型
-            document.getElementById('aiProvider').value = 'local';
-            
-            // 绑定事件监听器
-            document.getElementById('promptSelect').addEventListener('change', function() {
-                const selectedPrompt = this.value;
-                const promptDataGroup = document.getElementById('promptDataGroup');
-                const promptData = document.getElementById('promptData');
-                const analyzeBtn = document.getElementById('analyzeBtn');
-                
-                if (selectedPrompt && prompts[selectedPrompt]) {
-                    promptDataGroup.style.display = 'block';
-                    promptData.value = prompts[selectedPrompt];
-                    analyzeBtn.disabled = false;
-                } else {
-                    promptDataGroup.style.display = 'none';
-                    promptData.value = '';
-                    analyzeBtn.disabled = true;
-                }
-            });
         });
 
-        // 验证用户数据
-        function validateUserData() {
-            const userData = document.getElementById('userData').value.trim();
+        // Prompt选择事件监听
+        document.getElementById('promptSelect').addEventListener('change', function() {
+            const selectedPrompt = this.value;
+            const runPromptBtn = document.getElementById('runPromptBtn');
             
-            if (!userData) {
-                alert('请输入用户数据');
+            if (selectedPrompt) {
+                runPromptBtn.disabled = false;
+            } else {
+                runPromptBtn.disabled = true;
+            }
+        });
+
+        // 1.2 获取用户行为数据
+        function getUserBehavior() {
+            const selectedUserId = document.getElementById('userIdSelect').value;
+            
+            if (!selectedUserId) {
+                alert('请先选择用户ID');
                 return;
             }
-            
-            try {
-                const parsedData = JSON.parse(userData);
-                console.log('用户数据验证成功:', parsedData);
-                alert('✅ 数据格式验证通过！');
+
+            // 模拟从文件读取数据
+            setTimeout(() => {
+                const userDataTextarea = document.getElementById('userDataTextarea');
+                const userDataSection = document.getElementById('userDataSection');
+                const promptSection = document.getElementById('promptSection');
                 
-                // 显示下一步
-                document.getElementById('promptSection').style.display = 'block';
-                
-                // 更新状态指示器
-                const indicators = document.querySelectorAll('.status-indicator');
-                indicators[1].className = 'status-indicator status-ready';
-                
-            } catch (error) {
-                alert('❌ 数据格式错误：' + error.message + '\n\n请确保输入有效的JSON格式数据');
-                console.error('JSON解析错误:', error);
-            }
+                // 1.3 显示用户数据
+                if (userData[selectedUserId]) {
+                    userDataTextarea.value = userData[selectedUserId];
+                    userDataSection.style.display = 'block';
+                    promptSection.style.display = 'block';
+                    
+                    // 显示成功消息
+                    showMessage('success', `成功加载 ${selectedUserId} 的用户行为数据`);
+                } else {
+                    showMessage('error', `未找到用户 ${selectedUserId} 的数据文件`);
+                }
+            }, 500); // 模拟文件读取延迟
         }
 
-        // 开始分析
-        async function startAnalysis() {
-            const userData = document.getElementById('userData').value.trim();
-            const promptSelect = document.getElementById('promptSelect').value;
-            const promptData = document.getElementById('promptData').value;
-            const selectedModel = document.getElementById('aiProvider').value;
+        // 1.4 启用编辑模式
+        function enableEdit() {
+            const userDataTextarea = document.getElementById('userDataTextarea');
+            const editBtn = document.getElementById('editBtn');
+            const editControls = document.getElementById('editControls');
+            
+            userDataTextarea.readOnly = false;
+            userDataTextarea.classList.remove('readonly');
+            editBtn.style.display = 'none';
+            editControls.style.display = 'block';
+            
+            userDataTextarea.focus();
+        }
 
-            if (!userData || !promptSelect || !promptData || !selectedModel) {
-                alert('请确保已配置所有必要信息');
-                return;
-            }
+        // 1.4 保存用户数据
+        function saveUserData() {
+            const selectedUserId = document.getElementById('userIdSelect').value;
+            const userDataTextarea = document.getElementById('userDataTextarea');
+            
+            // 更新内存中的数据
+            userData[selectedUserId] = userDataTextarea.value;
+            
+            // 退出编辑模式
+            cancelEdit();
+            
+            showMessage('success', '用户数据保存成功');
+            
+            // 这里可以添加保存到文件的逻辑
+            console.log('保存数据到文件:', selectedUserId, userDataTextarea.value);
+        }
 
-            // 验证用户数据格式
-            try {
-                JSON.parse(userData);
-            } catch (error) {
-                alert('用户数据格式错误，请检查JSON格式');
-                return;
-            }
+        // 1.4 取消编辑
+        function cancelEdit() {
+            const userDataTextarea = document.getElementById('userDataTextarea');
+            const editBtn = document.getElementById('editBtn');
+            const editControls = document.getElementById('editControls');
+            const selectedUserId = document.getElementById('userIdSelect').value;
+            
+            // 恢复原始数据
+            userDataTextarea.value = userData[selectedUserId] || '';
+            userDataTextarea.readOnly = true;
+            userDataTextarea.classList.add('readonly');
+            editBtn.style.display = 'inline-block';
+            editControls.style.display = 'none';
+        }
 
-            const loading = document.getElementById('loadingIndicator');
+        // 1.6 运行Prompt分析
+        async function runPrompt() {
+            const selectedPrompt = document.getElementById('promptSelect').value;
+            const userDataText = document.getElementById('userDataTextarea').value;
             const outputSection = document.getElementById('outputSection');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const outputContent = document.getElementById('outputContent');
+            
+            if (!selectedPrompt || !userDataText.trim()) {
+                alert('请确保已选择Prompt且用户数据不为空');
+                return;
+            }
 
-            loading.style.display = 'block';
-            outputSection.style.display = 'none';
-            loading.textContent = `🤖 ${modelConfigs[selectedModel]?.name || selectedModel} 正在分析中...`;
+            // 显示输出区域和加载状态
+            outputSection.style.display = 'block';
+            loadingIndicator.style.display = 'block';
+            outputContent.innerHTML = '';
 
             try {
-                // 本地智能分析
+                // 1.6 拼接prompt和用户数据
+                const fullPrompt = prompts[selectedPrompt] + '\n\n' + userDataText;
+                
+                console.log('运行分析:', {
+                    prompt: selectedPrompt,
+                    userDataLength: userDataText.length
+                });
+
+                // 模拟AI分析处理时间
                 await new Promise(resolve => setTimeout(resolve, 2000));
-                const analysisResult = generateLocalAnalysis(userData, promptSelect);
-
-                // 隐藏加载，显示结果
-                loading.style.display = 'none';
-                outputSection.style.display = 'block';
                 
-                document.getElementById('analysisOutput').textContent = JSON.stringify(analysisResult, null, 2);
+                // 生成分析结果
+                const analysisResult = generateAnalysisResult(userDataText);
                 
-                console.log('分析完成:', analysisResult);
-
+                // 1.7 以简洁形式展示输出
+                loadingIndicator.style.display = 'none';
+                outputContent.innerHTML = formatAnalysisOutput(analysisResult);
+                
+                showMessage('success', '分析完成！');
+                
             } catch (error) {
-                loading.style.display = 'none';
-                
-                const errorDiv = document.createElement('div');
-                errorDiv.className = 'error';
-                errorDiv.innerHTML = `
-                    <h4>❌ 分析失败</h4>
-                    <p><strong>错误信息:</strong> ${error.message}</p>
-                    <p><strong>分析模式:</strong> 本地智能分析器</p>
-                    <p><strong>时间:</strong> ${new Date().toLocaleTimeString()}</p>
-                `;
-                
-                document.querySelector('.main-content').appendChild(errorDiv);
+                loadingIndicator.style.display = 'none';
+                outputContent.innerHTML = `错误: ${error.message}`;
+                showMessage('error', '分析过程中出现错误');
                 console.error('分析错误:', error);
             }
         }
 
-        // 本地AI分析引擎
-        function generateLocalAnalysis(userData, analysisType) {
-            const data = JSON.parse(userData);
+        // 生成分析结果 (模拟AI分析)
+        function generateAnalysisResult(userDataText) {
+            // 简单的关键词分析
+            const text = userDataText.toLowerCase();
             
-            // 智能关键词提取
-            const extractKeywords = (text) => {
-                if (typeof text !== 'string') return [];
-                return text.toLowerCase().match(/[\u4e00-\u9fa5]+|[a-zA-Z]+/g) || [];
-            };
-
-            // 兴趣分类映射
-            const interestCategories = {
-                '科技': ['科技', '技术', 'AI', '人工智能', '编程', '代码', '开发', '软件', '硬件', '数码'],
-                '购物': ['购买', '商品', '产品', '价格', '折扣', '优惠', '品牌', '质量'],
-                '娱乐': ['电影', '音乐', '游戏', '视频', '直播', '娱乐', '综艺', '动漫'],
-                '教育': ['学习', '课程', '教育', '培训', '知识', '技能', '考试', '证书'],
-                '生活': ['生活', '健康', '美食', '旅游', '运动', '时尚', '家居'],
-                '社交': ['社交', '朋友', '分享', '交流', '社区', '群组', '聊天']
-            };
-
-            // 分析用户兴趣
-            const analyzeInterests = () => {
-                let allText = JSON.stringify(data).toLowerCase();
-                let interests = [];
-                
-                for (let category in interestCategories) {
-                    let score = 0;
-                    interestCategories[category].forEach(keyword => {
-                        if (allText.includes(keyword)) {
-                            score += 1;
-                        }
-                    });
-                    if (score > 0) {
-                        interests.push(`${category} (匹配度: ${score})`);
-                    }
-                }
-                
-                return interests.length > 0 ? interests : ['通用兴趣', '个性化内容', '精选推荐'];
-            };
-
-            // 分析行为模式
-            const analyzeBehaviorPatterns = () => {
-                const patterns = [];
-                
-                if (data.browsing_history) {
-                    patterns.push(`浏览偏好: ${Array.isArray(data.browsing_history) ? data.browsing_history.slice(0,3).join(', ') : '多样化内容'}`);
-                }
-                
-                if (data.purchase_history) {
-                    patterns.push(`消费习惯: 倾向于购买${Array.isArray(data.purchase_history) ? data.purchase_history.slice(0,2).join('、') : '相关产品'}`);
-                }
-                
-                if (data.interaction_data) {
-                    const interaction = data.interaction_data;
-                    if (interaction.likes > 20) patterns.push('高互动用户 - 积极点赞分享');
-                    if (interaction.comments > 5) patterns.push('活跃评论用户 - 喜欢表达观点');
-                }
-                
-                patterns.push('规律性活跃 - 具有稳定的使用习惯');
-                
-                return patterns;
-            };
-
-            // 生成个性化推荐
-            const generateRecommendations = (interests) => {
-                const recommendations = [];
-                
-                if (interests.some(i => i.includes('科技'))) {
-                    recommendations.push('推荐最新科技资讯和产品评测');
-                    recommendations.push('个性化推送AI和编程相关内容');
-                }
-                
-                if (interests.some(i => i.includes('购物'))) {
-                    recommendations.push('智能商品推荐和价格提醒');
-                    recommendations.push('个性化优惠券和促销活动');
-                }
-                
-                if (interests.some(i => i.includes('娱乐'))) {
-                    recommendations.push('精选娱乐内容和热门视频');
-                }
-                
-                recommendations.push('基于行为模式的个性化内容推送');
-                recommendations.push('优化用户界面以提升使用体验');
-                
-                return recommendations;
-            };
-
-            // 执行分析
-            const interests = analyzeInterests();
-            const patterns = analyzeBehaviorPatterns();
-            const recommendations = generateRecommendations(interests);
-
-            // 根据分析类型返回结果
-            switch(analysisType) {
-                case 'userInterestIntelligence':
-                    return {
-                        user_interests: interests,
-                        behavior_patterns: patterns,
-                        preferences: {
-                            product_categories: interests.slice(0, 3),
-                            content_types: ["个性化推荐", "热门内容", "专业资讯"],
-                            engagement_level: data.interaction_data?.likes > 20 ? "high" : "medium"
-                        },
-                        recommendations: recommendations,
-                        insights: `用户表现出对${interests[0]?.split('(')[0] || '多个领域'}的强烈兴趣，建议重点推送相关内容以提升用户参与度和满意度。`,
-                        analysis_timestamp: new Date().toISOString(),
-                        confidence_score: "85%"
-                    };
-
-                case 'behaviorPattern':
-                    return {
-                        behavior_patterns: patterns,
-                        usage_frequency: "高频用户",
-                        peak_activity_time: "工作日晚间",
-                        device_preference: "移动设备优先",
-                        content_consumption: patterns,
-                        predictive_insights: "用户活跃度预计保持稳定增长趋势"
-                    };
-
-                case 'personalizedRecommend':
-                    return {
-                        personalized_recommendations: recommendations,
-                        priority_categories: interests.slice(0, 3),
-                        recommended_actions: [
-                            "增加相关内容推送频率",
-                            "优化推荐算法权重",
-                            "提供个性化界面设置"
-                        ],
-                        engagement_strategy: "基于用户兴趣的精准营销"
-                    };
-
-                case 'comprehensiveAnalysis':
-                default:
-                    return {
-                        user_profile: {
-                            interests: interests,
-                            behavior_patterns: patterns,
-                            preferences: interests.slice(0, 3)
-                        },
-                        recommendations: recommendations,
-                        insights: `综合分析显示用户是一个${interests.length > 3 ? '多元化兴趣' : '专注型'}用户，具有${data.interaction_data?.likes > 20 ? '高' : '中等'}活跃度特征。`,
-                        analysis_method: "本地AI智能分析",
-                        confidence_score: "90%",
-                        processing_time: "2.1秒"
-                    };
+            const interests = [];
+            const patterns = [];
+            const tags = [];
+            const recommendations = [];
+            
+            // 兴趣识别
+            if (text.includes('ai') || text.includes('人工智能') || text.includes('机器学习')) {
+                interests.push('人工智能技术');
+                tags.push('AI爱好者');
+                recommendations.push('推荐最新AI技术资讯和深度学习课程');
             }
+            
+            if (text.includes('编程') || text.includes('python') || text.includes('开发')) {
+                interests.push('编程开发');
+                tags.push('技术开发者');
+                recommendations.push('推荐编程实战项目和开发工具');
+            }
+            
+            if (text.includes('数据') || text.includes('分析')) {
+                interests.push('数据科学');
+                tags.push('数据分析师');
+                recommendations.push('推荐数据分析工具和可视化课程');
+            }
+
+            // 行为模式分析
+            if (text.includes('每日') || text.includes('频率: 高')) {
+                patterns.push('高频活跃用户');
+            }
+            
+            if (text.includes('工作日') || text.includes('晚间')) {
+                patterns.push('工作日晚间活跃模式');
+            }
+            
+            if (text.includes('学习') || text.includes('课程')) {
+                patterns.push('持续学习型用户');
+                recommendations.push('个性化学习路径规划');
+            }
+
+            return {
+                user_interests: interests.length > 0 ? interests : ['通用兴趣'],
+                behavior_patterns: patterns.length > 0 ? patterns : ['常规用户模式'],
+                personality_tags: tags.length > 0 ? tags : ['普通用户'],
+                recommendations: recommendations.length > 0 ? recommendations : ['个性化内容推荐'],
+                confidence_score: '85%',
+                analysis_timestamp: new Date().toLocaleString(),
+                data_source: 'user-behavior-data'
+            };
         }
 
-        console.log('用户兴趣智能分析平台已加载 - 本地版本');
-        console.log('支持的分析模式: 本地智能分析器');
+        // 1.7 格式化输出结果 (简洁形式)
+        function formatAnalysisOutput(result) {
+            return `🎯 用户兴趣分析结果
+
+📊 核心兴趣:
+${result.user_interests.map(interest => `   • ${interest}`).join('\n')}
+
+📈 行为模式:
+${result.behavior_patterns.map(pattern => `   • ${pattern}`).join('\n')}
+
+🏷️ 用户标签:
+${result.personality_tags.map(tag => `   • ${tag}`).join('\n')}
+
+💡 个性化推荐:
+${result.recommendations.map(rec => `   • ${rec}`).join('\n')}
+
+📋 分析详情:
+   • 置信度: ${result.confidence_score}
+   • 分析时间: ${result.analysis_timestamp}
+   • 数据来源: ${result.data_source}
+
+---
+✅ 分析完成 | 🤖 AI智能分析系统`;
+        }
+
+        // 显示消息
+        function showMessage(type, message) {
+            // 移除之前的消息
+            const existingMessages = document.querySelectorAll('.success, .error');
+            existingMessages.forEach(msg => msg.remove());
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = type;
+            messageDiv.textContent = message;
+            
+            // 添加到容器末尾
+            document.querySelector('.container').appendChild(messageDiv);
+            
+            // 3秒后自动移除
+            setTimeout(() => {
+                if (messageDiv.parentNode) {
+                    messageDiv.parentNode.removeChild(messageDiv);
+                }
+            }, 3000);
+        }
+
+        console.log('用户兴趣智能分析平台已加载');
+        console.log('可用用户ID:', Object.keys(userData));
+        console.log('可用Prompt:', Object.keys(prompts));
     </script>
 </body>
 </html>
