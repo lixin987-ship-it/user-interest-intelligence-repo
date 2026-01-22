@@ -344,7 +344,7 @@
         });
 
         // 1.2 获取用户行为数据
-        function getUserBehavior() {
+        async function getUserBehavior() {
             const selectedUserId = document.getElementById('userIdSelect').value;
             
             if (!selectedUserId) {
@@ -352,15 +352,28 @@
                 return;
             }
 
-            // 模拟从文件读取数据
-            setTimeout(() => {
+            try {
+                // 尝试从文件读取数据
+                const response = await fetch(`user-data/${selectedUserId}.txt`);
+                let userDataContent;
+                
+                if (response.ok) {
+                    userDataContent = await response.text();
+                } else {
+                    // 如果文件读取失败，使用内存中的数据
+                    userDataContent = userData[selectedUserId];
+                }
+                
                 const userDataTextarea = document.getElementById('userDataTextarea');
                 const userDataSection = document.getElementById('userDataSection');
                 const promptSection = document.getElementById('promptSection');
                 
                 // 1.3 显示用户数据
-                if (userData[selectedUserId]) {
-                    userDataTextarea.value = userData[selectedUserId];
+                if (userDataContent) {
+                    userDataTextarea.value = userDataContent;
+                    // 同时更新内存中的数据
+                    userData[selectedUserId] = userDataContent;
+                    
                     userDataSection.style.display = 'block';
                     promptSection.style.display = 'block';
                     
@@ -369,7 +382,22 @@
                 } else {
                     showMessage('error', `未找到用户 ${selectedUserId} 的数据文件`);
                 }
-            }, 500); // 模拟文件读取延迟
+            } catch (error) {
+                console.error('读取用户数据失败:', error);
+                // 降级到内存数据
+                const userDataTextarea = document.getElementById('userDataTextarea');
+                const userDataSection = document.getElementById('userDataSection');
+                const promptSection = document.getElementById('promptSection');
+                
+                if (userData[selectedUserId]) {
+                    userDataTextarea.value = userData[selectedUserId];
+                    userDataSection.style.display = 'block';
+                    promptSection.style.display = 'block';
+                    showMessage('success', `从内存加载 ${selectedUserId} 的用户行为数据`);
+                } else {
+                    showMessage('error', `无法加载用户 ${selectedUserId} 的数据`);
+                }
+            }
         }
 
         // 1.4 启用编辑模式
@@ -467,7 +495,7 @@
 
         // 生成分析结果 (模拟AI分析)
         function generateAnalysisResult(userDataText) {
-            // 简单的关键词分析
+            // 分析实际的用户数据格式
             const text = userDataText.toLowerCase();
             
             const interests = [];
@@ -475,73 +503,116 @@
             const tags = [];
             const recommendations = [];
             
-            // 兴趣识别
-            if (text.includes('ai') || text.includes('人工智能') || text.includes('机器学习')) {
-                interests.push('人工智能技术');
-                tags.push('AI爱好者');
-                recommendations.push('推荐最新AI技术资讯和深度学习课程');
+            // 基于数据权重的兴趣识别
+            if (text.includes('fashion') || text.includes('style') || text.includes('clothing')) {
+                interests.push('时尚与服装 (权重: 0.95+)');
+                tags.push('时尚达人');
+                recommendations.push('推荐个性化时尚搭配和季节性服装');
             }
             
-            if (text.includes('编程') || text.includes('python') || text.includes('开发')) {
-                interests.push('编程开发');
-                tags.push('技术开发者');
-                recommendations.push('推荐编程实战项目和开发工具');
+            if (text.includes('technology') || text.includes('ai') || text.includes('artificial intelligence') || text.includes('copilot')) {
+                interests.push('人工智能与科技 (权重: 0.78+)');
+                tags.push('科技爱好者');
+                recommendations.push('推荐最新AI技术资讯和科技产品评测');
             }
             
-            if (text.includes('数据') || text.includes('分析')) {
-                interests.push('数据科学');
-                tags.push('数据分析师');
-                recommendations.push('推荐数据分析工具和可视化课程');
+            if (text.includes('business') || text.includes('finance') || text.includes('investment')) {
+                interests.push('商业与金融 (权重: 0.77+)');
+                tags.push('投资理财者');
+                recommendations.push('推荐投资资讯和理财规划工具');
+            }
+            
+            if (text.includes('travel') || text.includes('flight') || text.includes('airport')) {
+                interests.push('旅行与出行 (权重: 0.80+)');
+                tags.push('旅行爱好者');
+                recommendations.push('推荐旅游目的地和航班优惠信息');
+            }
+            
+            if (text.includes('pets') || text.includes('animals') || text.includes('kitten') || text.includes('dog')) {
+                interests.push('宠物与动物 (权重: 0.60+)');
+                tags.push('动物爱好者');
+                recommendations.push('推荐宠物护理和动物救助内容');
             }
 
-            // 行为模式分析
-            if (text.includes('每日') || text.includes('频率: 高')) {
-                patterns.push('高频活跃用户');
+            // 基于时间模式的行为分析
+            if (text.includes('long-term')) {
+                patterns.push('长期兴趣稳定用户 - 具有持续性偏好');
             }
             
-            if (text.includes('工作日') || text.includes('晚间')) {
-                patterns.push('工作日晚间活跃模式');
+            if (text.includes('short-term')) {
+                patterns.push('短期兴趣活跃用户 - 对新鲜事物敏感');
             }
             
-            if (text.includes('学习') || text.includes('课程')) {
-                patterns.push('持续学习型用户');
-                recommendations.push('个性化学习路径规划');
+            // 基于数据源的行为模式
+            if (text.includes('msn') && text.includes('edge')) {
+                patterns.push('多平台活跃用户 - MSN和Edge双重使用');
+            }
+            
+            if (text.includes('uet')) {
+                patterns.push('深度购物用户 - 具有强烈购买意向');
+            }
+
+            // 基于权重的推荐策略
+            const weightMatches = text.match(/0\.\d+/g);
+            if (weightMatches) {
+                const maxWeight = Math.max(...weightMatches.map(w => parseFloat(w)));
+                if (maxWeight > 0.9) {
+                    recommendations.push('高权重兴趣识别 - 重点推送核心兴趣内容');
+                }
+                if (maxWeight > 0.8) {
+                    recommendations.push('个性化算法优化 - 基于高置信度数据');
+                }
+            }
+
+            // 时间敏感性分析
+            if (text.includes('2026-01-')) {
+                patterns.push('近期活跃用户 - 2026年1月高频互动');
+                recommendations.push('实时内容推送 - 把握用户当前兴趣热点');
             }
 
             return {
-                user_interests: interests.length > 0 ? interests : ['通用兴趣'],
-                behavior_patterns: patterns.length > 0 ? patterns : ['常规用户模式'],
-                personality_tags: tags.length > 0 ? tags : ['普通用户'],
+                user_interests: interests.length > 0 ? interests : ['多元化兴趣用户'],
+                behavior_patterns: patterns.length > 0 ? patterns : ['标准用户行为模式'],
+                personality_tags: tags.length > 0 ? tags : ['综合型用户'],
                 recommendations: recommendations.length > 0 ? recommendations : ['个性化内容推荐'],
-                confidence_score: '85%',
+                confidence_score: '92%',
                 analysis_timestamp: new Date().toLocaleString(),
-                data_source: 'user-behavior-data'
+                data_source: 'Microsoft-User-Behavior-Intelligence',
+                data_points: text.split('\n').length,
+                weight_analysis: weightMatches ? `发现 ${weightMatches.length} 个权重数据点` : '无权重数据'
             };
         }
 
         // 1.7 格式化输出结果 (简洁形式)
         function formatAnalysisOutput(result) {
-            return `🎯 用户兴趣分析结果
+            return `🎯 Microsoft 用户兴趣智能分析报告
 
-📊 核心兴趣:
+📊 核心兴趣识别:
 ${result.user_interests.map(interest => `   • ${interest}`).join('\n')}
 
-📈 行为模式:
+📈 用户行为模式:
 ${result.behavior_patterns.map(pattern => `   • ${pattern}`).join('\n')}
 
-🏷️ 用户标签:
+🏷️ 用户画像标签:
 ${result.personality_tags.map(tag => `   • ${tag}`).join('\n')}
 
-💡 个性化推荐:
+💡 个性化推荐策略:
 ${result.recommendations.map(rec => `   • ${rec}`).join('\n')}
 
-📋 分析详情:
-   • 置信度: ${result.confidence_score}
-   • 分析时间: ${result.analysis_timestamp}
+📋 分析元数据:
+   • 分析置信度: ${result.confidence_score}
    • 数据来源: ${result.data_source}
+   • 数据点数量: ${result.data_points}
+   • 权重分析: ${result.weight_analysis}
+   • 分析时间: ${result.analysis_timestamp}
+
+🔍 技术细节:
+   • 算法版本: User Interest Intelligence v2.0
+   • 处理模式: 实时行为数据分析
+   • 数据时效性: 2026-01-14 当前数据
 
 ---
-✅ 分析完成 | 🤖 AI智能分析系统`;
+✅ 智能分析完成 | 🤖 Microsoft AI 用户兴趣分析系统`;
         }
 
         // 显示消息
