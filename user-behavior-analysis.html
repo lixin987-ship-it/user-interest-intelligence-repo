@@ -373,22 +373,11 @@
                     <label for="aiProvider">选择AI服务商：</label>
                     <select id="aiProvider">
                         <option value="">-- 请选择AI服务 --</option>
-                        <option value="microsoft-internal">Microsoft Internal (Pyparus)</option>
+                        <option value="gpt-models">GPT模型</option>
                         <option value="local">本地模拟（测试用）</option>
                     </select>
                 </div>
                 
-                <div class="form-group" id="apiKeySection" style="display: none;">
-                    <label for="apiKey">API密钥：</label>
-                    <input type="password" id="apiKey" placeholder="输入你的API密钥" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;">
-                    <small style="color: #7f8c8d;">密钥仅在本地存储，不会上传到服务器</small>
-                </div>
-                
-                <div class="form-group" id="customEndpointSection" style="display: none;">
-                    <label for="customEndpoint">Azure OpenAI端点：</label>
-                    <input type="text" id="customEndpoint" placeholder="例如: https://your-resource.openai.azure.com/openai/deployments/model-name/chat/completions?api-version=2024-12-01-preview" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;">
-                    <small style="color: #7f8c8d;">输入完整的Azure OpenAI部署端点URL</small>
-                </div>
                 
                 <div class="form-group" id="modelSection" style="display: none;">
                     <label for="modelSelect">选择LLM模型：</label>
@@ -626,21 +615,10 @@ Return ONLY valid, parseable JSON.`
         function updateRunButton() {
             const aiProvider = document.getElementById('aiProvider').value;
             const promptSelect = document.getElementById('promptSelect').value;
-            const apiKey = document.getElementById('apiKey').value;
             const modelSelect = document.getElementById('modelSelect').value;
-            const customEndpoint = document.getElementById('customEndpoint') ? document.getElementById('customEndpoint').value : '';
             const runBtn = document.getElementById('runAnalysisBtn');
             
-            let isReady = promptSelect && aiProvider && modelSelect;
-            
-            if (aiProvider === 'local') {
-                // 本地模拟不需要API密钥
-                isReady = isReady;
-            } else if (aiProvider === 'microsoft-internal') {
-                // 内部服务需要API密钥，端点URL可选（有加密配置时）
-                isReady = isReady && (apiKey.trim() || customEndpoint.trim());
-            }
-            
+            const isReady = promptSelect && aiProvider && modelSelect;
             runBtn.disabled = !isReady;
         }
         
@@ -830,22 +808,10 @@ Return ONLY valid, parseable JSON.`
             const promptSelect = document.getElementById('promptSelect').value;
             const promptData = document.getElementById('promptData').value;
             const aiProvider = document.getElementById('aiProvider').value;
-            const apiKey = document.getElementById('apiKey').value;
             const selectedModel = document.getElementById('modelSelect').value;
-            const customEndpoint = document.getElementById('customEndpoint') ? document.getElementById('customEndpoint').value : '';
             
             if (!userData || !promptSelect || !promptData || !aiProvider || !selectedModel) {
                 alert('请确保已配置所有必要信息，包括选择模型');
-                return;
-            }
-            
-            if (aiProvider !== 'local' && !apiKey.trim()) {
-                alert('请输入API密钥');
-                return;
-            }
-            
-            if (aiProvider === 'microsoft-internal' && !customEndpoint.trim() && !apiKey.trim()) {
-                alert('请输入API密钥或自定义API端点');
                 return;
             }
 
@@ -867,7 +833,7 @@ Return ONLY valid, parseable JSON.`
                     analysisResult = generateMockAnalysis();
                 } else {
                     // 真实AI调用
-                    analysisResult = await callRealAI(aiProvider, apiKey, promptData, userData, selectedModel);
+                    analysisResult = await callRealAI(aiProvider, null, promptData, userData, selectedModel);
                 }
                 
                 // 隐藏加载，显示结果
@@ -1033,8 +999,8 @@ Return ONLY valid, parseable JSON.`
             const fullPrompt = `${prompt}\n\n# USER DATA\n${userData}`;
             
             switch (provider) {
-                case 'microsoft-internal':
-                    return await callCustomAPI(apiKey, fullPrompt, model, provider);
+                case 'gpt-models':
+                    return await callGPTModels(fullPrompt, model);
                 default:
                     throw new Error('不支持的AI服务商');
             }
@@ -1092,24 +1058,18 @@ Return ONLY valid, parseable JSON.`
             return null;
         }
         
-        // 自定义API调用 (支持Azure OpenAI等内部服务)
-        async function callCustomAPI(apiKey, prompt, model, provider) {
-            let customEndpoint = document.getElementById('customEndpoint').value;
-            let finalApiKey = apiKey;
-            
-            // 尝试加载内部配置
+        // GPT模型调用 (使用内部配置)
+        async function callGPTModels(prompt, model) {
+            // 加载内部配置
             const internalConfig = await loadInternalConfig();
-            if (internalConfig && internalConfig[model]) {
-                customEndpoint = internalConfig[model].endpoint;
-                finalApiKey = internalConfig[model].key;
-                console.log('使用内部配置:', model);
+            if (!internalConfig || !internalConfig[model]) {
+                throw new Error(`未找到模型 ${model} 的配置信息`);
             }
             
-            const modelConfig = modelConfigs[provider]?.models[model];
+            const { endpoint: customEndpoint, key: finalApiKey } = internalConfig[model];
+            const modelConfig = modelConfigs['gpt-models']?.models[model];
             
-            if (!customEndpoint) {
-                throw new Error('请输入自定义API端点');
-            }
+            console.log('使用内部配置:', model);
             
             // 构建Azure OpenAI兼容的请求体
             const requestBody = {
