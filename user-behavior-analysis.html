@@ -511,8 +511,12 @@ Return ONLY valid, parseable JSON.`
 
         // 用户选择变化
         document.getElementById('userSelect').addEventListener('change', function() {
+            console.log('用户选择变化:', this.value);
             const getUserBtn = document.getElementById('getUserBehaviorBtn');
-            getUserBtn.disabled = !this.value;
+            if (getUserBtn) {
+                getUserBtn.disabled = !this.value;
+                console.log('按钮状态:', getUserBtn.disabled ? '禁用' : '启用');
+            }
             
             if (!this.value) {
                 document.getElementById('dataSection').style.display = 'none';
@@ -520,7 +524,10 @@ Return ONLY valid, parseable JSON.`
                 if (promptSection) {
                     promptSection.style.display = 'none';
                 }
-                document.getElementById('outputSection').style.display = 'none';
+                const outputSection = document.getElementById('outputSection');
+                if (outputSection) {
+                    outputSection.style.display = 'none';
+                }
             }
         });
 
@@ -655,27 +662,42 @@ Return ONLY valid, parseable JSON.`
 
         // 获取用户行为数据
         function getUserBehavior() {
+            console.log('getUserBehavior 函数被调用');
             const userId = document.getElementById('userSelect').value;
+            console.log('选择的用户ID:', userId);
             
             if (!userId) {
                 alert('请先选择用户ID');
                 return;
             }
 
+            console.log('开始获取用户数据...');
             // 模拟API调用
             setTimeout(() => {
+                console.log('模拟API调用完成');
                 const data = userData[userId];
-                document.getElementById('userData').value = data;
-                document.getElementById('dataSection').style.display = 'block';
+                console.log('用户数据:', data ? '已找到' : '未找到');
                 
-                // 显示AI配置区域
-                const promptSection = document.getElementById('promptSection');
-                if (promptSection) {
-                    promptSection.style.display = 'block';
+                if (data) {
+                    document.getElementById('userData').value = data;
+                    document.getElementById('dataSection').style.display = 'block';
+                    
+                    // 显示AI配置区域
+                    const promptSection = document.getElementById('promptSection');
+                    if (promptSection) {
+                        promptSection.style.display = 'block';
+                        console.log('显示AI配置区域');
+                    } else {
+                        console.error('找不到promptSection元素');
+                    }
+                    
+                    // 滚动到数据区域
+                    document.getElementById('dataSection').scrollIntoView({ behavior: 'smooth' });
+                    console.log('数据加载完成');
+                } else {
+                    console.error('未找到用户数据');
+                    alert('未找到用户数据');
                 }
-                
-                // 滚动到数据区域
-                document.getElementById('dataSection').scrollIntoView({ behavior: 'smooth' });
             }, 500);
         }
 
@@ -1185,9 +1207,37 @@ Return ONLY valid, parseable JSON.`
 
         // 初始化页面
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('页面DOM加载完成');
+            
+            // 检查关键元素是否存在
+            const userSelect = document.getElementById('userSelect');
+            const getUserBtn = document.getElementById('getUserBehaviorBtn');
+            
+            console.log('userSelect元素:', userSelect ? '存在' : '不存在');
+            console.log('getUserBehaviorBtn元素:', getUserBtn ? '存在' : '不存在');
+            
+            if (getUserBtn) {
+                console.log('初始按钮状态:', getUserBtn.disabled ? '禁用' : '启用');
+                
+                // 添加直接点击事件监听器作为备选方案
+                getUserBtn.addEventListener('click', function(e) {
+                    console.log('按钮被点击了');
+                    if (this.disabled) {
+                        console.log('按钮被禁用，阻止执行');
+                        e.preventDefault();
+                        return false;
+                    }
+                    console.log('按钮点击事件正常');
+                });
+            }
+            
             // 设置文本域为只读
-            document.getElementById('userData').readOnly = true;
-            document.getElementById('promptData').readOnly = true;
+            const userData = document.getElementById('userData');
+            const promptData = document.getElementById('promptData');
+            if (userData) userData.readOnly = true;
+            if (promptData) promptData.readOnly = true;
+            
+            console.log('页面初始化完成');
         });
     </script>
 </body>
