@@ -856,27 +856,6 @@ Return ONLY valid, parseable JSON.`
                     // 真实AI调用
                     analysisResult = await callGPTModels(promptData + '\n\n# USER DATA\n' + userData, selectedModel);
                 }
-
-            // 显示加载状态
-            const loading = document.getElementById('loadingIndicator');
-            const outputSection = document.getElementById('outputSection');
-            const loadingText = document.querySelector('.loading');
-            
-            loading.style.display = 'block';
-            outputSection.style.display = 'none';
-            loadingText.innerHTML = `🤖 正在调用 ${getProviderName(aiProvider)} (${modelConfigs[aiProvider]?.models[selectedModel]?.name}) 进行分析...`;
-
-            try {
-                let analysisResult;
-                
-                if (aiProvider === 'local') {
-                    // 本地模拟
-                    await new Promise(resolve => setTimeout(resolve, 3000));
-                    analysisResult = generateMockAnalysis();
-                } else {
-                    // 真实AI调用
-                    analysisResult = await callRealAI(aiProvider, null, promptData, userData, selectedModel);
-                }
                 
                 // 隐藏加载，显示结果
                 loading.style.display = 'none';
