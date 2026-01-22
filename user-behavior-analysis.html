@@ -179,6 +179,24 @@
         .readonly {
             background-color: #f8f9fa;
         }
+
+        .prompt-content-textarea {
+            min-height: 200px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            resize: vertical;
+        }
+
+        .prompt-edit-controls {
+            margin-top: 10px;
+        }
+
+        .prompt-edit-controls button {
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body>
@@ -236,6 +254,28 @@
                     <option value="user-interest-intelligence-prompt_testV1.md">user-interest-intelligence-prompt_testV1.md</option>
                 </select>
             </div>
+            
+            <!-- 3.1 Prompt Content Display and Edit Area -->
+            <div class="form-group" id="promptContentSection" style="display: none;">
+                <label for="promptContentTextarea">Prompt Content:</label>
+                <textarea id="promptContentTextarea" class="prompt-content-textarea readonly" readonly 
+                    placeholder="Select a prompt above to view its content..."></textarea>
+                <!-- Prompt Edit Controls -->
+                <div class="prompt-edit-controls">
+                    <button class="btn btn-secondary" id="editPromptBtn" onclick="enablePromptEdit()">
+                        ✏️ Edit Prompt
+                    </button>
+                    <div id="promptEditControls" style="display: none;">
+                        <button class="btn btn-success" onclick="savePromptEdit()">
+                            💾 Save Prompt
+                        </button>
+                        <button class="btn btn-danger" onclick="cancelPromptEdit()">
+                            ❌ Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
             <!-- 1.6 Run Analysis Button -->
             <button class="btn" id="runPromptBtn" onclick="runPrompt()" disabled>
                 🚀 Run Analysis
@@ -303,11 +343,24 @@ Please output analysis results in JSON format, containing the following fields:
         document.getElementById('promptSelect').addEventListener('change', function() {
             const selectedPrompt = this.value;
             const runPromptBtn = document.getElementById('runPromptBtn');
+            const promptContentSection = document.getElementById('promptContentSection');
+            const promptContentTextarea = document.getElementById('promptContentTextarea');
             
             if (selectedPrompt) {
                 runPromptBtn.disabled = false;
+                
+                // Display prompt content
+                promptContentSection.style.display = 'block';
+                promptContentTextarea.value = prompts[selectedPrompt] || '';
+                
+                // Reset to read-only mode
+                promptContentTextarea.readOnly = true;
+                promptContentTextarea.classList.add('readonly');
+                document.getElementById('editPromptBtn').style.display = 'inline-block';
+                document.getElementById('promptEditControls').style.display = 'none';
             } else {
                 runPromptBtn.disabled = true;
+                promptContentSection.style.display = 'none';
             }
         });
 
@@ -380,22 +433,22 @@ Please output analysis results in JSON format, containing the following fields:
             // Exit edit mode
             cancelEdit();
             
-            showMessage('success', '用户数据保存成功（注意：仅保存在页面中，刷新后会重置）');
+            showMessage('success', 'User data saved successfully (Note: only saved in page, will reset after refresh)');
             
             // 这里可以添加保存到文件的逻辑
-            console.log('保存数据:', selectedUserId, userDataTextarea.value);
+            console.log('Save data:', selectedUserId, userDataTextarea.value);
         }
 
-        // 1.4 取消编辑
+        // 1.4 Cancel edit
         function cancelEdit() {
             const userDataTextarea = document.getElementById('userDataTextarea');
             const editBtn = document.getElementById('editBtn');
             const editControls = document.getElementById('editControls');
             const selectedUserId = document.getElementById('userIdSelect').value;
             
-            // 提示用户需要重新加载原始数据
+            // Prompt user that original data needs to be reloaded
             if (selectedUserId) {
-                showMessage('success', '已取消编辑，如需恢复原始数据请重新点击"Get User Behavior"');
+                showMessage('success', 'Edit cancelled. To restore original data, please click "Get User Behavior" again');
             }
             
             userDataTextarea.readOnly = true;
@@ -404,10 +457,62 @@ Please output analysis results in JSON format, containing the following fields:
             editControls.style.display = 'none';
         }
 
-        // 1.6 运行Prompt分析
+        // 3.1 Enable prompt edit mode
+        function enablePromptEdit() {
+            const promptContentTextarea = document.getElementById('promptContentTextarea');
+            const editPromptBtn = document.getElementById('editPromptBtn');
+            const promptEditControls = document.getElementById('promptEditControls');
+            
+            promptContentTextarea.readOnly = false;
+            promptContentTextarea.classList.remove('readonly');
+            editPromptBtn.style.display = 'none';
+            promptEditControls.style.display = 'block';
+            
+            promptContentTextarea.focus();
+        }
+
+        // 3.2 Save prompt edit
+        function savePromptEdit() {
+            const selectedPrompt = document.getElementById('promptSelect').value;
+            const promptContentTextarea = document.getElementById('promptContentTextarea');
+            
+            if (selectedPrompt) {
+                // Update the prompt in memory
+                prompts[selectedPrompt] = promptContentTextarea.value;
+                
+                showMessage('success', 'Prompt saved successfully (Note: only saved in page, will reset after refresh)');
+                console.log('Save prompt:', selectedPrompt, promptContentTextarea.value);
+            }
+            
+            // Exit edit mode
+            cancelPromptEdit();
+        }
+
+        // 3.3 Cancel prompt edit
+        function cancelPromptEdit() {
+            const promptContentTextarea = document.getElementById('promptContentTextarea');
+            const editPromptBtn = document.getElementById('editPromptBtn');
+            const promptEditControls = document.getElementById('promptEditControls');
+            const selectedPrompt = document.getElementById('promptSelect').value;
+            
+            // Restore original prompt content
+            if (selectedPrompt && prompts[selectedPrompt]) {
+                promptContentTextarea.value = prompts[selectedPrompt];
+            }
+            
+            promptContentTextarea.readOnly = true;
+            promptContentTextarea.classList.add('readonly');
+            editPromptBtn.style.display = 'inline-block';
+            promptEditControls.style.display = 'none';
+            
+            showMessage('info', 'Prompt edit cancelled, content restored to original');
+        }
+
+        // 1.6 Run Prompt Analysis
         async function runPrompt() {
             const selectedPrompt = document.getElementById('promptSelect').value;
             const userDataText = document.getElementById('userDataTextarea').value;
+            const promptContentTextarea = document.getElementById('promptContentTextarea');
             const outputSection = document.getElementById('outputSection');
             const loadingIndicator = document.getElementById('loadingIndicator');
             const outputContent = document.getElementById('outputContent');
@@ -417,27 +522,29 @@ Please output analysis results in JSON format, containing the following fields:
                 return;
             }
 
-            // 显示输出区域和加载状态
+            // Show output section and loading state
             outputSection.style.display = 'block';
             loadingIndicator.style.display = 'block';
             outputContent.innerHTML = '';
 
             try {
-                // 1.6 拼接prompt和用户数据
-                const fullPrompt = prompts[selectedPrompt] + '\n\n' + userDataText;
+                // Use current prompt content (may have been edited)
+                const currentPromptContent = promptContentTextarea.value || prompts[selectedPrompt];
+                const fullPrompt = currentPromptContent + '\n\n' + userDataText;
                 
                 console.log('Running analysis:', {
                     prompt: selectedPrompt,
-                    userDataLength: userDataText.length
+                    userDataLength: userDataText.length,
+                    promptContentLength: currentPromptContent.length
                 });
 
-                // 模拟AI分析处理时间
+                // Simulate AI analysis processing time
                 await new Promise(resolve => setTimeout(resolve, 2000));
                 
-                // 生成分析结果
+                // Generate analysis results
                 const analysisResult = generateAnalysisResult(userDataText);
                 
-                // 1.7 以简洁形式展示输出
+                // Display output in concise form
                 loadingIndicator.style.display = 'none';
                 outputContent.innerHTML = formatAnalysisOutput(analysisResult);
                 
@@ -445,7 +552,7 @@ Please output analysis results in JSON format, containing the following fields:
                 
             } catch (error) {
                 loadingIndicator.style.display = 'none';
-                outputContent.innerHTML = `错误: ${error.message}`;
+                outputContent.innerHTML = `Error: ${error.message}`;
                 showMessage('error', 'Error occurred during analysis');
                 console.error('Analysis error:', error);
             }
