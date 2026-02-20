@@ -225,8 +225,8 @@ export default function RawSignalsView({ userId: _userId }: RawSignalsViewProps)
                                 <th style={styles.th}>Source</th>
                                 <th style={styles.th}>User Action</th>
                                 <th style={{ ...styles.th, minWidth: '300px' }}>Details</th>
-                                <th style={styles.th}>Should Filter</th>
                                 <th style={styles.th}>Intent</th>
+                                <th style={styles.th}>Should Filter</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -256,13 +256,6 @@ export default function RawSignalsView({ userId: _userId }: RawSignalsViewProps)
                                     <td style={{ ...styles.td, fontSize: '0.84rem', maxWidth: '400px' }}>
                                         {sig.details}
                                     </td>
-                                    <td style={{ ...styles.td, textAlign: 'center' }}>
-                                        {sig.shouldFilter ? (
-                                            <Badge bg="warning" text="dark" style={{ fontSize: '0.72rem', padding: '3px 8px' }}>Yes</Badge>
-                                        ) : (
-                                            <Badge bg="light" text="dark" style={{ fontSize: '0.72rem', padding: '3px 8px', border: '1px solid #DEE2E6' }}>No</Badge>
-                                        )}
-                                    </td>
                                     <td style={styles.td}>
                                         <span style={{
                                             display: 'inline-block',
@@ -275,6 +268,13 @@ export default function RawSignalsView({ userId: _userId }: RawSignalsViewProps)
                                         }}>
                                             {sig.intent}
                                         </span>
+                                    </td>
+                                    <td style={{ ...styles.td, textAlign: 'center' }}>
+                                        {sig.shouldFilter ? (
+                                            <Badge bg="warning" text="dark" style={{ fontSize: '0.72rem', padding: '3px 8px' }}>Yes</Badge>
+                                        ) : (
+                                            <Badge bg="light" text="dark" style={{ fontSize: '0.72rem', padding: '3px 8px', border: '1px solid #DEE2E6' }}>No</Badge>
+                                        )}
                                     </td>
                                 </tr>
                             ))}
