@@ -7,7 +7,7 @@ import RawSignalsView from './RawSignalsView';
 const dataFiles = import.meta.glob('./Data/*.json', { eager: true });
 
 // Parse filenames to extract unique UserIds
-// Filename format: {UserId}_v{Version}.json
+// Filename format: {UserId}_v{Version}.json  (Version can be a number or a date like 20260114)
 function parseDataFiles(files: Record<string, unknown>): { userId: string; version: string; path: string }[] {
     const entries: { userId: string; version: string; path: string }[] = [];
     for (const path of Object.keys(files)) {
@@ -96,9 +96,13 @@ function MAIProfileSamples() {
                                     value={selectedVersion}
                                     onChange={(e) => { setSelectedVersion(e.target.value); setSampleData(null); }}
                                 >
-                                    {availableVersions.map(v => (
-                                        <option key={v} value={v}>v{v}</option>
-                                    ))}
+                                    {availableVersions.map(v => {
+                                        // Format date-based versions (e.g., 20260114 → 2026-01-14)
+                                        const label = v.length === 8
+                                            ? `${v.slice(0, 4)}-${v.slice(4, 6)}-${v.slice(6, 8)}`
+                                            : `v${v}`;
+                                        return <option key={v} value={v}>{label}</option>;
+                                    })}
                                 </Form.Select>
                             </Form.Group>
                         </Col>
