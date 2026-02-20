@@ -619,6 +619,9 @@ function InterestsSection({ interests }: { interests?: MAIProfileData['Interests
                 <div style={styles.sectionTitle}>
                     <span style={{ fontSize: '1.2rem' }}>❤️</span>
                     <span>Interests</span>
+                    <Badge bg="secondary" style={{ fontSize: '0.75rem', padding: '3px 10px', backgroundColor: '#E9ECEF', color: '#495057', fontWeight: '600' }}>
+                        {topics.length}
+                    </Badge>
                 </div>
                 <p style={{ fontSize: '0.82rem', color: '#8E8E93', marginBottom: '16px' }}>
                     General interests across all surfaces
