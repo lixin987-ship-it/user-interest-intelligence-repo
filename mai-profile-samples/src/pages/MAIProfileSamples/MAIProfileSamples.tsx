@@ -7,14 +7,14 @@ import RawSignalsView from './RawSignalsView';
 const dataFiles = import.meta.glob('./Data/*.json', { eager: true });
 
 // Parse filenames to extract unique UserIds
-// Filename format: {UserId}_v{Version}.json  (Version can be a number or a date like 20260114)
-function parseDataFiles(files: Record<string, unknown>): { userId: string; version: string; path: string }[] {
-    const entries: { userId: string; version: string; path: string }[] = [];
+// Filename format: MaiProfile_{UserId}_v{Date}_{Days}days.json
+function parseDataFiles(files: Record<string, unknown>): { userId: string; version: string; days: string; path: string }[] {
+    const entries: { userId: string; version: string; days: string; path: string }[] = [];
     for (const path of Object.keys(files)) {
         const filename = path.split('/').pop()?.replace('.json', '') || '';
-        const match = filename.match(/^(.+)_v(\d+)$/);
+        const match = filename.match(/^MaiProfile_(.+?)_v(\d+)_(\d+)days$/);
         if (match) {
-            entries.push({ userId: match[1], version: match[2], path });
+            entries.push({ userId: match[1], version: match[2], days: match[3], path });
         }
     }
     return entries;
@@ -89,18 +89,20 @@ function MAIProfileSamples() {
                                 </Form.Select>
                             </Form.Group>
                         </Col>
-                        <Col md={2}>
+                        <Col md={3}>
                             <Form.Group>
-                                <Form.Label>Version</Form.Label>
+                                <Form.Label>Date / Days</Form.Label>
                                 <Form.Select
                                     value={selectedVersion}
                                     onChange={(e) => { setSelectedVersion(e.target.value); setSampleData(null); }}
                                 >
                                     {availableVersions.map(v => {
-                                        // Format date-based versions (e.g., 20260114 → 2026-01-14)
-                                        const label = v.length === 8
+                                        const entry = fileEntries.find(e => e.userId === userId && e.version === v);
+                                        // Format: date / days (e.g., 2026-01-14 / 14 days)
+                                        const dateLabel = v.length === 8
                                             ? `${v.slice(0, 4)}-${v.slice(4, 6)}-${v.slice(6, 8)}`
                                             : `v${v}`;
+                                        const label = entry?.days ? `${dateLabel} / ${entry.days} days` : dateLabel;
                                         return <option key={v} value={v}>{label}</option>;
                                     })}
                                 </Form.Select>

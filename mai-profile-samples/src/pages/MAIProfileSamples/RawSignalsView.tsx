@@ -12,40 +12,92 @@ interface RawSignal {
     intent: string;
 }
 
+interface CsvFileEntry {
+    userId: string;
+    days: string;
+    version: string;
+    path: string;
+    label: string;
+}
+
 interface RawSignalsViewProps {
     userId: string;
 }
 
-// ─── Fake Data ───────────────────────────────────────────────────────
+// ─── CSV Discovery & Parsing ─────────────────────────────────────────
 
-const FAKE_SIGNALS: RawSignal[] = [
-    { date: '2026-01-14', source: 'MSN', userAction: 'MSN View', details: 'A new US AI effort draws in Microsoft, Google, and two dozen major firms', shouldFilter: false, intent: 'stay_updated' },
-    { date: '2026-01-14', source: 'MSN', userAction: 'MSN View', details: 'Why the future of AI & computers will be analog', shouldFilter: false, intent: 'stay_updated' },
-    { date: '2026-01-14', source: 'MSN', userAction: 'MSN View', details: 'Unveiling the mind of Jensen Huang | A genius behind Nvidia success', shouldFilter: false, intent: 'stay_updated' },
-    { date: '2026-01-14', source: 'Bing', userAction: 'Bing Search web', details: 'msft', shouldFilter: false, intent: 'lookup' },
-    { date: '2026-01-14', source: 'Bing', userAction: 'Bing Search Spotlight', details: 'Glencar Lough, Ireland', shouldFilter: true, intent: 'explore' },
-    { date: '2026-01-14', source: 'Uet', userAction: 'UetEvents', details: 'Akris Reversible Cashmere Single-Breasted Jacket | Neiman Marcus', shouldFilter: false, intent: 'shopping' },
-    { date: '2026-01-14', source: 'Uet', userAction: 'UetEvents', details: 'Microsoft Copilot: Your AI companion', shouldFilter: true, intent: 'explore' },
-    { date: '2026-01-14', source: 'MSN', userAction: 'MSN View', details: 'What ingredients are in this vegan tofu dish?', shouldFilter: false, intent: 'learn' },
-    { date: '2026-01-14', source: 'MSN', userAction: 'MSN View', details: 'Ultimate comfort food: Chicken Parmesan', shouldFilter: false, intent: 'learn' },
-    { date: '2026-01-13', source: 'MSN', userAction: 'MSN View', details: 'Baking Barack Obama\'s Famous Crack Pie', shouldFilter: false, intent: 'learn' },
-    { date: '2026-01-13', source: 'Bing', userAction: 'Bing Search Spotlight', details: 'Heceta Head Lighthouse State Scenic Viewpoint, Oregon', shouldFilter: true, intent: 'explore' },
-    { date: '2026-01-13', source: 'Uet', userAction: 'UetEvents', details: 'Eggshell Recycled Nylon Stand Collar Jacket | EILEEN FISHER', shouldFilter: false, intent: 'shopping' },
-    { date: '2026-01-10', source: 'MSN', userAction: 'MSN View', details: 'AI is intensifying a \'collapse\' of trust online, experts say', shouldFilter: false, intent: 'stay_updated' },
-    { date: '2026-01-10', source: 'MSN', userAction: 'MSN View', details: 'Cursor\'s most important AI features started as side projects', shouldFilter: false, intent: 'stay_updated' },
-    { date: '2026-01-09', source: 'Uet', userAction: 'UetEvents', details: 'Conversations that Convert: Copilot Checkout and Brand Agents | Microsoft Advertising', shouldFilter: true, intent: 'explore' },
-    { date: '2026-01-08', source: 'Bing', userAction: 'Bing Search Spotlight', details: 'Green Mountain National Forest, Vermont', shouldFilter: true, intent: 'explore' },
-    { date: '2026-01-08', source: 'Bing', userAction: 'Bing Search Spotlight', details: 'Lake Titicaca, Bolivia', shouldFilter: true, intent: 'explore' },
-    { date: '2026-01-05', source: 'MSN', userAction: 'MSN Upvote', details: 'CES 2026 highlights AI, robotics, and Micro RGB', shouldFilter: false, intent: 'stay_updated' },
-    { date: '2026-01-03', source: 'MSN', userAction: 'MSN Upvote', details: 'Nvidia and TSMC dominate AI investment landscape', shouldFilter: false, intent: 'stay_updated' },
-    { date: '2026-01-02', source: 'Bing', userAction: 'Bing Search web', details: 'getting an openai api key', shouldFilter: false, intent: 'learn' },
-    { date: '2026-01-01', source: 'Bing', userAction: 'Bing Search web Clicked', details: 'Visual Studio Code - The open source AI code editor', shouldFilter: false, intent: 'learn' },
-    { date: '2026-01-01', source: 'Bing', userAction: 'Bing Search web', details: 'Visual Studio Code', shouldFilter: false, intent: 'learn' },
-    { date: '2026-01-01', source: 'Bing', userAction: 'Bing Search web', details: 'microsoft stock', shouldFilter: false, intent: 'lookup' },
-    { date: '2026-01-01', source: 'Uet', userAction: 'UetEvents', details: 'Designer Sale: Designer Brands on Sale - Bloomingdale\'s', shouldFilter: false, intent: 'shopping' },
-    { date: '2026-01-01', source: 'Uet', userAction: 'UetEvents', details: 'Women\'s Luxury Clothing & Shoes On Sale | Vince', shouldFilter: false, intent: 'shopping' },
-    { date: '2026-01-01', source: 'Uet', userAction: 'UetEvents', details: 'Microsoft Copilot: Your AI companion', shouldFilter: true, intent: 'explore' },
-];
+// Discover all CSV files in the Data directory at build time
+const csvFiles = import.meta.glob('./Data/*.csv', { eager: true, query: '?raw', import: 'default' });
+
+// Parse CSV filename: RawSignal_{UserId}_v{Date}_{Days}days.csv
+function parseCsvFiles(files: Record<string, unknown>): CsvFileEntry[] {
+    const entries: CsvFileEntry[] = [];
+    for (const path of Object.keys(files)) {
+        const filename = path.split('/').pop()?.replace('.csv', '') || '';
+        const match = filename.match(/^RawSignal_(.+?)_v(\d+)_(\d+)days$/);
+        if (match) {
+            const version = match[2];
+            const days = match[3];
+            const label = version.length === 8
+                ? `${version.slice(0, 4)}-${version.slice(4, 6)}-${version.slice(6, 8)} (${days} days)`
+                : `v${version} (${days} days)`;
+            entries.push({ userId: match[1], days, version, path, label });
+        }
+    }
+    return entries.sort((a, b) => a.version.localeCompare(b.version));
+}
+
+function parseCsvContent(csvText: string): RawSignal[] {
+    const lines = csvText.trim().split('\n');
+    if (lines.length < 2) return [];
+
+    // Skip header: userId,dateStr,source,action,should_filter,intent
+    const signals: RawSignal[] = [];
+    for (let i = 1; i < lines.length; i++) {
+        const line = lines[i].trim();
+        if (!line) continue;
+
+        // Parse CSV respecting quoted fields
+        const fields = parseCsvLine(line);
+        if (fields.length < 6) continue;
+
+        const [, dateStr, source, action, shouldFilter, intent] = fields;
+        signals.push({
+            date: dateStr,
+            source,
+            userAction: source,
+            details: action,
+            shouldFilter: shouldFilter === 'true',
+            intent: intent || '',
+        });
+    }
+    return signals;
+}
+
+/** Simple CSV line parser that handles quoted fields with commas */
+function parseCsvLine(line: string): string[] {
+    const fields: string[] = [];
+    let current = '';
+    let inQuotes = false;
+    for (let i = 0; i < line.length; i++) {
+        const ch = line[i];
+        if (ch === '"') {
+            if (inQuotes && line[i + 1] === '"') {
+                current += '"';
+                i++;
+            } else {
+                inQuotes = !inQuotes;
+            }
+        } else if (ch === ',' && !inQuotes) {
+            fields.push(current);
+            current = '';
+        } else {
+            current += ch;
+        }
+    }
+    fields.push(current);
+    return fields;
+}
 
 // ─── Style Constants ─────────────────────────────────────────────────
 
@@ -121,12 +173,22 @@ const intentColorMap: Record<string, { bg: string; text: string }> = {
 
 // ─── Component ───────────────────────────────────────────────────────
 
-export default function RawSignalsView({ userId: _userId }: RawSignalsViewProps) {
+export default function RawSignalsView({ userId }: RawSignalsViewProps) {
+    // Discover available CSV files for the current user
+    const allCsvEntries = useMemo(() => parseCsvFiles(csvFiles), []);
+    const userCsvEntries = useMemo(() => allCsvEntries.filter(e => e.userId === userId), [allCsvEntries, userId]);
+
+    const [selectedCsv, setSelectedCsv] = useState<string>(userCsvEntries[userCsvEntries.length - 1]?.path || '');
     const [sourceFilter, setSourceFilter] = useState<string>('all');
     const [intentFilter, setIntentFilter] = useState<string>('all');
     const [showFiltered, setShowFiltered] = useState<boolean>(true);
 
-    const signals = FAKE_SIGNALS;
+    // Parse signals from selected CSV
+    const signals = useMemo(() => {
+        if (!selectedCsv || !csvFiles[selectedCsv]) return [];
+        const csvText = csvFiles[selectedCsv] as string;
+        return parseCsvContent(csvText);
+    }, [selectedCsv]);
 
     const uniqueSources = useMemo(() => [...new Set(signals.map(s => s.source))].sort(), [signals]);
     const uniqueIntents = useMemo(() => [...new Set(signals.map(s => s.intent))].sort(), [signals]);
@@ -179,7 +241,18 @@ export default function RawSignalsView({ userId: _userId }: RawSignalsViewProps)
             <Card style={{ borderRadius: '12px', border: '1px solid #E9ECEF', marginBottom: '16px' }}>
                 <Card.Body style={{ padding: '12px 20px' }}>
                     <Row className="align-items-center">
-                        <Col md={3}>
+                        <Col md={2}>
+                            <Form.Group>
+                                <Form.Label style={{ fontSize: '0.75rem', color: '#8E8E93', marginBottom: '4px' }}>Time</Form.Label>
+                                <Form.Select size="sm" value={selectedCsv} onChange={e => { setSelectedCsv(e.target.value); setSourceFilter('all'); setIntentFilter('all'); }}>
+                                    {userCsvEntries.length === 0 && <option value="">No data available</option>}
+                                    {userCsvEntries.map(e => (
+                                        <option key={e.path} value={e.path}>{e.label}</option>
+                                    ))}
+                                </Form.Select>
+                            </Form.Group>
+                        </Col>
+                        <Col md={2}>
                             <Form.Group>
                                 <Form.Label style={{ fontSize: '0.75rem', color: '#8E8E93', marginBottom: '4px' }}>Source</Form.Label>
                                 <Form.Select size="sm" value={sourceFilter} onChange={e => setSourceFilter(e.target.value)}>
