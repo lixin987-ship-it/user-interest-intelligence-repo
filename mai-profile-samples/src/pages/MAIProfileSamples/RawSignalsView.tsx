@@ -162,7 +162,7 @@ export default function RawSignalsView({ userId, version, days }: RawSignalsView
 
     const [sourceFilter, setSourceFilter] = useState<string>('all');
     const [filterFilter, setFilterFilter] = useState<string>('all');
-    const [dateSortOrder, setDateSortOrder] = useState<'asc' | 'desc'>('asc');
+    const [dateSortOrder, setDateSortOrder] = useState<'asc' | 'desc'>('desc');
     const [currentPage, setCurrentPage] = useState<number>(1);
     const PAGE_SIZE = 40;
 
