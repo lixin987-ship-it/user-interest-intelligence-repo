@@ -467,7 +467,7 @@ function FactsSection({ facts, stageOfLife }: { facts?: MAIProfileData['Facts'];
     );
 }
 
-/** Single interest card */
+/** Single interest card – always shows all sections; empty values render as "—" */
 function InterestCard({ topic }: { topic: InterestTopic }) {
     const score = getConfidenceScore(topic);
     const color = getInterestColor(topic.Internal?.Topic);
@@ -483,27 +483,34 @@ function InterestCard({ topic }: { topic: InterestTopic }) {
         ? `${capitalize(topic.Trigger.Type || '—')} / ${capitalize(topic.Trigger.Value || '—')}`
         : '—';
 
+    const sectionLabelStyle: React.CSSProperties = {
+        fontSize: '0.7rem',
+        fontWeight: '600',
+        color: '#8E8E93',
+        textTransform: 'uppercase',
+        letterSpacing: '0.03em',
+        marginBottom: '6px',
+    };
+
+    const emptyText = <span style={{ fontSize: '0.82rem', color: '#ADB5BD' }}>—</span>;
+
     return (
         <div style={styles.interestCard}>
             {/* Title + Confidence */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
-                <div style={{ ...styles.interestName, color }}>{topic.InterestName}</div>
+                <div style={{ ...styles.interestName, color }}>{topic.InterestName || '—'}</div>
                 <span style={getConfidenceBadgeStyle(level)}>
                     Confidence Score: {score}%
                 </span>
             </div>
 
-            {/* Persona */}
-            {topic.Persona && (
-                <>
-                    <div style={{ fontSize: '0.7rem', fontWeight: '600', color: '#8E8E93', textTransform: 'uppercase', letterSpacing: '0.03em', marginBottom: '4px' }}>PERSONA</div>
-                    <p style={{ fontSize: '0.84rem', color: '#4A5568', lineHeight: '1.5', marginBottom: '10px' }}>
-                        {topic.Persona}
-                    </p>
-                </>
-            )}
+            {/* PERSONA – always shown */}
+            <div style={{ ...sectionLabelStyle, marginBottom: '4px' }}>PERSONA</div>
+            <p style={{ fontSize: '0.84rem', color: '#4A5568', lineHeight: '1.5', marginBottom: '10px' }}>
+                {topic.Persona || emptyText}
+            </p>
 
-            {/* State / Seasonality / Trigger / Decay / Temporal Type metadata table */}
+            {/* State / Seasonality / Trigger / Decay / Temporal Type metadata table – always shown */}
             <div style={{
                 display: 'grid',
                 gridTemplateColumns: 'auto auto auto auto',
@@ -519,7 +526,7 @@ function InterestCard({ topic }: { topic: InterestTopic }) {
                 <span style={styles.metaLabel}>State</span>
                 <span style={styles.metaValue}>{topic.State ? capitalize(topic.State) : '—'}</span>
                 <span style={styles.metaLabel}>Seasonality</span>
-                <span style={styles.metaValue}>{topic.Seasonality ? capitalize(topic.Seasonality) : 'Not Seasonal'}</span>
+                <span style={styles.metaValue}>{topic.Seasonality ? capitalize(topic.Seasonality) : '—'}</span>
 
                 {/* Row 2 */}
                 <span style={styles.metaLabel}>Trigger</span>
@@ -534,75 +541,57 @@ function InterestCard({ topic }: { topic: InterestTopic }) {
                 <span></span>
             </div>
 
-            {/* Signal Sources */}
-            {signalSources.length > 0 && (
-                <>
-                    <div style={{ fontSize: '0.7rem', fontWeight: '600', color: '#8E8E93', textTransform: 'uppercase', letterSpacing: '0.03em', marginBottom: '6px' }}>SIGNALS</div>
-                    <div style={{ display: 'flex', gap: '12px', marginBottom: '10px', fontSize: '0.82rem' }}>
-                        {signalSources.map((src, i) => (
-                            <span key={i} style={{ color: '#4A5568' }}>
-                                {signalIconMap[src.name] || '📌'} {src.name} ({src.count})
-                            </span>
-                        ))}
-                    </div>
-                </>
-            )}
+            {/* SIGNALS – always shown */}
+            <div style={sectionLabelStyle}>SIGNALS</div>
+            <div style={{ display: 'flex', gap: '12px', marginBottom: '10px', fontSize: '0.82rem' }}>
+                {signalSources.length > 0
+                    ? signalSources.map((src, i) => (
+                        <span key={i} style={{ color: '#4A5568' }}>
+                            {signalIconMap[src.name] || '📌'} {src.name} ({src.count})
+                        </span>
+                    ))
+                    : emptyText
+                }
+            </div>
 
-            {/* Intention: Actual + Inferred */}
-            {(topic.ActualActivity || topic.IntentionInferred) && (
-                <>
-                    <div style={{ fontSize: '0.7rem', fontWeight: '600', color: '#8E8E93', textTransform: 'uppercase', letterSpacing: '0.03em', marginBottom: '6px' }}>INTENTION</div>
-                    {topic.ActualActivity && (
-                        <p style={{ fontSize: '0.82rem', color: '#4A5568', lineHeight: '1.5', marginBottom: '6px' }}>
-                            <strong style={{ color: '#1C1C1E' }}>Actual:</strong> {topic.ActualActivity}
-                        </p>
-                    )}
-                    {topic.IntentionInferred && (
-                        <p style={{ fontSize: '0.82rem', color: '#6B7280', lineHeight: '1.5', marginBottom: '10px' }}>
-                            <strong style={{ color: '#6B7280' }}>Inferred:</strong> {topic.IntentionInferred}
-                        </p>
-                    )}
-                </>
-            )}
+            {/* INTENTION – always shown */}
+            <div style={sectionLabelStyle}>INTENTION</div>
+            <p style={{ fontSize: '0.82rem', color: '#4A5568', lineHeight: '1.5', marginBottom: '6px' }}>
+                <strong style={{ color: '#1C1C1E' }}>Actual:</strong> {topic.ActualActivity || '—'}
+            </p>
+            <p style={{ fontSize: '0.82rem', color: '#6B7280', lineHeight: '1.5', marginBottom: '10px' }}>
+                <strong style={{ color: '#6B7280' }}>Inferred:</strong> {topic.IntentionInferred || '—'}
+            </p>
 
-            {/* Topics (weighted keywords) */}
-            {topic.Topics && topic.Topics.length > 0 && (
-                <>
-                    <div style={{ fontSize: '0.7rem', fontWeight: '600', color: '#8E8E93', textTransform: 'uppercase', letterSpacing: '0.03em', marginBottom: '6px' }}>TOPICS</div>
-                    <div style={{ marginBottom: '10px' }}>
-                        {topic.Topics.map((t, i) => (
-                            <span key={i} style={styles.keywordTag}>{t.Topic} ({t.Weight})</span>
-                        ))}
-                    </div>
-                </>
-            )}
+            {/* TOPICS – always shown */}
+            <div style={sectionLabelStyle}>TOPICS</div>
+            <div style={{ marginBottom: '10px' }}>
+                {topic.Topics && topic.Topics.length > 0
+                    ? topic.Topics.map((t, i) => (
+                        <span key={i} style={styles.keywordTag}>{t.Topic} ({t.Weight})</span>
+                    ))
+                    : emptyText
+                }
+            </div>
 
-            {/* Temporal Stats */}
+            {/* Temporal Stats – always shown */}
             <div style={{ display: 'flex', gap: '24px', fontSize: '0.78rem', color: '#6C757D', borderTop: '1px solid #F2F2F7', paddingTop: '10px' }}>
-                {topic.FirstDetectDate && (
-                    <div>
-                        <div style={{ fontSize: '0.68rem', color: '#ADB5BD' }}>First Detect</div>
-                        <div style={{ fontWeight: '600', color: '#1C1C1E' }}>{topic.FirstDetectDate}</div>
-                    </div>
-                )}
-                {topic.LastDetectDate && (
-                    <div>
-                        <div style={{ fontSize: '0.68rem', color: '#ADB5BD' }}>Last Detect</div>
-                        <div style={{ fontWeight: '600', color: '#1C1C1E' }}>{topic.LastDetectDate}</div>
-                    </div>
-                )}
-                {topic.TemporalStats?.EventCount != null && (
-                    <div>
-                        <div style={{ fontSize: '0.68rem', color: '#ADB5BD' }}>Frequency</div>
-                        <div style={{ fontWeight: '600', color: '#1C1C1E' }}>{topic.TemporalStats.EventCount}</div>
-                    </div>
-                )}
-                {topic.LifetimeDays != null && (
-                    <div>
-                        <div style={{ fontSize: '0.68rem', color: '#ADB5BD' }}>Lifetime</div>
-                        <div style={{ fontWeight: '600', color: '#1C1C1E' }}>{topic.LifetimeDays}d</div>
-                    </div>
-                )}
+                <div>
+                    <div style={{ fontSize: '0.68rem', color: '#ADB5BD' }}>First Detect</div>
+                    <div style={{ fontWeight: '600', color: '#1C1C1E' }}>{topic.FirstDetectDate || '—'}</div>
+                </div>
+                <div>
+                    <div style={{ fontSize: '0.68rem', color: '#ADB5BD' }}>Last Detect</div>
+                    <div style={{ fontWeight: '600', color: '#1C1C1E' }}>{topic.LastDetectDate || '—'}</div>
+                </div>
+                <div>
+                    <div style={{ fontSize: '0.68rem', color: '#ADB5BD' }}>Frequency</div>
+                    <div style={{ fontWeight: '600', color: '#1C1C1E' }}>{topic.TemporalStats?.EventCount != null ? topic.TemporalStats.EventCount : '—'}</div>
+                </div>
+                <div>
+                    <div style={{ fontSize: '0.68rem', color: '#ADB5BD' }}>Lifetime</div>
+                    <div style={{ fontWeight: '600', color: '#1C1C1E' }}>{topic.LifetimeDays != null ? `${topic.LifetimeDays}d` : '—'}</div>
+                </div>
             </div>
         </div>
     );
