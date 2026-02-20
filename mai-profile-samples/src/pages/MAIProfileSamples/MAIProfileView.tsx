@@ -514,7 +514,7 @@ function InterestCard({ topic }: { topic: InterestTopic }) {
             {/* PERSONA – always shown */}
             <div style={{ ...sectionLabelStyle, marginBottom: '4px' }}>PERSONA</div>
             <p style={{ fontSize: '0.84rem', color: '#4A5568', lineHeight: '1.5', marginBottom: '10px' }}>
-                {(topic.Persona || emptyText).replace(/^A\(n\)\s*/i, '')}
+                {topic.Persona ? topic.Persona.replace(/^A\(n\)\s*/i, '') : emptyText}
             </p>
 
             {/* State / Seasonality / Trigger / Decay / Temporal Type metadata table – always shown */}
