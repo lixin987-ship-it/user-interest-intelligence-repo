@@ -139,7 +139,7 @@ function MAIProfileSamples() {
                         <MAIProfileView data={sampleData} userId={userId} />
                     </Tab>
                     <Tab eventKey="rawSignal" title="Raw Signals">
-                        <RawSignalsView userId={userId} />
+                        <RawSignalsView userId={userId} version={selectedVersion} days={fileEntries.find(e => e.userId === userId && e.version === selectedVersion)?.days || ''} />
                     </Tab>
                     <Tab eventKey="evaluation" title="Evaluation">
                         <Card>

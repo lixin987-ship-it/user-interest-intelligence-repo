@@ -1,0 +1,436 @@
+index	row_id	Date	Source	DetailedSource	Action	should_filter	intent
+0	0	2025-12-08	Bing	Bing Search Spotlight	cedar waxwing bird	False	Learn about cedar waxwing bird
+1	1	2025-12-08	Edge	BrowserEvents	IMF chief Georgieva to visit China next week, IMF says	False	Read news on IMF chief visiting China
+2	2	2025-12-08	Edge	BrowserEvents	Seattle company uses AI chatbot to help treat dementia	False	Learn about AI chatbot for dementia treatment
+3	3	2025-12-08	MSN	MSN View	7.6 magnitude earthquake hits 50 miles off the coast of Japan	False	Read news about Japan offshore earthquake
+4	4	2025-12-08	MSN	MSN View	Billionaires Elon Musk, Zuckerberg, and Bezos depicted as robots	False	View article about tech billionaires as robots
+5	5	2025-12-08	MSN	MSN View	Can He Solve All 3 Puzzles for a Prize? Test Your Skills!	False	Try puzzle challenge for a prize
+6	6	2025-12-08	MSN	MSN View	Emergency restart in Windows: Faster than standard reboot	False	Learn Windows emergency restart method
+7	7	2025-12-08	MSN	MSN View	Google DeepMind CEO Demis Hassabis says AI scaling 'must be pushed to the maximum'	False	Read about DeepMind CEO views on AI scaling
+8	8	2025-12-08	MSN	MSN View	IMF chief Georgieva to visit China next week, IMF says	False	Read news on IMF chief visiting China
+9	9	2025-12-08	MSN	MSN View	Justin Bieber threatens to put Apple employees in a choke hold as he rages over iPhone function	False	Read celebrity news about Bieber and iPhone
+10	10	2025-12-08	MSN	MSN View	Microsoft’s $7 Billion Bet on Windows Phone Failed—Badly	False	Read analysis of Windows Phone failure
+11	11	2025-12-08	MSN	MSN View	Millionaire YouTuber Hank Green tells Gen Z to rethink their Tesla bets—and shares the portfolio changes he’s making to avoid AI-bubble fallout	False	Read investing advice on Tesla and AI bubble
+12	12	2025-12-08	MSN	MSN View	Not enough dessert: Wedding ends in chaotic brawl	False	Read bizarre news about wedding brawl
+13	13	2025-12-08	MSN	MSN View	Parents, please stop asking me to hire your kids	False	Read opinion on nepotism in hiring
+14	14	2025-12-08	MSN	MSN View	Seattle company uses AI chatbot to help treat dementia	False	Learn about AI chatbot for dementia treatment
+15	15	2025-12-08	MSN	MSN View	She Experienced a Mum's Worst Nightmare	False	Read personal story about parenting nightmare
+16	16	2025-12-08	MSN	MSN View	Test Your Brain with This Puzzle...	False	Solve a brain teaser puzzle
+17	17	2025-12-08	MSN	MSN View	That moment BRICS realized the US might retaliate hard	False	Read geopolitics analysis about BRICS and US
+18	18	2025-12-08	MSN	MSN View	The 'Paperclip Maximizer Theory' That Shows AI’s Dark Side	False	Learn about paperclip maximizer AI risk theory
+19	19	2025-12-08	MSN	MSN View	The Ocean Crushes Submarines Instantly. Here’s What That Really Looks Like	False	Learn how ocean pressure crushes submarines
+20	20	2025-12-08	MSN	MSN View	This AI company hit $1B in 6 months — and it’s changing work forever	False	Read about fast-growing AI company and work impact
+21	21	2025-12-08	MSN	MSN View	Why This Deep-Sea Creature Is Known as the “Doomsday Fish”	False	Learn about doomsday fish deep-sea creature
+22	22	2025-12-08	MSN	MSN View	You Don’t Need to Know Code to Break Into Tech	False	Explore non-coding paths into tech careers
+23	23	2025-12-08	MSN	MSN View	“I felt like I could never turn it around” Inside Justin Bieber’s Darkest Years	False	Read celebrity profile on Justin Bieber struggles
+24	24	2025-12-08	Uet	UetEvents	Introducing Image Animation and Performance Comparison for Better Creative and Richer Insights | Microsoft Advertising	False	Learn Microsoft Advertising creative analytics features
+25	25	2025-12-08	Uet	UetEvents	Microsoft Edge	True	
+26	26	2025-12-08	Uet	UetEvents	cedar waxwing bird - Search	False	Search information about cedar waxwing bird
+27	27	2025-12-09	Bing	Bing Search Spotlight	Australian fur seal	False	Learn about Australian fur seals
+28	28	2025-12-09	MSN	MSN View	A $1.2B performance purge hits Microsoft as 10K brace for more	False	Read about Microsoft layoffs and performance cuts
+29	29	2025-12-09	MSN	MSN View	Apple sees bullish views at Wedbush on AI strategy and iPhone 17 sales	False	Follow Apple AI strategy and iPhone sales news
+30	30	2025-12-09	MSN	MSN View	Google denies ads are coming to Gemini in 2026	False	Track Gemini product news and ads plans
+31	31	2025-12-09	MSN	MSN View	Tsunami warning issued in Japan after 7.6 magnitude quake	False	Get updates on Japan earthquake and tsunami warning
+32	32	2025-12-09	Uet	UetEvents	Australian fur seal - Search	False	Search information about Australian fur seal
+33	33	2025-12-09	Uet	UetEvents	Le Creuset Cast Iron Skinny Grill Pan | Williams Sonoma	False	Browse Le Creuset grill pan product
+34	34	2025-12-09	Uet	UetEvents	Microsoft Copilot: Your AI companion	False	Explore Microsoft Copilot assistant product
+35	35	2025-12-09	Uet	UetEvents	Rowan Knitting & Crochet Magazine 74 at WEBS | Yarn.com	False	Browse knitting/crochet magazine issue
+36	36	2025-12-09	Uet	UetEvents	Rowan Yarn at WEBS | Yarn.com	False	Shop or research Rowan yarn
+37	37	2025-12-09	Uet	UetEvents	Staging | Microsoft Copilot: Your AI companion	True	
+38	38	2025-12-11	Bing	Bing Search Spotlight	Ruinenberg, Germany	False	Look up information about Ruinenberg, Germany
+39	39	2025-12-11	MSN	MSN View	'Historic flooding' in Washington state could force 100,000 people to evacuate	False	Read news about Washington state flooding
+40	40	2025-12-11	MSN	MSN View	Massive earthquake strikes Japan just days after tsunami warning	False	Read news about Japan earthquake and tsunami warning
+41	41	2025-12-11	MSN	MSN View	Meta's Wang reportedly clashed with company veterans Cox, Bosworth on AI goals	False	Follow tech industry news about Meta AI leadership
+42	42	2025-12-11	MSN	MSN View	Tech moves: T-Mobile names COO; Microsoft and Amazon execs depart; Redfin vet joins RentSpree	False	Track executive moves and tech business news
+43	43	2025-12-11	Uet	UetEvents	Microsoft Copilot: Your AI companion	False	Explore or use Microsoft Copilot AI assistant
+44	44	2025-12-11	Uet	UetEvents	Ruinenberg, Germany - Search	False	Look up information about Ruinenberg, Germany
+45	45	2025-12-11	Uet	UetEvents	Staging | Microsoft Copilot: Your AI companion	True	
+46	46	2025-12-12	Bing	Bing Search Spotlight	Ruinenberg, Germany	False	Search for Ruinenberg, Germany details
+47	47	2025-12-12	MSN	MSN View	Ex-Michigan coach Sherrone Moore expected to be arraigned Friday	False	Read sports/legal news about Sherrone Moore
+48	48	2025-12-12	Uet	UetEvents	Ruinenberg, Germany - Search	False	Look up information about Ruinenberg, Germany
+49	49	2025-12-12	Uet	UetEvents	Staging | Microsoft Copilot: Your AI companion	True	
+50	50	2025-12-13	Bing	Bing Search web	stitch fix	False	Research Stitch Fix personal styling service
+51	51	2025-12-13	MSN	MSN Upvote	The World, Through Craft	False	Read content about crafts and makers
+52	52	2025-12-13	MSN	MSN View	The World, Through Craft	False	Read content about crafts and makers
+53	53	2025-12-13	Uet	UetEvents	Microsoft Copilot: Your AI companion	False	Explore or use Microsoft Copilot AI assistant
+54	54	2025-12-13	Uet	UetEvents	Sign In | Personal Styling for Women, Men & Kids	False	Sign in to Stitch Fix account
+55	55	2025-12-13	Uet	UetEvents	Sign Up For A Personal Stylist | Stitch Fix	False	Create account for Stitch Fix styling service
+56	56	2025-12-13	Uet	UetEvents	Staging | Microsoft Copilot: Your AI companion	True	
+57	57	2025-12-13	Uet	UetEvents	Women's Clothes | Men's Clothes | Kid's Clothing Boxes | Stitch Fix	False	Browse Stitch Fix clothing options
+58	58	2025-12-13	Uet	UetEvents	Your Online Personal Stylist | Stitch Fix	False	Learn about Stitch Fix online personal styling
+59	59	2025-12-14	Bing	Bing Search web	events near me	True	
+60	60	2025-12-14	Bing	Bing Search web	zojirushi recipes bread machine	False	Find bread machine recipes for Zojirushi
+61	61	2025-12-14	Bing	Bing Search web Clicked	Breadmaker Recipes | Zojirushi.com	False	Browse Zojirushi breadmaker recipes
+62	62	2025-12-14	MSN	MSN View	OpenAI ends vesting cliff for new employees in compensation-policy change	False	Read news about OpenAI compensation policy
+63	63	2025-12-14	Uet	UetEvents	Microsoft Copilot: Your AI companion	False	Learn about or use Microsoft Copilot
+64	64	2025-12-15	Bing	Bing Search Spotlight	Ecola State Park, Oregon	False	Explore or plan visit to Ecola State Park
+65	65	2025-12-15	MSN	MSN View	Sergey Brin, who came back to Google to work on Gemini, says staying retired would have been a 'big mistake'	False	Read news about Sergey Brin and Gemini
+66	66	2025-12-15	MSN	MSN View	US social media requirements for foreign visitors could have 'chilling effect' on travel, industry group says	False	Read travel policy news on visitor requirements
+67	67	2025-12-15	Uet	UetEvents	Ecola State Park, Oregon - Search	False	Search for Ecola State Park information
+68	68	2025-12-16	Bing	Bing Search Spotlight	Ecola State Park, Oregon	False	Explore or plan visit to Ecola State Park
+69	69	2025-12-16	MSN	MSN View	Usha Vance finally breaks silence on marriage to DJ amid split rumors	False	Read celebrity relationship news
+70	70	2025-12-16	Uet	UetEvents	Ecola State Park, Oregon - Search	False	Search for Ecola State Park information
+71	71	2025-12-16	Uet	UetEvents	Microsoft Copilot: Your AI companion	False	Learn about or use Microsoft Copilot
+72	72	2025-12-16	Uet	UetEvents	Nordstrom Oversize Cashmere Turtleneck Sweater | Nordstrom	False	View or consider buying a cashmere sweater
+73	73	2025-12-16	Uet	UetEvents	Staging | Microsoft Copilot: Your AI companion	False	Access Microsoft Copilot (staging link)
+74	74	2025-12-17	Bing	Bing Search Spotlight	Ecola State Park, Oregon	False	Explore or plan visit to Ecola State Park
+75	75	2025-12-17	Uet	UetEvents	Ecola State Park, Oregon - Search	False	Search for Ecola State Park information
+76	76	2025-12-17	Uet	UetEvents	Microsoft Copilot: Your AI companion	False	Learn about or use Microsoft Copilot
+77	77	2025-12-18	MSN	MSN View	Brown mass shooting and MIT professor murder may be linked: Sources	False	Read breaking crime news
+78	78	2025-12-18	MSN	MSN View	Comet 3I/ATLAS: Europa Clipper captures rare ultraviolet view	False	Read space/science news about Europa Clipper
+79	79	2025-12-18	MSN	MSN View	Trump’s push for federal AI rules draws scrutiny	False	Read news about federal AI regulation
+80	80	2025-12-18	Uet	UetEvents	Microsoft Copilot: Your AI companion	True	
+81	81	2025-12-19	Ads	AdEvents	Premium Merino Wool Yarn for Knitting - Soft, Medium-Thick, Warm Hand-Woven Yarn for Scarves, Hats, Sweaters - 2.0mm Diameter, 4.0mm Knitting Needle R	False	Shop merino wool yarn for knitting
+82	82	2025-12-19	Bing	Bing Search shop	Cashmere sweaters for women	False	Shop women's cashmere sweaters
+83	83	2025-12-19	Bing	Bing Search shop	Cozy Homebody Gifts	False	Find cozy gifts for homebodies
+84	84	2025-12-19	Bing	Bing Search shop	Gifts for Coffee & Tea Lovers	False	Find gifts for coffee and tea lovers
+85	85	2025-12-19	Bing	Bing Search shop	Gifts for Spa Lover	False	Find gifts for spa lovers
+86	86	2025-12-19	Bing	Bing Search shop	flannel sheet set queen	False	Shop queen flannel sheet sets
+87	87	2025-12-19	Bing	Bing Search web	Lululemon Products	False	Browse Lululemon products
+88	88	2025-12-19	Bing	Bing Search web	lululemon	False	Visit or browse Lululemon
+89	89	2025-12-19	Bing	Bing Search web	notion	False	Find Notion productivity tool
+90	90	2025-12-19	Bing	Bing Search web Clicked	Notion - Log in	True	
+91	91	2025-12-20	Bing	Bing Search Spotlight	Ecola State Park, Oregon	False	Learn about Ecola State Park
+92	92	2025-12-20	Bing	Bing Search web	notion	False	Find Notion productivity tool
+93	93	2025-12-20	Bing	Bing Search web	tahoe weather 10 day	True	
+94	94	2025-12-20	Edge	BrowserEvents	Amazon's outlet has Apple, KitchenAid, iRobot, and more rarely marked down brands quietly on sale—up to 60% off	False	Browse discounts on major brands
+95	95	2025-12-20	Edge	BrowserEvents	MSN	True	
+96	96	2025-12-20	Edge	BrowserEvents	NASA's new leader makes his priorities clear on day one	False	Read news about NASA leadership
+97	97	2025-12-20	Edge	BrowserEvents	The perfect pack list for your Lululemon fanny pack	False	Get packing list for Lululemon fanny pack
+98	98	2025-12-20	MSN	MSN Upvote	AI reshapes search, marketing, and brand visibility	False	Read about AI in marketing and search
+99	99	2025-12-20	MSN	MSN View	Amazon's outlet has Apple, KitchenAid, iRobot, and more rarely marked down brands quietly on sale—up to 60% off	False	Browse discounts on major brands
+100	100	2025-12-20	MSN	MSN View	NASA's new leader makes his priorities clear on day one	False	Read about NASA leadership and priorities
+101	101	2025-12-20	MSN	MSN View	The art of deciding what to care about	False	Read personal development or philosophy article
+102	102	2025-12-20	MSN	MSN View	The perfect pack list for your Lululemon fanny pack	False	Find packing list for Lululemon fanny pack
+103	103	2025-12-20	Uet	UetEvents	Ecola State Park, Oregon - Search	False	Research Ecola State Park travel info
+104	104	2025-12-20	Uet	UetEvents	Microsoft Copilot: Your AI companion	False	Explore Microsoft Copilot AI assistant
+105	105	2025-12-21	Edge	BrowserEvents	MSN	True	
+106	106	2025-12-21	MSN	MSN View	The perfect pack list for your Lululemon fanny pack	False	Find packing list for Lululemon fanny pack
+107	107	2025-12-21	Uet	UetEvents	DoorDash Food Delivery - Order History	True	
+108	108	2025-12-21	Uet	UetEvents	DoorDash Food Delivery | Checkout	True	
+109	109	2025-12-21	Uet	UetEvents	DoorDash Login	True	
+110	110	2025-12-21	Uet	UetEvents	DoorDash: Food, Grocery and Retail - Fast Same Day Delivery	True	
+111	111	2025-12-21	Uet	UetEvents	Microsoft Copilot: Your AI companion	False	Explore Microsoft Copilot AI assistant
+112	112	2025-12-21	Uet	UetEvents	Order Apple Teriyaki - Redmond, WA Menu Delivery [Menu & Prices] | Redmond - DoorDash	True	
+113	113	2025-12-21	Uet	UetEvents	Order Cafe 79 Vietnamese Kitchen - Kirkland, WA Menu Delivery [Menu & Prices] | Kirkland - DoorDash	True	
+114	114	2025-12-21	Uet	UetEvents	Order Dong Ting Chun - Redmond, WA Menu Delivery [Menu & Prices] | Redmond - DoorDash	True	
+115	115	2025-12-21	Uet	UetEvents	Order Lá Quế Vietnamese cuisine - Bellevue, WA Menu Delivery [Menu & Prices] | Bellevue - DoorDash	True	
+116	116	2025-12-21	Uet	UetEvents	Order Shinya Shokudo - Redmond, WA Menu Delivery [Menu & Prices] | Redmond - DoorDash	True	
+117	117	2025-12-21	Uet	UetEvents	Order Sichuan Cuisine - Redmond, WA Menu Delivery [Menu & Prices] | Redmond - DoorDash	True	
+118	118	2025-12-21	Uet	UetEvents	Order Stone Korean Restaurant - Redmond, WA Menu Delivery [Menu & Prices] | Redmond - DoorDash	True	
+119	119	2025-12-21	Uet	UetEvents	Order Thai Ginger - Redmond, WA Menu Delivery [Menu & Prices] | Redmond - DoorDash	True	
+120	120	2025-12-21	Uet	UetEvents	Order Tiger Bites - Bellevue, WA Menu Delivery [Menu & Prices] | Bellevue - DoorDash	True	
+121	121	2025-12-21	Uet	UetEvents	Order Yummy Teriyaki - Redmond, WA Menu Delivery [Menu & Prices] | Redmond - DoorDash	True	
+122	122	2025-12-22	Bing	Bing Search Spotlight	Blyde River Canyon, South Africa	False	Learn about Blyde River Canyon travel/nature
+123	123	2025-12-22	Bing	Bing Search web	cats	False	General information about cats
+124	124	2025-12-22	MSN	MSN View	Bill Clinton responds after 'pool' photos released, files vanish from Epstein database	False	Read political/news scandal update
+125	125	2025-12-22	MSN	MSN View	Holiday travel warning for thousands as 6 feet of snow to hit	False	Check severe weather and travel impacts
+126	126	2025-12-22	MSN	MSN View	Massive power outage in San Francisco	False	Read about San Francisco power outage
+127	127	2025-12-22	Uet	UetEvents	Blyde River Canyon, South Africa - Search	False	Search Blyde River Canyon information
+128	128	2025-12-22	Uet	UetEvents	Microsoft Copilot: Your AI companion	False	Explore Microsoft Copilot AI assistant
+129	129	2025-12-23	Bing	Bing Search web	1.9e-5	True	
+130	130	2025-12-23	Bing	Bing Search web	vdom	False	Look up VDOM meaning/technology term
+131	131	2025-12-23	Bing	Bing Search web Clicked	Convert 1.9e-5 to number - Calculator Online	True	
+132	132	2025-12-23	MSN	MSN Upvote	Upvote	True	
+133	133	2025-12-23	MSN	MSN View	Satya Nadella tells his Microsoft execs to embrace AI	False	Read Microsoft leadership/AI strategy news
+134	134	2025-12-30	Uet	UetEvents	Italian Cashmere Turtleneck Top | EILEEN FISHER	False	Browse Eileen Fisher cashmere clothing item
+135	135	2025-12-30	Uet	UetEvents	Microsoft Copilot: Your AI companion	False	Explore Microsoft Copilot AI assistant
+136	136	2025-12-30	Uet	UetEvents	Sale | EILEEN FISHER	False	Shop Eileen Fisher sale items
+137	137	2025-12-30	Uet	UetEvents	Silk Georgette Crepe Band Collar Top | EILEEN FISHER	False	Browse Eileen Fisher silk top
+138	138	2025-12-31	Bing	Bing Search Spotlight	Lamu Island, Kenya	False	Learn about Lamu Island travel destination
+139	139	2025-12-31	Bing	Bing Search web	passport renew	True	
+140	140	2025-12-31	MSN	MSN View	$1.2B performance-based termination wave hits Microsoft—10K jobs lost as workers brace for more	False	Read about Microsoft layoffs and business news
+141	141	2025-12-31	MSN	MSN View	6.0 magnitude earthquake strikes Japan weeks after Aomori tremor	False	Follow Japan earthquake and breaking news
+142	142	2025-12-31	Uet	UetEvents	Lamu Island, Kenya - Search	False	Look up travel/geography info on Lamu Island
+143	143	2025-12-31	Uet	UetEvents	Microsoft Copilot: Your AI companion	False	Learn about Microsoft Copilot AI tool
+144	144	2026-01-01	Bing	Bing Search Spotlight	Tiwanaku, Bolivia	False	Research Tiwanaku site in Bolivia
+145	145	2026-01-01	Bing	Bing Search web	Visual Studio Code	False	Find information or download Visual Studio Code
+146	146	2026-01-01	Bing	Bing Search web	microsoft stock	False	Check Microsoft stock information
+147	147	2026-01-01	Bing	Bing Search web Clicked	Visual Studio Code - The open source AI code editor	False	Explore VS Code features and AI editor
+148	148	2026-01-01	MSN	MSN View	11 executives and researchers who left Google in 2025 — mostly for Microsoft	False	Read tech industry talent moves Google to Microsoft
+149	149	2026-01-01	MSN	MSN View	Alaska airlifts hundreds in largest evacuation in 45 years—over 1,500 now homeless	False	Follow Alaska evacuation and disaster news
+150	150	2026-01-01	MSN	MSN View	Alphabet pulls ahead as the market reprices AI execution	False	Read analysis on Alphabet and AI markets
+151	151	2026-01-01	MSN	MSN View	Amazon permits remote work for employees stuck in India as visa processing slows: Report	False	Read about Amazon remote work and visa delays
+152	152	2026-01-01	MSN	MSN View	Inside BCG's AI product assembly line: 'Every company has to become a tech company'	False	Learn about enterprise AI and consulting practices
+153	153	2026-01-01	MSN	MSN View	Instagram's head says the aesthetic that helped the app become popular is dead — and AI helped kill it	False	Read about Instagram trends and AI impact
+154	154	2026-01-01	MSN	MSN View	US citizens face growing danger as government advises swift departure from one country	False	Check travel warning and geopolitical news
+155	155	2026-01-01	MSN	MSN View	Zohran Mamdani is every bit as bad as many New Yorkers feared	False	Read political commentary about Zohran Mamdani
+156	156	2026-01-01	Uet	UetEvents	Bag | Vince	False	Shop for Vince bags
+157	157	2026-01-01	Uet	UetEvents	Cashmere Crew Neck Sweater in Sweaters | Vince	False	Shop for Vince cashmere crew neck sweater
+158	158	2026-01-01	Uet	UetEvents	Cashmere-Silk Wide-Placket Polo Sweater in Sweaters | Vince	False	Shop for Vince cashmere-silk polo sweater
+159	159	2026-01-01	Uet	UetEvents	Designer Sale: Designer Brands on Sale - Bloomingdale's	False	Browse designer sale items at Bloomingdale's
+160	160	2026-01-01	Uet	UetEvents	Faux-Leather-Trim Italian Cotton Oversized Button-Front Shirt in Shirts & Tees | Vince	False	Browse Vince women’s fashion tops
+161	161	2026-01-01	Uet	UetEvents	Hand-Cut Argyle Wool-Blend Cardigan in Sweaters | Vince	False	Shop wool-blend cardigan
+162	162	2026-01-01	Uet	UetEvents	Hand-Cut Argyle Wool-Blend Short-Sleeve Sweater in Sweaters | Vince	False	Shop short-sleeve sweater
+163	163	2026-01-01	Uet	UetEvents	Jason Wu Collection Burnt Floral Print Blouse | Bloomingdale's	False	Browse designer blouse (Jason Wu)
+164	164	2026-01-01	Uet	UetEvents	Men's and Women's Clothing | Vince	False	Explore Vince clothing catalog
+165	165	2026-01-01	Uet	UetEvents	Microsoft Copilot: Your AI companion	False	Access Microsoft Copilot AI tool
+166	166	2026-01-01	Uet	UetEvents	Tiwanaku, Bolivia - Search	False	Research Tiwanaku site in Bolivia
+167	167	2026-01-01	Uet	UetEvents	Tops Women Designer Sale: Designer Brands on Sale - Bloomingdale's	False	Shop women’s designer tops on sale
+168	168	2026-01-01	Uet	UetEvents	Women Designer Sale: Designer Brands on Sale - Bloomingdale's	False	Browse women’s designer sale items
+169	169	2026-01-01	Uet	UetEvents	Women’s Luxury Clothing & Shoes On Sale | Vince	False	Shop Vince luxury sale clothing/shoes
+170	170	2026-01-01	Uet	UetEvents	Wool & Cashmere-Blend Pocket V-Neck Cardigan in Vince Products Women | Vince	False	Shop wool-cashmere v-neck cardigan
+171	171	2026-01-01	Uet	UetEvents	Wool & Cashmere-Blend Polo Cardigan in Sweaters | Vince	False	Shop polo cardigan sweater
+172	172	2026-01-01	Uet	UetEvents	Wool & Cashmere-Blend Three-Quarter-Sleeve V-Neck Sweater in Sweaters | Vince	False	Shop 3/4 sleeve v-neck sweater
+173	173	2026-01-01	Uet	UetEvents	Wool-Blend Shrunken Snap Cardigan in Sweaters | Vince	False	Shop wool-blend snap cardigan
+174	174	2026-01-02	Bing	Bing Search web	getting an openai api key	False	Learn how to get OpenAI API key
+175	175	2026-01-02	MSN	MSN View	24M flee as massive 7.0 quake strikes Pacific fault line—USGS says aftershock incoming	False	Read news about earthquake and aftershocks
+176	176	2026-01-02	MSN	MSN View	Alaska hit by massive M7.0 quake—over 160 aftershocks shatter homes and infrastructure	False	Read news about Alaska earthquake impacts
+177	177	2026-01-02	MSN	MSN View	Even Copilot thinks Satya Nadella’s blog post sounds like a robot wrote it	False	Read opinion/news about Copilot and Nadella
+178	178	2026-01-02	MSN	MSN View	Nicki Minaj's music booed, people stop dancing in clubs	False	Read entertainment news about Nicki Minaj
+179	179	2026-01-02	MSN	MSN View	Powerball winner who hit $1.8 billion jackpot bought the ticket from an unlikely place	False	Read lottery jackpot news story
+180	180	2026-01-02	MSN	MSN View	Seattle is among the top five best US cities to ring in the new year	False	Find best US cities for New Year celebrations
+181	181	2026-01-02	MSN	MSN View	This 17-year-old wrote the ultimate ELI5 for coding	False	Learn coding via simplified explanations
+182	182	2026-01-02	MSN	MSN View	Yann LeCun calls Alexandr Wang 'inexperienced' and predicts more Meta AI employee departures	False	Follow AI industry leadership and company news
+183	183	2026-01-03	MSN	MSN Upvote	Nvidia and TSMC dominate AI investment landscape	False	Track AI investing and semiconductor leaders
+184	184	2026-01-05	Bing	Bing Search Spotlight	Hong Kong SAR, China	False	Research Hong Kong travel or general information
+185	185	2026-01-05	MSN	MSN Upvote	CES 2026 highlights AI, robotics, and Micro RGB	False	Follow consumer tech and robotics announcements
+186	186	2026-01-05	Uet	UetEvents	Hong Kong SAR, China - Search	False	Search for Hong Kong related information
+187	187	2026-01-05	Uet	UetEvents	Women's Blazers & Lady Jackets | Tailored Layers with Timeless Appeal	False	Shop or browse women's blazers and jackets
+188	188	2026-01-06	Bing	Bing Search Spotlight	Hong Kong SAR, China	False	Research Hong Kong travel or general information
+189	189	2026-01-06	Uet	UetEvents	Hong Kong SAR, China - Search	False	Search for Hong Kong related information
+190	190	2026-01-07	Bing	Bing Search Spotlight	Chefchaouen, Morocco	False	Research Chefchaouen travel or attractions
+191	191	2026-01-07	Uet	UetEvents	Chefchaouen, Morocco - Search	False	Search for Chefchaouen related information
+192	192	2026-01-07	Uet	UetEvents	Hong Kong SAR, China - Search	False	Search for Hong Kong related information
+193	193	2026-01-08	Bing	Bing Search Spotlight	Green Mountain National Forest, Vermont	False	Research Green Mountain National Forest travel/outdoors
+194	194	2026-01-08	Bing	Bing Search Spotlight	Lake Titicaca, Bolivia	False	Research Lake Titicaca travel or geography
+195	195	2026-01-08	MSN	MSN View	Microsoft debuts Copilot Checkout, joining AI shopping race vs. Amazon, Google and OpenAI	False	Follow AI products and e-commerce automation
+196	196	2026-01-08	MSN	MSN View	Trump threatens Raytheon's business with the US government	False	Track US politics impacting defense contractors
+197	197	2026-01-08	Uet	UetEvents	Green Mountain National Forest, Vermont - Search	False	Search for Green Mountain National Forest information
+198	198	2026-01-08	Uet	UetEvents	Lake Titicaca, Bolivia - Search	False	Search for Lake Titicaca related information
+199	199	2026-01-09	Bing	Bing Search Spotlight	Lake Titicaca, Bolivia	False	Research Lake Titicaca travel or geography
+200	200	2026-01-09	MSN	MSN View	A family visiting Washington over the holidays exposed others to measles at these locations	False	Read about measles exposure locations in Washington
+201	201	2026-01-09	MSN	MSN View	Game over for Xbox?—Microsoft addresses 22,000 job purge to recoup $80B AI investment	False	Follow Microsoft layoffs and Xbox business impact
+202	202	2026-01-09	Uet	UetEvents	Conversations that Convert: Copilot Checkout and Brand Agents | Microsoft Advertising	False	Learn about Microsoft Advertising Copilot and agents
+203	203	2026-01-09	Uet	UetEvents	La Roche-Posay Hydraphase UV Riche Moisturizing Cream 40ml for Dehydrated and Sensitive Skin Prone to Dryness | LOOKFANTASTIC	False	Research skincare moisturizer for sensitive dry skin
+204	204	2026-01-09	Uet	UetEvents	Lake Titicaca, Bolivia - Search	False	Look up travel information about Lake Titicaca
+205	205	2026-01-09	Uet	UetEvents	Microsoft Copilot: Your AI companion	False	Explore Microsoft Copilot AI assistant
+206	206	2026-01-10	MSN	MSN View	AI is intensifying a 'collapse' of trust online, experts say	False	Read about AI impact on online trust
+207	207	2026-01-10	MSN	MSN View	AI’s memorization crisis	False	Learn about AI model memorization issues
+208	208	2026-01-10	MSN	MSN View	Cursor's most important AI features started as side projects engineers built themselves, says its engineering head	False	Read about Cursor AI product features and origins
+209	209	2026-01-10	MSN	MSN View	Macy’s to close stores across 12 states in early 2026: Which locations are shuttering?	False	Check Macy’s store closure locations
+210	210	2026-01-10	MSN	MSN View	Nvidia hires Google veteran as its first chief marketing officer	False	Follow Nvidia executive hiring news
+211	211	2026-01-10	MSN	MSN View	The child prodigy who beats you at chess when you’re a kid is going to fade away in adulthood 90% of the time, study says	False	Read research about chess prodigies and adulthood
+212	212	2026-01-10	Uet	UetEvents	Microsoft Copilot: Your AI companion	False	Explore Microsoft Copilot AI assistant
+213	213	2026-01-11	MSN	MSN View	After years of losing myself and my female friendships, I got divorced. Now, I've built a life I love with my best friend.	False	Read personal story about divorce and friendships
+214	214	2026-01-11	MSN	MSN View	As protests rage, Iran pulls the plug on contact with the world	False	Follow Iran protests and internet shutdown news
+215	215	2026-01-11	MSN	MSN View	Beloved Blue Star Cafe to close after decades in Wallingford	False	Read local news about cafe closure in Wallingford
+216	216	2026-01-11	MSN	MSN View	China is closing in on US technology lead despite constraints, AI researchers say	False	Read about US-China tech competition in AI
+217	217	2026-01-11	MSN	MSN View	Flu season not over yet as CDC estimates 11 million cases so far	False	Get updates on flu season statistics
+218	218	2026-01-11	MSN	MSN View	Here is what’s next for the future of the Fairfax Bridge	False	Learn about plans for the Fairfax Bridge
+219	219	2026-01-11	MSN	MSN View	I lost my full-time job and had to drain my savings and take 2 service jobs to make ends meet. It taught me to lean on people.	False	Read personal finance and job loss experience story
+220	220	2026-01-11	MSN	MSN View	I was a consultant at Accenture. Here's why I opted out of climbing the corporate ladder.	False	Career reflection on consulting and advancement
+221	221	2026-01-11	MSN	MSN View	Microsoft blocks Chrome downloads on Windows—1.4B users hit with aggressive anti-Chrome warnings	False	Tech news on Microsoft vs Chrome
+222	222	2026-01-11	MSN	MSN View	Redmond small businesses prepare for economic boost as Microsoft ends remote work	False	Local business impacts of ending remote work
+223	223	2026-01-11	MSN	MSN View	The child prodigy who beats you at chess when you’re a kid is going to fade away in adulthood 90% of the time, study says	False	Psychology study about child prodigies
+224	224	2026-01-11	MSN	MSN View	The friend-group fallacy	False	Social psychology about friend groups
+225	225	2026-01-12	MSN	MSN View	Microsoft blocks Chrome downloads on Windows—1.4B users hit with aggressive anti-Chrome warnings	False	Tech news on Microsoft vs Chrome
+226	226	2026-01-13	Bing	Bing Search Spotlight	Heceta Head Lighthouse State Scenic Viewpoint, Oregon	False	Find information about Oregon lighthouse viewpoint
+227	227	2026-01-13	MSN	MSN View	Baking Barack Obama’s Famous Crack Pie	False	Recipe or baking how-to for crack pie
+228	228	2026-01-13	MSN	MSN View	Defense Dept. CTO on the Pentagon's new AI strategy	False	Learn about Pentagon AI strategy
+229	229	2026-01-13	MSN	MSN View	Don't have kids because of AI	False	Opinion on AI implications for parenting
+230	230	2026-01-13	MSN	MSN View	Scientists just analyzed 1.4-billion-year-old air, and what they found could change everything	False	Science news about ancient air analysis
+231	231	2026-01-13	MSN	MSN View	Video: Microsoft denies more mass layoffs	False	News about Microsoft layoffs and denial
+232	232	2026-01-13	Uet	UetEvents	Eggshell Recycled Nylon Stand Collar Jacket | EILEEN FISHER	False	Browse sustainable fashion jacket product
+233	233	2026-01-13	Uet	UetEvents	Heceta Head Lighthouse State Scenic Viewpoint, Oregon - Search	False	Search for Oregon lighthouse viewpoint
+234	234	2026-01-13	Uet	UetEvents	Microsoft Copilot: Your AI companion	False	Explore Microsoft Copilot AI assistant
+235	235	2026-01-14	Bing	Bing Search Spotlight	Glencar Lough, Ireland	False	Find information about Irish scenic lake
+236	236	2026-01-14	Bing	Bing Search web	msft	False	Look up Microsoft stock ticker
+237	237	2026-01-14	MSN	MSN View	A new US AI effort draws in Microsoft, Google, and two dozen major firms	False	News about US AI initiative and firms
+238	238	2026-01-14	MSN	MSN View	Actor Kiefer Sutherland arrested in Hollywood—what we know	False	Celebrity news about Kiefer Sutherland
+239	239	2026-01-14	MSN	MSN View	Addressing the ugly cake incident	False	Story or advice about a cake incident
+240	240	2026-01-14	MSN	MSN View	After 7 years at McKinsey, I left to build an AI healthtech startup. I had to unlearn the pursuit of perfection	False	Career change into AI healthtech startups
+241	241	2026-01-14	MSN	MSN View	Alphabet further strengthens Gemini, giving it access to other Google apps	False	Follow Gemini and Google AI product updates
+242	242	2026-01-14	MSN	MSN View	Amazon's 50 best January deals are all under $50: Le Creuset, Apple, and more start at $6 and go up to 72% off	True	
+243	243	2026-01-14	MSN	MSN View	CNN ICE ride-along clip goes viral after Minneapolis mayor doubles down on rhetoric	False	Follow US politics and immigration news
+244	244	2026-01-14	MSN	MSN View	Citigroup CEO Jane Fraser warns of job cuts and says it’s time to raise the bar in a fiery memo to staff: 'We are not graded on effort'	False	Track business leadership and layoffs news
+245	245	2026-01-14	MSN	MSN View	Elon Musk announces major change to Tesla’s self-driving	False	Track Tesla self-driving announcements
+246	246	2026-01-14	MSN	MSN View	Elon Musk says Tesla's full self-driving will become subscription-only	False	Learn Tesla FSD pricing and subscription changes
+247	247	2026-01-14	MSN	MSN View	Factbox-what Saks Global's bankruptcy filing reveals about its assets, creditors, financing	False	Understand bankruptcy filings and corporate finance
+248	248	2026-01-14	MSN	MSN View	Gmail is making these three useful features free for everyone	False	Learn about Gmail feature updates
+249	249	2026-01-14	MSN	MSN View	Google cofounder reveals 'tons' of recent hires do not have degrees as CEOs question university system: 'They just figure things out on their own'	False	Explore hiring trends and degree alternatives
+250	250	2026-01-14	MSN	MSN View	Google is finally letting users change their Gmail address	False	Find how to change a Gmail address
+251	251	2026-01-14	MSN	MSN View	Government apologizes for mistakenly deporting college student	False	Follow immigration policy and government actions
+252	252	2026-01-14	MSN	MSN View	I landed a full-time job in AI at 21. Here's how I did it, and what I think made me stand out.	False	Get advice on landing an AI job
+253	253	2026-01-14	MSN	MSN View	I'm 47 and quit my job without having anything else lined up. I didn't want to live a life with regrets.	False	Read career change and life decision stories
+254	254	2026-01-14	MSN	MSN View	Inside look: Leaked details of Danny Masterson's prison life	False	Follow celebrity legal and prison news
+255	255	2026-01-14	MSN	MSN View	Las Vegas tourism crashes to early 2000s levels as visitors flee the city	False	Track travel and tourism industry trends
+256	256	2026-01-14	MSN	MSN View	Microsoft vows to cover costs for AI data centers, reduce water usage	False	Follow AI data center sustainability efforts
+257	257	2026-01-14	MSN	MSN View	Microsoft’s spending on Anthropic AI on track to reach $500M: report	False	Track AI industry investments and partnerships
+258	258	2026-01-14	MSN	MSN View	Migos rapper shot outside party in senseless killing	False	Follow hip-hop and crime news
+259	259	2026-01-14	MSN	MSN View	One thing that might get workers to embrace AI? The 4-day workweek.	False	Explore workplace AI adoption and 4-day week
+260	260	2026-01-14	MSN	MSN View	Rupee risks slipping past support after US inflation lifts dollar	False	Follow rupee and dollar inflation impacts
+261	261	2026-01-14	MSN	MSN View	Tesla's self-driving tech: Revolutionary or risky?	False	Evaluate Tesla self-driving safety and risks
+262	262	2026-01-14	MSN	MSN View	The Timothy Busfield allegations took a new turn after he turned himself in	False	Read celebrity legal allegations update
+263	263	2026-01-14	MSN	MSN View	The tragedy of Paul Hollywood is heartbreaking	False	Read celebrity personal tragedy story
+264	264	2026-01-14	MSN	MSN View	These 15 affordable Amazon bedroom finds will make your space feel brand-new for 2026	False	Browse affordable bedroom decor products
+265	265	2026-01-14	MSN	MSN View	Ultimate comfort food: Chicken Parmesan	False	Find chicken parmesan comfort food recipe
+266	266	2026-01-14	MSN	MSN View	Unveiling the mind of Jensen Huang | A genius behind Nvidia success	False	Learn about Jensen Huang and Nvidia success
+267	267	2026-01-14	MSN	MSN View	What ingredients are in this vegan tofu dish?	False	Identify ingredients in vegan tofu dish
+268	268	2026-01-14	MSN	MSN View	What went wrong inside Rob Reiner’s home before the murders	False	Read true crime details about a murder case
+269	269	2026-01-14	MSN	MSN View	Why Silicon Valley keeps picking Indian CEOs	False	Understand trends behind Indian CEOs in tech
+270	270	2026-01-14	MSN	MSN View	Why the future of AI & computers will be analog	False	Explore analog computing and AI future
+271	271	2026-01-14	Uet	UetEvents	100% Cashmere Women's Intricate Sleeve Knit Sweater – COMOBOCA	False	Shop women's cashmere knit sweater
+272	272	2026-01-14	Uet	UetEvents	Akris Jackets Women's Clothing | Neiman Marcus	False	Shop Akris women's jackets
+273	273	2026-01-14	Uet	UetEvents	Akris Reversible Cashmere Single-Breasted Jacket | Neiman Marcus	False	View Akris reversible cashmere jacket
+274	274	2026-01-14	Uet	UetEvents	Glencar Lough, Ireland - Search	False	Research Glencar Lough travel information
+275	275	2026-01-14	Uet	UetEvents	Microsoft Copilot: Your AI companion	False	Learn about Microsoft Copilot AI assistant
+276	276	2026-01-15	MSN	MSN View	5 sandwich restaurants most likely to go bankrupt in 2026	False	Read restaurant bankruptcy predictions
+277	277	2026-01-15	MSN	MSN View	Ex-Meta principal engineer shares 4 strategies to avoid being an underperformer	False	Get career performance strategies for engineers
+278	278	2026-01-15	MSN	MSN View	Exclusive-Beijing tells Chinese firms to stop using US and Israeli cybersecurity software, sources say	False	Follow China cybersecurity software policy news
+279	279	2026-01-15	MSN	MSN View	Former Meta boss sounds alarm over 'TikTokification' of social media	False	Read concerns about social media TikTok-like trends
+280	280	2026-01-15	MSN	MSN View	Luxury retail giant Saks files for bankruptcy	False	Read business news about Saks bankruptcy
+281	281	2026-01-15	MSN	MSN View	Seattle named one of the most stressed, burned-out cities in the US for work	False	Read article on workplace stress in Seattle
+282	282	2026-01-16	Bing	Bing Search Spotlight	black-naped monarch bird	False	Learn about black-naped monarch bird
+283	283	2026-01-16	Uet	UetEvents	black-naped monarch bird - Search	False	Search information about black-naped monarch bird
+284	284	2026-01-17	MSN	MSN View	ChatGPT's free ride is ending: Here's what OpenAI plans for advertising on the chatbot	False	Read news about OpenAI ads in ChatGPT
+285	285	2026-01-17	MSN	MSN View	I trained a GPT to think like Steve Jobs and help me run my company. AI is scary, but it's also my biggest tool	False	Read about using GPT for business leadership
+286	286	2026-01-17	MSN	MSN View	Microsoft plans Copilot style interface on Edge with no off switch	False	Read news about Copilot interface in Edge
+287	287	2026-01-17	MSN	MSN View	Microsoft president: Washington housing crisis 'going in the wrong direction'	False	Read about Washington state housing crisis
+288	288	2026-01-17	MSN	MSN View	Schatz says US 'absolutely rolled' by China-Canada trade deal	False	Read political news on China-Canada trade deal
+289	289	2026-01-17	MSN	MSN View	Wave of defections from former OpenAI CTO Mira Murati’s $12 billion startup Thinking Machines shows cutthroat struggle for AI talent	False	Read news on AI talent competition and startups
+290	290	2026-01-18	Bing	Bing Search web	miele vs bosch dishwasher	False	Compare Miele and Bosch dishwashers
+291	291	2026-01-18	Bing	Bing Search web	what is the best bosch dishwasher	False	Find best Bosch dishwasher model
+292	292	2026-01-18	Bing	Bing Search web	what is the best miele dishwasher	False	Find best Miele dishwasher model
+293	293	2026-01-18	Bing	Bing Search web Clicked	Best Miele Dishwashers for 2025 - Yale Appliance	False	Review 2025 best Miele dishwashers
+294	294	2026-01-18	Bing	Bing Search web Clicked	Miele vs. Bosch Dishwashers (8 Key Differences) - Prudent Reviews	False	Read Miele vs Bosch dishwasher differences
+295	295	2026-01-18	Bing	Bing Search web Clicked	Our 7 Best Bosch Dishwasher Picks (2026 Guide) - This Old House	False	See top Bosch dishwasher picks for 2026
+296	296	2026-01-18	MSN	MSN View	Everyone will have an AI friend in five years, says Microsoft exec	False	Read predictions about AI companions
+297	297	2026-01-18	MSN	MSN View	Goldman Sachs rips up its Microsoft target price ahead of earnings	False	Read financial news about Microsoft stock
+298	298	2026-01-18	MSN	MSN View	I shop Wayfair daily, and these 10 deals from its 72-hour clearout sale are some of the best I’ve seen—from $13	False	Browse Wayfair deal recommendations
+299	299	2026-01-18	MSN	MSN View	Job cuts, record operating budget ahead for Gates Foundation	False	Read news about Gates Foundation budget and layoffs
+300	300	2026-01-18	MSN	MSN View	Leavenworth stores recovering winter storms that cost them holiday business	False	Read local business impact news
+301	301	2026-01-18	MSN	MSN View	Seattle businesses under more financial strain now than at the COVID pandemic's peak	False	Read Seattle business/economy news
+302	302	2026-01-18	MSN	MSN View	West Elm just refreshed its outlet for the new year—score furniture and decor upgrades starting at $33	False	Browse furniture/decor deals
+303	303	2026-01-18	Uet	UetEvents	Modern Dressers for Your Bedroom | West Elm	False	Shop bedroom dressers
+304	304	2026-01-18	Uet	UetEvents	Open Box Outlet | Save on Furniture & More | West Elm	False	Shop open-box furniture deals
+305	305	2026-01-18	Uet	UetEvents	Shop the West Elm Furniture Collection | West Elm	False	Browse West Elm furniture collection
+306	306	2026-01-19	Bing	Bing Search web	wolf cooktops gas	False	Research Wolf gas cooktops
+307	307	2026-01-19	Bing	Bing Search web	wolf range	False	Research Wolf kitchen ranges
+308	308	2026-01-19	MSN	MSN View	Kid’s note found in returned library book—staff waste no time making a call	False	Read human-interest library story
+309	309	2026-01-19	MSN	MSN View	Microsoft shuts down Windows 10 effectively bricking 400M PCs	False	Read Windows 10 shutdown tech news
+310	310	2026-01-19	MSN	MSN View	My students write their papers backwards	False	Read education/teaching opinion story
+311	311	2026-01-19	MSN	MSN View	Philippines detects nuclear radiation off coast	False	Read international safety news
+312	312	2026-01-19	MSN	MSN View	Seattle businesses under more financial strain now than at the COVID pandemic's peak	False	Read Seattle business/economy news
+313	313	2026-01-19	Uet	UetEvents	DoorDash Food Delivery | Checkout	True	
+314	314	2026-01-19	Uet	UetEvents	DoorDash Login	True	
+315	315	2026-01-19	Uet	UetEvents	DoorDash: Food, Grocery and Retail - Fast Same Day Delivery	True	
+316	316	2026-01-19	Uet	UetEvents	Order Racha Thai & Asian Kitchen - Redmond, WA Menu Delivery [Menu & Prices] | Redmond - DoorDash	False	Order Thai food delivery in Redmond
+317	317	2026-01-19	Uet	UetEvents	"Wolf Natural Gas Countertop Range - 6 Burners, 36"" | WebstaurantStore"	False	Compare Wolf 36-inch gas range pricing
+318	318	2026-01-21	MSN	MSN View	USGS flags 'explosion' event near Seattle as earthquake warning triggers statewide panic	False	Read Seattle earthquake/USGS news
+319	319	2026-01-22	Bing	Bing Search web	storms in the atlantic	False	Check Atlantic storm activity
+320	320	2026-01-22	Bing	Bing Search web Clicked	Major Winter Storm: Potentially historic snow, ice to slam 200M+ from ...	False	Track major winter storm news and impacts
+321	321	2026-01-22	Uet	UetEvents	Microsoft Copilot: Your AI companion	True	
+322	322	2026-01-23	Uet	UetEvents	Microsoft Copilot: Your AI companion	True	
+323	323	2026-01-24	Bing	Bing Search web	wunderground weather	True	
+324	324	2026-01-24	Bing	Bing Search web Clicked	Local Weather Forecast, News and Conditions | Weather Underground	True	
+325	325	2026-01-25	Bing	Bing Search images	I am very interested in a beige cashmere sweater with a turtleneck. Can you create a full outfit around this sweater with pants, jewelry, shoes or sandals depending on current weather. I live in Redmond, Washington?	False	Style a cashmere turtleneck outfit for weather
+326	326	2026-01-25	Bing	Bing Search images	I am very interested in a beige cashmere sweater with a turtleneck. Can you create a full outfit around this sweater with pants, jewelry, shoes or sandals etc. I live in Redmond, Washington?	False	Get outfit ideas around beige turtleneck sweater
+327	327	2026-01-25	Bing	Bing Search images	I am very interested in a beige cashmere sweater with a turtleneck. Can you create a full outfit around this sweater, making sure its a turtleneck with pants, jewelry, shoes or sandals depending on current weather. I live in Redmond, Washington?	False	Generate weather-appropriate outfit around turtleneck
+328	328	2026-01-25	Bing	Bing Search images	I have a beautiful greenhouse in Redmond Washington. Can you create an image of what the inside would look like with potting benches, heaters and glow lamps to support plant growth through current weather.	False	Visualize greenhouse interior for winter plant growing
+329	329	2026-01-25	Bing	Bing Search images	imgurl:https://favim.com/pd/p/orig/2018/12/10/fashion-posing-dressing-Favim.com-6661260.jpg	True	
+330	330	2026-01-25	Bing	Bing Search images	imgurl:https://i.pinimg.com/736x/a0/ed/91/a0ed917c8295e4ae27c198bb2e73cd80.jpg	True	
+331	331	2026-01-25	Bing	Bing Search images	imgurl:https://savvysouthernchic.com/wp-content/uploads/2024/03/Sage-Green-Pointelle-Sweater-800x1200.jpg	True	
+332	332	2026-01-25	Bing	Bing Search images	imgurl:https://tse3.mm.bing.net/th/id/OIP.t6EzXtBKgpVLFNTA3vJ3awAAAA?pid=Api	True	
+333	333	2026-01-25	Bing	Bing Search images	imgurl:https://www.mychicobsession.com/wp-content/uploads/2024/11/chic-travel-outfit-2-683x1024.jpg	True	
+334	334	2026-01-25	Bing	Bing Search web	google nano banana	False	Learn about Google Nano Banana topic
+335	335	2026-01-25	Bing	Bing Search web	https%3A%2F%2Fgithub.com%2Fpassword_reset%2FB4GPR4J2GGWKAXW6DYOTIIDJO25DTBNFMVWWC2LMXBZHK23NNFXGSLTJPFSXEQDPOV2GY33PNMXGG33NUVTG64TDMXBLG5DXN5PWMYLDORXXEX3WMVZGSZTJMVSMFMLUO5XV6ZTBMN2G64S7NVSXI2DPMSSG433OMW5GM33SMNSWIX3XMVQWWX3QMFZXG53POJSF64TFONSXJQQ%3Fauto%3Dtrue&data=05%7C02%7C%7C3a048306be79414edd7708de5c5bb1ed%7C84df9e7fe9f640afb435aaaaaaaaaaaa%7C1%7C0%7C639049746074464211%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=07rokJPUHXHV1f5hqoBOCfPLCKi5h1%2FNydVvSeCDye8%3D&reserved=0	True	
+336	336	2026-01-25	Bing	Bing Search web	vercel	False	Find information about Vercel platform
+337	337	2026-01-25	Bing	Bing Search web Clicked	Vercel: Build and deploy the best web experiences with the AI Cloud	False	Explore Vercel for web deployment and hosting
+338	338	2026-01-25	MSN	MSN View	5 acquisitions, winning over skeptical engineers, and spending tens of millions: Inside a public company's 'AI native' push	False	Read business story about AI-native transformation
+339	339	2026-01-25	MSN	MSN View	A safe space: How figure skating became a comfort zone for the LGBTQ+ community amid perilous times	False	Read about figure skating and LGBTQ+ community
+340	340	2026-01-25	MSN	MSN View	I'm a co-creator of Alexa. Writing a 6-page memo helped me decide to quit Amazon and launch my own AI startup.	False	Read about AI startup and career story
+341	341	2026-01-25	MSN	MSN View	Target is once again caught in a political firestorm. Here's what HR is telling staff	False	Follow corporate HR and political controversy news
+342	342	2026-01-25	MSN	MSN View	This Windows XP photo is the most viewed ever	False	Read about Windows XP/tech trivia
+343	343	2026-01-25	Uet	UetEvents	DoorDash Food Delivery | Checkout	True	
+344	344	2026-01-25	Uet	UetEvents	DoorDash: Food, Grocery and Retail - Fast Same Day Delivery	True	
+345	345	2026-01-25	Uet	UetEvents	Hooded Knit Cardigan with Long Sleeves, Ribbed Cuffs, Open Front, and Cozy Knitted Fabric – HARPER & LANE	False	Shop for hooded knit cardigan
+346	346	2026-01-25	Uet	UetEvents	Lightweight Knit 3-Piece Set with Sweater, Top, and Wide-Leg Trousers – Soft All-Season Outfit – HARPER & LANE	False	Shop for knit 3-piece outfit set
+347	347	2026-01-25	Uet	UetEvents	Long Wool Blend Coat with Wide Lapel and Decorative Buttons – Mid-Thigh Tailored Fit Overcoat for Autumn & Winter – HARPER & LANE	False	Shop for long wool blend coat
+348	348	2026-01-25	Uet	UetEvents	Microsoft Copilot: Your AI companion	False	Explore Microsoft Copilot AI assistant
+349	349	2026-01-25	Uet	UetEvents	Nano Banana AI – Powered by Gemini 2.5 Flash Image	False	Explore Gemini-powered image generation tool
+350	350	2026-01-25	Uet	UetEvents	Order Chatpata Kanishka - Redmond, WA Menu Delivery [Menu & Prices] | Redmond - DoorDash	True	
+351	351	2026-01-25	Uet	UetEvents	Order Foody moody - Redmond, WA Menu Delivery [Menu & Prices] | Redmond - DoorDash	True	
+352	352	2026-01-25	Uet	UetEvents	Spring Capsule Wardrobe	False	Learn about spring capsule wardrobe ideas
+353	353	2026-01-26	Ads	AdEvents	Capsule Wardrobe - The New Collection	False	Browse capsule wardrobe clothing collection
+354	354	2026-01-26	Ads	AdEvents	Hooded Knit Cardigan with Long Sleeves, Ribbed Cuffs, Open Front, and Cozy Knitted Fabric Khaki / S	False	View specific cardigan product variant
+355	355	2026-01-26	Ads	AdEvents	Lightweight Knit 3-Piece Set with Sweater, Top, and Wide-Leg Trousers - Soft All-Season Outfit Brown Sweater / 4XL	False	View specific knit set product variant
+356	356	2026-01-26	Ads	AdEvents	Long Wool Blend Coat with Wide Lapel and Decorative Buttons - Mid-Thigh Tailored Fit Overcoat for Autumn & Winter Yellow / L	False	View specific coat product variant
+357	357	2026-01-26	Bing	Bing Search Spotlight	Multnomah Falls waterfall, Oregon	False	Research Multnomah Falls travel destination
+358	358	2026-01-26	Uet	UetEvents	Microsoft Copilot: Your AI companion	False	Explore Microsoft Copilot AI assistant
+359	359	2026-01-26	Uet	UetEvents	Multnomah Falls waterfall, Oregon - Search	False	Search for Multnomah Falls information
+360	360	2026-01-27	MSN	MSN Upvote	Trump slammed as GOP backs war powers curb	False	Follow US politics and war powers debate
+361	361	2026-01-27	MSN	MSN View	8,234 stores wiped out in record retail collapse across US.—experts warn bloodbath will only get worse	False	Track US retail economy and closures
+362	362	2026-01-27	MSN	MSN View	Influencer Prathamesh Kadam dies at 26	False	Read influencer/celebrity death news
+363	363	2026-01-27	MSN	MSN View	Microsoft (MSFT) slid despite delivering strong results and value growth	False	Monitor Microsoft stock and earnings
+364	364	2026-01-27	MSN	MSN View	Microsoft addresses 22,000 layoffs in January to ‘recoup’ $80 billion AI investment	False	Follow Microsoft layoffs and AI spending
+365	365	2026-01-27	Uet	UetEvents	Microsoft Copilot: Your AI companion	False	Learn about Microsoft Copilot AI assistant
+366	366	2026-01-27	Uet	UetEvents	Nano Banana AI – Powered by Gemini 2.5 Flash Image	False	Explore Gemini-powered image AI tool
+367	367	2026-01-28	Bing	Bing Search web	commanders defensive coordinator	False	Find Washington Commanders defensive coordinator info
+368	368	2026-01-28	Uet	UetEvents	Microsoft Copilot: Your AI companion	False	Learn about Microsoft Copilot AI assistant
+369	369	2026-01-29	Bing	Bing Search Spotlight	Anaga Rural Park, Canary Islands	False	Research travel destination Anaga Rural Park
+370	370	2026-01-29	Uet	UetEvents	Anaga Rural Park, Canary Islands - Search	False	Search details on Anaga Rural Park
+371	371	2026-01-30	Bing	Bing Search Spotlight	Anaga Rural Park, Canary Islands	False	Research travel destination Anaga Rural Park
+372	372	2026-01-30	Bing	Bing Search Spotlight	Thale Waek, Thailand	False	Research travel destination Thale Waek
+373	373	2026-01-30	Uet	UetEvents	Anaga Rural Park, Canary Islands - Search	False	Search details on Anaga Rural Park
+374	374	2026-01-30	Uet	UetEvents	Thale Waek, Thailand - Search	False	Search details on Thale Waek
+375	375	2026-01-31	MSN	MSN View	$1.4B CEO: The most important business skill that actually matters in 2026 | Oscar Höglund	False	Learn business leadership skills for 2026
+376	376	2026-01-31	MSN	MSN View	How AI will change everything	False	Understand AI impact on society and work
+377	377	2026-01-31	MSN	MSN View	Microsoft staged AI’s greatest test case. It may not be working.	False	Evaluate Microsoft AI strategy and outcomes
+378	378	2026-01-31	MSN	MSN View	New winter storm puts millions at risk	False	Follow severe winter weather news
+379	379	2026-01-31	MSN	MSN View	Perplexity Microsoft Azure Deal	False	Track Perplexity partnership with Microsoft Azure
+380	380	2026-02-01	Ads	AdEvents	Eloise Wool Sweater: Camel SM / Camel	False	Shop for a wool sweater
+381	381	2026-02-01	Bing	Bing Search web	carve designs	False	Browse Carve Designs clothing/brand
+382	382	2026-02-01	MSN	MSN View	Amazon announces 16,000 layoffs as business booms	False	Read news about Amazon layoffs
+383	383	2026-02-01	MSN	MSN View	Exclusive: Longtime Google DeepMind researcher David Silver leaves to found his own AI startup	False	Read AI industry news about DeepMind
+384	384	2026-02-01	MSN	MSN View	‘Humans could go the way of horses’: Goldman calculated how bad the AI ‘job apocalypse’ will be—and its analysts were pleasantly surprised	False	Read analysis on AI job impact
+385	385	2026-02-02	Bing	Bing Search Spotlight	Sabah, Malaysia	False	Explore travel info about Sabah
+386	386	2026-02-02	MSN	MSN View	User reactions show Microsoft’s AI problem on Windows 11 is rooted in trust	False	Read article on Windows 11 AI trust
+387	387	2026-02-03	Bing	Bing Search Spotlight	Arch of Constantine, Italy	False	Learn about Arch of Constantine
+388	388	2026-02-03	Uet	UetEvents	Arch of Constantine, Italy - Search	False	Search for Arch of Constantine info
+389	389	2026-02-04	Bing	Bing Search web	slack	False	Find Slack app or info
+390	390	2026-02-04	MSN	MSN View	Microsoft exec Charlie Bell shifts to new role as Hayete Gallot returns from Google to lead security	False	Read Microsoft leadership/security news
+391	391	2026-02-05	Bing	Bing Search Spotlight	Cabo de Sao Vicente Lighthouse, Portugal	False	Explore travel info about the lighthouse
+392	392	2026-02-05	MSN	MSN View	Microsoft exec Charlie Bell shifts to new role as Hayete Gallot returns from Google to lead security	False	Read Microsoft leadership/security news
+393	393	2026-02-05	Uet	UetEvents	Cabo de Sao Vicente Lighthouse, Portugal - Search	False	Search Cabo de Sao Vicente Lighthouse info
+394	394	2026-02-06	Bing	Bing Search Spotlight	Malpeque Bay, Canada	False	Explore travel info about Malpeque Bay
+395	395	2026-02-06	Uet	UetEvents	Malpeque Bay, Canada - Search	False	Search Malpeque Bay info
+396	396	2026-02-07	Bing	Bing Search Spotlight	Malpeque Bay, Canada	False	Explore travel info about Malpeque Bay
+397	397	2026-02-07	Bing	Bing Search Spotlight	Salar de Uyuni, Bolivia	False	Explore travel info about Salar de Uyuni
+398	398	2026-02-07	Bing	Bing Search images	steam	False	Search for Steam gaming platform
+399	399	2026-02-07	Bing	Bing Search shop	Lululemon Products	False	Shop for Lululemon items
+400	400	2026-02-07	Bing	Bing Search web	Lululemon Products	False	Browse or shop Lululemon apparel
+401	401	2026-02-07	Bing	Bing Search web	steam	False	Access Steam gaming platform
+402	402	2026-02-07	Bing	Bing Search web	who will win the super bowl	False	Predict Super Bowl winner
+403	403	2026-02-07	Bing	Bing Search web	who will win the super bowl 2026	False	Predict Super Bowl 2026 winner
+404	404	2026-02-07	Bing	Bing Search web Clicked	Welcome to Steam	False	Visit Steam homepage
+405	405	2026-02-07	Uet	UetEvents	Lululemon Products - Search Shopping	False	Shop for Lululemon products
+406	406	2026-02-07	Uet	UetEvents	Malpeque Bay, Canada - Search	False	Look up Malpeque Bay information
+407	407	2026-02-07	Uet	UetEvents	Microsoft Copilot: Your AI companion	True	
+408	408	2026-02-07	Uet	UetEvents	Salar de Uyuni, Bolivia - Search	False	Look up Salar de Uyuni information
+409	409	2026-02-08	MSN	MSN View	Jeff Bezos speaks out about The Washington Post for the first time since mass layoffs and focuses on 'data'	False	Read news about Bezos and Washington Post
+410	410	2026-02-08	Uet	UetEvents	DoorDash Food Delivery | Checkout	True	
+411	411	2026-02-08	Uet	UetEvents	DoorDash: Food, Grocery and Retail - Fast Same Day Delivery	True	
+412	412	2026-02-08	Uet	UetEvents	Order Papaya Viet Restaurant - Sammamish, WA Menu Delivery [Menu & Prices] | Sammamish - DoorDash	True	
+413	413	2026-02-08	Uet	UetEvents	Order Pho Tai Bellevue - Bellevue, WA Menu Delivery [Menu & Prices] | Bellevue - DoorDash	True	
+414	414	2026-02-09	Bing	Bing Search web	steam	False	Access Steam gaming platform
+415	415	2026-02-09	Bing	Bing Search web	who will win the super bowl	False	Predict Super Bowl winner
+416	416	2026-02-09	Uet	UetEvents	Figma	False	Use Figma design tool
+417	417	2026-02-09	Uet	UetEvents	Microsoft Copilot: Your AI companion	True	
+418	418	2026-02-10	MSN	MSN View	H-1B visas to be permanently scrapped under new plan	False	Read news about H-1B visa policy
+419	419	2026-02-11	Uet	UetEvents	Microsoft Copilot: Your AI companion	True	
+420	420	2026-02-12	Bing	Bing Search web	amazon for publishers	False	Find Amazon resources for publishers
+421	421	2026-02-12	MSN	MSN Upvote	Upvote	True	
+422	422	2026-02-12	MSN	MSN View	Google makes an AI shift after Disney’s legal warning, giving ChatGPT an edge	False	Read news about AI policy shifts
+423	423	2026-02-12	MSN	MSN View	Sanofi replaces CEO Hudson, names first woman at helm	False	Read business news about Sanofi leadership change
+424	424	2026-02-12	MSN	MSN View	Stocks pause for breath as AI worries simmer; yen gallops higher	False	Follow markets news on AI worries and yen
+425	425	2026-02-12	MSN	MSN View	US FTC raises concerns over accusations Apple News favors articles from left-wing outlets	False	Read news on FTC and Apple News bias claims
+426	426	2026-02-12	MSN	MSN View	US House passes bill to require proof of US citizenship for midterm voters	False	Read US politics news about voter ID bill
+427	427	2026-02-12	Uet	UetEvents	Eileen Fisher Puffer Jacket | Bloomingdale's Women	False	Shop for Eileen Fisher puffer jacket
+428	428	2026-02-12	Uet	UetEvents	Microsoft Copilot: Your AI companion	False	Learn about Microsoft Copilot AI assistant
+429	429	2026-02-13	Bing	Bing Search Spotlight	Big Pasture Plateau, Slovenia	False	Learn about or view Slovenia travel location
+430	430	2026-02-13	MSN	MSN View	Microsoft AI CEO predicts 'most, if not all' white-collar tasks will be automated by AI within 18 months	False	Read prediction about AI automating white-collar work
+431	431	2026-02-13	MSN	MSN View	Microsoft AI CEO: Virtually all white collar tasks will be automated within a year and a half	False	Read prediction about AI automating white-collar work
+432	432	2026-02-13	MSN	MSN View	Senior AI staffers keep quitting — and are issuing warnings about what’s going on at their companies	False	Read news about AI staff departures and warnings
+433	433	2026-02-13	Uet	UetEvents	Big Pasture Plateau, Slovenia - Search	False	Search for Big Pasture Plateau Slovenia details
+434	434	2026-02-13	Uet	UetEvents	Microsoft Copilot: Your AI companion	False	Learn about Microsoft Copilot AI assistant

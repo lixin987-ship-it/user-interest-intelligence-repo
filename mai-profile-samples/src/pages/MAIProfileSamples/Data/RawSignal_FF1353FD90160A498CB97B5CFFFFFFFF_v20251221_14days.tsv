@@ -1,0 +1,123 @@
+index	row_id	Date	Source	DetailedSource	Action	should_filter	intent
+0	0	2025-12-08	Bing	Bing Search Spotlight	cedar waxwing bird	False	Learn about cedar waxwing bird
+1	1	2025-12-08	Edge	BrowserEvents	IMF chief Georgieva to visit China next week, IMF says	False	Read news on IMF chief visiting China
+2	2	2025-12-08	Edge	BrowserEvents	Seattle company uses AI chatbot to help treat dementia	False	Learn about AI chatbot for dementia treatment
+3	3	2025-12-08	MSN	MSN View	7.6 magnitude earthquake hits 50 miles off the coast of Japan	False	Read news about Japan offshore earthquake
+4	4	2025-12-08	MSN	MSN View	Billionaires Elon Musk, Zuckerberg, and Bezos depicted as robots	False	View article about tech billionaires as robots
+5	5	2025-12-08	MSN	MSN View	Can He Solve All 3 Puzzles for a Prize? Test Your Skills!	False	Try puzzle challenge for a prize
+6	6	2025-12-08	MSN	MSN View	Emergency restart in Windows: Faster than standard reboot	False	Learn Windows emergency restart method
+7	7	2025-12-08	MSN	MSN View	Google DeepMind CEO Demis Hassabis says AI scaling 'must be pushed to the maximum'	False	Read about DeepMind CEO views on AI scaling
+8	8	2025-12-08	MSN	MSN View	IMF chief Georgieva to visit China next week, IMF says	False	Read news on IMF chief visiting China
+9	9	2025-12-08	MSN	MSN View	Justin Bieber threatens to put Apple employees in a choke hold as he rages over iPhone function	False	Read celebrity news about Bieber and iPhone
+10	10	2025-12-08	MSN	MSN View	Microsoft’s $7 Billion Bet on Windows Phone Failed—Badly	False	Read analysis of Windows Phone failure
+11	11	2025-12-08	MSN	MSN View	Millionaire YouTuber Hank Green tells Gen Z to rethink their Tesla bets—and shares the portfolio changes he’s making to avoid AI-bubble fallout	False	Read investing advice on Tesla and AI bubble
+12	12	2025-12-08	MSN	MSN View	Not enough dessert: Wedding ends in chaotic brawl	False	Read bizarre news about wedding brawl
+13	13	2025-12-08	MSN	MSN View	Parents, please stop asking me to hire your kids	False	Read opinion on nepotism in hiring
+14	14	2025-12-08	MSN	MSN View	Seattle company uses AI chatbot to help treat dementia	False	Learn about AI chatbot for dementia treatment
+15	15	2025-12-08	MSN	MSN View	She Experienced a Mum's Worst Nightmare	False	Read personal story about parenting nightmare
+16	16	2025-12-08	MSN	MSN View	Test Your Brain with This Puzzle...	False	Solve a brain teaser puzzle
+17	17	2025-12-08	MSN	MSN View	That moment BRICS realized the US might retaliate hard	False	Read geopolitics analysis about BRICS and US
+18	18	2025-12-08	MSN	MSN View	The 'Paperclip Maximizer Theory' That Shows AI’s Dark Side	False	Learn about paperclip maximizer AI risk theory
+19	19	2025-12-08	MSN	MSN View	The Ocean Crushes Submarines Instantly. Here’s What That Really Looks Like	False	Learn how ocean pressure crushes submarines
+20	20	2025-12-08	MSN	MSN View	This AI company hit $1B in 6 months — and it’s changing work forever	False	Read about fast-growing AI company and work impact
+21	21	2025-12-08	MSN	MSN View	Why This Deep-Sea Creature Is Known as the “Doomsday Fish”	False	Learn about doomsday fish deep-sea creature
+22	22	2025-12-08	MSN	MSN View	You Don’t Need to Know Code to Break Into Tech	False	Explore non-coding paths into tech careers
+23	23	2025-12-08	MSN	MSN View	“I felt like I could never turn it around” Inside Justin Bieber’s Darkest Years	False	Read celebrity profile on Justin Bieber struggles
+24	24	2025-12-08	Uet	UetEvents	Introducing Image Animation and Performance Comparison for Better Creative and Richer Insights | Microsoft Advertising	False	Learn Microsoft Advertising creative analytics features
+25	25	2025-12-08	Uet	UetEvents	Microsoft Edge	True	
+26	26	2025-12-08	Uet	UetEvents	cedar waxwing bird - Search	False	Search information about cedar waxwing bird
+27	27	2025-12-09	Bing	Bing Search Spotlight	Australian fur seal	False	Learn about Australian fur seals
+28	28	2025-12-09	MSN	MSN View	A $1.2B performance purge hits Microsoft as 10K brace for more	False	Read about Microsoft layoffs and performance cuts
+29	29	2025-12-09	MSN	MSN View	Apple sees bullish views at Wedbush on AI strategy and iPhone 17 sales	False	Follow Apple AI strategy and iPhone sales news
+30	30	2025-12-09	MSN	MSN View	Google denies ads are coming to Gemini in 2026	False	Track Gemini product news and ads plans
+31	31	2025-12-09	MSN	MSN View	Tsunami warning issued in Japan after 7.6 magnitude quake	False	Get updates on Japan earthquake and tsunami warning
+32	32	2025-12-09	Uet	UetEvents	Australian fur seal - Search	False	Search information about Australian fur seal
+33	33	2025-12-09	Uet	UetEvents	Le Creuset Cast Iron Skinny Grill Pan | Williams Sonoma	False	Browse Le Creuset grill pan product
+34	34	2025-12-09	Uet	UetEvents	Microsoft Copilot: Your AI companion	False	Explore Microsoft Copilot assistant product
+35	35	2025-12-09	Uet	UetEvents	Rowan Knitting & Crochet Magazine 74 at WEBS | Yarn.com	False	Browse knitting/crochet magazine issue
+36	36	2025-12-09	Uet	UetEvents	Rowan Yarn at WEBS | Yarn.com	False	Shop or research Rowan yarn
+37	37	2025-12-09	Uet	UetEvents	Staging | Microsoft Copilot: Your AI companion	True	
+38	38	2025-12-11	Bing	Bing Search Spotlight	Ruinenberg, Germany	False	Look up information about Ruinenberg, Germany
+39	39	2025-12-11	MSN	MSN View	'Historic flooding' in Washington state could force 100,000 people to evacuate	False	Read news about Washington state flooding
+40	40	2025-12-11	MSN	MSN View	Massive earthquake strikes Japan just days after tsunami warning	False	Read news about Japan earthquake and tsunami warning
+41	41	2025-12-11	MSN	MSN View	Meta's Wang reportedly clashed with company veterans Cox, Bosworth on AI goals	False	Follow tech industry news about Meta AI leadership
+42	42	2025-12-11	MSN	MSN View	Tech moves: T-Mobile names COO; Microsoft and Amazon execs depart; Redfin vet joins RentSpree	False	Track executive moves and tech business news
+43	43	2025-12-11	Uet	UetEvents	Microsoft Copilot: Your AI companion	False	Explore or use Microsoft Copilot AI assistant
+44	44	2025-12-11	Uet	UetEvents	Ruinenberg, Germany - Search	False	Look up information about Ruinenberg, Germany
+45	45	2025-12-11	Uet	UetEvents	Staging | Microsoft Copilot: Your AI companion	True	
+46	46	2025-12-12	Bing	Bing Search Spotlight	Ruinenberg, Germany	False	Search for Ruinenberg, Germany details
+47	47	2025-12-12	MSN	MSN View	Ex-Michigan coach Sherrone Moore expected to be arraigned Friday	False	Read sports/legal news about Sherrone Moore
+48	48	2025-12-12	Uet	UetEvents	Ruinenberg, Germany - Search	False	Look up information about Ruinenberg, Germany
+49	49	2025-12-12	Uet	UetEvents	Staging | Microsoft Copilot: Your AI companion	True	
+50	50	2025-12-13	Bing	Bing Search web	stitch fix	False	Research Stitch Fix personal styling service
+51	51	2025-12-13	MSN	MSN Upvote	The World, Through Craft	False	Read content about crafts and makers
+52	52	2025-12-13	MSN	MSN View	The World, Through Craft	False	Read content about crafts and makers
+53	53	2025-12-13	Uet	UetEvents	Microsoft Copilot: Your AI companion	False	Explore or use Microsoft Copilot AI assistant
+54	54	2025-12-13	Uet	UetEvents	Sign In | Personal Styling for Women, Men & Kids	False	Sign in to Stitch Fix account
+55	55	2025-12-13	Uet	UetEvents	Sign Up For A Personal Stylist | Stitch Fix	False	Create account for Stitch Fix styling service
+56	56	2025-12-13	Uet	UetEvents	Staging | Microsoft Copilot: Your AI companion	True	
+57	57	2025-12-13	Uet	UetEvents	Women's Clothes | Men's Clothes | Kid's Clothing Boxes | Stitch Fix	False	Browse Stitch Fix clothing options
+58	58	2025-12-13	Uet	UetEvents	Your Online Personal Stylist | Stitch Fix	False	Learn about Stitch Fix online personal styling
+59	59	2025-12-14	Bing	Bing Search web	events near me	True	
+60	60	2025-12-14	Bing	Bing Search web	zojirushi recipes bread machine	False	Find bread machine recipes for Zojirushi
+61	61	2025-12-14	Bing	Bing Search web Clicked	Breadmaker Recipes | Zojirushi.com	False	Browse Zojirushi breadmaker recipes
+62	62	2025-12-14	MSN	MSN View	OpenAI ends vesting cliff for new employees in compensation-policy change	False	Read news about OpenAI compensation policy
+63	63	2025-12-14	Uet	UetEvents	Microsoft Copilot: Your AI companion	False	Learn about or use Microsoft Copilot
+64	64	2025-12-15	Bing	Bing Search Spotlight	Ecola State Park, Oregon	False	Explore or plan visit to Ecola State Park
+65	65	2025-12-15	MSN	MSN View	Sergey Brin, who came back to Google to work on Gemini, says staying retired would have been a 'big mistake'	False	Read news about Sergey Brin and Gemini
+66	66	2025-12-15	MSN	MSN View	US social media requirements for foreign visitors could have 'chilling effect' on travel, industry group says	False	Read travel policy news on visitor requirements
+67	67	2025-12-15	Uet	UetEvents	Ecola State Park, Oregon - Search	False	Search for Ecola State Park information
+68	68	2025-12-16	Bing	Bing Search Spotlight	Ecola State Park, Oregon	False	Explore or plan visit to Ecola State Park
+69	69	2025-12-16	MSN	MSN View	Usha Vance finally breaks silence on marriage to DJ amid split rumors	False	Read celebrity relationship news
+70	70	2025-12-16	Uet	UetEvents	Ecola State Park, Oregon - Search	False	Search for Ecola State Park information
+71	71	2025-12-16	Uet	UetEvents	Microsoft Copilot: Your AI companion	False	Learn about or use Microsoft Copilot
+72	72	2025-12-16	Uet	UetEvents	Nordstrom Oversize Cashmere Turtleneck Sweater | Nordstrom	False	View or consider buying a cashmere sweater
+73	73	2025-12-16	Uet	UetEvents	Staging | Microsoft Copilot: Your AI companion	False	Access Microsoft Copilot (staging link)
+74	74	2025-12-17	Bing	Bing Search Spotlight	Ecola State Park, Oregon	False	Explore or plan visit to Ecola State Park
+75	75	2025-12-17	Uet	UetEvents	Ecola State Park, Oregon - Search	False	Search for Ecola State Park information
+76	76	2025-12-17	Uet	UetEvents	Microsoft Copilot: Your AI companion	False	Learn about or use Microsoft Copilot
+77	77	2025-12-18	MSN	MSN View	Brown mass shooting and MIT professor murder may be linked: Sources	False	Read breaking crime news
+78	78	2025-12-18	MSN	MSN View	Comet 3I/ATLAS: Europa Clipper captures rare ultraviolet view	False	Read space/science news about Europa Clipper
+79	79	2025-12-18	MSN	MSN View	Trump’s push for federal AI rules draws scrutiny	False	Read news about federal AI regulation
+80	80	2025-12-18	Uet	UetEvents	Microsoft Copilot: Your AI companion	True	
+81	81	2025-12-19	Ads	AdEvents	Premium Merino Wool Yarn for Knitting - Soft, Medium-Thick, Warm Hand-Woven Yarn for Scarves, Hats, Sweaters - 2.0mm Diameter, 4.0mm Knitting Needle R	False	Shop merino wool yarn for knitting
+82	82	2025-12-19	Bing	Bing Search shop	Cashmere sweaters for women	False	Shop women's cashmere sweaters
+83	83	2025-12-19	Bing	Bing Search shop	Cozy Homebody Gifts	False	Find cozy gifts for homebodies
+84	84	2025-12-19	Bing	Bing Search shop	Gifts for Coffee & Tea Lovers	False	Find gifts for coffee and tea lovers
+85	85	2025-12-19	Bing	Bing Search shop	Gifts for Spa Lover	False	Find gifts for spa lovers
+86	86	2025-12-19	Bing	Bing Search shop	flannel sheet set queen	False	Shop queen flannel sheet sets
+87	87	2025-12-19	Bing	Bing Search web	Lululemon Products	False	Browse Lululemon products
+88	88	2025-12-19	Bing	Bing Search web	lululemon	False	Visit or browse Lululemon
+89	89	2025-12-19	Bing	Bing Search web	notion	False	Find Notion productivity tool
+90	90	2025-12-19	Bing	Bing Search web Clicked	Notion - Log in	True	
+91	91	2025-12-20	Bing	Bing Search Spotlight	Ecola State Park, Oregon	False	Learn about Ecola State Park
+92	92	2025-12-20	Bing	Bing Search web	notion	False	Find Notion productivity tool
+93	93	2025-12-20	Bing	Bing Search web	tahoe weather 10 day	True	
+94	94	2025-12-20	Edge	BrowserEvents	Amazon's outlet has Apple, KitchenAid, iRobot, and more rarely marked down brands quietly on sale—up to 60% off	False	Browse discounts on major brands
+95	95	2025-12-20	Edge	BrowserEvents	MSN	True	
+96	96	2025-12-20	Edge	BrowserEvents	NASA's new leader makes his priorities clear on day one	False	Read news about NASA leadership
+97	97	2025-12-20	Edge	BrowserEvents	The perfect pack list for your Lululemon fanny pack	False	Get packing list for Lululemon fanny pack
+98	98	2025-12-20	MSN	MSN Upvote	AI reshapes search, marketing, and brand visibility	False	Read about AI in marketing and search
+99	99	2025-12-20	MSN	MSN View	Amazon's outlet has Apple, KitchenAid, iRobot, and more rarely marked down brands quietly on sale—up to 60% off	False	Browse discounts on major brands
+100	100	2025-12-20	MSN	MSN View	NASA's new leader makes his priorities clear on day one	False	Read about NASA leadership and priorities
+101	101	2025-12-20	MSN	MSN View	The art of deciding what to care about	False	Read personal development or philosophy article
+102	102	2025-12-20	MSN	MSN View	The perfect pack list for your Lululemon fanny pack	False	Find packing list for Lululemon fanny pack
+103	103	2025-12-20	Uet	UetEvents	Ecola State Park, Oregon - Search	False	Research Ecola State Park travel info
+104	104	2025-12-20	Uet	UetEvents	Microsoft Copilot: Your AI companion	False	Explore Microsoft Copilot AI assistant
+105	105	2025-12-21	Edge	BrowserEvents	MSN	True	
+106	106	2025-12-21	MSN	MSN View	The perfect pack list for your Lululemon fanny pack	False	Find packing list for Lululemon fanny pack
+107	107	2025-12-21	Uet	UetEvents	DoorDash Food Delivery - Order History	True	
+108	108	2025-12-21	Uet	UetEvents	DoorDash Food Delivery | Checkout	True	
+109	109	2025-12-21	Uet	UetEvents	DoorDash Login	True	
+110	110	2025-12-21	Uet	UetEvents	DoorDash: Food, Grocery and Retail - Fast Same Day Delivery	True	
+111	111	2025-12-21	Uet	UetEvents	Microsoft Copilot: Your AI companion	False	Explore Microsoft Copilot AI assistant
+112	112	2025-12-21	Uet	UetEvents	Order Apple Teriyaki - Redmond, WA Menu Delivery [Menu & Prices] | Redmond - DoorDash	True	
+113	113	2025-12-21	Uet	UetEvents	Order Cafe 79 Vietnamese Kitchen - Kirkland, WA Menu Delivery [Menu & Prices] | Kirkland - DoorDash	True	
+114	114	2025-12-21	Uet	UetEvents	Order Dong Ting Chun - Redmond, WA Menu Delivery [Menu & Prices] | Redmond - DoorDash	True	
+115	115	2025-12-21	Uet	UetEvents	Order Lá Quế Vietnamese cuisine - Bellevue, WA Menu Delivery [Menu & Prices] | Bellevue - DoorDash	True	
+116	116	2025-12-21	Uet	UetEvents	Order Shinya Shokudo - Redmond, WA Menu Delivery [Menu & Prices] | Redmond - DoorDash	True	
+117	117	2025-12-21	Uet	UetEvents	Order Sichuan Cuisine - Redmond, WA Menu Delivery [Menu & Prices] | Redmond - DoorDash	True	
+118	118	2025-12-21	Uet	UetEvents	Order Stone Korean Restaurant - Redmond, WA Menu Delivery [Menu & Prices] | Redmond - DoorDash	True	
+119	119	2025-12-21	Uet	UetEvents	Order Thai Ginger - Redmond, WA Menu Delivery [Menu & Prices] | Redmond - DoorDash	True	
+120	120	2025-12-21	Uet	UetEvents	Order Tiger Bites - Bellevue, WA Menu Delivery [Menu & Prices] | Bellevue - DoorDash	True	
+121	121	2025-12-21	Uet	UetEvents	Order Yummy Teriyaki - Redmond, WA Menu Delivery [Menu & Prices] | Redmond - DoorDash	True	

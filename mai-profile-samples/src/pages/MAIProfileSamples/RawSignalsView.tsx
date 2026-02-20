@@ -22,18 +22,20 @@ interface CsvFileEntry {
 
 interface RawSignalsViewProps {
     userId: string;
+    version: string;
+    days: string;
 }
 
-// ─── CSV Discovery & Parsing ─────────────────────────────────────────
+// ─── TSV Discovery & Parsing ─────────────────────────────────────────
 
-// Discover all CSV files in the Data directory at build time
-const csvFiles = import.meta.glob('./Data/*.csv', { eager: true, query: '?raw', import: 'default' });
+// Discover all TSV files in the Data directory at build time
+const csvFiles = import.meta.glob('./Data/*.tsv', { eager: true, query: '?raw', import: 'default' });
 
-// Parse CSV filename: RawSignal_{UserId}_v{Date}_{Days}days.csv
+// Parse TSV filename: RawSignal_{UserId}_v{Date}_{Days}days.tsv
 function parseCsvFiles(files: Record<string, unknown>): CsvFileEntry[] {
     const entries: CsvFileEntry[] = [];
     for (const path of Object.keys(files)) {
-        const filename = path.split('/').pop()?.replace('.csv', '') || '';
+        const filename = path.split('/').pop()?.replace('.tsv', '') || '';
         const match = filename.match(/^RawSignal_(.+?)_v(\d+)_(\d+)days$/);
         if (match) {
             const version = match[2];
@@ -51,52 +53,27 @@ function parseCsvContent(csvText: string): RawSignal[] {
     const lines = csvText.trim().split('\n');
     if (lines.length < 2) return [];
 
-    // Skip header: userId,dateStr,source,action,should_filter,intent
+    // Skip header: index, row_id, Date, Source, DetailedSource, Action, should_filter, intent
     const signals: RawSignal[] = [];
     for (let i = 1; i < lines.length; i++) {
-        const line = lines[i].trim();
+        const line = lines[i].replace(/\r$/, '');
         if (!line) continue;
 
-        // Parse CSV respecting quoted fields
-        const fields = parseCsvLine(line);
-        if (fields.length < 6) continue;
+        // Parse TSV (tab-separated)
+        const fields = line.split('\t');
+        if (fields.length < 7) continue;
 
-        const [, dateStr, source, action, shouldFilter, intent] = fields;
+        const [, , dateStr, source, detailedSource, action, shouldFilter, intent] = fields;
         signals.push({
             date: dateStr,
             source,
-            userAction: source,
+            userAction: detailedSource || source,
             details: action,
-            shouldFilter: shouldFilter === 'true',
+            shouldFilter: shouldFilter?.toLowerCase() === 'true',
             intent: intent || '',
         });
     }
     return signals;
-}
-
-/** Simple CSV line parser that handles quoted fields with commas */
-function parseCsvLine(line: string): string[] {
-    const fields: string[] = [];
-    let current = '';
-    let inQuotes = false;
-    for (let i = 0; i < line.length; i++) {
-        const ch = line[i];
-        if (ch === '"') {
-            if (inQuotes && line[i + 1] === '"') {
-                current += '"';
-                i++;
-            } else {
-                inQuotes = !inQuotes;
-            }
-        } else if (ch === ',' && !inQuotes) {
-            fields.push(current);
-            current = '';
-        } else {
-            current += ch;
-        }
-    }
-    fields.push(current);
-    return fields;
 }
 
 // ─── Style Constants ─────────────────────────────────────────────────
@@ -173,17 +150,23 @@ const intentColorMap: Record<string, { bg: string; text: string }> = {
 
 // ─── Component ───────────────────────────────────────────────────────
 
-export default function RawSignalsView({ userId }: RawSignalsViewProps) {
-    // Discover available CSV files for the current user
+export default function RawSignalsView({ userId, version, days }: RawSignalsViewProps) {
+    // Discover available TSV files
     const allCsvEntries = useMemo(() => parseCsvFiles(csvFiles), []);
-    const userCsvEntries = useMemo(() => allCsvEntries.filter(e => e.userId === userId), [allCsvEntries, userId]);
 
-    const [selectedCsv, setSelectedCsv] = useState<string>(userCsvEntries[userCsvEntries.length - 1]?.path || '');
+    // Find the TSV file matching the global version/days selection
+    const selectedCsv = useMemo(() => {
+        const match = allCsvEntries.find(e => e.userId === userId && e.version === version && e.days === days);
+        return match?.path || '';
+    }, [allCsvEntries, userId, version, days]);
+
     const [sourceFilter, setSourceFilter] = useState<string>('all');
-    const [intentFilter, setIntentFilter] = useState<string>('all');
-    const [showFiltered, setShowFiltered] = useState<boolean>(true);
+    const [filterFilter, setFilterFilter] = useState<string>('all');
+    const [dateSortOrder, setDateSortOrder] = useState<'asc' | 'desc'>('asc');
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const PAGE_SIZE = 40;
 
-    // Parse signals from selected CSV
+    // Parse signals from matched TSV
     const signals = useMemo(() => {
         if (!selectedCsv || !csvFiles[selectedCsv]) return [];
         const csvText = csvFiles[selectedCsv] as string;
@@ -191,16 +174,30 @@ export default function RawSignalsView({ userId }: RawSignalsViewProps) {
     }, [selectedCsv]);
 
     const uniqueSources = useMemo(() => [...new Set(signals.map(s => s.source))].sort(), [signals]);
-    const uniqueIntents = useMemo(() => [...new Set(signals.map(s => s.intent))].sort(), [signals]);
 
     const filteredSignals = useMemo(() => {
-        return signals.filter(s => {
+        const result = signals.filter(s => {
             if (sourceFilter !== 'all' && s.source !== sourceFilter) return false;
-            if (intentFilter !== 'all' && s.intent !== intentFilter) return false;
-            if (!showFiltered && s.shouldFilter) return false;
+            if (filterFilter === 'yes' && !s.shouldFilter) return false;
+            if (filterFilter === 'no' && s.shouldFilter) return false;
             return true;
         });
-    }, [signals, sourceFilter, intentFilter, showFiltered]);
+        result.sort((a, b) => {
+            const cmp = a.date.localeCompare(b.date);
+            return dateSortOrder === 'asc' ? cmp : -cmp;
+        });
+        return result;
+    }, [signals, sourceFilter, filterFilter, dateSortOrder]);
+
+    // Pagination
+    const totalPages = Math.max(1, Math.ceil(filteredSignals.length / PAGE_SIZE));
+    const pagedSignals = useMemo(() => {
+        const start = (currentPage - 1) * PAGE_SIZE;
+        return filteredSignals.slice(start, start + PAGE_SIZE);
+    }, [filteredSignals, currentPage]);
+
+    // Reset page when filters change
+    useMemo(() => { setCurrentPage(1); }, [sourceFilter, filterFilter, dateSortOrder, selectedCsv]);
 
     // Stats
     const totalCount = signals.length;
@@ -243,17 +240,6 @@ export default function RawSignalsView({ userId }: RawSignalsViewProps) {
                     <Row className="align-items-center">
                         <Col md={2}>
                             <Form.Group>
-                                <Form.Label style={{ fontSize: '0.75rem', color: '#8E8E93', marginBottom: '4px' }}>Time</Form.Label>
-                                <Form.Select size="sm" value={selectedCsv} onChange={e => { setSelectedCsv(e.target.value); setSourceFilter('all'); setIntentFilter('all'); }}>
-                                    {userCsvEntries.length === 0 && <option value="">No data available</option>}
-                                    {userCsvEntries.map(e => (
-                                        <option key={e.path} value={e.path}>{e.label}</option>
-                                    ))}
-                                </Form.Select>
-                            </Form.Group>
-                        </Col>
-                        <Col md={2}>
-                            <Form.Group>
                                 <Form.Label style={{ fontSize: '0.75rem', color: '#8E8E93', marginBottom: '4px' }}>Source</Form.Label>
                                 <Form.Select size="sm" value={sourceFilter} onChange={e => setSourceFilter(e.target.value)}>
                                     <option value="all">All Sources</option>
@@ -261,23 +247,15 @@ export default function RawSignalsView({ userId }: RawSignalsViewProps) {
                                 </Form.Select>
                             </Form.Group>
                         </Col>
-                        <Col md={3}>
+                        <Col md={2}>
                             <Form.Group>
-                                <Form.Label style={{ fontSize: '0.75rem', color: '#8E8E93', marginBottom: '4px' }}>Intent</Form.Label>
-                                <Form.Select size="sm" value={intentFilter} onChange={e => setIntentFilter(e.target.value)}>
-                                    <option value="all">All Intents</option>
-                                    {uniqueIntents.map(i => <option key={i} value={i}>{i}</option>)}
+                                <Form.Label style={{ fontSize: '0.75rem', color: '#8E8E93', marginBottom: '4px' }}>Should Filter</Form.Label>
+                                <Form.Select size="sm" value={filterFilter} onChange={e => setFilterFilter(e.target.value)}>
+                                    <option value="all">All</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
                                 </Form.Select>
                             </Form.Group>
-                        </Col>
-                        <Col md={3} className="d-flex align-items-end" style={{ paddingTop: '20px' }}>
-                            <Form.Check
-                                type="switch"
-                                id="show-filtered"
-                                label={<span style={{ fontSize: '0.82rem' }}>Show filtered events</span>}
-                                checked={showFiltered}
-                                onChange={e => setShowFiltered(e.target.checked)}
-                            />
                         </Col>
                         <Col md={3} className="d-flex align-items-end justify-content-end" style={{ paddingTop: '20px' }}>
                             <span style={{ fontSize: '0.82rem', color: '#8E8E93' }}>
@@ -294,7 +272,9 @@ export default function RawSignalsView({ userId }: RawSignalsViewProps) {
                     <table style={styles.table}>
                         <thead>
                             <tr>
-                                <th style={styles.th}>Date</th>
+                                <th style={{ ...styles.th, cursor: 'pointer', userSelect: 'none' }} onClick={() => setDateSortOrder(o => o === 'asc' ? 'desc' : 'asc')}>
+                                    Date {dateSortOrder === 'asc' ? '▲' : '▼'}
+                                </th>
                                 <th style={styles.th}>Source</th>
                                 <th style={styles.th}>User Action</th>
                                 <th style={{ ...styles.th, minWidth: '300px' }}>Details</th>
@@ -303,7 +283,7 @@ export default function RawSignalsView({ userId }: RawSignalsViewProps) {
                             </tr>
                         </thead>
                         <tbody>
-                            {filteredSignals.map((sig, idx) => (
+                            {pagedSignals.map((sig, idx) => (
                                 <tr
                                     key={idx}
                                     style={sig.shouldFilter ? styles.filterRow : undefined}
@@ -351,7 +331,7 @@ export default function RawSignalsView({ userId }: RawSignalsViewProps) {
                                     </td>
                                 </tr>
                             ))}
-                            {filteredSignals.length === 0 && (
+                            {pagedSignals.length === 0 && (
                                 <tr>
                                     <td colSpan={6} style={{ ...styles.td, textAlign: 'center', color: '#ADB5BD', padding: '40px' }}>
                                         No signals match the current filters.
@@ -362,6 +342,38 @@ export default function RawSignalsView({ userId }: RawSignalsViewProps) {
                     </table>
                 </div>
             </Card>
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', marginTop: '16px' }}>
+                    <button
+                        onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                        disabled={currentPage === 1}
+                        style={{ padding: '6px 12px', borderRadius: '6px', border: '1px solid #DEE2E6', backgroundColor: currentPage === 1 ? '#F8F9FA' : '#fff', cursor: currentPage === 1 ? 'default' : 'pointer', fontSize: '0.82rem', color: '#495057' }}
+                    >
+                        ← Prev
+                    </button>
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                        <button
+                            key={page}
+                            onClick={() => setCurrentPage(page)}
+                            style={{ padding: '6px 12px', borderRadius: '6px', border: '1px solid #DEE2E6', backgroundColor: page === currentPage ? '#0d6efd' : '#fff', color: page === currentPage ? '#fff' : '#495057', cursor: 'pointer', fontSize: '0.82rem', fontWeight: page === currentPage ? '600' : '400' }}
+                        >
+                            {page}
+                        </button>
+                    ))}
+                    <button
+                        onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                        disabled={currentPage === totalPages}
+                        style={{ padding: '6px 12px', borderRadius: '6px', border: '1px solid #DEE2E6', backgroundColor: currentPage === totalPages ? '#F8F9FA' : '#fff', cursor: currentPage === totalPages ? 'default' : 'pointer', fontSize: '0.82rem', color: '#495057' }}
+                    >
+                        Next →
+                    </button>
+                    <span style={{ fontSize: '0.78rem', color: '#8E8E93', marginLeft: '8px' }}>
+                        Page {currentPage} of {totalPages}
+                    </span>
+                </div>
+            )}
         </div>
     );
 }

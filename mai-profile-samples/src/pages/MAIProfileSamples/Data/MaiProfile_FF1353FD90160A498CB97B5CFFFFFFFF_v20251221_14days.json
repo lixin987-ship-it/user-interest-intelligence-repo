@@ -81,7 +81,7 @@
         "as_of": null
       },
       "PastVisitedLocations": {
-        "value": "Sammamish, Seattle-Tacoma, Moses Lake, Seattle, Santa Clara",
+        "value": null,
         "confidence": "1.0",
         "pii_class": "low",
         "provenance": [
