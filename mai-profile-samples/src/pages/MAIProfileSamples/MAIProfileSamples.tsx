@@ -143,8 +143,9 @@ function MAIProfileSamples() {
                     </Tab>
                     <Tab eventKey="evaluation" title="Evaluation">
                         <Card>
-                            <Card.Body>
-                                <p className="text-muted">Evaluation content will go here.</p>
+                            <Card.Body className="text-center py-5">
+                                <h4 className="text-muted mb-3">🚧 Work in Progress</h4>
+                                <p className="text-muted">The evaluation framework is currently under active development. Stay tuned for updates.</p>
                             </Card.Body>
                         </Card>
                     </Tab>
