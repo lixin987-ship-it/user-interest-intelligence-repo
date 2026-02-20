@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, Row, Col, Badge } from 'react-bootstrap';
 
 // ─── Type Definitions ────────────────────────────────────────────────
@@ -95,6 +95,7 @@ interface InterestTopic {
         ActiveDays?: number;
         EventCount?: number;
     };
+    Evidence?: Array<{ date?: string; source?: string; action?: string; raw_record?: string }>;
     Internal?: { Topic?: string; Subtopic?: string; StrengthUpdate?: string };
 }
 
@@ -474,6 +475,7 @@ function FactsSection({ facts, stageOfLife }: { facts?: MAIProfileData['Facts'];
 
 /** Single interest card – always shows all sections; empty values render as "—" */
 function InterestCard({ topic }: { topic: InterestTopic }) {
+    const [showEvidence, setShowEvidence] = useState(false);
     const score = getConfidenceScore(topic);
     const color = getInterestColor(topic.Internal?.Topic);
     const level = topic.ConfidenceLevel || 'medium';
@@ -598,6 +600,41 @@ function InterestCard({ topic }: { topic: InterestTopic }) {
                     <div style={{ fontWeight: '600', color: '#1C1C1E' }}>{topic.LifetimeDays != null ? `${topic.LifetimeDays}d` : '—'}</div>
                 </div>
             </div>
+
+            {/* Evidence link */}
+            {topic.Evidence && topic.Evidence.length > 0 && (
+                <div style={{ marginTop: '10px', borderTop: '1px solid #F2F2F7', paddingTop: '8px' }}>
+                    <a
+                        href="#"
+                        onClick={(e) => { e.preventDefault(); setShowEvidence(!showEvidence); }}
+                        style={{ fontSize: '0.8rem', color: '#0d6efd', textDecoration: 'none', fontWeight: '500', display: 'inline-flex', alignItems: 'center', gap: '4px' }}
+                    >
+                        {showEvidence ? '▾' : '▸'} Evidence ({topic.Evidence.length})
+                    </a>
+                    {showEvidence && (
+                        <div style={{ marginTop: '8px', maxHeight: '300px', overflowY: 'auto', border: '1px solid #E9ECEF', borderRadius: '8px' }}>
+                            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.76rem' }}>
+                                <thead>
+                                    <tr style={{ backgroundColor: '#F8F9FA' }}>
+                                        <th style={{ padding: '6px 10px', borderBottom: '1px solid #DEE2E6', textAlign: 'left', color: '#6C757D', fontWeight: '600', whiteSpace: 'nowrap' }}>Date</th>
+                                        <th style={{ padding: '6px 10px', borderBottom: '1px solid #DEE2E6', textAlign: 'left', color: '#6C757D', fontWeight: '600' }}>Source</th>
+                                        <th style={{ padding: '6px 10px', borderBottom: '1px solid #DEE2E6', textAlign: 'left', color: '#6C757D', fontWeight: '600' }}>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {topic.Evidence.map((ev, i) => (
+                                        <tr key={i} style={{ borderBottom: '1px solid #F2F2F7' }}>
+                                            <td style={{ padding: '5px 10px', whiteSpace: 'nowrap', fontFamily: 'monospace', color: '#495057' }}>{ev.date || '—'}</td>
+                                            <td style={{ padding: '5px 10px', color: '#495057' }}>{ev.source || '—'}</td>
+                                            <td style={{ padding: '5px 10px', color: '#495057' }}>{ev.action || '—'}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    )}
+                </div>
+            )}
         </div>
     );
 }
