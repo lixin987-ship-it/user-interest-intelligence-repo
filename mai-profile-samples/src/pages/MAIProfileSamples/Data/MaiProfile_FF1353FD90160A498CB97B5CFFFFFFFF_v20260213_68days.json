@@ -1,0 +1,2140 @@
+{
+  "Version": "MAIProfile-Unified-v0.6",
+  "AsOfDate": "2026-02-13",
+  "Market": "en-us",
+  "Window": {
+    "Incremental": {
+      "LookbackDays": 1,
+      "FromDate": "2026-02-13",
+      "ToDate": "2026-02-13"
+    },
+    "AllTime": {
+      "LookbackDays": 68,
+      "FromDate": "2025-12-08",
+      "ToDate": "2026-02-13"
+    }
+  },
+  "ActivityStats": {
+    "Incremental": {
+      "TotalEvents": 6,
+      "DistinctActiveDays": 1
+    },
+    "AllTime": {
+      "TotalEvents": 308,
+      "DistinctActiveDays": 60
+    }
+  },
+  "Facts": {
+    "Identity": {
+      "MAI_ID": null,
+      "ANID": "FF1353FD90160A498CB97B5CFFFFFFFF",
+      "MUID": null,
+      "Name": "Rukmini"
+    },
+    "Demographics": {
+      "Age": {
+        "value": 56,
+        "confidence": "medium",
+        "pii_class": "moderate",
+        "provenance": [
+          "ProvidedFacts"
+        ],
+        "as_of": "2026-01-14"
+      },
+      "Gender": {
+        "value": "female",
+        "confidence": "medium",
+        "pii_class": "low",
+        "provenance": [
+          "ProvidedFacts"
+        ],
+        "as_of": "2026-01-14"
+      },
+      "Generation": {
+        "value": "Gen X",
+        "confidence": "low",
+        "pii_class": "none",
+        "provenance": [
+          "DerivedFromProvidedFacts"
+        ],
+        "as_of": "2026-01-14"
+      }
+    },
+    "LifeStage": {
+      "value": "unknown",
+      "confidence": "low",
+      "pii_class": "none",
+      "provenance": [
+        "DerivedFromSignals"
+      ],
+      "as_of": "2026-01-14"
+    },
+    "Locations": {
+      "CurrentLocation": {
+        "value": "Redmond, Washington, US",
+        "confidence": "low",
+        "pii_class": "none",
+        "provenance": [
+          "ProvidedFacts"
+        ],
+        "last_30d": true,
+        "as_of": null
+      },
+      "PastVisitedLocations": []
+    },
+    "Employment": {
+      "CurrentCompany": {
+        "value": "Microsoft",
+        "confidence": "low",
+        "pii_class": "none",
+        "provenance": [
+          "ProvidedFacts"
+        ],
+        "as_of": null
+      },
+      "PastCompany": {
+        "value": null,
+        "confidence": "low",
+        "pii_class": "none",
+        "provenance": [
+          "ProvidedFacts"
+        ],
+        "as_of": null
+      },
+      "Occupation": {
+        "value": null,
+        "confidence": "low",
+        "pii_class": "none",
+        "provenance": [
+          "ProvidedFacts"
+        ],
+        "as_of": null
+      }
+    },
+    "UncertaintyNotes": [
+      "LifeStage not inferred due to insufficient consistent family/household or career-transition proxies in the activity slice.",
+      "No verified current location was provided; location-like strings in events were treated as interests (travel research) rather than facts."
+    ]
+  },
+  "Interests": {
+    "Interests": [
+      {
+        "InterestName": "AI industry news",
+        "ConfidenceScore": 0.95,
+        "ConfidenceLevel": "high",
+        "Strength": 0.6,
+        "State": "stable",
+        "DecayRate": 0.9996,
+        "TemporalType": "persistent",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "interval_based",
+          "Value": "weekly"
+        },
+        "SignalSourceCounts": {
+          "Search": 1,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 16,
+          "Commerce": 0,
+          "Other": 6
+        },
+        "Signals": {
+          "PositiveCount": 71,
+          "NegativeCount": 0,
+          "NeutralCount": 0,
+          "PositiveSamples": [
+            {
+              "date": "2026-02-01",
+              "source": "MSN",
+              "action": "Exclusive: Longtime Google DeepMind researcher David Silver leaves to found his own AI startup",
+              "raw_record": "2026-02-01\tMSN\tMSN View\tExclusive: Longtime Google DeepMind researcher David Silver leaves to found his own AI startup\tRead AI industry leadership/startup news"
+            },
+            {
+              "date": "2026-02-12",
+              "source": "MSN",
+              "action": "Google makes an AI shift after Disney’s legal warning, giving ChatGPT an edge",
+              "raw_record": "2026-02-12\tMSN\tMSN View\tGoogle makes an AI shift after Disney’s legal warning, giving ChatGPT an edge\tRead news about AI and legal disputes"
+            },
+            {
+              "date": "2026-02-13",
+              "source": "MSN",
+              "action": "Senior AI staffers keep quitting — and are issuing warnings about what’s going on at their companies",
+              "raw_record": "2026-02-13\tMSN\tMSN View\tSenior AI staffers keep quitting — and are issuing warnings about what’s going on at their companies\tFollow news about AI industry staffing concerns"
+            }
+          ],
+          "NegativeSamples": []
+        },
+        "ActualActivity": "Reads AI-related business/tech coverage (including automation predictions and AI staffing/industry concerns) and continues to access/learn about an AI assistant experience (Microsoft Copilot).",
+        "IntentionInferred": "User is staying current on AI ecosystem developments (company moves, staffing signals, and near-term impact claims) and periodically checking AI assistant experiences.",
+        "Topics": [
+          {
+            "Topic": "Microsoft Copilot",
+            "Weight": 5
+          },
+          {
+            "Topic": "Microsoft AI CEO predicts white-collar automation",
+            "Weight": 2
+          },
+          {
+            "Topic": "Senior AI staffers quitting / warnings",
+            "Weight": 1
+          },
+          {
+            "Topic": "Google AI shift after Disney legal warning",
+            "Weight": 1
+          },
+          {
+            "Topic": "Stocks pause; AI worries",
+            "Weight": 1
+          },
+          {
+            "Topic": "Windows 11 AI trust issues",
+            "Weight": 1
+          },
+          {
+            "Topic": "DeepMind researcher leaves to found AI startup",
+            "Weight": 1
+          },
+          {
+            "Topic": "Nano Banana AI image tool",
+            "Weight": 2
+          }
+        ],
+        "FirstDetectDate": "2025-12-08",
+        "LastDetectDate": "2026-02-13",
+        "LatestEvent": "2026-02-13\tMSN\tMSN View\tSenior AI staffers keep quitting — and are issuing warnings about what’s going on at their companies\tFollow news about AI industry staffing concerns",
+        "LifetimeDays": 67,
+        "TemporalStats": {
+          "RecencyDays": 0,
+          "ActiveDays": 21,
+          "EventCount": 69
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-13",
+            "source": "MSN",
+            "action": "Senior AI staffers keep quitting — and are issuing warnings about what’s going on at their companies",
+            "raw_record": "2026-02-13\tMSN\tMSN View\tSenior AI staffers keep quitting — and are issuing warnings about what’s going on at their companies\tFollow news about AI industry staffing concerns"
+          },
+          {
+            "date": "2026-02-13",
+            "source": "MSN",
+            "action": "Microsoft AI CEO: Virtually all white collar tasks will be automated within a year and a half",
+            "raw_record": "2026-02-13\tMSN\tMSN View\tMicrosoft AI CEO: Virtually all white collar tasks will be automated within a year and a half\tRead commentary on AI automation timelines"
+          },
+          {
+            "date": "2026-02-13",
+            "source": "Uet",
+            "action": "Microsoft Copilot: Your AI companion",
+            "raw_record": "2026-02-13\tUet\tUetEvents\tMicrosoft Copilot: Your AI companion\tLearn about Microsoft Copilot features"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Some business/markets headlines overlap with general breaking-news monitoring; classification is partly driven by recurring AI framing and Copilot usage."
+        ],
+        "Internal": {
+          "StrengthUpdate": "boost"
+        },
+        "Persona": "A(n) informed tech-news follower who tracks AI company strategy and product shifts. They prioritize staying current and understanding real-world implications, rely on scanning headlines and occasional product exploration, and show consistent patterns of reading about major tech firms. Their goals include keeping up with weekly developments and understanding longer-term changes in work and technology."
+      },
+      {
+        "InterestName": "Women's fashion shopping",
+        "ConfidenceScore": 0.93,
+        "ConfidenceLevel": "high",
+        "Strength": 0.6,
+        "State": "stable",
+        "DecayRate": 0.9702,
+        "TemporalType": "short_term",
+        "Seasonality": "seasonal_annual",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 7,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 12
+        },
+        "Signals": {
+          "PositiveCount": 50,
+          "NegativeCount": 0,
+          "NeutralCount": 0,
+          "PositiveSamples": [
+            {
+              "date": "2026-02-07",
+              "source": "Uet",
+              "action": "Lululemon Products - Search Shopping",
+              "raw_record": "2026-02-07\tUet\tUetEvents\tLululemon Products - Search Shopping\tShop Lululemon items via search"
+            },
+            {
+              "date": "2026-02-01",
+              "source": "Bing",
+              "action": "carve designs",
+              "raw_record": "2026-02-01\tBing\tBing Search web\tcarve designs\tBrowse Carve Designs clothing brand"
+            },
+            {
+              "date": "2026-02-12",
+              "source": "Uet",
+              "action": "Eileen Fisher Puffer Jacket | Bloomingdale's Women",
+              "raw_record": "2026-02-12\tUet\tUetEvents\tEileen Fisher Puffer Jacket | Bloomingdale's Women\tShop for Eileen Fisher puffer jacket"
+            }
+          ],
+          "NegativeSamples": []
+        },
+        "ActualActivity": "Browses apparel brands and specific items, including renewed activity around an Eileen Fisher outerwear item (Bloomingdale's) alongside prior brand and capsule-wardrobe exploration. No new apparel shopping signals in the latest slice.",
+        "IntentionInferred": "User appears to be actively shopping for clothing and comparing options across brands, likely refreshing or expanding a seasonal wardrobe.",
+        "Topics": [
+          {
+            "Topic": "Eileen Fisher puffer jacket",
+            "Weight": 1
+          },
+          {
+            "Topic": "Lululemon products",
+            "Weight": 3
+          },
+          {
+            "Topic": "capsule wardrobe",
+            "Weight": 3
+          },
+          {
+            "Topic": "fashion inspiration images",
+            "Weight": 4
+          },
+          {
+            "Topic": "beige cashmere turtleneck outfit",
+            "Weight": 3
+          },
+          {
+            "Topic": "wool blend coat",
+            "Weight": 2
+          }
+        ],
+        "FirstDetectDate": "2025-12-11",
+        "LastDetectDate": "2026-02-12",
+        "LatestEvent": "2026-02-12\tUet\tUetEvents\tEileen Fisher Puffer Jacket | Bloomingdale's Women\tShop for Eileen Fisher puffer jacket",
+        "LifetimeDays": 63,
+        "TemporalStats": {
+          "RecencyDays": 1,
+          "ActiveDays": 15,
+          "EventCount": 51
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-12",
+            "source": "Uet",
+            "action": "Eileen Fisher Puffer Jacket | Bloomingdale's Women",
+            "raw_record": "2026-02-12\tUet\tUetEvents\tEileen Fisher Puffer Jacket | Bloomingdale's Women\tShop for Eileen Fisher puffer jacket"
+          },
+          {
+            "date": "2026-02-07",
+            "source": "Uet",
+            "action": "Lululemon Products - Search Shopping",
+            "raw_record": "2026-02-07\tUet\tUetEvents\tLululemon Products - Search Shopping\tShop Lululemon items via search"
+          },
+          {
+            "date": "2026-02-07",
+            "source": "Bing",
+            "action": "Lululemon Products",
+            "raw_record": "2026-02-07\tBing\tBing Search shop\tLululemon Products\tBrowse or shop Lululemon products"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Product-category details beyond the page title are not visible in signals (e.g., color/size/fit)."
+        ],
+        "Internal": {
+          "StrengthUpdate": "freeze"
+        },
+        "Persona": "A(n) style-conscious shopper who compares options and looks for cohesive outfits. They prioritize comfort and versatility, rely on browsing product pages and outfit inspiration, and show repeat engagement with apparel brands and capsule-wardrobe ideas. Their goals include building coordinated seasonal looks now and maintaining a practical wardrobe over time."
+      },
+      {
+        "InterestName": "Breaking news monitoring",
+        "ConfidenceScore": 0.86,
+        "ConfidenceLevel": "high",
+        "Strength": 0.6,
+        "State": "stable",
+        "DecayRate": 0.9996,
+        "TemporalType": "persistent",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "popularity_based",
+          "Value": "trending"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 13,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 37,
+          "NegativeCount": 0,
+          "NeutralCount": 0,
+          "PositiveSamples": [
+            {
+              "date": "2026-02-10",
+              "source": "MSN",
+              "action": "H-1B visas to be permanently scrapped under new plan",
+              "raw_record": "2026-02-10\tMSN\tMSN View\tH-1B visas to be permanently scrapped under new plan\tRead news about H-1B visa policy"
+            },
+            {
+              "date": "2026-02-12",
+              "source": "MSN",
+              "action": "Sanofi replaces CEO Hudson, names first woman at helm",
+              "raw_record": "2026-02-12\tMSN\tMSN View\tSanofi replaces CEO Hudson, names first woman at helm\tRead biotech/pharma leadership change news"
+            },
+            {
+              "date": "2026-02-12",
+              "source": "MSN",
+              "action": "US FTC raises concerns over accusations Apple News favors articles from left-wing outlets",
+              "raw_record": "2026-02-12\tMSN\tMSN View\tUS FTC raises concerns over accusations Apple News favors articles from left-wing outlets\tRead news on FTC and Apple News bias claims"
+            }
+          ],
+          "NegativeSamples": []
+        },
+        "ActualActivity": "Reads high-salience headlines on MSN, including business leadership, technology/media-platform regulation, and other widely discussed developments. The latest-day activity is dominated by AI-specific headlines (tracked under AI industry news).",
+        "IntentionInferred": "User likely checks notable headlines to stay aware of widely discussed events and major developments.",
+        "Topics": [
+          {
+            "Topic": "Sanofi CEO change",
+            "Weight": 1
+          },
+          {
+            "Topic": "FTC concerns about Apple News",
+            "Weight": 1
+          },
+          {
+            "Topic": "Stocks pause for breath; yen higher",
+            "Weight": 1
+          },
+          {
+            "Topic": "US House voter ID bill",
+            "Weight": 1
+          },
+          {
+            "Topic": "H-1B visa policy plan",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-12-08",
+        "LastDetectDate": "2026-02-12",
+        "LatestEvent": "2026-02-12\tMSN\tMSN View\tUS House passes bill to require proof of US citizenship for midterm voters\tRead US politics news about voter ID bill",
+        "LifetimeDays": 66,
+        "TemporalStats": {
+          "RecencyDays": 1,
+          "ActiveDays": 17,
+          "EventCount": 37
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-12",
+            "source": "MSN",
+            "action": "US House passes bill to require proof of US citizenship for midterm voters",
+            "raw_record": "2026-02-12\tMSN\tMSN View\tUS House passes bill to require proof of US citizenship for midterm voters\tRead US politics news about voter ID bill"
+          },
+          {
+            "date": "2026-02-12",
+            "source": "MSN",
+            "action": "US FTC raises concerns over accusations Apple News favors articles from left-wing outlets",
+            "raw_record": "2026-02-12\tMSN\tMSN View\tUS FTC raises concerns over accusations Apple News favors articles from left-wing outlets\tRead news on FTC and Apple News bias claims"
+          },
+          {
+            "date": "2026-02-12",
+            "source": "MSN",
+            "action": "Sanofi replaces CEO Hudson, names first woman at helm",
+            "raw_record": "2026-02-12\tMSN\tMSN View\tSanofi replaces CEO Hudson, names first woman at helm\tRead biotech/pharma leadership change news"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Some items are policy-adjacent; this interest is kept at the non-sensitive level of general breaking/news monitoring."
+        ],
+        "Internal": {
+          "StrengthUpdate": "freeze"
+        },
+        "Persona": "A(n) headline-driven news checker who keeps tabs on major events and disruptions. They prioritize awareness and timeliness, rely on browsing trending stories in a news feed and quick checks during spikes, and show repeat engagement with breaking or widely shared items. Their goals include staying informed day-to-day and maintaining situational awareness over time."
+      },
+      {
+        "InterestName": "Personal finance investing",
+        "ConfidenceScore": 0.68,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.6,
+        "State": "declining",
+        "DecayRate": 0.9702,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 2,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 11,
+          "NegativeCount": 0,
+          "NeutralCount": 0,
+          "PositiveSamples": [
+            {
+              "date": "2026-01-27",
+              "source": "MSN",
+              "action": "Microsoft (MSFT) slid despite delivering strong results and value growth",
+              "raw_record": "2026-01-27\tMSN\tMSN View\tMicrosoft (MSFT) slid despite delivering strong results and value growth\tRead Microsoft stock performance news"
+            },
+            {
+              "date": "2026-02-12",
+              "source": "MSN",
+              "action": "Stocks pause for breath as AI worries simmer; yen gallops higher",
+              "raw_record": "2026-02-12\tMSN\tMSN View\tStocks pause for breath as AI worries simmer; yen gallops higher\tRead markets news about AI worries and yen"
+            }
+          ],
+          "NegativeSamples": []
+        },
+        "ActualActivity": "Reads occasional market/stock coverage; no finance-specific reinforcement in the latest slice.",
+        "IntentionInferred": "User may monitor market context intermittently, sometimes in connection with tech/AI narratives; direct portfolio actions are not observed.",
+        "Topics": [
+          {
+            "Topic": "Microsoft stock (MSFT)",
+            "Weight": 1
+          },
+          {
+            "Topic": "markets pause / AI worries",
+            "Weight": 1
+          },
+          {
+            "Topic": "yen moves",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-12-08",
+        "LastDetectDate": "2026-02-12",
+        "LatestEvent": "2026-02-12\tMSN\tMSN View\tStocks pause for breath as AI worries simmer; yen gallops higher\tRead markets news about AI worries and yen",
+        "LifetimeDays": 66,
+        "TemporalStats": {
+          "RecencyDays": 1,
+          "ActiveDays": 7,
+          "EventCount": 11
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-12",
+            "source": "MSN",
+            "action": "Stocks pause for breath as AI worries simmer; yen gallops higher",
+            "raw_record": "2026-02-12\tMSN\tMSN View\tStocks pause for breath as AI worries simmer; yen gallops higher\tRead markets news about AI worries and yen"
+          },
+          {
+            "date": "2026-01-27",
+            "source": "MSN",
+            "action": "Microsoft (MSFT) slid despite delivering strong results and value growth",
+            "raw_record": "2026-01-27\tMSN\tMSN View\tMicrosoft (MSFT) slid despite delivering strong results and value growth\tRead Microsoft stock performance news"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Signals indicate finance-news consumption; there is no direct evidence of trades or portfolio actions."
+        ],
+        "Internal": {
+          "StrengthUpdate": "freeze"
+        },
+        "Persona": "A(n) cautious market watcher who tracks major tech-company performance and market headlines. They prioritize understanding narrative shifts and risk, rely on news coverage plus occasional ticker/market checks, and show attention spikes around big-company or macro events. Their goals include staying oriented to market moves now and making informed decisions over time."
+      },
+      {
+        "InterestName": "Travel destination research",
+        "ConfidenceScore": 0.9,
+        "ConfidenceLevel": "high",
+        "Strength": 0.6,
+        "State": "stable",
+        "DecayRate": 0.9702,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 10,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 11
+        },
+        "Signals": {
+          "PositiveCount": 48,
+          "NegativeCount": 0,
+          "NeutralCount": 0,
+          "PositiveSamples": [
+            {
+              "date": "2026-02-05",
+              "source": "Bing",
+              "action": "Cabo de Sao Vicente Lighthouse, Portugal",
+              "raw_record": "2026-02-05\tBing\tBing Search Spotlight\tCabo de Sao Vicente Lighthouse, Portugal\tLearn about Cabo de Sao Vicente Lighthouse"
+            },
+            {
+              "date": "2026-02-07",
+              "source": "Bing",
+              "action": "Salar de Uyuni, Bolivia",
+              "raw_record": "2026-02-07\tBing\tBing Search Spotlight\tSalar de Uyuni, Bolivia\tLearn about Salar de Uyuni"
+            },
+            {
+              "date": "2026-02-13",
+              "source": "Bing",
+              "action": "Big Pasture Plateau, Slovenia",
+              "raw_record": "2026-02-13\tBing\tBing Search Spotlight\tBig Pasture Plateau, Slovenia\tResearch a location in Slovenia"
+            }
+          ],
+          "NegativeSamples": []
+        },
+        "ActualActivity": "Looks up destinations/landmarks across multiple days; new lookup for a Slovenia location (Big Pasture Plateau) in the latest slice.",
+        "IntentionInferred": "User appears to collect travel inspiration and basic destination information across a wide geography; booking intent is not observed.",
+        "Topics": [
+          {
+            "Topic": "Anaga Rural Park (Canary Islands)",
+            "Weight": 6
+          },
+          {
+            "Topic": "Thale Waek (Thailand)",
+            "Weight": 4
+          },
+          {
+            "Topic": "Malpeque Bay, Canada",
+            "Weight": 4
+          },
+          {
+            "Topic": "Salar de Uyuni, Bolivia",
+            "Weight": 2
+          },
+          {
+            "Topic": "Big Pasture Plateau, Slovenia",
+            "Weight": 2
+          }
+        ],
+        "FirstDetectDate": "2025-12-09",
+        "LastDetectDate": "2026-02-13",
+        "LatestEvent": "2026-02-13\tUet\tUetEvents\tBig Pasture Plateau, Slovenia - Search\tSearch for Big Pasture Plateau information",
+        "LifetimeDays": 66,
+        "TemporalStats": {
+          "RecencyDays": 0,
+          "ActiveDays": 21,
+          "EventCount": 48
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-13",
+            "source": "Uet",
+            "action": "Big Pasture Plateau, Slovenia - Search",
+            "raw_record": "2026-02-13\tUet\tUetEvents\tBig Pasture Plateau, Slovenia - Search\tSearch for Big Pasture Plateau information"
+          },
+          {
+            "date": "2026-02-13",
+            "source": "Bing",
+            "action": "Big Pasture Plateau, Slovenia",
+            "raw_record": "2026-02-13\tBing\tBing Search Spotlight\tBig Pasture Plateau, Slovenia\tResearch a location in Slovenia"
+          },
+          {
+            "date": "2026-02-07",
+            "source": "Uet",
+            "action": "Salar de Uyuni, Bolivia - Search",
+            "raw_record": "2026-02-07\tUet\tUetEvents\tSalar de Uyuni, Bolivia - Search\tSearch Salar de Uyuni information"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Destination lookups could be lightweight curiosity; there is no direct evidence of bookings or travel dates."
+        ],
+        "Internal": {
+          "StrengthUpdate": "boost"
+        },
+        "Persona": "A(n) curious trip researcher who explores destinations by collecting key facts and visual context. They prioritize interesting places and workable logistics, rely on search-driven discovery, and show occasional bursts of engagement. Their goals include finding near-term outing ideas and building a broader travel wish-list over time."
+      },
+      {
+        "InterestName": "Publishing platform research",
+        "ConfidenceScore": 0.34,
+        "ConfidenceLevel": "low",
+        "Strength": 0.6,
+        "State": "ephemeral",
+        "DecayRate": 0.9506,
+        "TemporalType": "ephemeral",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 1,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 1,
+          "NegativeCount": 0,
+          "NeutralCount": 0,
+          "PositiveSamples": [
+            {
+              "date": "2026-02-12",
+              "source": "Bing",
+              "action": "amazon for publishers",
+              "raw_record": "2026-02-12\tBing\tBing Search web\tamazon for publishers\tFind Amazon resources for publishers"
+            }
+          ],
+          "NegativeSamples": []
+        },
+        "ActualActivity": "Searched for 'amazon for publishers' (likely looking for publisher resources or a publishing-related portal).",
+        "IntentionInferred": "User may be trying to access or learn about an Amazon publisher-facing offering; evidence is limited to a single query.",
+        "Topics": [
+          {
+            "Topic": "amazon for publishers",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-02-12",
+        "LastDetectDate": "2026-02-12",
+        "LatestEvent": "2026-02-12\tBing\tBing Search web\tamazon for publishers\tFind Amazon resources for publishers",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 1,
+          "ActiveDays": 1,
+          "EventCount": 1
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-12",
+            "source": "Bing",
+            "action": "amazon for publishers",
+            "raw_record": "2026-02-12\tBing\tBing Search web\tamazon for publishers\tFind Amazon resources for publishers"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Single event; may be simple navigation rather than a durable interest area."
+        ],
+        "Internal": {
+          "StrengthUpdate": "freeze"
+        },
+        "Persona": "A(n) task-driven information seeker who looks up platform portals when a specific publishing-related need arises. They prioritize quick access to official resources, rely on direct navigation-style searches, and show brief, goal-focused engagement. Their goals include finding the right publisher information now and keeping relevant platforms easy to reach when needed."
+      },
+      {
+        "InterestName": "Work chat tools",
+        "ConfidenceScore": 0.44,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.6,
+        "State": "emerging",
+        "DecayRate": 0.9702,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 1,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 1,
+          "NegativeCount": 0,
+          "NeutralCount": 0,
+          "PositiveSamples": [
+            {
+              "date": "2026-02-04",
+              "source": "Bing",
+              "action": "slack",
+              "raw_record": "2026-02-04\tBing\tBing Search web\tslack\tFind Slack app or website"
+            }
+          ],
+          "NegativeSamples": []
+        },
+        "ActualActivity": "Searched for Slack (likely navigation to the app or website).",
+        "IntentionInferred": "User may be trying to access a work chat/collaboration tool; evidence is limited to a single navigation-style query.",
+        "Topics": [
+          {
+            "Topic": "Slack",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-02-04",
+        "LastDetectDate": "2026-02-04",
+        "LatestEvent": "2026-02-04\tBing\tBing Search web\tslack\tFind Slack app or website",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 9,
+          "ActiveDays": 1,
+          "EventCount": 1
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-04",
+            "source": "Bing",
+            "action": "slack",
+            "raw_record": "2026-02-04\tBing\tBing Search web\tslack\tFind Slack app or website"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Single event may reflect one-off navigation rather than a durable interest."
+        ],
+        "Internal": {
+          "StrengthUpdate": "freeze"
+        },
+        "Persona": "A(n) task-driven tool user who looks up collaboration apps when they need quick access. They prioritize speed and low friction, rely on direct navigation searches, and show brief bursts of engagement around immediate tasks. Their goals include getting to the right workspace quickly now and keeping common tools easy to reach over time."
+      },
+      {
+        "InterestName": "PC gaming platforms",
+        "ConfidenceScore": 0.6,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.6,
+        "State": "declining",
+        "DecayRate": 0.9506,
+        "TemporalType": "ephemeral",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 4,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 4,
+          "NegativeCount": 0,
+          "NeutralCount": 0,
+          "PositiveSamples": [
+            {
+              "date": "2026-02-07",
+              "source": "Bing",
+              "action": "Welcome to Steam",
+              "raw_record": "2026-02-07\tBing\tBing Search web Clicked\tWelcome to Steam\tOpen Steam homepage"
+            },
+            {
+              "date": "2026-02-09",
+              "source": "Bing",
+              "action": "steam",
+              "raw_record": "2026-02-09\tBing\tBing Search web\tsteam\tAccess Steam gaming platform"
+            }
+          ],
+          "NegativeSamples": []
+        },
+        "ActualActivity": "Looked up Steam on multiple days (navigation-style); no new gaming-platform signals in the latest slice.",
+        "IntentionInferred": "User may be accessing or re-checking a PC gaming platform; deeper gaming intent is not observed.",
+        "Topics": [
+          {
+            "Topic": "Steam",
+            "Weight": 4
+          }
+        ],
+        "FirstDetectDate": "2026-02-07",
+        "LastDetectDate": "2026-02-09",
+        "LatestEvent": "2026-02-09\tBing\tBing Search web\tsteam\tAccess Steam gaming platform",
+        "LifetimeDays": 2,
+        "TemporalStats": {
+          "RecencyDays": 4,
+          "ActiveDays": 2,
+          "EventCount": 4
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-09",
+            "source": "Bing",
+            "action": "steam",
+            "raw_record": "2026-02-09\tBing\tBing Search web\tsteam\tAccess Steam gaming platform"
+          },
+          {
+            "date": "2026-02-07",
+            "source": "Bing",
+            "action": "Welcome to Steam",
+            "raw_record": "2026-02-07\tBing\tBing Search web Clicked\tWelcome to Steam\tOpen Steam homepage"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Steam queries may be navigation rather than sustained gaming behavior; no game titles or purchase flows are observed."
+        ],
+        "Internal": {
+          "StrengthUpdate": "freeze"
+        },
+        "Persona": "A(n) occasional platform explorer who checks PC gaming destinations when something prompts interest. They prioritize quick access and basic orientation, rely on brand navigation searches, and show short, event-driven bursts. Their goals include reaching the platform in the moment and keeping options open for future entertainment."
+      },
+      {
+        "InterestName": "Super Bowl predictions",
+        "ConfidenceScore": 0.54,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.6,
+        "State": "declining",
+        "DecayRate": 0.9506,
+        "TemporalType": "ephemeral",
+        "Seasonality": "seasonal_annual",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "global_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 3,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 3,
+          "NegativeCount": 0,
+          "NeutralCount": 0,
+          "PositiveSamples": [
+            {
+              "date": "2026-02-07",
+              "source": "Bing",
+              "action": "who will win the super bowl 2026",
+              "raw_record": "2026-02-07\tBing\tBing Search web\twho will win the super bowl 2026\tSee Super Bowl 2026 winner predictions"
+            },
+            {
+              "date": "2026-02-09",
+              "source": "Bing",
+              "action": "who will win the super bowl",
+              "raw_record": "2026-02-09\tBing\tBing Search web\twho will win the super bowl\tPredict Super Bowl winner"
+            }
+          ],
+          "NegativeSamples": []
+        },
+        "ActualActivity": "Searched for Super Bowl winner predictions on multiple days; no new sports-event prediction queries in the latest slice.",
+        "IntentionInferred": "User checked timely sports predictions around a major annual event; persistence beyond the event is unclear.",
+        "Topics": [
+          {
+            "Topic": "Super Bowl winner predictions",
+            "Weight": 3
+          }
+        ],
+        "FirstDetectDate": "2026-02-07",
+        "LastDetectDate": "2026-02-09",
+        "LatestEvent": "2026-02-09\tBing\tBing Search web\twho will win the super bowl\tPredict Super Bowl winner",
+        "LifetimeDays": 2,
+        "TemporalStats": {
+          "RecencyDays": 4,
+          "ActiveDays": 2,
+          "EventCount": 3
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-09",
+            "source": "Bing",
+            "action": "who will win the super bowl",
+            "raw_record": "2026-02-09\tBing\tBing Search web\twho will win the super bowl\tPredict Super Bowl winner"
+          },
+          {
+            "date": "2026-02-07",
+            "source": "Bing",
+            "action": "who will win the super bowl 2026",
+            "raw_record": "2026-02-07\tBing\tBing Search web\twho will win the super bowl 2026\tSee Super Bowl 2026 winner predictions"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Event-driven interest; may not indicate broader sports-following beyond this specific event."
+        ],
+        "Internal": {
+          "StrengthUpdate": "freeze"
+        },
+        "Persona": "A(n) event-driven sports observer who checks predictions and outcomes around major games. They prioritize quick consensus signals, rely on simple web searches, and engage in short bursts near the event. Their goals include getting a quick read on likely winners now and staying loosely connected to big sports moments over time."
+      },
+      {
+        "InterestName": "Product design tools",
+        "ConfidenceScore": 0.39,
+        "ConfidenceLevel": "low",
+        "Strength": 0.6,
+        "State": "declining",
+        "DecayRate": 0.9506,
+        "TemporalType": "ephemeral",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 1
+        },
+        "Signals": {
+          "PositiveCount": 1,
+          "NegativeCount": 0,
+          "NeutralCount": 0,
+          "PositiveSamples": [
+            {
+              "date": "2026-02-09",
+              "source": "Uet",
+              "action": "Figma",
+              "raw_record": "2026-02-09\tUet\tUetEvents\tFigma\tUse Figma design tool"
+            }
+          ],
+          "NegativeSamples": []
+        },
+        "ActualActivity": "Accessed Figma (design tool) once; no new design-tool signals in the latest slice.",
+        "IntentionInferred": "User may have done a one-off design/collaboration task; sustained design work is not supported by recent signals.",
+        "Topics": [
+          {
+            "Topic": "Figma",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-02-09",
+        "LastDetectDate": "2026-02-09",
+        "LatestEvent": "2026-02-09\tUet\tUetEvents\tFigma\tUse Figma design tool",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 4,
+          "ActiveDays": 1,
+          "EventCount": 1
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-09",
+            "source": "Uet",
+            "action": "Figma",
+            "raw_record": "2026-02-09\tUet\tUetEvents\tFigma\tUse Figma design tool"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Single event may be navigation or a one-off collaboration link rather than sustained design work."
+        ],
+        "Internal": {
+          "StrengthUpdate": "freeze"
+        },
+        "Persona": "A(n) task-oriented tool user who opens design software when a specific collaboration or creation need arises. They prioritize getting into the workspace quickly, rely on direct access rather than extended research, and show brief bursts tied to a task. Their goals include completing a concrete design-related action now and keeping creative/collaboration tools available for future use."
+      },
+      {
+        "InterestName": "Sports team news",
+        "ConfidenceScore": 0.4,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.6,
+        "State": "declining",
+        "DecayRate": 0.882,
+        "TemporalType": "ephemeral",
+        "Seasonality": "seasonal_annual",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "global_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 1,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 2,
+          "NegativeCount": 0,
+          "NeutralCount": 0,
+          "PositiveSamples": [
+            {
+              "date": "2026-01-28",
+              "source": "Bing",
+              "action": "commanders defensive coordinator",
+              "raw_record": "2026-01-28\tBing\tBing Search web\tcommanders defensive coordinator\tLook up Commanders defensive coordinator"
+            }
+          ],
+          "NegativeSamples": []
+        },
+        "ActualActivity": "Single earlier sports staffing/news query; no additional team-specific sports queries in the latest window.",
+        "IntentionInferred": "User likely checked a timely sports update; enduring team-following is not clearly established.",
+        "Topics": [
+          {
+            "Topic": "Commanders",
+            "Weight": 1
+          },
+          {
+            "Topic": "defensive coordinator",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-01-28",
+        "LastDetectDate": "2026-01-28",
+        "LatestEvent": "2026-01-28\tBing\tBing Search web\tcommanders defensive coordinator\tLook up Commanders defensive coordinator",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 16,
+          "ActiveDays": 1,
+          "EventCount": 2
+        },
+        "Evidence": [
+          {
+            "date": "2026-01-28",
+            "source": "Bing",
+            "action": "commanders defensive coordinator",
+            "raw_record": "2026-01-28\tBing\tBing Search web\tcommanders defensive coordinator\tLook up Commanders defensive coordinator"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Single-event interest; may not represent an enduring sports-following pattern."
+        ],
+        "Internal": {
+          "StrengthUpdate": "freeze"
+        },
+        "Persona": "A(n) occasional sports checker who looks up specific team updates when something timely comes up. They prioritize quick answers, rely on direct search queries, and engage in brief, event-driven bursts. Their goals include staying current on a specific team in the moment and checking key changes over the season."
+      },
+      {
+        "InterestName": "Software developer tools",
+        "ConfidenceScore": 0.66,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.6,
+        "State": "declining",
+        "DecayRate": 0.9702,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 2,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 8,
+          "NegativeCount": 0,
+          "NeutralCount": 0,
+          "PositiveSamples": [
+            {
+              "date": "2026-01-25",
+              "source": "Bing",
+              "action": "vercel",
+              "raw_record": "2026-01-25\tBing\tBing Search web\tvercel\tResearch Vercel web deployment platform"
+            },
+            {
+              "date": "2026-01-25",
+              "source": "Bing",
+              "action": "Vercel: Build and deploy the best web experiences with the AI Cloud",
+              "raw_record": "2026-01-25\tBing\tBing Search web Clicked\tVercel: Build and deploy the best web experiences with the AI Cloud\tExplore Vercel AI cloud deployment"
+            }
+          ],
+          "NegativeSamples": []
+        },
+        "ActualActivity": "Earlier searches for Vercel and clicking into its product page; no new developer-tool signals in the incremental slice.",
+        "IntentionInferred": "User appears to explore modern web deployment tooling in occasional research bursts; the latest slice did not add new developer-tool evidence.",
+        "Topics": [
+          {
+            "Topic": "Vercel",
+            "Weight": 2
+          },
+          {
+            "Topic": "AI Cloud deployment",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-12-21",
+        "LastDetectDate": "2026-01-25",
+        "LatestEvent": "2026-01-25\tBing\tBing Search web Clicked\tVercel: Build and deploy the best web experiences with the AI Cloud\tExplore Vercel AI cloud deployment",
+        "LifetimeDays": 35,
+        "TemporalStats": {
+          "RecencyDays": 19,
+          "ActiveDays": 4,
+          "EventCount": 8
+        },
+        "Evidence": [
+          {
+            "date": "2026-01-25",
+            "source": "Bing",
+            "action": "Vercel: Build and deploy the best web experiences with the AI Cloud",
+            "raw_record": "2026-01-25\tBing\tBing Search web Clicked\tVercel: Build and deploy the best web experiences with the AI Cloud\tExplore Vercel AI cloud deployment"
+          },
+          {
+            "date": "2026-01-25",
+            "source": "Bing",
+            "action": "vercel",
+            "raw_record": "2026-01-25\tBing\tBing Search web\tvercel\tResearch Vercel web deployment platform"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Signals show research and clicking, but not evidence of ongoing development work (e.g., docs, repos, debugging)."
+        ],
+        "Internal": {
+          "StrengthUpdate": "freeze"
+        },
+        "Persona": "A(n) curious tool explorer who tests modern developer and AI platforms when something catches their attention. They prioritize practical setup and clear product value, rely on targeted searches plus official product pages, and engage in short research bursts. Their goals include getting a working configuration quickly and building familiarity with modern tooling over time."
+      },
+      {
+        "InterestName": "Home gardening setup",
+        "ConfidenceScore": 0.5,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.6,
+        "State": "declining",
+        "DecayRate": 0.9506,
+        "TemporalType": "short_term",
+        "Seasonality": "seasonal_annual",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 1,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 2,
+          "NegativeCount": 0,
+          "NeutralCount": 0,
+          "PositiveSamples": [
+            {
+              "date": "2026-01-25",
+              "source": "Bing",
+              "action": "I have a beautiful greenhouse in Redmond Washington. Can you create an image of what the inside would look like with potting benches, heaters and glow lamps to support plant growth through current weather.",
+              "raw_record": "2026-01-25\tBing\tBing Search images\tI have a beautiful greenhouse in Redmond Washington. Can you create an image of what the inside would look like with potting benches, heaters and glow lamps to support plant growth through current weather.\tDesign greenhouse interior for winter plant growth"
+            }
+          ],
+          "NegativeSamples": []
+        },
+        "ActualActivity": "Earlier greenhouse interior planning query; no new gardening signals in the incremental slice.",
+        "IntentionInferred": "User may have had a specific winter greenhouse setup/planning need; ongoing gardening engagement is not visible in the latest slice.",
+        "Topics": [
+          {
+            "Topic": "greenhouse interior setup",
+            "Weight": 1
+          },
+          {
+            "Topic": "grow lights / glow lamps",
+            "Weight": 1
+          },
+          {
+            "Topic": "potting benches",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-01-25",
+        "LastDetectDate": "2026-01-25",
+        "LatestEvent": "2026-01-25\tBing\tBing Search images\tI have a beautiful greenhouse in Redmond Washington. Can you create an image of what the inside would look like with potting benches, heaters and glow lamps to support plant growth through current weather.\tDesign greenhouse interior for winter plant growth",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 19,
+          "ActiveDays": 1,
+          "EventCount": 2
+        },
+        "Evidence": [
+          {
+            "date": "2026-01-25",
+            "source": "Bing",
+            "action": "I have a beautiful greenhouse in Redmond Washington. Can you create an image of what the inside would look like with potting benches, heaters and glow lamps to support plant growth through current weather.",
+            "raw_record": "2026-01-25\tBing\tBing Search images\tI have a beautiful greenhouse in Redmond Washington. Can you create an image of what the inside would look like with potting benches, heaters and glow lamps to support plant growth through current weather.\tDesign greenhouse interior for winter plant growth"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Observed as a single-day planning query; may be project-specific rather than a long-running gardening hobby."
+        ],
+        "Internal": {
+          "StrengthUpdate": "freeze"
+        },
+        "Persona": "A(n) project-focused home grower who plans practical setups for plant care when seasonal needs arise. They prioritize functional layouts and reliable equipment, rely on visual planning and targeted ideas, and engage in short bursts around a specific setup problem. Their goals include keeping plants thriving through near-term conditions and improving the growing space over time."
+      },
+      {
+        "InterestName": "Crafting and knitting",
+        "ConfidenceScore": 0.54,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.6,
+        "State": "dormant",
+        "DecayRate": 0.9702,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 5,
+          "NegativeCount": 0,
+          "NeutralCount": 0,
+          "PositiveSamples": [
+            {
+              "date": "2025-12-14",
+              "source": "MSN",
+              "action": "OpenAI ends vesting cliff for new employees in compensation-policy change",
+              "raw_record": "2025-12-14\tMSN\tMSN View\tOpenAI ends vesting cliff for new employees in compensation-policy change\tShop merino wool yarn for knitting"
+            }
+          ],
+          "NegativeSamples": []
+        },
+        "ActualActivity": "Earlier craft/yarn browsing concentrated in mid-December; no new crafting signals in the latest window.",
+        "IntentionInferred": "User may return to crafting intermittently, but recent activity is focused elsewhere.",
+        "Topics": [
+          {
+            "Topic": "Rowan yarn",
+            "Weight": 1
+          },
+          {
+            "Topic": "merino wool yarn",
+            "Weight": 1
+          },
+          {
+            "Topic": "craft content",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-12-09",
+        "LastDetectDate": "2025-12-14",
+        "LatestEvent": "2025-12-14\tMSN\tMSN View\tOpenAI ends vesting cliff for new employees in compensation-policy change\tShop merino wool yarn for knitting",
+        "LifetimeDays": 5,
+        "TemporalStats": {
+          "RecencyDays": 61,
+          "ActiveDays": 3,
+          "EventCount": 5
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-14",
+            "source": "MSN",
+            "action": "OpenAI ends vesting cliff for new employees in compensation-policy change",
+            "raw_record": "2025-12-14\tMSN\tMSN View\tOpenAI ends vesting cliff for new employees in compensation-policy change\tShop merino wool yarn for knitting"
+          }
+        ],
+        "UncertaintyNotes": [
+          "No recent reinforcement; activity may be happening off-platform."
+        ],
+        "Internal": {
+          "StrengthUpdate": "freeze"
+        },
+        "Persona": "A(n) casual maker who looks for inspiration and supplies when a project idea comes up. They prioritize hands-on creativity and good materials, rely on browsing a mix of craft content and specialty retailers, and show occasional bursts of engagement. Their goals include completing a near-term project and keeping a low-pressure creative outlet available."
+      },
+      {
+        "InterestName": "Home cooking and baking",
+        "ConfidenceScore": 0.54,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.6,
+        "State": "declining",
+        "DecayRate": 0.9702,
+        "TemporalType": "short_term",
+        "Seasonality": "seasonal_annual",
+        "Trigger": {
+          "Type": "interval_based",
+          "Value": "monthly"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 7,
+          "NegativeCount": 0,
+          "NeutralCount": 0,
+          "PositiveSamples": [
+            {
+              "date": "2026-01-19",
+              "source": "Uet",
+              "action": "Order Racha Thai & Asian Kitchen - Redmond, WA Menu Delivery [Menu & Prices] | Redmond - DoorDash",
+              "raw_record": "2026-01-19\tUet\tUetEvents\tOrder Racha Thai & Asian Kitchen - Redmond, WA Menu Delivery [Menu & Prices] | Redmond - DoorDash\tOrder Thai food delivery in Redmond"
+            }
+          ],
+          "NegativeSamples": []
+        },
+        "ActualActivity": "No food-related reinforcement in the latest window; prior signals included recipe/tool browsing and one food-delivery event.",
+        "IntentionInferred": "User may intermittently engage with food planning (recipes or takeout), but recent activity is not focused on this topic.",
+        "Topics": [
+          {
+            "Topic": "bread machine recipes",
+            "Weight": 1
+          },
+          {
+            "Topic": "recipe browsing",
+            "Weight": 1
+          },
+          {
+            "Topic": "food delivery",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-12-09",
+        "LastDetectDate": "2026-01-19",
+        "LatestEvent": "2026-01-19\tUet\tUetEvents\tOrder Racha Thai & Asian Kitchen - Redmond, WA Menu Delivery [Menu & Prices] | Redmond - DoorDash\tOrder Thai food delivery in Redmond",
+        "LifetimeDays": 41,
+        "TemporalStats": {
+          "RecencyDays": 25,
+          "ActiveDays": 5,
+          "EventCount": 7
+        },
+        "Evidence": [
+          {
+            "date": "2026-01-19",
+            "source": "Uet",
+            "action": "Order Racha Thai & Asian Kitchen - Redmond, WA Menu Delivery [Menu & Prices] | Redmond - DoorDash",
+            "raw_record": "2026-01-19\tUet\tUetEvents\tOrder Racha Thai & Asian Kitchen - Redmond, WA Menu Delivery [Menu & Prices] | Redmond - DoorDash\tOrder Thai food delivery in Redmond"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Food delivery may not indicate cooking/baking specifically; treated as weak reinforcement for a broader food-at-home interest."
+        ],
+        "Internal": {
+          "StrengthUpdate": "freeze"
+        },
+        "Persona": "A(n) practical food planner who alternates between cooking inspiration and convenient meal options. They prioritize reliable choices and low-friction planning, rely on quick searches and familiar services, and show periodic bursts around specific meals. Their goals include making day-to-day meals easier now and maintaining a set of dependable options over time."
+      },
+      {
+        "InterestName": "Wildlife and nature learning",
+        "ConfidenceScore": 0.6,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.6,
+        "State": "declining",
+        "DecayRate": 0.9702,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 10,
+          "NegativeCount": 0,
+          "NeutralCount": 0,
+          "PositiveSamples": [
+            {
+              "date": "2026-01-16",
+              "source": "Bing",
+              "action": "black-naped monarch bird",
+              "raw_record": "2026-01-16\tBing\tBing Search Spotlight\tblack-naped monarch bird\tIdentify and learn about a bird species"
+            }
+          ],
+          "NegativeSamples": []
+        },
+        "ActualActivity": "No new wildlife/nature learning signals in the latest window; prior activity included occasional species lookups.",
+        "IntentionInferred": "Curiosity-driven nature learning appears occasional rather than continuous.",
+        "Topics": [
+          {
+            "Topic": "bird identification",
+            "Weight": 1
+          },
+          {
+            "Topic": "animal facts",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-12-08",
+        "LastDetectDate": "2026-01-16",
+        "LatestEvent": "2026-01-16\tUet\tUetEvents\tblack-naped monarch bird - Search\tSearch for black-naped monarch bird information",
+        "LifetimeDays": 39,
+        "TemporalStats": {
+          "RecencyDays": 28,
+          "ActiveDays": 4,
+          "EventCount": 10
+        },
+        "Evidence": [
+          {
+            "date": "2026-01-16",
+            "source": "Uet",
+            "action": "black-naped monarch bird - Search",
+            "raw_record": "2026-01-16\tUet\tUetEvents\tblack-naped monarch bird - Search\tSearch for black-naped monarch bird information"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Sparse evidence; may represent occasional fact-checking rather than a sustained hobby."
+        ],
+        "Internal": {
+          "StrengthUpdate": "freeze"
+        },
+        "Persona": "A(n) casual nature learner who follows curiosity-driven prompts about animals and natural phenomena. They prioritize quick understanding and interesting facts, rely on simple search queries and occasional article reads, and engage in short bursts. Their goals include learning something new in the moment and keeping a lightweight connection to nature topics over time."
+      },
+      {
+        "InterestName": "Personal productivity tools",
+        "ConfidenceScore": 0.38,
+        "ConfidenceLevel": "low",
+        "Strength": 0.6,
+        "State": "dormant",
+        "DecayRate": 0.9702,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 2,
+          "NegativeCount": 0,
+          "NeutralCount": 0,
+          "PositiveSamples": [
+            {
+              "date": "2025-12-16",
+              "source": "Uet",
+              "action": "Microsoft Copilot: Your AI companion",
+              "raw_record": "2025-12-16\tUet\tUetEvents\tMicrosoft Copilot: Your AI companion\tLog into Notion"
+            }
+          ],
+          "NegativeSamples": []
+        },
+        "ActualActivity": "No new productivity-tool usage signals in the latest window; prior evidence included a one-day Notion login/access.",
+        "IntentionInferred": "User may use planning/note tools occasionally, but ongoing usage is not supported by recent signals.",
+        "Topics": [
+          {
+            "Topic": "Notion",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-12-16",
+        "LastDetectDate": "2025-12-16",
+        "LatestEvent": "2025-12-16\tUet\tUetEvents\tMicrosoft Copilot: Your AI companion\tLog into Notion",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 59,
+          "ActiveDays": 1,
+          "EventCount": 2
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-16",
+            "source": "Uet",
+            "action": "Microsoft Copilot: Your AI companion",
+            "raw_record": "2025-12-16\tUet\tUetEvents\tMicrosoft Copilot: Your AI companion\tLog into Notion"
+          }
+        ],
+        "UncertaintyNotes": [
+          "No post-December evidence; could be off-platform or infrequent tool use."
+        ],
+        "Internal": {
+          "StrengthUpdate": "freeze"
+        },
+        "Persona": "A(n) occasional planner who tries digital tools when a need arises. They prioritize keeping information organized, rely on logging in and exploring features as needed, and show short bursts of tool use. Their goals include reducing friction in planning and having a central place for notes and lists over time."
+      },
+      {
+        "InterestName": "Home appliance comparison",
+        "ConfidenceScore": 0.73,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.6,
+        "State": "declining",
+        "DecayRate": 0.931,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 16,
+          "NegativeCount": 0,
+          "NeutralCount": 0,
+          "PositiveSamples": [
+            {
+              "date": "2026-01-18",
+              "source": "Bing",
+              "action": "miele vs bosch dishwasher",
+              "raw_record": "2026-01-18\tBing\tBing Search web\tmiele vs bosch dishwasher\tCompare Miele vs Bosch dishwashers"
+            }
+          ],
+          "NegativeSamples": []
+        },
+        "ActualActivity": "No new appliance-comparison signals in the latest window; prior activity included focused dishwasher and range/cooktop comparisons.",
+        "IntentionInferred": "User may still be considering major kitchen appliances, but recent evidence does not show ongoing shortlisting.",
+        "Topics": [
+          {
+            "Topic": "dishwasher comparisons",
+            "Weight": 1
+          },
+          {
+            "Topic": "premium ranges/cooktops",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-01-18",
+        "LastDetectDate": "2026-01-19",
+        "LatestEvent": "2026-01-19\tUet\tUetEvents\t\"Wolf Natural Gas Countertop Range - 6 Burners, 36\"\" | WebstaurantStore\"\tView Wolf 36-inch gas range listing",
+        "LifetimeDays": 1,
+        "TemporalStats": {
+          "RecencyDays": 25,
+          "ActiveDays": 2,
+          "EventCount": 16
+        },
+        "Evidence": [
+          {
+            "date": "2026-01-19",
+            "source": "Uet",
+            "action": "\"Wolf Natural Gas Countertop Range - 6 Burners, 36\"\" | WebstaurantStore\"",
+            "raw_record": "2026-01-19\tUet\tUetEvents\t\"Wolf Natural Gas Countertop Range - 6 Burners, 36\"\" | WebstaurantStore\"\tView Wolf 36-inch gas range listing"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Queries indicated active research earlier; purchase timing and whether the project is complete are not observed."
+        ],
+        "Internal": {
+          "StrengthUpdate": "freeze"
+        },
+        "Persona": "A(n) comparison-driven home buyer who researches major appliance purchases by checking rankings and side-by-side differences. They prioritize reliability and clear tradeoffs, rely on expert review sites plus specific product pages, and show focused bursts of evaluation. Their goals include selecting a best-fit model in the near term and reducing purchase risk over time."
+      },
+      {
+        "InterestName": "Home furniture deal shopping",
+        "ConfidenceScore": 0.72,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.6,
+        "State": "declining",
+        "DecayRate": 0.931,
+        "TemporalType": "short_term",
+        "Seasonality": "seasonal_annual",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 9,
+          "NegativeCount": 0,
+          "NeutralCount": 0,
+          "PositiveSamples": [
+            {
+              "date": "2026-01-18",
+              "source": "MSN",
+              "action": "West Elm just refreshed its outlet for the new year—score furniture and decor upgrades starting at $33",
+              "raw_record": "2026-01-18\tMSN\tMSN View\tWest Elm just refreshed its outlet for the new year—score furniture and decor upgrades starting at $33\tShop furniture deals at West Elm"
+            }
+          ],
+          "NegativeSamples": []
+        },
+        "ActualActivity": "No new furniture/decor deal browsing in the latest window; prior activity included outlet/open-box and other deal roundups.",
+        "IntentionInferred": "User may have paused home-upgrade shopping after an earlier burst.",
+        "Topics": [
+          {
+            "Topic": "outlet / open-box furniture",
+            "Weight": 1
+          },
+          {
+            "Topic": "clearance deal browsing",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-01-18",
+        "LastDetectDate": "2026-01-18",
+        "LatestEvent": "2026-01-18\tUet\tUetEvents\tShop the West Elm Furniture Collection | West Elm\tBrowse West Elm furniture collections",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 26,
+          "ActiveDays": 1,
+          "EventCount": 9
+        },
+        "Evidence": [
+          {
+            "date": "2026-01-18",
+            "source": "Uet",
+            "action": "Open Box Outlet | Save on Furniture & More | West Elm",
+            "raw_record": "2026-01-18\tUet\tUetEvents\tOpen Box Outlet | Save on Furniture & More | West Elm\tShop open-box furniture discounts"
+          }
+        ],
+        "UncertaintyNotes": [
+          "May have been a one-off home refresh burst; follow-on shopping is unknown."
+        ],
+        "Internal": {
+          "StrengthUpdate": "freeze"
+        },
+        "Persona": "A(n) deal-oriented home shopper who looks for furniture and decor upgrades via outlets and clearouts. They prioritize value and practical improvements, rely on browsing sale roundups and retailer category pages, and show short focused bursts around specific home items. Their goals include finding a good deal quickly and improving home comfort/function over time."
+      }
+    ],
+    "UncertaintyNotes": [
+      "Signal-source buckets are approximate: Bing Search counted as Search; MSN View counted as WatchReadClick; UetEvents counted as Other due to limited telemetry granularity.",
+      "Negative/neutral feedback signals were not observed in the provided slice; counts are set to 0."
+    ]
+  },
+  "ProductUsage": {
+    "Products": [
+      {
+        "ProductName": "Bing",
+        "EntryPoints": [
+          "Classic",
+          "Other"
+        ],
+        "EngagementTemperature": "Warm",
+        "SessionsPerDay": 0,
+        "TimeSpentPerDayHours": 0.0,
+        "MeaningfulInteractionsPerDay": 0,
+        "FirstUsage": "2025-12-08",
+        "LastUsage": "2026-01-02",
+        "UsageLifetimeDays": 25,
+        "Confidence": "medium",
+        "PII": {
+          "pii_class": "none"
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-08",
+            "source": "Bing",
+            "action": "cedar waxwing bird",
+            "raw_record": "2025-12-08\tBing\tBing Search Spotlight\tcedar waxwing bird\tIdentify or learn about cedar waxwing"
+          },
+          {
+            "date": "2026-01-02",
+            "source": "Bing",
+            "action": "getting an openai api key",
+            "raw_record": "2026-01-02\tBing\tBing Search web\tgetting an openai api key\tFind ingredients for vegan tofu dish"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Session and time-spent metrics are not available in the signals; numeric engagement fields are placeholders."
+        ]
+      },
+      {
+        "ProductName": "MSN",
+        "EntryPoints": [
+          "Classic",
+          "Other"
+        ],
+        "EngagementTemperature": "Hot",
+        "SessionsPerDay": 0,
+        "TimeSpentPerDayHours": 0.0,
+        "MeaningfulInteractionsPerDay": 0,
+        "FirstUsage": "2025-12-08",
+        "LastUsage": "2026-01-02",
+        "UsageLifetimeDays": 25,
+        "Confidence": "medium",
+        "PII": {
+          "pii_class": "none"
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-08",
+            "source": "MSN",
+            "action": "7.6 magnitude earthquake hits 50 miles off the coast of Japan",
+            "raw_record": "2025-12-08\tMSN\tMSN View\t7.6 magnitude earthquake hits 50 miles off the coast of Japan\tFollow Japan earthquake news"
+          },
+          {
+            "date": "2026-01-02",
+            "source": "MSN",
+            "action": "Alaska hit by massive M7.0 quake—over 160 aftershocks shatter homes and infrastructure",
+            "raw_record": "2026-01-02\tMSN\tMSN View\tAlaska hit by massive M7.0 quake—over 160 aftershocks shatter homes and infrastructure\tShop women's cashmere sweater"
+          }
+        ],
+        "UncertaintyNotes": [
+          "EngagementTemperature is inferred from frequent MSN View events, not from explicit session telemetry."
+        ]
+      },
+      {
+        "ProductName": "Microsoft Copilot",
+        "EntryPoints": [
+          "Ruby",
+          "Other"
+        ],
+        "EngagementTemperature": "Warm",
+        "SessionsPerDay": 0,
+        "TimeSpentPerDayHours": 0.0,
+        "MeaningfulInteractionsPerDay": 0,
+        "FirstUsage": "2025-12-09",
+        "LastUsage": "2026-01-01",
+        "UsageLifetimeDays": 23,
+        "Confidence": "medium",
+        "PII": {
+          "pii_class": "none"
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-09",
+            "source": "Uet",
+            "action": "Microsoft Copilot: Your AI companion",
+            "raw_record": "2025-12-09\tUet\tUetEvents\tMicrosoft Copilot: Your AI companion\tShop for Rowan yarn"
+          },
+          {
+            "date": "2026-01-01",
+            "source": "Uet",
+            "action": "Microsoft Copilot: Your AI companion",
+            "raw_record": "2026-01-01\tUet\tUetEvents\tMicrosoft Copilot: Your AI companion\tRead about new free Gmail features"
+          }
+        ],
+        "UncertaintyNotes": [
+          "The signals show page/app events but not whether Copilot chat interactions occurred."
+        ]
+      },
+      {
+        "ProductName": "Microsoft Edge",
+        "EntryPoints": [
+          "Windows-Desktop",
+          "Other"
+        ],
+        "EngagementTemperature": "Warm",
+        "SessionsPerDay": 0,
+        "TimeSpentPerDayHours": 0.0,
+        "MeaningfulInteractionsPerDay": 0,
+        "FirstUsage": "2025-12-08",
+        "LastUsage": "2025-12-20",
+        "UsageLifetimeDays": 12,
+        "Confidence": "low",
+        "PII": {
+          "pii_class": "none"
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-08",
+            "source": "Edge",
+            "action": "IMF chief Georgieva to visit China next week, IMF says",
+            "raw_record": "2025-12-08\tEdge\tBrowserEvents\tIMF chief Georgieva to visit China next week, IMF says\tRead news about IMF-China visit"
+          },
+          {
+            "date": "2025-12-20",
+            "source": "Edge",
+            "action": "The perfect pack list for your Lululemon fanny pack",
+            "raw_record": "2025-12-20\tEdge\tBrowserEvents\tThe perfect pack list for your Lululemon fanny pack\tFollow San Francisco outage news"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Edge events are present but sparse relative to MSN/Uet; limited basis for engagement intensity."
+        ]
+      }
+    ],
+    "Notes": "Product usage is inferred from event sources (Bing Search, MSN View/Upvote, Uet events, Edge BrowserEvents).",
+    "UncertaintyNotes": [
+      "No direct sessionization or dwell time is available; numeric engagement fields are set to 0 as placeholders."
+    ]
+  },
+  "Preferences": {
+    "Items": [
+      {
+        "PreferenceId": "pref.content_format.news_feed_scanning",
+        "Dimension": "content_format",
+        "Value": "news_feed_scanning",
+        "Scope": "global",
+        "AppliesTo": [
+          "MSN",
+          "Edge",
+          "Other"
+        ],
+        "ConfidenceScore": 0.62,
+        "FirstObserved": "2025-12-08",
+        "LastObserved": "2026-01-02",
+        "Evidence": [
+          {
+            "date": "2025-12-08",
+            "source": "MSN",
+            "action": "Google DeepMind CEO Demis Hassabis says AI scaling 'must be pushed to the maximum'",
+            "raw_record": "2025-12-08\tMSN\tMSN View\tGoogle DeepMind CEO Demis Hassabis says AI scaling 'must be pushed to the maximum'\tRead AI scaling news and opinions"
+          },
+          {
+            "date": "2026-01-02",
+            "source": "MSN",
+            "action": "Alaska hit by massive M7.0 quake—over 160 aftershocks shatter homes and infrastructure",
+            "raw_record": "2026-01-02\tMSN\tMSN View\tAlaska hit by massive M7.0 quake—over 160 aftershocks shatter homes and infrastructure\tShop women's cashmere sweater"
+          }
+        ],
+        "PII": {
+          "pii_class": "none"
+        },
+        "UncertaintyNotes": [
+          "Preference inferred from frequent MSN View events; does not measure actual reading depth."
+        ]
+      },
+      {
+        "PreferenceId": "pref.shopping.value_orientation.sale_browsing",
+        "Dimension": "shopping_style",
+        "Value": "sale_browsing_and_comparison",
+        "Scope": "global",
+        "AppliesTo": [
+          "Bing",
+          "Edge",
+          "Other"
+        ],
+        "ConfidenceScore": 0.58,
+        "FirstObserved": "2025-12-20",
+        "LastObserved": "2026-01-01",
+        "Evidence": [
+          {
+            "date": "2026-01-01",
+            "source": "Uet",
+            "action": "Designer Sale: Designer Brands on Sale - Bloomingdale's",
+            "raw_record": "2026-01-01\tUet\tUetEvents\tDesigner Sale: Designer Brands on Sale - Bloomingdale's\tLook up Microsoft ticker/stock"
+          },
+          {
+            "date": "2025-12-30",
+            "source": "Uet",
+            "action": "Sale | EILEEN FISHER",
+            "raw_record": "2025-12-30\tUet\tUetEvents\tSale | EILEEN FISHER\tRead news about AI shopping tools"
+          }
+        ],
+        "PII": {
+          "pii_class": "none"
+        },
+        "UncertaintyNotes": [
+          "Sale browsing may be seasonal (holiday period) rather than a permanent preference."
+        ]
+      }
+    ],
+    "TBDNotes": "Preference attributes are WIP; emit only grounded preferences from inputs.",
+    "UncertaintyNotes": [
+      "Signals do not include explicit settings, likes/dislikes beyond one upvote, or strong UI-level interaction preferences."
+    ]
+  },
+  "Biography": {
+    "Summary": "Rukmini is a Gen X adult who uses Microsoft surfaces primarily to stay current on technology—especially AI—and to browse lifestyle content. Recent activity shows strong shopping and comparison behavior around women's clothing and seasonal wardrobe items, alongside wide-ranging destination research for potential travel. She also periodically explores practical how-to topics (developer tools, API keys, recipes) and keeps an eye on major breaking news.",
+    "StageOfLifeSignals": "unknown",
+    "ActiveGoals": [
+      {
+        "goal": "Compare and potentially purchase wardrobe items (especially sweaters/tops) using sales and curated styling options",
+        "horizon": "weeks",
+        "linked_interests": [
+          "Women's fashion shopping"
+        ],
+        "confidence": "high"
+      },
+      {
+        "goal": "Shortlist destinations and gather travel logistics (e.g., park planning, international destinations, passport renewal)",
+        "horizon": "weeks",
+        "linked_interests": [
+          "Travel destination research"
+        ],
+        "confidence": "medium"
+      }
+    ],
+    "LongTermGoals": [
+      {
+        "goal": "Stay informed about AI trends and their practical impacts",
+        "horizon": "months",
+        "linked_interests": [
+          "AI industry news"
+        ],
+        "confidence": "high"
+      }
+    ],
+    "Highlights": [
+      "Frequent AI and big-tech news consumption across MSN/Edge, with recurring Microsoft/Google/Meta themes.",
+      "High-intensity apparel browsing across multiple brands and sale pages, plus interest in a personal styling service.",
+      "Repeated travel and destination lookups spanning parks and international locations."
+    ],
+    "UncertaintyNotes": [
+      "Life stage and household structure cannot be inferred safely from this slice; avoid assumptions based on age alone.",
+      "Some intents in the input appear mismatched to actions; biography is grounded in repeated topics, not intent labels."
+    ]
+  },
+  "Memory": {
+    "Working": {
+      "WindowHours": 24,
+      "TopInterestsLast24h": [],
+      "OneDaySpikes": []
+    },
+    "ShortTerm": {
+      "WindowDays": 28,
+      "MultiDayRepeatedEngagement": [
+        {
+          "interest_ref": "Women's fashion shopping",
+          "summary": "Repeated shopping/browsing over multiple days across premium brands and sales, including Stitch Fix onboarding and multiple sweater/top pages.",
+          "confidence": "high",
+          "evidence": [
+            {
+              "date": "2025-12-21",
+              "raw_record": "2025-12-21\tUet\tUetEvents\tMicrosoft Copilot: Your AI companion\tBrowse Vince bags"
+            }
+          ]
+        },
+        {
+          "interest_ref": "AI industry news",
+          "summary": "Sustained AI news monitoring across multiple days, spanning company strategy, AI risk discourse, and product/tool updates.",
+          "confidence": "high",
+          "evidence": [
+            {
+              "date": "2025-12-23",
+              "raw_record": "2025-12-23\tMSN\tMSN View\tSatya Nadella tells his Microsoft execs to embrace AI\tResearch Chefchaouen travel info"
+            }
+          ]
+        },
+        {
+          "interest_ref": "Travel destination research",
+          "summary": "Multiple destination queries and park research, mixing domestic and international locations with occasional travel logistics.",
+          "confidence": "medium",
+          "evidence": [
+            {
+              "date": "2025-12-31",
+              "raw_record": "2025-12-31\tBing\tBing Search web\tpassport renew\tLearn about Copilot Checkout marketing tools"
+            }
+          ]
+        }
+      ],
+      "WeeklyCycles": [],
+      "CrossTopicCooccurrence": [
+        {
+          "interest_refs": [
+            "AI industry news",
+            "Personal finance investing"
+          ],
+          "summary": "AI coverage often appears alongside market/stock-check behavior, suggesting the user may connect AI narratives to investment implications.",
+          "confidence": "medium"
+        }
+      ],
+      "HighDwellConsumptions": [],
+      "PreferenceEvolution": []
+    },
+    "LongTerm": {
+      "WindowDays": 365,
+      "HighInterestFrequency": [
+        {
+          "interest_ref": "AI industry news",
+          "summary": "Most frequent recurring topic in this slice, spanning multiple surfaces and many distinct articles.",
+          "confidence": "high"
+        },
+        {
+          "interest_ref": "Women's fashion shopping",
+          "summary": "Strong cluster of multi-brand apparel browsing and sale exploration across late December into early January.",
+          "confidence": "high"
+        }
+      ],
+      "ConsistentDomainAffinity": [
+        {
+          "domain_category": "other",
+          "summary": "Strong affinity for technology/business headlines (especially AI) and lifestyle shopping content.",
+          "confidence": "medium"
+        }
+      ],
+      "SeasonalRecurrences": [
+        {
+          "interest_ref": "Women's fashion shopping",
+          "pattern": "Late-year shopping surge centered on sweaters/tops and sale pages, consistent with holiday/winter season.",
+          "confidence": "medium"
+        }
+      ]
+    },
+    "UncertaintyNotes": [
+      "Working-memory (last 24h) is empty because the newest event is 12 days before AsOfDate.",
+      "LongTerm window is limited to the provided activity slice; no prior profile was available to extend beyond 2025-12-08."
+    ]
+  },
+  "Explanations": [
+    {
+      "Because": "Repeated MSN/Edge reading about AI strategy, AI tools, and major tech-company moves indicates a strong AI industry news interest.",
+      "Supports": [
+        {
+          "type": "interest",
+          "ref": "AI industry news"
+        }
+      ],
+      "Evidence": [
+        {
+          "date": "2025-12-08",
+          "source": "MSN",
+          "raw_record": "2025-12-08\tMSN\tMSN View\tGoogle DeepMind CEO Demis Hassabis says AI scaling 'must be pushed to the maximum'\tRead AI scaling news and opinions"
+        },
+        {
+          "date": "2025-12-23",
+          "source": "MSN",
+          "raw_record": "2025-12-23\tMSN\tMSN View\tSatya Nadella tells his Microsoft execs to embrace AI\tResearch Chefchaouen travel info"
+        },
+        {
+          "date": "2026-01-01",
+          "source": "MSN",
+          "raw_record": "2026-01-01\tMSN\tMSN View\tInside BCG's AI product assembly line: 'Every company has to become a tech company'\tRead opinion about AI and parenting"
+        }
+      ]
+    },
+    {
+      "Because": "Multiple commerce-like Uet events and brand pages for sweaters/tops plus Stitch Fix sign-in/sign-up indicate active apparel shopping and styling exploration.",
+      "Supports": [
+        {
+          "type": "interest",
+          "ref": "Women's fashion shopping"
+        }
+      ],
+      "Evidence": [
+        {
+          "date": "2025-12-11",
+          "source": "Uet",
+          "raw_record": "2025-12-11\tUet\tUetEvents\tMicrosoft Copilot: Your AI companion\tResearch Stitch Fix styling service"
+        },
+        {
+          "date": "2025-12-20",
+          "source": "Uet",
+          "raw_record": "2025-12-20\tUet\tUetEvents\tMicrosoft Copilot: Your AI companion\tBrowse Eileen Fisher sale items"
+        },
+        {
+          "date": "2026-01-01",
+          "source": "Uet",
+          "raw_record": "2026-01-01\tUet\tUetEvents\tWomen’s Luxury Clothing & Shoes On Sale | Vince\tRead about changing Gmail addresses"
+        }
+      ]
+    }
+  ],
+  "Updates": {
+    "HasPriorProfile": true,
+    "Deltas": [
+      {
+        "type": "interest_strengthened",
+        "description": "AI industry news reinforced by multiple MSN reads about AI automation predictions and AI industry staffing concerns, plus continued Copilot feature exploration (2026-02-13)."
+      },
+      {
+        "type": "interest_strengthened",
+        "description": "Travel destination research reinforced by new destination lookup for Big Pasture Plateau, Slovenia (2026-02-13)."
+      }
+    ],
+    "UncertaintyNotes": [
+      "All-time activity counts are extended conservatively by adding incremental totals; potential double-counting is unlikely because the incremental date is new relative to the prior profile window end date."
+    ]
+  }
+}

@@ -607,9 +607,9 @@ function InterestsSection({ interests }: { interests?: MAIProfileData['Interests
     const topics = interests?.Interests || [];
     if (topics.length === 0) return null;
 
-    const high = topics.filter(t => t.ConfidenceLevel === 'high');
-    const medium = topics.filter(t => t.ConfidenceLevel === 'medium');
-    const low = topics.filter(t => t.ConfidenceLevel === 'low');
+    const high = topics.filter(t => t.ConfidenceLevel === 'high').sort((a, b) => (b.ConfidenceScore ?? 0) - (a.ConfidenceScore ?? 0));
+    const medium = topics.filter(t => t.ConfidenceLevel === 'medium').sort((a, b) => (b.ConfidenceScore ?? 0) - (a.ConfidenceScore ?? 0));
+    const low = topics.filter(t => t.ConfidenceLevel === 'low').sort((a, b) => (b.ConfidenceScore ?? 0) - (a.ConfidenceScore ?? 0));
 
     const columnStyle: React.CSSProperties = { flex: 1, minWidth: 0 };
 
@@ -619,9 +619,9 @@ function InterestsSection({ interests }: { interests?: MAIProfileData['Interests
                 <div style={styles.sectionTitle}>
                     <span style={{ fontSize: '1.2rem' }}>❤️</span>
                     <span>Interests</span>
-                    <Badge bg="secondary" style={{ fontSize: '0.75rem', padding: '3px 10px', backgroundColor: '#E9ECEF', color: '#495057', fontWeight: '600' }}>
+                    <span style={{ fontSize: '0.85rem', fontWeight: '700', color: '#0d6efd' }}>
                         {topics.length}
-                    </Badge>
+                    </span>
                 </div>
                 <p style={{ fontSize: '0.82rem', color: '#8E8E93', marginBottom: '16px' }}>
                     General interests across all surfaces
