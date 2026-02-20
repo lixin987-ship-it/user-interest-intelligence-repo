@@ -1,0 +1,1389 @@
+{
+  "Version": "MAIProfile-Unified-v0.6",
+  "AsOfDate": "2025-12-21",
+  "Market": "EN-US",
+  "Window": {
+    "Incremental": {
+      "LookbackDays": 14,
+      "FromDate": "2025-12-08",
+      "ToDate": "2025-12-21"
+    },
+    "AllTime": {
+      "LookbackDays": 14,
+      "FromDate": "2025-12-08",
+      "ToDate": "2025-12-21"
+    }
+  },
+  "ActivityStats": {
+    "Incremental": {
+      "TotalEvents": 83,
+      "DistinctActiveDays": 12
+    },
+    "AllTime": {
+      "TotalEvents": 83,
+      "DistinctActiveDays": 12
+    }
+  },
+  "Facts": {
+    "Identity": {
+      "MAI_ID": null,
+      "ANID": "FF1353FD90160A498CB97B5CFFFFFFFF",
+      "MUID": null,
+      "Name": "Rukmini"
+    },
+    "Demographics": {
+      "Age": {
+        "value": 56,
+        "confidence": "high",
+        "pii_class": "moderate",
+        "provenance": [
+          "ProvidedFacts"
+        ],
+        "as_of": "2025-12-21"
+      },
+      "Gender": {
+        "value": "female",
+        "confidence": "high",
+        "pii_class": "moderate",
+        "provenance": [
+          "ProvidedFacts"
+        ],
+        "as_of": "2025-12-21"
+      },
+      "Generation": {
+        "value": "Gen X",
+        "confidence": "high",
+        "pii_class": "low",
+        "provenance": [
+          "DerivedFromProvidedFacts"
+        ],
+        "as_of": "2025-12-21"
+      }
+    },
+    "LifeStage": {
+      "value": "unknown",
+      "confidence": "low",
+      "pii_class": "low",
+      "provenance": [
+        "DerivedFromSignals"
+      ],
+      "as_of": "2025-12-21"
+    },
+    "Locations": {
+      "CurrentLocation": {
+        "value": "Redmond, Washington, US",
+        "confidence": "1.0",
+        "pii_class": "low",
+        "provenance": [
+          "Bing,Msn,Uet"
+        ],
+        "last_30d": true,
+        "as_of": null
+      },
+      "PastVisitedLocations": {
+        "value": "Sammamish, Seattle-Tacoma, Moses Lake, Seattle, Santa Clara",
+        "confidence": "1.0",
+        "pii_class": "low",
+        "provenance": [
+          "Bing,Msn,Uet"
+        ],
+        "last_30d": true,
+        "as_of": null
+      }
+    },
+    "Employment": {
+      "CurrentCompany": {
+        "value": "Microsoft",
+        "confidence": "1.0",
+        "pii_class": "low",
+        "provenance": [
+          "ProvidedFacts"
+        ],
+        "as_of": null
+      },
+      "PastCompany": {
+        "value": null,
+        "confidence": "low",
+        "pii_class": "low",
+        "provenance": [
+          "ProvidedFacts"
+        ],
+        "as_of": null
+      },
+      "Occupation": {
+        "value": null,
+        "confidence": "low",
+        "pii_class": "low",
+        "provenance": [
+          "ProvidedFacts"
+        ],
+        "as_of": null
+      }
+    },
+    "UncertaintyNotes": [
+      "LifeStage is set to unknown because signals include a mix of general news, shopping, crafts, and travel research without consistent household/parenting/job-seeking proxies.",
+      "Location/employment fields were not provided beyond market, so they are omitted or left null."
+    ]
+  },
+  "Interests": {
+    "Interests": [
+      {
+        "InterestName": "Nature and wildlife",
+        "ConfidenceScore": 0.72,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.6,
+        "State": "emerging",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 2,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 2
+        },
+        "Signals": {
+          "PositiveCount": 4,
+          "NegativeCount": 0,
+          "NeutralCount": 0,
+          "PositiveSamples": [
+            {
+              "date": "2025-12-08",
+              "source": "Bing",
+              "action": "cedar waxwing bird",
+              "raw_record": "2025-12-08\tBing\tBing Search Spotlight\tcedar waxwing bird\tLearn about cedar waxwing bird"
+            },
+            {
+              "date": "2025-12-09",
+              "source": "Bing",
+              "action": "Australian fur seal",
+              "raw_record": "2025-12-09\tBing\tBing Search Spotlight\tAustralian fur seal\tLearn about Australian fur seals"
+            }
+          ],
+          "NegativeSamples": []
+        },
+        "ActualActivity": "Looked up wildlife topics via Bing searches, including a bird species and a marine mammal.",
+        "IntentionInferred": "User appears curious about animals/nature and is doing quick informational lookups; may be casual learning rather than a sustained project.",
+        "Topics": [
+          {
+            "Topic": "cedar waxwing",
+            "Weight": 2
+          },
+          {
+            "Topic": "Australian fur seal",
+            "Weight": 2
+          }
+        ],
+        "FirstDetectDate": "2025-12-08",
+        "LastDetectDate": "2025-12-09",
+        "LatestEvent": "2025-12-09\tUet\tUetEvents\tAustralian fur seal - Search\tLearn about Australian fur seals",
+        "LifetimeDays": 1,
+        "TemporalStats": {
+          "RecencyDays": 12,
+          "ActiveDays": 2,
+          "EventCount": 4
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-09",
+            "source": "Uet",
+            "action": "Australian fur seal - Search",
+            "raw_record": "2025-12-09\tUet\tUetEvents\tAustralian fur seal - Search\tLearn about Australian fur seals"
+          },
+          {
+            "date": "2025-12-09",
+            "source": "Bing",
+            "action": "Australian fur seal",
+            "raw_record": "2025-12-09\tBing\tBing Search Spotlight\tAustralian fur seal\tLearn about Australian fur seals"
+          },
+          {
+            "date": "2025-12-08",
+            "source": "Bing",
+            "action": "cedar waxwing bird",
+            "raw_record": "2025-12-08\tBing\tBing Search Spotlight\tcedar waxwing bird\tLearn about cedar waxwing bird"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Signals are limited to two days; could be incidental curiosity rather than a durable interest."
+        ],
+        "Internal": {
+          "StrengthUpdate": "null"
+        },
+        "Persona": "A curious learner who does occasional quick lookups about wildlife. They prioritize understanding and novelty, rely on lightweight search, and engage in short bursts. Their goals include satisfying curiosity in the moment and building general knowledge, with affinity toward animals, birds, and marine life."
+      },
+      {
+        "InterestName": "Travel and parks research",
+        "ConfidenceScore": 0.78,
+        "ConfidenceLevel": "high",
+        "Strength": 0.6,
+        "State": "stable",
+        "DecayRate": 0.931,
+        "TemporalType": "persistent",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "interval_based",
+          "Value": "weekly"
+        },
+        "SignalSourceCounts": {
+          "Search": 6,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 7
+        },
+        "Signals": {
+          "PositiveCount": 13,
+          "NegativeCount": 0,
+          "NeutralCount": 0,
+          "PositiveSamples": [
+            {
+              "date": "2025-12-15",
+              "source": "Bing",
+              "action": "Ecola State Park, Oregon",
+              "raw_record": "2025-12-15\tBing\tBing Search Spotlight\tEcola State Park, Oregon\tResearch Ecola State Park, Oregon"
+            },
+            {
+              "date": "2025-12-11",
+              "source": "Bing",
+              "action": "Ruinenberg, Germany",
+              "raw_record": "2025-12-11\tBing\tBing Search Spotlight\tRuinenberg, Germany\tLook up Ruinenberg, Germany"
+            }
+          ],
+          "NegativeSamples": []
+        },
+        "ActualActivity": "Repeatedly searched for Ecola State Park (Oregon) across multiple days and looked up a place in Germany.",
+        "IntentionInferred": "User is likely planning or considering a trip/outing and gathering destination information; the repeated park research suggests higher intent than a single curiosity query.",
+        "Topics": [
+          {
+            "Topic": "Ecola State Park, Oregon",
+            "Weight": 8
+          },
+          {
+            "Topic": "Ruinenberg, Germany",
+            "Weight": 5
+          }
+        ],
+        "FirstDetectDate": "2025-12-11",
+        "LastDetectDate": "2025-12-20",
+        "LatestEvent": "2025-12-20\tUet\tUetEvents\tEcola State Park, Oregon - Search\tResearch Ecola State Park, Oregon",
+        "LifetimeDays": 9,
+        "TemporalStats": {
+          "RecencyDays": 1,
+          "ActiveDays": 7,
+          "EventCount": 13
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-20",
+            "source": "Uet",
+            "action": "Ecola State Park, Oregon - Search",
+            "raw_record": "2025-12-20\tUet\tUetEvents\tEcola State Park, Oregon - Search\tResearch Ecola State Park, Oregon"
+          },
+          {
+            "date": "2025-12-20",
+            "source": "Bing",
+            "action": "Ecola State Park, Oregon",
+            "raw_record": "2025-12-20\tBing\tBing Search Spotlight\tEcola State Park, Oregon\tResearch Ecola State Park, Oregon"
+          },
+          {
+            "date": "2025-12-12",
+            "source": "Bing",
+            "action": "Ruinenberg, Germany",
+            "raw_record": "2025-12-12\tBing\tBing Search Spotlight\tRuinenberg, Germany\tLook up Ruinenberg, Germany"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Travel intent is inferred from repeated destination queries; no booking signals are present in this slice."
+        ],
+        "Internal": {
+          "StrengthUpdate": "null"
+        },
+        "Persona": "A practical trip researcher who compares and revisits destination information across days. They prioritize preparedness and low-friction planning, rely on repeated search to refine decisions, and show consistent check-ins as plans take shape. Their goals include planning enjoyable outings soon and keeping a shortlist of destinations, with affinity toward parks and place lookups."
+      },
+      {
+        "InterestName": "AI and tech news",
+        "ConfidenceScore": 0.86,
+        "ConfidenceLevel": "high",
+        "Strength": 0.6,
+        "State": "stable",
+        "DecayRate": 0.931,
+        "TemporalType": "persistent",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "interval_based",
+          "Value": "daily"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 5,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 9
+        },
+        "Signals": {
+          "PositiveCount": 14,
+          "NegativeCount": 0,
+          "NeutralCount": 0,
+          "PositiveSamples": [
+            {
+              "date": "2025-12-08",
+              "source": "MSN",
+              "action": "Google DeepMind CEO Demis Hassabis says AI scaling 'must be pushed to the maximum'",
+              "raw_record": "2025-12-08\tMSN\tMSN View\tGoogle DeepMind CEO Demis Hassabis says AI scaling 'must be pushed to the maximum'\tRead about AI scaling views"
+            },
+            {
+              "date": "2025-12-20",
+              "source": "MSN",
+              "action": "AI reshapes search, marketing, and brand visibility",
+              "raw_record": "2025-12-20\tMSN\tMSN Upvote\tAI reshapes search, marketing, and brand visibility\tRead about AI impact on marketing/search"
+            }
+          ],
+          "NegativeSamples": []
+        },
+        "ActualActivity": "Read multiple articles about AI labs, AI business impact, AI safety concepts, and AI policy/regulation; also viewed tech industry news.",
+        "IntentionInferred": "User is tracking developments in AI (capabilities, leadership, policy, and impacts on work/marketing) and may be building an informed perspective rather than seeking a single answer.",
+        "Topics": [
+          {
+            "Topic": "AI scaling",
+            "Weight": 1
+          },
+          {
+            "Topic": "AI safety (paperclip maximizer)",
+            "Weight": 1
+          },
+          {
+            "Topic": "OpenAI compensation policy",
+            "Weight": 1
+          },
+          {
+            "Topic": "Meta AI leadership",
+            "Weight": 1
+          },
+          {
+            "Topic": "Google Gemini",
+            "Weight": 2
+          },
+          {
+            "Topic": "AI regulation",
+            "Weight": 1
+          },
+          {
+            "Topic": "AI in marketing/search",
+            "Weight": 1
+          },
+          {
+            "Topic": "AI chatbot in dementia care",
+            "Weight": 2
+          },
+          {
+            "Topic": "Microsoft Advertising features",
+            "Weight": 1
+          },
+          {
+            "Topic": "Tech industry moves",
+            "Weight": 1
+          },
+          {
+            "Topic": "Windows/Windows Phone history",
+            "Weight": 2
+          }
+        ],
+        "FirstDetectDate": "2025-12-08",
+        "LastDetectDate": "2025-12-20",
+        "LatestEvent": "2025-12-20\tMSN\tMSN Upvote\tAI reshapes search, marketing, and brand visibility\tRead about AI impact on marketing/search",
+        "LifetimeDays": 12,
+        "TemporalStats": {
+          "RecencyDays": 1,
+          "ActiveDays": 5,
+          "EventCount": 14
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-20",
+            "source": "MSN",
+            "action": "AI reshapes search, marketing, and brand visibility",
+            "raw_record": "2025-12-20\tMSN\tMSN Upvote\tAI reshapes search, marketing, and brand visibility\tRead about AI impact on marketing/search"
+          },
+          {
+            "date": "2025-12-18",
+            "source": "MSN",
+            "action": "Trump’s push for federal AI rules draws scrutiny",
+            "raw_record": "2025-12-18\tMSN\tMSN View\tTrump’s push for federal AI rules draws scrutiny\tRead news about US AI regulation"
+          },
+          {
+            "date": "2025-12-08",
+            "source": "MSN",
+            "action": "The 'Paperclip Maximizer Theory' That Shows AI’s Dark Side",
+            "raw_record": "2025-12-08\tMSN\tMSN View\tThe 'Paperclip Maximizer Theory' That Shows AI’s Dark Side\tLearn about AI safety paperclip maximizer"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Most evidence is news consumption; hands-on AI tool use is not shown in this slice."
+        ],
+        "Internal": {
+          "StrengthUpdate": "null"
+        },
+        "Persona": "An informed tech-news follower who tracks how AI affects products, work, and society. They prioritize staying current and understanding tradeoffs, rely on reading across multiple outlets, and show repeat engagement over days. Their goals include maintaining a clear mental model of AI trends now and anticipating downstream impacts longer term, with affinity toward major AI labs, policy, and business implications."
+      },
+      {
+        "InterestName": "World and disaster news",
+        "ConfidenceScore": 0.74,
+        "ConfidenceLevel": "high",
+        "Strength": 0.6,
+        "State": "emerging",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "global_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 8
+        },
+        "Signals": {
+          "PositiveCount": 8,
+          "NegativeCount": 0,
+          "NeutralCount": 0,
+          "PositiveSamples": [
+            {
+              "date": "2025-12-08",
+              "source": "MSN",
+              "action": "7.6 magnitude earthquake hits 50 miles off the coast of Japan",
+              "raw_record": "2025-12-08\tMSN\tMSN View\t7.6 magnitude earthquake hits 50 miles off the coast of Japan\tFollow news about Japan earthquake"
+            },
+            {
+              "date": "2025-12-11",
+              "source": "MSN",
+              "action": "'Historic flooding' in Washington state could force 100,000 people to evacuate",
+              "raw_record": "2025-12-11\tMSN\tMSN View\t'Historic flooding' in Washington state could force 100,000 people to evacuate\tFollow news about Washington flooding"
+            }
+          ],
+          "NegativeSamples": []
+        },
+        "ActualActivity": "Followed multiple updates about earthquakes/tsunami warnings in Japan and flooding in Washington state.",
+        "IntentionInferred": "User is monitoring major breaking events and their developments; interest likely spikes around specific incidents.",
+        "Topics": [
+          {
+            "Topic": "Japan earthquake",
+            "Weight": 3
+          },
+          {
+            "Topic": "Japan tsunami warning",
+            "Weight": 1
+          },
+          {
+            "Topic": "Washington flooding",
+            "Weight": 1
+          },
+          {
+            "Topic": "IMF chief visit to China",
+            "Weight": 2
+          },
+          {
+            "Topic": "BRICS and US retaliation",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-12-08",
+        "LastDetectDate": "2025-12-11",
+        "LatestEvent": "2025-12-11\tMSN\tMSN View\tMassive earthquake strikes Japan just days after tsunami warning\tFollow news about Japan earthquake",
+        "LifetimeDays": 3,
+        "TemporalStats": {
+          "RecencyDays": 10,
+          "ActiveDays": 2,
+          "EventCount": 8
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-11",
+            "source": "MSN",
+            "action": "Massive earthquake strikes Japan just days after tsunami warning",
+            "raw_record": "2025-12-11\tMSN\tMSN View\tMassive earthquake strikes Japan just days after tsunami warning\tFollow news about Japan earthquake"
+          },
+          {
+            "date": "2025-12-09",
+            "source": "MSN",
+            "action": "Tsunami warning issued in Japan after 7.6 magnitude quake",
+            "raw_record": "2025-12-09\tMSN\tMSN View\tTsunami warning issued in Japan after 7.6 magnitude quake\tFollow tsunami warning news in Japan"
+          },
+          {
+            "date": "2025-12-08",
+            "source": "MSN",
+            "action": "7.6 magnitude earthquake hits 50 miles off the coast of Japan",
+            "raw_record": "2025-12-08\tMSN\tMSN View\t7.6 magnitude earthquake hits 50 miles off the coast of Japan\tFollow news about Japan earthquake"
+          }
+        ],
+        "UncertaintyNotes": [
+          "This cluster is likely event-driven and may decay quickly when news cycles end."
+        ],
+        "Internal": {
+          "StrengthUpdate": "null"
+        },
+        "Persona": "A news monitor who checks updates during major global events. They prioritize situational awareness, rely on headlines and follow-up articles, and engage in short bursts around breaking stories. Their goals include staying informed now, with affinity toward natural disasters and major international developments."
+      },
+      {
+        "InterestName": "Crafts and knitting",
+        "ConfidenceScore": 0.77,
+        "ConfidenceLevel": "high",
+        "Strength": 0.6,
+        "State": "emerging",
+        "DecayRate": 0.931,
+        "TemporalType": "persistent",
+        "Seasonality": "seasonal_annual",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 4
+        },
+        "Signals": {
+          "PositiveCount": 4,
+          "NegativeCount": 0,
+          "NeutralCount": 0,
+          "PositiveSamples": [
+            {
+              "date": "2025-12-09",
+              "source": "Uet",
+              "action": "Rowan Knitting & Crochet Magazine 74 at WEBS | Yarn.com",
+              "raw_record": "2025-12-09\tUet\tUetEvents\tRowan Knitting & Crochet Magazine 74 at WEBS | Yarn.com\tBrowse knitting/crochet magazine"
+            },
+            {
+              "date": "2025-12-19",
+              "source": "Ads",
+              "action": "Premium Merino Wool Yarn for Knitting - Soft, Medium-Thick, Warm Hand-Woven Yarn for Scarves, Hats, Sweaters - 2.0mm Diameter, 4.0mm Knitting Needle R",
+              "raw_record": "2025-12-19\tAds\tAdEvents\tPremium Merino Wool Yarn for Knitting - Soft, Medium-Thick, Warm Hand-Woven Yarn for Scarves, Hats, Sweaters - 2.0mm Diameter, 4.0mm Knitting Needle R\tShop for merino wool knitting yarn"
+            }
+          ],
+          "NegativeSamples": []
+        },
+        "ActualActivity": "Browsed knitting/crochet magazine and yarn listings and engaged with an ad for merino yarn; also upvoted/viewed craft content.",
+        "IntentionInferred": "User may be actively working on or planning a knitting/crochet project and is exploring materials and inspiration.",
+        "Topics": [
+          {
+            "Topic": "Rowan knitting & crochet magazine",
+            "Weight": 1
+          },
+          {
+            "Topic": "Rowan yarn",
+            "Weight": 1
+          },
+          {
+            "Topic": "merino wool yarn",
+            "Weight": 1
+          },
+          {
+            "Topic": "craft content",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-12-09",
+        "LastDetectDate": "2025-12-19",
+        "LatestEvent": "2025-12-19\tAds\tAdEvents\tPremium Merino Wool Yarn for Knitting - Soft, Medium-Thick, Warm Hand-Woven Yarn for Scarves, Hats, Sweaters - 2.0mm Diameter, 4.0mm Knitting Needle R\tShop for merino wool knitting yarn",
+        "LifetimeDays": 10,
+        "TemporalStats": {
+          "RecencyDays": 2,
+          "ActiveDays": 3,
+          "EventCount": 4
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-19",
+            "source": "Ads",
+            "action": "Premium Merino Wool Yarn for Knitting - Soft, Medium-Thick, Warm Hand-Woven Yarn for Scarves, Hats, Sweaters - 2.0mm Diameter, 4.0mm Knitting Needle R",
+            "raw_record": "2025-12-19\tAds\tAdEvents\tPremium Merino Wool Yarn for Knitting - Soft, Medium-Thick, Warm Hand-Woven Yarn for Scarves, Hats, Sweaters - 2.0mm Diameter, 4.0mm Knitting Needle R\tShop for merino wool knitting yarn"
+          },
+          {
+            "date": "2025-12-13",
+            "source": "MSN",
+            "action": "The World, Through Craft",
+            "raw_record": "2025-12-13\tMSN\tMSN Upvote\tThe World, Through Craft\tRead content about crafts"
+          },
+          {
+            "date": "2025-12-09",
+            "source": "Uet",
+            "action": "Rowan Knitting & Crochet Magazine 74 at WEBS | Yarn.com",
+            "raw_record": "2025-12-09\tUet\tUetEvents\tRowan Knitting & Crochet Magazine 74 at WEBS | Yarn.com\tBrowse knitting/crochet magazine"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Seasonality set to annual due to common holiday/winter crafting cycles, but user-specific seasonality is not directly evidenced."
+        ],
+        "Internal": {
+          "StrengthUpdate": "null"
+        },
+        "Persona": "A hands-on crafter who seeks patterns, inspiration, and quality materials. They prioritize comfort and creativity, rely on browsing specialty shops and content, and engage when a project is forming. Their goals include completing a near-term craft project and maintaining a steady hobby over time, with affinity toward yarn, magazines, and craft editorial."
+      },
+      {
+        "InterestName": "Cooking and kitchen gear",
+        "ConfidenceScore": 0.7,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.6,
+        "State": "emerging",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 2,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 1
+        },
+        "Signals": {
+          "PositiveCount": 3,
+          "NegativeCount": 0,
+          "NeutralCount": 0,
+          "PositiveSamples": [
+            {
+              "date": "2025-12-14",
+              "source": "Bing",
+              "action": "zojirushi recipes bread machine",
+              "raw_record": "2025-12-14\tBing\tBing Search web\tzojirushi recipes bread machine\tFind Zojirushi bread machine recipes"
+            },
+            {
+              "date": "2025-12-09",
+              "source": "Uet",
+              "action": "Le Creuset Cast Iron Skinny Grill Pan | Williams Sonoma",
+              "raw_record": "2025-12-09\tUet\tUetEvents\tLe Creuset Cast Iron Skinny Grill Pan | Williams Sonoma\tShop for Le Creuset grill pan"
+            }
+          ],
+          "NegativeSamples": []
+        },
+        "ActualActivity": "Searched for bread machine recipes and visited a product page for a cast iron grill pan.",
+        "IntentionInferred": "User may be cooking/baking at home and comparing recipes or considering kitchen tools.",
+        "Topics": [
+          {
+            "Topic": "Zojirushi bread machine recipes",
+            "Weight": 2
+          },
+          {
+            "Topic": "Le Creuset grill pan",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-12-09",
+        "LastDetectDate": "2025-12-14",
+        "LatestEvent": "2025-12-14\tBing\tBing Search web Clicked\tBreadmaker Recipes | Zojirushi.com\tRead Zojirushi breadmaker recipes",
+        "LifetimeDays": 5,
+        "TemporalStats": {
+          "RecencyDays": 7,
+          "ActiveDays": 2,
+          "EventCount": 3
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-14",
+            "source": "Bing",
+            "action": "Breadmaker Recipes | Zojirushi.com",
+            "raw_record": "2025-12-14\tBing\tBing Search web Clicked\tBreadmaker Recipes | Zojirushi.com\tRead Zojirushi breadmaker recipes"
+          },
+          {
+            "date": "2025-12-14",
+            "source": "Bing",
+            "action": "zojirushi recipes bread machine",
+            "raw_record": "2025-12-14\tBing\tBing Search web\tzojirushi recipes bread machine\tFind Zojirushi bread machine recipes"
+          },
+          {
+            "date": "2025-12-09",
+            "source": "Uet",
+            "action": "Le Creuset Cast Iron Skinny Grill Pan | Williams Sonoma",
+            "raw_record": "2025-12-09\tUet\tUetEvents\tLe Creuset Cast Iron Skinny Grill Pan | Williams Sonoma\tShop for Le Creuset grill pan"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Limited signals; could be a one-off recipe lookup rather than an ongoing cooking project."
+        ],
+        "Internal": {
+          "StrengthUpdate": "null"
+        },
+        "Persona": "A home cook who occasionally researches recipes and considers upgrading kitchen tools. They prioritize practicality and reliable results, rely on brand sites and retail pages, and engage when planning meals. Their goals include trying a recipe soon and improving kitchen capability over time, with affinity toward bakeware/cookware and recipe collections."
+      },
+      {
+        "InterestName": "Women’s apparel shopping",
+        "ConfidenceScore": 0.83,
+        "ConfidenceLevel": "high",
+        "Strength": 0.6,
+        "State": "stable",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "seasonal_annual",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 4,
+          "Browser": 2,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 6
+        },
+        "Signals": {
+          "PositiveCount": 12,
+          "NegativeCount": 0,
+          "NeutralCount": 0,
+          "PositiveSamples": [
+            {
+              "date": "2025-12-13",
+              "source": "Bing",
+              "action": "stitch fix",
+              "raw_record": "2025-12-13\tBing\tBing Search web\tstitch fix\tExplore Stitch Fix personal styling service"
+            },
+            {
+              "date": "2025-12-19",
+              "source": "Bing",
+              "action": "Cashmere sweaters for women",
+              "raw_record": "2025-12-19\tBing\tBing Search shop\tCashmere sweaters for women\tShop for women's cashmere sweaters"
+            }
+          ],
+          "NegativeSamples": []
+        },
+        "ActualActivity": "Explored Stitch Fix (sign-in/sign-up and browsing), looked at cashmere sweaters (including a Nordstrom product), searched Lululemon, and read packing content for a Lululemon fanny pack.",
+        "IntentionInferred": "User is actively shopping for clothing and accessories and may be considering personal styling services; activity aligns with seasonal wardrobe updates and/or gift buying.",
+        "Topics": [
+          {
+            "Topic": "Stitch Fix personal styling",
+            "Weight": 5
+          },
+          {
+            "Topic": "cashmere sweaters",
+            "Weight": 2
+          },
+          {
+            "Topic": "Nordstrom cashmere turtleneck",
+            "Weight": 1
+          },
+          {
+            "Topic": "Lululemon",
+            "Weight": 3
+          },
+          {
+            "Topic": "flannel sheet set queen",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-12-13",
+        "LastDetectDate": "2025-12-21",
+        "LatestEvent": "2025-12-21\tMSN\tMSN View\tThe perfect pack list for your Lululemon fanny pack\tRead packing tips for Lululemon fanny pack",
+        "LifetimeDays": 8,
+        "TemporalStats": {
+          "RecencyDays": 0,
+          "ActiveDays": 4,
+          "EventCount": 12
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-21",
+            "source": "MSN",
+            "action": "The perfect pack list for your Lululemon fanny pack",
+            "raw_record": "2025-12-21\tMSN\tMSN View\tThe perfect pack list for your Lululemon fanny pack\tRead packing tips for Lululemon fanny pack"
+          },
+          {
+            "date": "2025-12-19",
+            "source": "Bing",
+            "action": "Cashmere sweaters for women",
+            "raw_record": "2025-12-19\tBing\tBing Search shop\tCashmere sweaters for women\tShop for women's cashmere sweaters"
+          },
+          {
+            "date": "2025-12-13",
+            "source": "Uet",
+            "action": "Sign Up For A Personal Stylist | Stitch Fix",
+            "raw_record": "2025-12-13\tUet\tUetEvents\tSign Up For A Personal Stylist | Stitch Fix\tSign up for Stitch Fix stylist"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Trigger marked as personal_event due to shopping/gifts signals, but exact motivation (self vs gifting) is not directly observed."
+        ],
+        "Internal": {
+          "StrengthUpdate": "null"
+        },
+        "Persona": "A style-conscious shopper who evaluates apparel options and occasionally considers assisted shopping (personal styling). They prioritize comfort and quality, rely on brand/retailer exploration and curated services, and engage in bursts during wardrobe refresh or seasonal shopping. Their goals include finding a few good items soon and maintaining a dependable wardrobe longer term, with affinity toward sweaters, athleisure, and curated boxes."
+      },
+      {
+        "InterestName": "Deals and gift ideas",
+        "ConfidenceScore": 0.76,
+        "ConfidenceLevel": "high",
+        "Strength": 0.6,
+        "State": "emerging",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "seasonal_annual",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 3,
+          "Browser": 1,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 4
+        },
+        "Signals": {
+          "PositiveCount": 8,
+          "NegativeCount": 0,
+          "NeutralCount": 0,
+          "PositiveSamples": [
+            {
+              "date": "2025-12-19",
+              "source": "Bing",
+              "action": "Cozy Homebody Gifts",
+              "raw_record": "2025-12-19\tBing\tBing Search shop\tCozy Homebody Gifts\tBrowse cozy gift ideas"
+            },
+            {
+              "date": "2025-12-20",
+              "source": "Edge",
+              "action": "Amazon's outlet has Apple, KitchenAid, iRobot, and more rarely marked down brands quietly on sale—up to 60% off",
+              "raw_record": "2025-12-20\tEdge\tBrowserEvents\tAmazon's outlet has Apple, KitchenAid, iRobot, and more rarely marked down brands quietly on sale—up to 60% off\tBrowse deals on Amazon outlet brands"
+            }
+          ],
+          "NegativeSamples": []
+        },
+        "ActualActivity": "Browsed gift-idea searches (coffee/tea, spa, cozy homebody) and read about Amazon outlet brand deals.",
+        "IntentionInferred": "User is likely looking for gift ideas and discounts, consistent with end-of-year shopping behaviors.",
+        "Topics": [
+          {
+            "Topic": "gift ideas (cozy homebody)",
+            "Weight": 1
+          },
+          {
+            "Topic": "gifts for coffee & tea lovers",
+            "Weight": 1
+          },
+          {
+            "Topic": "gifts for spa lover",
+            "Weight": 1
+          },
+          {
+            "Topic": "Amazon outlet deals",
+            "Weight": 2
+          }
+        ],
+        "FirstDetectDate": "2025-12-19",
+        "LastDetectDate": "2025-12-20",
+        "LatestEvent": "2025-12-20\tMSN\tMSN View\tAmazon's outlet has Apple, KitchenAid, iRobot, and more rarely marked down brands quietly on sale—up to 60% off\tBrowse deals on Amazon outlet brands",
+        "LifetimeDays": 1,
+        "TemporalStats": {
+          "RecencyDays": 1,
+          "ActiveDays": 2,
+          "EventCount": 8
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-20",
+            "source": "MSN",
+            "action": "Amazon's outlet has Apple, KitchenAid, iRobot, and more rarely marked down brands quietly on sale—up to 60% off",
+            "raw_record": "2025-12-20\tMSN\tMSN View\tAmazon's outlet has Apple, KitchenAid, iRobot, and more rarely marked down brands quietly on sale—up to 60% off\tBrowse deals on Amazon outlet brands"
+          },
+          {
+            "date": "2025-12-19",
+            "source": "Bing",
+            "action": "Gifts for Spa Lover",
+            "raw_record": "2025-12-19\tBing\tBing Search shop\tGifts for Spa Lover\tBrowse spa-related gift ideas"
+          },
+          {
+            "date": "2025-12-19",
+            "source": "Bing",
+            "action": "Gifts for Coffee & Tea Lovers",
+            "raw_record": "2025-12-19\tBing\tBing Search shop\tGifts for Coffee & Tea Lovers\tBrowse coffee and tea gift ideas"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Holiday seasonality inferred from timing and gift/deals queries; specific occasion is not known."
+        ],
+        "Internal": {
+          "StrengthUpdate": "null"
+        },
+        "Persona": "A value-seeking shopper who gathers gift inspiration and watches for discounts. They prioritize usefulness and good deals, rely on shopping search and deal roundups, and engage in short seasonal bursts. Their goals include finding a few suitable gifts soon and spending efficiently over time, with affinity toward cozy home items, self-care gifts, and branded bargains."
+      },
+      {
+        "InterestName": "Productivity tools exploration",
+        "ConfidenceScore": 0.58,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.6,
+        "State": "ephemeral",
+        "DecayRate": 0.686,
+        "TemporalType": "ephemeral",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 2,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 2,
+          "NegativeCount": 0,
+          "NeutralCount": 0,
+          "PositiveSamples": [
+            {
+              "date": "2025-12-19",
+              "source": "Bing",
+              "action": "notion",
+              "raw_record": "2025-12-19\tBing\tBing Search web\tnotion\tAccess or learn about Notion"
+            }
+          ],
+          "NegativeSamples": []
+        },
+        "ActualActivity": "Searched for Notion on two different days.",
+        "IntentionInferred": "User may be evaluating or returning to a note-taking/project organization tool, but the evidence is minimal.",
+        "Topics": [
+          {
+            "Topic": "Notion",
+            "Weight": 2
+          }
+        ],
+        "FirstDetectDate": "2025-12-19",
+        "LastDetectDate": "2025-12-20",
+        "LatestEvent": "2025-12-20\tBing\tBing Search web\tnotion\tAccess or learn about Notion",
+        "LifetimeDays": 1,
+        "TemporalStats": {
+          "RecencyDays": 1,
+          "ActiveDays": 2,
+          "EventCount": 2
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-20",
+            "source": "Bing",
+            "action": "notion",
+            "raw_record": "2025-12-20\tBing\tBing Search web\tnotion\tAccess or learn about Notion"
+          },
+          {
+            "date": "2025-12-19",
+            "source": "Bing",
+            "action": "notion",
+            "raw_record": "2025-12-19\tBing\tBing Search web\tnotion\tAccess or learn about Notion"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Insufficient depth to determine sustained tool adoption vs brief lookup."
+        ],
+        "Internal": {
+          "StrengthUpdate": "null"
+        },
+        "Persona": "A casual productivity-tool explorer who checks a tool name when organizing or planning something. They prioritize simplicity and quick access, rely on direct searches, and show light-touch engagement. Their goals include trying or revisiting a tool soon and improving personal organization longer term, with affinity toward note-taking and planning apps."
+      }
+    ],
+    "UncertaintyNotes": [
+      "Negative feedback signals (hide/not interested) were not present; NegativeCount values default to 0.",
+      "Strength values are initialized at 0.60 because this profile is created from scratch without a prior profile."
+    ]
+  },
+  "ProductUsage": {
+    "Products": [
+      {
+        "ProductName": "Bing",
+        "EntryPoints": [
+          "Classic",
+          "Other"
+        ],
+        "EngagementTemperature": "Warm",
+        "SessionsPerDay": 0,
+        "TimeSpentPerDayHours": 0.0,
+        "MeaningfulInteractionsPerDay": 0,
+        "FirstUsage": "2025-12-08",
+        "LastUsage": "2025-12-20",
+        "UsageLifetimeDays": 12,
+        "Confidence": "medium",
+        "PII": {
+          "pii_class": "low"
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-20",
+            "source": "Bing",
+            "action": "Ecola State Park, Oregon",
+            "raw_record": "2025-12-20\tBing\tBing Search Spotlight\tEcola State Park, Oregon\tResearch Ecola State Park, Oregon"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Session/time-spent metrics are not directly available from these logs; counts are left as 0 placeholders."
+        ]
+      },
+      {
+        "ProductName": "MSN",
+        "EntryPoints": [
+          "Other"
+        ],
+        "EngagementTemperature": "Warm",
+        "SessionsPerDay": 0,
+        "TimeSpentPerDayHours": 0.0,
+        "MeaningfulInteractionsPerDay": 0,
+        "FirstUsage": "2025-12-08",
+        "LastUsage": "2025-12-21",
+        "UsageLifetimeDays": 13,
+        "Confidence": "medium",
+        "PII": {
+          "pii_class": "low"
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-21",
+            "source": "MSN",
+            "action": "The perfect pack list for your Lululemon fanny pack",
+            "raw_record": "2025-12-21\tMSN\tMSN View\tThe perfect pack list for your Lululemon fanny pack\tRead packing tips for Lululemon fanny pack"
+          }
+        ],
+        "UncertaintyNotes": [
+          "MSN usage is evidenced by many article views and at least two upvotes, but interaction depth cannot be quantified from the provided fields."
+        ]
+      },
+      {
+        "ProductName": "Edge",
+        "EntryPoints": [
+          "Windows-Desktop",
+          "Other"
+        ],
+        "EngagementTemperature": "Cold",
+        "SessionsPerDay": 0,
+        "TimeSpentPerDayHours": 0.0,
+        "MeaningfulInteractionsPerDay": 0,
+        "FirstUsage": "2025-12-08",
+        "LastUsage": "2025-12-20",
+        "UsageLifetimeDays": 12,
+        "Confidence": "low",
+        "PII": {
+          "pii_class": "low"
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-20",
+            "source": "Edge",
+            "action": "NASA's new leader makes his priorities clear on day one",
+            "raw_record": "2025-12-20\tEdge\tBrowserEvents\tNASA's new leader makes his priorities clear on day one\tRead news about NASA leadership priorities"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Edge BrowserEvents indicate browsing activity but do not provide enough to estimate sessions/time."
+        ]
+      }
+    ],
+    "Notes": "Product usage is inferred from Source/DetailedSource presence (Bing searches, MSN views/upvotes, Edge browser events).",
+    "UncertaintyNotes": [
+      "Uet/UetEvents and Ads/AdEvents are treated as Other evidence for commerce-related activity; mapping to a single product surface is ambiguous."
+    ]
+  },
+  "Preferences": {
+    "Items": [
+      {
+        "PreferenceId": "pref_contentformat_news_reading",
+        "Dimension": "content_format",
+        "Value": "news/articles",
+        "Scope": "global",
+        "AppliesTo": [
+          "MSN",
+          "Edge",
+          "Other"
+        ],
+        "ConfidenceScore": 0.74,
+        "FirstObserved": "2025-12-08",
+        "LastObserved": "2025-12-21",
+        "Evidence": [
+          {
+            "date": "2025-12-20",
+            "source": "MSN",
+            "action": "NASA's new leader makes his priorities clear on day one",
+            "raw_record": "2025-12-20\tMSN\tMSN View\tNASA's new leader makes his priorities clear on day one\tRead news about NASA leadership priorities"
+          },
+          {
+            "date": "2025-12-11",
+            "source": "MSN",
+            "action": "'Historic flooding' in Washington state could force 100,000 people to evacuate",
+            "raw_record": "2025-12-11\tMSN\tMSN View\t'Historic flooding' in Washington state could force 100,000 people to evacuate\tFollow news about Washington flooding"
+          }
+        ],
+        "PII": {
+          "pii_class": "none"
+        },
+        "UncertaintyNotes": [
+          "Preference is inferred from repeated reading events; explicit user setting is not observed."
+        ]
+      },
+      {
+        "PreferenceId": "pref_interaction_positive_upvote",
+        "Dimension": "interaction_style",
+        "Value": "uses positive feedback (upvote) occasionally",
+        "Scope": "product_specific",
+        "AppliesTo": [
+          "MSN"
+        ],
+        "ConfidenceScore": 0.52,
+        "FirstObserved": "2025-12-13",
+        "LastObserved": "2025-12-20",
+        "Evidence": [
+          {
+            "date": "2025-12-20",
+            "source": "MSN",
+            "action": "AI reshapes search, marketing, and brand visibility",
+            "raw_record": "2025-12-20\tMSN\tMSN Upvote\tAI reshapes search, marketing, and brand visibility\tRead about AI impact on marketing/search"
+          },
+          {
+            "date": "2025-12-13",
+            "source": "MSN",
+            "action": "The World, Through Craft",
+            "raw_record": "2025-12-13\tMSN\tMSN Upvote\tThe World, Through Craft\tRead content about crafts"
+          }
+        ],
+        "PII": {
+          "pii_class": "none"
+        },
+        "UncertaintyNotes": [
+          "Only two upvotes are observed in this slice; frequency beyond this period is unknown."
+        ]
+      }
+    ],
+    "TBDNotes": "Preference attributes are WIP; emit only grounded preferences from inputs.",
+    "UncertaintyNotes": [
+      "No explicit settings (language, notification opt-ins, ad personalization toggles) are present in the provided signals."
+    ]
+  },
+  "Biography": {
+    "Summary": "Rukmini is a Gen X adult who uses Microsoft surfaces primarily to read and keep up with current events and technology—especially AI-related developments. Over the past two weeks, she also showed practical planning behavior around travel destinations and park outings, alongside seasonal shopping for apparel and gifts. She mixes informational curiosity (wildlife, science) with consumer research (clothing, crafts supplies, kitchen items). Overall, her activity suggests an information-seeking, planning-oriented pattern with periodic shopping bursts.",
+    "StageOfLifeSignals": "unknown",
+    "ActiveGoals": [
+      {
+        "goal": "Research a potential outing or trip destination (especially Ecola State Park, Oregon)",
+        "horizon": "weeks",
+        "linked_interests": [
+          "Travel and parks research"
+        ],
+        "confidence": "high"
+      },
+      {
+        "goal": "Find clothing items and/or try a personal styling service",
+        "horizon": "weeks",
+        "linked_interests": [
+          "Women’s apparel shopping"
+        ],
+        "confidence": "medium"
+      },
+      {
+        "goal": "Identify gift ideas and good deals",
+        "horizon": "days",
+        "linked_interests": [
+          "Deals and gift ideas"
+        ],
+        "confidence": "medium"
+      }
+    ],
+    "LongTermGoals": [
+      {
+        "goal": "Stay informed about AI developments and broader tech trends",
+        "horizon": "months",
+        "linked_interests": [
+          "AI and tech news"
+        ],
+        "confidence": "high"
+      }
+    ],
+    "Highlights": [
+      "Repeated destination research across multiple days (Oregon state park; Germany place lookup).",
+      "Strong engagement with AI/tech news topics spanning labs, policy, and business impact.",
+      "Active shopping signals across apparel (cashmere, Lululemon) and curated styling (Stitch Fix).",
+      "Craft-related engagement including yarn and knitting/crochet content."
+    ],
+    "UncertaintyNotes": [
+      "Household/relationship/parenting status cannot be inferred safely from this slice; a single parenting-related story view is not sufficient evidence.",
+      "Shopping intent could be for self or gifting; signals do not disambiguate."
+    ]
+  },
+  "Memory": {
+    "Working": {
+      "WindowHours": 24,
+      "TopInterestsLast24h": [
+        {
+          "interest_ref": "Women’s apparel shopping",
+          "summary": "Continued engagement with Lululemon-related packing content.",
+          "confidence": "medium",
+          "evidence": [
+            {
+              "date": "2025-12-21",
+              "raw_record": "2025-12-21\tMSN\tMSN View\tThe perfect pack list for your Lululemon fanny pack\tRead packing tips for Lululemon fanny pack"
+            }
+          ]
+        }
+      ],
+      "OneDaySpikes": []
+    },
+    "ShortTerm": {
+      "WindowDays": 28,
+      "MultiDayRepeatedEngagement": [
+        {
+          "interest_ref": "Travel and parks research",
+          "summary": "Repeated searches for Ecola State Park across many days suggest active planning/research rather than one-off curiosity.",
+          "confidence": "high",
+          "evidence": [
+            {
+              "date": "2025-12-20",
+              "raw_record": "2025-12-20\tBing\tBing Search Spotlight\tEcola State Park, Oregon\tResearch Ecola State Park, Oregon"
+            }
+          ]
+        },
+        {
+          "interest_ref": "AI and tech news",
+          "summary": "Multiple readings across AI labs, policy, and business impacts indicate sustained attention to AI/tech developments.",
+          "confidence": "high",
+          "evidence": [
+            {
+              "date": "2025-12-18",
+              "raw_record": "2025-12-18\tMSN\tMSN View\tTrump’s push for federal AI rules draws scrutiny\tRead news about US AI regulation"
+            }
+          ]
+        }
+      ],
+      "WeeklyCycles": [],
+      "CrossTopicCooccurrence": [
+        {
+          "interest_refs": [
+            "Women’s apparel shopping",
+            "Deals and gift ideas"
+          ],
+          "summary": "Apparel exploration co-occurred with deal/gift browsing, consistent with a seasonal shopping phase.",
+          "confidence": "medium"
+        }
+      ],
+      "HighDwellConsumptions": [],
+      "PreferenceEvolution": []
+    },
+    "LongTerm": {
+      "WindowDays": 365,
+      "HighInterestFrequency": [],
+      "ConsistentDomainAffinity": [
+        {
+          "domain_category": "other",
+          "summary": "Within the available window, activity clusters around news consumption (tech/AI and world events) plus consumer research (shopping and hobby materials).",
+          "confidence": "low"
+        }
+      ],
+      "SeasonalRecurrences": [
+        {
+          "interest_ref": "Deals and gift ideas",
+          "pattern": "Likely annual spike around late-year holidays (gift idea searches and deal roundups observed in mid/late December).",
+          "confidence": "medium"
+        }
+      ]
+    },
+    "UncertaintyNotes": [
+      "Long-term (365d) patterns cannot be established reliably because only a ~14-day slice is available."
+    ]
+  },
+  "Explanations": [
+    {
+      "Because": "Repeated destination searches over multiple days indicate active travel/outing research.",
+      "Supports": [
+        {
+          "type": "interest",
+          "ref": "Travel and parks research"
+        },
+        {
+          "type": "biography",
+          "ref": "ActiveGoals"
+        }
+      ],
+      "Evidence": [
+        {
+          "date": "2025-12-20",
+          "source": "Bing",
+          "raw_record": "2025-12-20\tBing\tBing Search Spotlight\tEcola State Park, Oregon\tResearch Ecola State Park, Oregon"
+        },
+        {
+          "date": "2025-12-17",
+          "source": "Bing",
+          "raw_record": "2025-12-17\tBing\tBing Search Spotlight\tEcola State Park, Oregon\tResearch Ecola State Park, Oregon"
+        }
+      ]
+    },
+    {
+      "Because": "Multiple reads about AI across labs, policy, and business suggest a sustained AI/tech information interest.",
+      "Supports": [
+        {
+          "type": "interest",
+          "ref": "AI and tech news"
+        },
+        {
+          "type": "biography",
+          "ref": "LongTermGoals"
+        }
+      ],
+      "Evidence": [
+        {
+          "date": "2025-12-08",
+          "source": "MSN",
+          "raw_record": "2025-12-08\tMSN\tMSN View\tGoogle DeepMind CEO Demis Hassabis says AI scaling 'must be pushed to the maximum'\tRead about AI scaling views"
+        },
+        {
+          "date": "2025-12-18",
+          "source": "MSN",
+          "raw_record": "2025-12-18\tMSN\tMSN View\tTrump’s push for federal AI rules draws scrutiny\tRead news about US AI regulation"
+        }
+      ]
+    }
+  ],
+  "Updates": {
+    "HasPriorProfile": false,
+    "Deltas": [
+      {
+        "type": "other",
+        "description": "Created new profile from provided facts and 2025-12-08 to 2025-12-21 activity signals (no prior profile supplied)."
+      },
+      {
+        "type": "interest_added",
+        "description": "Added interests: AI and tech news; Travel and parks research; Women’s apparel shopping; Deals and gift ideas; Crafts and knitting; Cooking and kitchen gear; Nature and wildlife; World and disaster news; Productivity tools exploration."
+      },
+      {
+        "type": "biography_updated",
+        "description": "Generated biography emphasizing AI/tech news consumption, destination research, and seasonal shopping/crafts based on observed signals."
+      },
+      {
+        "type": "memory_updated",
+        "description": "Generated memory highlighting last-24h apparel content and multi-day travel and AI engagement in the last 28 days."
+      }
+    ],
+    "UncertaintyNotes": [
+      "All-time windows and activity stats equal incremental stats because no prior profile was provided; longer history may exist but is not represented here."
+    ]
+  }
+}

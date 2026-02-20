@@ -62,7 +62,7 @@
     },
     "Locations": {
       "CurrentLocation": {
-        "value": null,
+        "value": "Redmond, Washington, US",
         "confidence": "low",
         "pii_class": "none",
         "provenance": [
@@ -71,11 +71,20 @@
         "last_30d": true,
         "as_of": null
       },
-      "PastVisitedLocations": []
+      "PastVisitedLocations": {
+        "value": "Sammamish, Seattle-Tacoma, Moses Lake, Seattle, Santa Clara",
+        "confidence": "1.0",
+        "pii_class": "low",
+        "provenance": [
+          "Bing,Msn,Uet"
+        ],
+        "last_30d": true,
+        "as_of": null
+      }
     },
     "Employment": {
       "CurrentCompany": {
-        "value": null,
+        "value": "Microsoft",
         "confidence": "low",
         "pii_class": "none",
         "provenance": [

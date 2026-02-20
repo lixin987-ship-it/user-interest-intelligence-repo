@@ -17,7 +17,7 @@ interface MAIProfileData {
         Demographics?: Record<string, { value?: any; confidence?: string; provenance?: string[] }>;
         Locations?: {
             CurrentLocation?: { value?: string | null; last_30d?: boolean };
-            PastVisitedLocations?: Array<{ value?: string }>;
+            PastVisitedLocations?: Array<{ value?: string }> | { value?: string | null };
         };
         Employment?: {
             CurrentCompany?: { value?: string | null };
@@ -399,8 +399,13 @@ function FactsSection({ facts, stageOfLife }: { facts?: MAIProfileData['Facts'];
     const locations = facts.Locations;
     const employment = facts.Employment;
 
-    // Visited locations
-    const visitedLocations = locations?.PastVisitedLocations?.map(l => l.value).filter(Boolean) || [];
+    // Visited locations – handle both array and object formats
+    const pastVisited = locations?.PastVisitedLocations;
+    const visitedLocations: string[] = pastVisited
+        ? Array.isArray(pastVisited)
+            ? pastVisited.map(l => l.value).filter(Boolean) as string[]
+            : pastVisited.value ? [pastVisited.value] : []
+        : [];
 
     return (
         <Card style={styles.sectionCard}>
