@@ -1,0 +1,3 @@
+[submodule "MaiProfile"]
+	path = MaiProfile
+	url = https://github.com/MS-Feeds/MaiProfile.git
