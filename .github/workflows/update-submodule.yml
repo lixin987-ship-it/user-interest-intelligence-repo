@@ -1,0 +1,28 @@
+name: Auto-update MaiProfile Submodule
+
+on:
+  repository_dispatch:
+    types: [maiprofile-updated]
+
+permissions:
+  contents: write
+
+jobs:
+  update-submodule:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout with submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Update MaiProfile submodule to latest
+        run: |
+          git submodule update --remote MaiProfile
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add MaiProfile
+          git diff --cached --quiet && echo "No submodule changes" && exit 0
+          git commit -m "Auto-update MaiProfile submodule to latest"
+          git push
