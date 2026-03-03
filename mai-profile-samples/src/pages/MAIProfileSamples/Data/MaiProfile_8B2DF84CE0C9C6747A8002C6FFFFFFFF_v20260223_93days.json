@@ -1,0 +1,2517 @@
+{
+  "Version": "MAIProfile-Unified-v0.7",
+  "AsOfDate": "2026-02-23",
+  "Market": "en-us",
+  "Window": {
+    "Incremental": {
+      "LookbackDays": 7,
+      "FromDate": "2026-02-17",
+      "ToDate": "2026-02-23"
+    },
+    "AllTime": {
+      "LookbackDays": 77,
+      "FromDate": "2025-12-09",
+      "ToDate": "2026-02-23"
+    }
+  },
+  "ActivityStats": {
+    "Incremental": {
+      "TotalEvents": 12,
+      "DistinctActiveDays": 4
+    },
+    "AllTime": {
+      "TotalEvents": 338,
+      "DistinctActiveDays": 51,
+      "UncertaintyNotes": [
+        "AllTime totals are conservatively estimated as PriorProfile AllTime + current incremental slice; overlap/deduplication cannot be fully verified from the provided data."
+      ]
+    }
+  },
+  "Facts": {
+    "Version": "Facts-v0.7",
+    "AsOfDate": "2026-02-23",
+    "Identity": {
+      "MAI_ID": "8B2DF84CE0C9C6747A8002C6FFFFFFFF",
+      "ANID": null,
+      "MUID": null,
+      "Name": "Yulan"
+    },
+    "Demographics": {
+      "Age": {
+        "value": 45,
+        "confidence": "high",
+        "pii_class": "moderate",
+        "provenance": [
+          "ProvidedFacts"
+        ],
+        "as_of": "2026-02-23"
+      },
+      "Generation": {
+        "value": "Gen X",
+        "confidence": "medium",
+        "pii_class": "low",
+        "provenance": [
+          "DerivedFromProvidedFacts"
+        ],
+        "as_of": "2026-02-23"
+      }
+    },
+    "LifeStage": {
+      "value": "unknown",
+      "confidence": "low",
+      "pii_class": "none",
+      "provenance": [
+        "DerivedFromSignals"
+      ],
+      "as_of": "2026-02-23"
+    },
+    "Locations": {
+      "CurrentLocation": {
+        "value": null,
+        "confidence": "low",
+        "pii_class": "none",
+        "provenance": [
+          "ProvidedFacts"
+        ],
+        "last_30d": false,
+        "as_of": null
+      },
+      "PastVisitedLocations": []
+    },
+    "Employment": {
+      "CurrentCompany": {
+        "value": null,
+        "confidence": "low",
+        "pii_class": "none",
+        "provenance": [
+          "ProvidedFacts"
+        ],
+        "as_of": null
+      },
+      "PastCompany": {
+        "value": null,
+        "confidence": "low",
+        "pii_class": "none",
+        "provenance": [
+          "ProvidedFacts"
+        ],
+        "as_of": null
+      },
+      "Occupation": {
+        "value": null,
+        "confidence": "low",
+        "pii_class": "none",
+        "provenance": [
+          "ProvidedFacts"
+        ],
+        "as_of": null
+      }
+    },
+    "UncertaintyNotes": [
+      "No reliable signals provided for location, employer, or occupation.",
+      "Life stage is not inferred due to limited and non-specific behavioral proxies."
+    ]
+  },
+  "Interests": {
+    "Version": "Interests-v0.7",
+    "AsOfDate": "2026-02-23",
+    "Interests": [
+      {
+        "InterestName": "Women’s apparel shopping",
+        "ConfidenceScore": 0.97,
+        "ConfidenceLevel": "high",
+        "Strength": 0.991897239552,
+        "State": "stable",
+        "DecayRate": 0.98,
+        "TemporalType": "short_term",
+        "Seasonality": "seasonal_annual",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 169,
+          "Other": 31
+        },
+        "Signals": {
+          "PositiveCount": 0,
+          "NegativeCount": 0,
+          "NeutralCount": 200
+        },
+        "ActualActivity": "Viewed at least one women’s apparel product page (Eileen Fisher sweater) in the current slice, consistent with prior multi-retailer women’s clothing browsing.",
+        "IntentionInferred": "User is actively comparison-shopping women’s apparel (including seasonal layering pieces) and checking specific items on retailer pages before deciding.",
+        "Topics": [
+          {
+            "Topic": "lululemon Softstreme High-Rise Straight-Leg Pant (regular/short)",
+            "Weight": 12
+          },
+          {
+            "Topic": "lululemon women’s puffers/vests (Wunder Puff, Cinch-Waist puffer)",
+            "Weight": 7
+          },
+          {
+            "Topic": "UNIQLO down jackets (seamless/ultra light)",
+            "Weight": 4
+          },
+          {
+            "Topic": "UNIQLO knitwear/cardigans (Souffle Yarn)",
+            "Weight": 1
+          },
+          {
+            "Topic": "Theory silk blouses/tops (georgette/tie-neck)",
+            "Weight": 3
+          },
+          {
+            "Topic": "Theory outerwear (moto jacket)",
+            "Weight": 1
+          },
+          {
+            "Topic": "Nordstrom Rack cashmere sweater",
+            "Weight": 1
+          },
+          {
+            "Topic": "Lands' End women’s down puffer coat",
+            "Weight": 1
+          },
+          {
+            "Topic": "lululemon women’s track/track pants (Luon)",
+            "Weight": 2
+          },
+          {
+            "Topic": "lululemon running shorts",
+            "Weight": 2
+          },
+          {
+            "Topic": "Nordstrom women’s outerwear and apparel browsing (prior)",
+            "Weight": 5
+          },
+          {
+            "Topic": "lululemon women’s skirts (mini/tennis)",
+            "Weight": 2
+          },
+          {
+            "Topic": "Talbots embroidered tee",
+            "Weight": 1
+          },
+          {
+            "Topic": "Haven Well Within cashmere cardigan",
+            "Weight": 2
+          },
+          {
+            "Topic": "lululemon women’s performance jacket (Cross Chill)",
+            "Weight": 1
+          },
+          {
+            "Topic": "Splendid Ingrid Jacket",
+            "Weight": 1
+          },
+          {
+            "Topic": "Eileen Fisher mock neck ribbed sweater (Nordstrom Rack)",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-12-09",
+        "LastDetectDate": "2026-02-18",
+        "LifetimeDays": 71,
+        "TemporalStats": {
+          "RecencyDays": 5,
+          "ActiveDays": 21,
+          "EventCount": 200
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-18",
+            "source": "Uet",
+            "action": "Eileen Fisher Mock Neck Ribbed Sweater | Nordstromrack"
+          },
+          {
+            "date": "2026-02-09",
+            "source": "Uet",
+            "action": "Ingrid Jacket | Splendid"
+          },
+          {
+            "date": "2026-01-31",
+            "source": "Uet",
+            "action": "Softstreme High-Rise Straight-Leg Pant *Short | Women's Pants | lululemon"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Purchases are not observable in the provided signals; activity reflects browsing/comparison behavior.",
+          "Some retailer taxonomy labels (e.g., category metadata) may not reflect intended audience; inference is based on product titles and repeated views."
+        ],
+        "Internal": {
+          "StrengthUpdate": "boost"
+        },
+        "Persona": "A brand-comparison shopper focused on quality wardrobe staples and seasonal layering. They browse many near-variants (materials, lengths, fits, and brands) and seem to optimize for comfort, warmth, and value before deciding."
+      },
+      {
+        "InterestName": "Women’s footwear shopping",
+        "ConfidenceScore": 0.91,
+        "ConfidenceLevel": "high",
+        "Strength": 0.981663744,
+        "State": "declining",
+        "DecayRate": 0.98,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 20,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 0,
+          "NegativeCount": 0,
+          "NeutralCount": 20
+        },
+        "ActualActivity": "Viewed a women’s boot product page (Franco Sarto) in the current slice, reinforcing prior footwear browsing on Nordstrom Rack.",
+        "IntentionInferred": "User is comparison-shopping women’s shoes/boots with a practicality-and-value lens (likely comfort and weather suitability), using retailer product pages and clearance/deal browsing when available.",
+        "Topics": [
+          {
+            "Topic": "AUTRY women’s sneakers (Medalist/Dallas Low)",
+            "Weight": 4
+          },
+          {
+            "Topic": "Clarks Breeze faux-fur lined boots (wide width available)",
+            "Weight": 1
+          },
+          {
+            "Topic": "Amalfi by Rangoni Baccio pump",
+            "Weight": 1
+          },
+          {
+            "Topic": "Sam Edelman women’s loafers (Loraine/Lucca/Liona)",
+            "Weight": 4
+          },
+          {
+            "Topic": "Circus NY by Sam Edelman women’s ballet flats",
+            "Weight": 1
+          },
+          {
+            "Topic": "Merrell women’s casual shoes (Wrapt Cozy)",
+            "Weight": 1
+          },
+          {
+            "Topic": "Nordstrom women’s footwear browsing",
+            "Weight": 1
+          },
+          {
+            "Topic": "UGG Ultra Mini boots (women)",
+            "Weight": 2
+          },
+          {
+            "Topic": "Veronica Beard Riviera Sneaker (women)",
+            "Weight": 1
+          },
+          {
+            "Topic": "UGG Dakota Slipper (women)",
+            "Weight": 1
+          },
+          {
+            "Topic": "Cole Haan Grand Raelyn Waterproof Hiking Boot (women)",
+            "Weight": 1
+          },
+          {
+            "Topic": "Nordstrom Rack clearance shoes browsing",
+            "Weight": 1
+          },
+          {
+            "Topic": "Franco Sarto Pippen Square Toe Boot (Women)",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-01-07",
+        "LastDetectDate": "2026-02-21",
+        "LifetimeDays": 45,
+        "TemporalStats": {
+          "RecencyDays": 2,
+          "ActiveDays": 8,
+          "EventCount": 20
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-21",
+            "source": "Uet",
+            "action": "Franco Sarto Pippen Square Toe Boot (Women) | Nordstromrack"
+          },
+          {
+            "date": "2026-02-03",
+            "source": "Uet",
+            "action": "Clearance Shoes | Nordstrom Rack"
+          },
+          {
+            "date": "2026-02-03",
+            "source": "Uet",
+            "action": "AUTRY Medalist Low Sneaker (Women) | Nordstromrack"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Footwear browsing could be part of broader apparel shopping sessions; purchases are not observable."
+        ],
+        "Internal": {
+          "StrengthUpdate": "boost"
+        },
+        "Persona": "A comfort-and-practicality focused shopper who compares everyday footwear across a few trusted brands and retailers. They revisit close substitutes (sneakers vs boots vs slippers) and use clearance browsing to balance function with value."
+      },
+      {
+        "InterestName": "Tech industry updates",
+        "ConfidenceScore": 0.74,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.994932309590016,
+        "State": "stable",
+        "DecayRate": 0.98,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "interval_based",
+          "Value": "weekly"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 5,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 13
+        },
+        "Signals": {
+          "PositiveCount": 0,
+          "NegativeCount": 0,
+          "NeutralCount": 18
+        },
+        "ActualActivity": "Read multiple AI/tech-business headlines (Microsoft AI spending, OpenAI capex implications, AI’s impact on white-collar work) across Edge and MSN in the current slice.",
+        "IntentionInferred": "User does periodic check-ins on major AI and tech-company developments, especially when stories suggest meaningful shifts (spending cycles, capex, product strategy, workforce impact).",
+        "Topics": [
+          {
+            "Topic": "AI competition (China vs West)",
+            "Weight": 2
+          },
+          {
+            "Topic": "AI talent competition / startup moves",
+            "Weight": 2
+          },
+          {
+            "Topic": "Meta layoffs / tech workforce news",
+            "Weight": 2
+          },
+          {
+            "Topic": "Nvidia weekly roundup",
+            "Weight": 2
+          },
+          {
+            "Topic": "AI hardware/3D chip performance headlines",
+            "Weight": 1
+          },
+          {
+            "Topic": "Semiconductor leadership/Nvidia challenger story",
+            "Weight": 1
+          },
+          {
+            "Topic": "Broadcom AI chip demand",
+            "Weight": 1
+          },
+          {
+            "Topic": "Apple business growth",
+            "Weight": 1
+          },
+          {
+            "Topic": "Steve Ballmer wealth story",
+            "Weight": 1
+          },
+          {
+            "Topic": "AI search sentiment (DuckDuckGo user survey)",
+            "Weight": 1
+          },
+          {
+            "Topic": "OpenAI technical breakthrough (stack memory)",
+            "Weight": 1
+          },
+          {
+            "Topic": "Microsoft AI spending/investor reaction",
+            "Weight": 1
+          },
+          {
+            "Topic": "OpenAI capex impact on Microsoft/Oracle (analyst note)",
+            "Weight": 1
+          },
+          {
+            "Topic": "AI impact on white-collar work prediction",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-12-10",
+        "LastDetectDate": "2026-02-23",
+        "LifetimeDays": 75,
+        "TemporalStats": {
+          "RecencyDays": 0,
+          "ActiveDays": 11,
+          "EventCount": 18
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-23",
+            "source": "MSN",
+            "action": "Microsoft’s AI splurge rattles investors"
+          },
+          {
+            "date": "2026-02-23",
+            "source": "MSN",
+            "action": "OpenAI's updated capex plans prove positive for Microsoft, Oracle: BNP Paribas"
+          },
+          {
+            "date": "2026-02-23",
+            "source": "MSN",
+            "action": "Microsoft AI chief says artificial intelligence will do most white-collar work by next year"
+          }
+        ],
+        "UncertaintyNotes": [
+          "These signals reflect news consumption; professional involvement in tech is not implied.",
+          "Topic boundaries overlap with AI governance and workplace/labor coverage; separation is based on article framing."
+        ],
+        "Internal": {
+          "StrengthUpdate": "boost"
+        },
+        "Persona": "A practical follower of tech business and AI progress narratives who prefers headline-driven explainers. They use periodic reading to stay oriented on major company moves and notable breakthroughs rather than tracking every update."
+      },
+      {
+        "InterestName": "AI governance news",
+        "ConfidenceScore": 0.62,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.9817278570109593,
+        "State": "stable",
+        "DecayRate": 0.99,
+        "TemporalType": "persistent",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "interval_based",
+          "Value": "weekly"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 6,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 9
+        },
+        "Signals": {
+          "PositiveCount": 0,
+          "NegativeCount": 0,
+          "NeutralCount": 15
+        },
+        "ActualActivity": "Read an AI safety/oversight headline about OpenAI safety hiring in the current slice, consistent with prior governance/safety-related re-engagement around leadership and accountability narratives.",
+        "IntentionInferred": "User’s AI interest reliably re-activates around safety/oversight leadership, accountability, and societal impact narratives rather than continuous deep research.",
+        "Topics": [
+          {
+            "Topic": "AI competition (China vs West)",
+            "Weight": 2
+          },
+          {
+            "Topic": "AI talent competition / startup moves",
+            "Weight": 2
+          },
+          {
+            "Topic": "AI unemployment / economic impact commentary",
+            "Weight": 2
+          },
+          {
+            "Topic": "Copilot adoption challenges",
+            "Weight": 2
+          },
+          {
+            "Topic": "Satya Nadella AI product oversight",
+            "Weight": 2
+          },
+          {
+            "Topic": "AI safety report card",
+            "Weight": 2
+          },
+          {
+            "Topic": "AI privacy court case",
+            "Weight": 2
+          },
+          {
+            "Topic": "Microsoft AI governance",
+            "Weight": 1
+          },
+          {
+            "Topic": "robots vs AI risk",
+            "Weight": 1
+          },
+          {
+            "Topic": "OpenAI safety hiring / safety push",
+            "Weight": 3
+          }
+        ],
+        "FirstDetectDate": "2025-12-09",
+        "LastDetectDate": "2026-02-17",
+        "LifetimeDays": 70,
+        "TemporalStats": {
+          "RecencyDays": 6,
+          "ActiveDays": 8,
+          "EventCount": 15
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-17",
+            "source": "Edge",
+            "action": "OpenAI Taps Anthropic Expert for Safety Push"
+          },
+          {
+            "date": "2026-02-09",
+            "source": "Edge",
+            "action": "OpenAI Taps Anthropic Expert for Safety Push"
+          },
+          {
+            "date": "2026-02-05",
+            "source": "Edge",
+            "action": "OpenAI Taps Anthropic Expert for Safety Push"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Signals are news-consumption; hands-on engagement with AI tools is not observable from provided logs.",
+          "This topic overlaps with broader tech-business and workplace/labor headlines; separation is inherently fuzzy."
+        ],
+        "Internal": {
+          "StrengthUpdate": "boost"
+        },
+        "Persona": "A news-driven tech observer who tracks AI’s real-world implications, especially when leadership, policy, or accountability narratives surface. They tend to re-engage around major headlines rather than continuous deep research."
+      },
+      {
+        "InterestName": "Workplace and labor news",
+        "ConfidenceScore": 0.6,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.97969749909504,
+        "State": "declining",
+        "DecayRate": 0.98,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "popularity_based",
+          "Value": "trending"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 9
+        },
+        "Signals": {
+          "PositiveCount": 0,
+          "NegativeCount": 0,
+          "NeutralCount": 9
+        },
+        "ActualActivity": "Read a prominent headline about AI doing white-collar work, which touches on workforce impact narratives.",
+        "IntentionInferred": "User clicks workplace-impact and labor-adjacent stories when they connect to major business/technology shifts.",
+        "Topics": [
+          {
+            "Topic": "Meta layoffs / worker impacts",
+            "Weight": 2
+          },
+          {
+            "Topic": "AI unemployment / jobs commentary",
+            "Weight": 1
+          },
+          {
+            "Topic": "US unemployment and job gains",
+            "Weight": 2
+          },
+          {
+            "Topic": "Washington state laws 2026 (minimum wage/worker protections)",
+            "Weight": 1
+          },
+          {
+            "Topic": "workplace trends (job hugging)",
+            "Weight": 1
+          },
+          {
+            "Topic": "jobs news",
+            "Weight": 1
+          },
+          {
+            "Topic": "business leadership / CEOs public stance",
+            "Weight": 1
+          },
+          {
+            "Topic": "AI impact on white-collar work prediction",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-12-16",
+        "LastDetectDate": "2026-02-23",
+        "LifetimeDays": 69,
+        "TemporalStats": {
+          "RecencyDays": 0,
+          "ActiveDays": 8,
+          "EventCount": 9
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-23",
+            "source": "MSN",
+            "action": "Microsoft AI chief says artificial intelligence will do most white-collar work by next year"
+          },
+          {
+            "date": "2026-01-27",
+            "source": "MSN",
+            "action": "Why Minnesota’s CEOs finally broke their silence"
+          },
+          {
+            "date": "2026-01-21",
+            "source": "MSN",
+            "action": "Why is Meta laying off workers again?"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Small-to-moderate volume; may reflect general news-feed consumption rather than a primary focus area."
+        ],
+        "Internal": {
+          "StrengthUpdate": "boost"
+        },
+        "Persona": "A general-news reader who checks workplace and leadership headlines to understand practical impacts and business context. They engage most when stories connect to everyday economic conditions."
+      },
+      {
+        "InterestName": "Pet rescue stories",
+        "ConfidenceScore": 0.76,
+        "ConfidenceLevel": "high",
+        "Strength": 0.8516099004320049,
+        "State": "declining",
+        "DecayRate": 0.9016,
+        "TemporalType": "ephemeral",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "popularity_based",
+          "Value": "trending"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 4,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 23
+        },
+        "Signals": {
+          "PositiveCount": 0,
+          "NegativeCount": 0,
+          "NeutralCount": 27
+        },
+        "ActualActivity": "No new pet/rescue story clicks in the current slice; last reinforcement remains the multi-story day in early February.",
+        "IntentionInferred": "User appears drawn to emotionally positive animal stories when they appear in feed contexts; not currently active in this slice.",
+        "Topics": [
+          {
+            "Topic": "kitten rescue stories",
+            "Weight": 3
+          },
+          {
+            "Topic": "stray cat rescue stories/videos",
+            "Weight": 6
+          },
+          {
+            "Topic": "cat videos/humor",
+            "Weight": 4
+          },
+          {
+            "Topic": "animal baby/friendship clips",
+            "Weight": 2
+          },
+          {
+            "Topic": "puppy videos",
+            "Weight": 2
+          },
+          {
+            "Topic": "cat shelter story (orange cat / shelter intake)",
+            "Weight": 2
+          },
+          {
+            "Topic": "dog rescue stories",
+            "Weight": 1
+          },
+          {
+            "Topic": "dog behavior/protective stories",
+            "Weight": 1
+          },
+          {
+            "Topic": "feral cat adoption story",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-12-12",
+        "LastDetectDate": "2026-02-11",
+        "LifetimeDays": 61,
+        "TemporalStats": {
+          "RecencyDays": 12,
+          "ActiveDays": 7,
+          "EventCount": 27
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-11",
+            "source": "MSN",
+            "action": "Hero dogs lead family to rescue frozen dog"
+          },
+          {
+            "date": "2026-02-11",
+            "source": "MSN",
+            "action": "Feral cats adopted together, new owner can’t believe what she notices"
+          },
+          {
+            "date": "2026-02-11",
+            "source": "MSN",
+            "action": "Dogs protect babies like they are their own puppies"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Some signals are general animal entertainment rather than explicit rescue/adoption; label reflects the dominant theme in titles.",
+          "Engagement may be driven by feed placement/trending content rather than a durable offline activity."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A casual feel-good content consumer drawn to short animal stories, especially shelter/rescue and adoption narratives. They engage most when stories are easy to read and emotionally positive."
+      },
+      {
+        "InterestName": "Bags and backpacks shopping",
+        "ConfidenceScore": 0.9,
+        "ConfidenceLevel": "high",
+        "Strength": 0.91859014001664,
+        "State": "declining",
+        "DecayRate": 0.98,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 24,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 0,
+          "NegativeCount": 0,
+          "NeutralCount": 24
+        },
+        "ActualActivity": "No new bag/backpack-specific browsing observed in the current slice; prior pattern was focused on lululemon bags and backpacks with occasional other brands.",
+        "IntentionInferred": "User previously compared practical carry items (tote vs mini shoulder bag), but this thread is not reinforced in the newest events.",
+        "Topics": [
+          {
+            "Topic": "Two-Tone Canvas Mini Tote Bag 4.5L (lululemon)",
+            "Weight": 2
+          },
+          {
+            "Topic": "Quilty Pleasures Shoulder Bag *Mini 5L (lululemon)",
+            "Weight": 1
+          },
+          {
+            "Topic": "Diamond Quilt Tote Bag 14L (lululemon)",
+            "Weight": 1
+          },
+          {
+            "Topic": "lululemon City Essentials Small Shoulder Bag 3L (variants/monogram)",
+            "Weight": 4
+          },
+          {
+            "Topic": "lululemon New Crew Backpack 22L",
+            "Weight": 5
+          },
+          {
+            "Topic": "lululemon Everywhere Backpack (Small/22L variants)",
+            "Weight": 4
+          },
+          {
+            "Topic": "TUMI backpacks",
+            "Weight": 4
+          },
+          {
+            "Topic": "Nordstrom Rack",
+            "Weight": 5
+          },
+          {
+            "Topic": "Sam Edelman tote bag (Nordstrom)",
+            "Weight": 1
+          },
+          {
+            "Topic": "Longchamp camera bag",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-12-20",
+        "LastDetectDate": "2026-01-25",
+        "LifetimeDays": 36,
+        "TemporalStats": {
+          "RecencyDays": 29,
+          "ActiveDays": 8,
+          "EventCount": 24
+        },
+        "Evidence": [
+          {
+            "date": "2026-01-25",
+            "source": "Uet",
+            "action": "Diamond Quilt Tote Bag 14L | Women's Bags,Purses,Wallets | lululemon"
+          },
+          {
+            "date": "2026-01-24",
+            "source": "Uet",
+            "action": "Quilty Pleasures Shoulder Bag *Mini 5L | Women's Bags,Purses,Wallets | lululemon"
+          },
+          {
+            "date": "2026-01-24",
+            "source": "Uet",
+            "action": "Two-Tone Canvas Mini Tote Bag 4.5L | Women's Bags,Purses,Wallets | lululemon"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Bag views may occur as part of broader apparel browsing; intent could be opportunistic shopping.",
+          "Purchases are not observable in the provided signals."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A practical comparison shopper who prioritizes function (size, carry style) and reputable brands when browsing bags. They revisit specific items and variants across days before deciding."
+      },
+      {
+        "InterestName": "Men’s apparel shopping",
+        "ConfidenceScore": 0.7,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.8918488423219199,
+        "State": "declining",
+        "DecayRate": 0.98,
+        "TemporalType": "short_term",
+        "Seasonality": "seasonal_annual",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 18,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 0,
+          "NegativeCount": 0,
+          "NeutralCount": 18
+        },
+        "ActualActivity": "No new men’s-specific shopping in the current slice; prior activity focused on insulated vests and down jackets.",
+        "IntentionInferred": "User compared men’s insulated layers for a near-term need, but this specific thread is not reinforced in the newest events.",
+        "Topics": [
+          {
+            "Topic": "Patagonia Nano Puff men’s vest (multiple listings)",
+            "Weight": 9
+          },
+          {
+            "Topic": "Patagonia men’s vests at REI",
+            "Weight": 2
+          },
+          {
+            "Topic": "Patagonia Down Sweater men’s vest",
+            "Weight": 1
+          },
+          {
+            "Topic": "Men’s lululemon Wunder Puff jacket",
+            "Weight": 3
+          },
+          {
+            "Topic": "Men’s lululemon Navigation Down Jacket",
+            "Weight": 1
+          },
+          {
+            "Topic": "Men’s lululemon joggers (Steady State)",
+            "Weight": 1
+          },
+          {
+            "Topic": "Brooks Brothers men’s cashmere wool sweater",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-12-23",
+        "LastDetectDate": "2026-01-26",
+        "LifetimeDays": 34,
+        "TemporalStats": {
+          "RecencyDays": 28,
+          "ActiveDays": 5,
+          "EventCount": 18
+        },
+        "Evidence": [
+          {
+            "date": "2026-01-26",
+            "source": "Uet",
+            "action": "Patagonia Nano Puff Insulated Vest - Men's | REI Co-op"
+          },
+          {
+            "date": "2026-01-26",
+            "source": "Uet",
+            "action": "PATAGONIA! NWT Men's Small Nano Puff Vest Quilted Puffer Primaloft New With Tags | eBay"
+          },
+          {
+            "date": "2026-01-24",
+            "source": "Uet",
+            "action": "Navigation Down Jacket *Evolve | Men's Coats & Jackets | lululemon"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Moderate volume but far less than women’s shopping overall; could be gifting or for someone else.",
+          "Marketplace browsing (eBay) may reflect deal-hunting rather than brand loyalty.",
+          "No purchase signal is available."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "An occasional but need-driven shopper who becomes highly specific when looking for men’s outerwear. They compare brands and listings (including deals) to optimize warmth, sizing, and value before buying."
+      },
+      {
+        "InterestName": "Stock market investing news",
+        "ConfidenceScore": 0.62,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.81260217140736,
+        "State": "dormant",
+        "DecayRate": 0.98,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "interval_based",
+          "Value": "weekly"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 3,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 2
+        },
+        "Signals": {
+          "PositiveCount": 0,
+          "NegativeCount": 0,
+          "NeutralCount": 5
+        },
+        "ActualActivity": "Read a finance/analyst note about OpenAI capex plans and its implications for Microsoft/Oracle, suggesting renewed (but still light) investing/market context consumption.",
+        "IntentionInferred": "User occasionally reads market-context pieces connected to big tech/AI spending cycles, likely to understand investment implications rather than to do frequent trading research.",
+        "Topics": [
+          {
+            "Topic": "Berkshire Hathaway portfolio concentration",
+            "Weight": 2
+          },
+          {
+            "Topic": "Buffett/Munger downside protection strategy",
+            "Weight": 1
+          },
+          {
+            "Topic": "AI stocks to watch",
+            "Weight": 1
+          },
+          {
+            "Topic": "OpenAI capex impact on Microsoft/Oracle (analyst note)",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-01-03",
+        "LastDetectDate": "2026-02-23",
+        "LifetimeDays": 51,
+        "TemporalStats": {
+          "RecencyDays": 0,
+          "ActiveDays": 3,
+          "EventCount": 5
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-23",
+            "source": "Edge",
+            "action": "OpenAI's updated capex plans prove positive for Microsoft, Oracle: BNP Paribas"
+          },
+          {
+            "date": "2026-01-04",
+            "source": "Edge",
+            "action": "Top artificial intelligence stocks to watch in 2026"
+          },
+          {
+            "date": "2026-01-03",
+            "source": "MSN",
+            "action": "Buffett's farewell: 65% of Berkshire sits in just 5 stocks"
+          }
+        ],
+        "UncertaintyNotes": [
+          "News/article views do not indicate trading activity; this reflects informational consumption."
+        ],
+        "Internal": {
+          "StrengthUpdate": "boost"
+        },
+        "Persona": "A strategy-curious investing reader who gravitates toward recognizable frameworks (e.g., well-known investors) and timely themes like AI. They use articles to form a high-level view before deciding whether to go deeper."
+      },
+      {
+        "InterestName": "Home and interior design",
+        "ConfidenceScore": 0.55,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.6,
+        "State": "emerging",
+        "DecayRate": 0.931,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "popularity_based",
+          "Value": "trending"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 1,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 1,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 0,
+          "NegativeCount": 0,
+          "NeutralCount": 2
+        },
+        "ActualActivity": "Viewed the same home/interior design feature on both Edge and MSN on the same day (restored Georgian home).",
+        "IntentionInferred": "User appears interested in home restoration/interior design features as occasional inspiration content; it’s too early to know if this is a durable hobby.",
+        "Topics": [
+          {
+            "Topic": "restored Georgian home feature",
+            "Weight": 2
+          },
+          {
+            "Topic": "interior design / home tour",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-02-23",
+        "LastDetectDate": "2026-02-23",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 0,
+          "ActiveDays": 1,
+          "EventCount": 2
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-23",
+            "source": "Edge",
+            "action": "Inside an Immaculately Restored Georgian Home with Hannah"
+          },
+          {
+            "date": "2026-02-23",
+            "source": "MSN",
+            "action": "Inside an Immaculately Restored Georgian Home with Hannah"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Single-day evidence; could be incidental feed consumption rather than sustained interest."
+        ],
+        "Internal": {
+          "StrengthUpdate": null
+        },
+        "Persona": "A casual inspiration reader who clicks home tours and restoration stories when they’re visually compelling. They seem to prefer curated feature articles over technical DIY instructions (not yet observed)."
+      },
+      {
+        "InterestName": "Household cleaning products",
+        "ConfidenceScore": 0.5,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.6,
+        "State": "emerging",
+        "DecayRate": 0.931,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "popularity_based",
+          "Value": "trending"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 1,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 1,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 0,
+          "NegativeCount": 0,
+          "NeutralCount": 2
+        },
+        "ActualActivity": "Read a product-design story about new dishwashing sponges across both Edge and MSN on the same day.",
+        "IntentionInferred": "User may be casually interested in practical household product improvements (kitchen/cleaning) when presented as quick, relatable reads.",
+        "Topics": [
+          {
+            "Topic": "dishwashing sponge design",
+            "Weight": 2
+          },
+          {
+            "Topic": "kitchen cleaning convenience",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-02-23",
+        "LastDetectDate": "2026-02-23",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 0,
+          "ActiveDays": 1,
+          "EventCount": 2
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-23",
+            "source": "Edge",
+            "action": "These new sponges are designed around a common dishwashing ick"
+          },
+          {
+            "date": "2026-02-23",
+            "source": "MSN",
+            "action": "These new sponges are designed around a common dishwashing ick"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Single-day evidence; could be incidental feed consumption rather than a sustained shopping or home project."
+        ],
+        "Internal": {
+          "StrengthUpdate": null
+        },
+        "Persona": "A practical reader who clicks lightweight, relatable household-improvement stories. They seem to prefer everyday-use innovations over deep home-maintenance research (not observed)."
+      },
+      {
+        "InterestName": "Retirement investing research",
+        "ConfidenceScore": 0.74,
+        "ConfidenceLevel": "high",
+        "Strength": 0.8715183829069518,
+        "State": "dormant",
+        "DecayRate": 0.99,
+        "TemporalType": "persistent",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 14,
+          "Other": 3
+        },
+        "Signals": {
+          "PositiveCount": 0,
+          "NegativeCount": 0,
+          "NeutralCount": 17
+        },
+        "ActualActivity": "Previously returned to retirement-provider pages and Social Security calculators; no new retirement/investing-provider research appeared in the current slice.",
+        "IntentionInferred": "User has shown retirement/benefits planning behavior, but recent activity is dominated by shopping and general news rather than finance research.",
+        "Topics": [
+          {
+            "Topic": "Fidelity retirement plans / brokerage overview",
+            "Weight": 9
+          },
+          {
+            "Topic": "Fidelity open an account",
+            "Weight": 3
+          },
+          {
+            "Topic": "Social Security benefit calculators (2025/2026)",
+            "Weight": 2
+          },
+          {
+            "Topic": "How Social Security benefits are calculated / benefit factors",
+            "Weight": 2
+          },
+          {
+            "Topic": "Nonqualified deferred compensation plans",
+            "Weight": 1
+          },
+          {
+            "Topic": "Interactive Brokers platform exploration",
+            "Weight": 1
+          },
+          {
+            "Topic": "SmartAsset financial product comparison",
+            "Weight": 1
+          },
+          {
+            "Topic": "AARP insurance benefits",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-12-12",
+        "LastDetectDate": "2026-01-03",
+        "LifetimeDays": 22,
+        "TemporalStats": {
+          "RecencyDays": 51,
+          "ActiveDays": 8,
+          "EventCount": 17
+        },
+        "Evidence": [
+          {
+            "date": "2026-01-03",
+            "source": "Uet",
+            "action": "Fidelity Investments - Retirement Plans, Investing, Brokerage, Wealth Management, Financial Planning and Advice, Online Trading."
+          },
+          {
+            "date": "2026-01-01",
+            "source": "Uet",
+            "action": "Social Security Calculator 2025: Estimate Your Benefits - NerdWallet"
+          },
+          {
+            "date": "2026-01-01",
+            "source": "Uet",
+            "action": "Nonqualified deferred compensation plans"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Repeated calculator/provider visits suggest active planning, but any account opening or changes are not observable from these signals.",
+          "Could reflect planning for self or household; no assumptions made."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A planning-oriented adult who compares reputable financial institutions and seeks clarity on retirement/benefits outcomes before acting. They prefer structured tools (calculators, plan explainers) and provider comparisons over speculative advice."
+      },
+      {
+        "InterestName": "Beauty and skincare shopping",
+        "ConfidenceScore": 0.66,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.8460698658047998,
+        "State": "declining",
+        "DecayRate": 0.98,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 4,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 0,
+          "NegativeCount": 0,
+          "NeutralCount": 4
+        },
+        "ActualActivity": "Previously browsed premium skincare items; no new beauty-category activity in the current slice.",
+        "IntentionInferred": "Beauty shopping appears to be an occasional add-on within broader retail sessions rather than a primary focus right now.",
+        "Topics": [
+          {
+            "Topic": "RéVive skincare set (The Rescue Renewal Duo)",
+            "Weight": 1
+          },
+          {
+            "Topic": "Augustinus Bader The Rich Cream Essentials Set",
+            "Weight": 1
+          },
+          {
+            "Topic": "Estée Lauder Advanced Night Repair Eye Gel-Cream",
+            "Weight": 1
+          },
+          {
+            "Topic": "Nordstrom beauty category browsing",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-01-03",
+        "LastDetectDate": "2026-01-19",
+        "LifetimeDays": 16,
+        "TemporalStats": {
+          "RecencyDays": 35,
+          "ActiveDays": 4,
+          "EventCount": 4
+        },
+        "Evidence": [
+          {
+            "date": "2026-01-19",
+            "source": "Uet",
+            "action": "The Rescue Renewal Duo | Anti-Aging | ReVive Skincare – RéVive Skincare"
+          },
+          {
+            "date": "2026-01-11",
+            "source": "Uet",
+            "action": "Augustinus Bader The Rich Cream Essentials Set $510 Value | Nordstrom"
+          },
+          {
+            "date": "2026-01-03",
+            "source": "Uet",
+            "action": "Estée Lauder Advanced Night Repair Eye Gel-Cream | Belk"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Beauty shopping may be incidental within broader apparel browsing sessions; purchases are not observable."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A practical beauty shopper who adds skincare staples during broader retail browsing. They appear to favor recognizable brands and specific product-page research before buying."
+      },
+      {
+        "InterestName": "Azure experimentation tools",
+        "ConfidenceScore": 0.54,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.5648880896405999,
+        "State": "dormant",
+        "DecayRate": 0.99,
+        "TemporalType": "persistent",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "interval_based",
+          "Value": "weekly"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 4,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 0,
+          "NegativeCount": 0,
+          "NeutralCount": 4
+        },
+        "ActualActivity": "Previously opened Azure Data Explorer and an experimentation/analysis hub; no new related tool activity in the current slice.",
+        "IntentionInferred": "User may use Azure-based experimentation/analytics tooling as a recurring task, but it is not reinforced in the newest events.",
+        "Topics": [
+          {
+            "Topic": "Azure Data Explorer (Kusto)",
+            "Weight": 1
+          },
+          {
+            "Topic": "Azure ExP Studio (experimentation)",
+            "Weight": 2
+          },
+          {
+            "Topic": "experiment analysis hub / dashboard review",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-01-09",
+        "LastDetectDate": "2026-01-12",
+        "LifetimeDays": 3,
+        "TemporalStats": {
+          "RecencyDays": 42,
+          "ActiveDays": 2,
+          "EventCount": 4
+        },
+        "Evidence": [
+          {
+            "date": "2026-01-12",
+            "source": "Edge",
+            "action": "Azure ExP Studio"
+          },
+          {
+            "date": "2026-01-12",
+            "source": "Edge",
+            "action": "Analysis hub - [External] Ruby stable ENUS with seedfinder - Iteration 3 (with 3 tmpls in seedfinder) - Exp Control Tower"
+          },
+          {
+            "date": "2026-01-09",
+            "source": "Edge",
+            "action": "Azure Data Explorer"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Signals show tool access, not the user’s job title, employer, or the specific project context.",
+          "Some page titles include internal project names; this profile keeps them generalized to avoid over-specificity."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A workflow-driven analyst/experimenter who checks dashboards and experimentation tooling to monitor iterations and validate results. They prioritize quick status visibility and repeatable analysis over one-off deep dives."
+      },
+      {
+        "InterestName": "Reusable water bottles shopping",
+        "ConfidenceScore": 0.44,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.4657365268500094,
+        "State": "declining",
+        "DecayRate": 0.9506,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 1,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 0,
+          "NegativeCount": 0,
+          "NeutralCount": 1
+        },
+        "ActualActivity": "Previously viewed a water bottle product page; no new bottle/accessory browsing in the current slice.",
+        "IntentionInferred": "This looks like a small add-on view within broader shopping rather than an active, sustained product search.",
+        "Topics": [
+          {
+            "Topic": "lululemon Back To Life Clear Bottle 24oz (iridescent)",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-01-18",
+        "LastDetectDate": "2026-01-18",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 36,
+          "ActiveDays": 1,
+          "EventCount": 1
+        },
+        "Evidence": [
+          {
+            "date": "2026-01-18",
+            "source": "Uet",
+            "action": "Back To Life Clear Bottle 24oz Straw Lid *Iridescent | Women's Water Bottles | lululemon"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Single event; may be incidental add-on browsing within a larger retail session.",
+          "Purchases are not observable in the provided signals."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A practical accessory shopper who occasionally adds small utility items while browsing apparel and bags. They appear to prefer recognizable brands and straightforward product-page checks before buying."
+      },
+      {
+        "InterestName": "Budget cooking recipes",
+        "ConfidenceScore": 0.22,
+        "ConfidenceLevel": "low",
+        "Strength": 0.22626222507546542,
+        "State": "archived",
+        "DecayRate": 0.9016,
+        "TemporalType": "ephemeral",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 3
+        },
+        "Signals": {
+          "PositiveCount": 0,
+          "NegativeCount": 0,
+          "NeutralCount": 3
+        },
+        "ActualActivity": "Previously read a few budget-friendly recipe items on a single day; no new cooking/recipe reading occurred in the current slice.",
+        "IntentionInferred": "User may occasionally click simple, low-cost recipe ideas when they appear, but recent activity does not indicate an active cooking-focused routine.",
+        "Topics": [
+          {
+            "Topic": "Mediterranean quiche",
+            "Weight": 1
+          },
+          {
+            "Topic": "ground beef pasta recipe",
+            "Weight": 1
+          },
+          {
+            "Topic": "budget/nostalgia ingredients",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-12-12",
+        "LastDetectDate": "2025-12-12",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 73,
+          "ActiveDays": 1,
+          "EventCount": 3
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-12",
+            "source": "MSN",
+            "action": "The easiest Mediterranean quiche you’ll ever make"
+          },
+          {
+            "date": "2025-12-12",
+            "source": "MSN",
+            "action": "I cook this every week! Tasty and cheap ground beef pasta recipe no one knows"
+          },
+          {
+            "date": "2025-12-12",
+            "source": "MSN",
+            "action": "Grandma Always Swore By Some Good Old Spam (& These Other Ingredients). Here's Why"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Observed on a single day; may be incidental content consumption."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A convenience-focused home eater who occasionally saves simple, low-cost recipes. They prefer quick wins and familiar ingredients over complex cooking projects."
+      },
+      {
+        "InterestName": "Geopolitics and security",
+        "ConfidenceScore": 0.22,
+        "ConfidenceLevel": "low",
+        "Strength": 0.720974782859268,
+        "State": "declining",
+        "DecayRate": 0.98,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 1,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 4
+        },
+        "Signals": {
+          "PositiveCount": 0,
+          "NegativeCount": 0,
+          "NeutralCount": 5
+        },
+        "ActualActivity": "Earlier activity included a small amount of geopolitics/security reading; no new items in this slice.",
+        "IntentionInferred": "User may intermittently click defense/security analysis when prominent headlines appear, but evidence remains low volume.",
+        "Topics": [
+          {
+            "Topic": "AI drone swarms / military tech headline",
+            "Weight": 1
+          },
+          {
+            "Topic": "China-US defenses analysis",
+            "Weight": 2
+          },
+          {
+            "Topic": "FIFA controversy geopolitics",
+            "Weight": 2
+          }
+        ],
+        "FirstDetectDate": "2025-12-10",
+        "LastDetectDate": "2026-01-04",
+        "LifetimeDays": 25,
+        "TemporalStats": {
+          "RecencyDays": 50,
+          "ActiveDays": 2,
+          "EventCount": 5
+        },
+        "Evidence": [
+          {
+            "date": "2026-01-04",
+            "source": "MSN",
+            "action": "F-22 Raptor to Lead America’s First AI Drone Swarms into Combat"
+          },
+          {
+            "date": "2025-12-10",
+            "source": "MSN",
+            "action": "How China slipped past US defenses without firing a shot"
+          },
+          {
+            "date": "2025-12-10",
+            "source": "MSN",
+            "action": "Egypt demands FIFA cancel World Cup ‘Pride Match’ with Iran as woke move risks backfiring"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Low volume and broad headlines; not enough history to confirm this as a durable interest area."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "An occasional current-events reader who dips into defense and security stories when headlines are prominent. They favor explainers or standout developments over ongoing deep tracking."
+      },
+      {
+        "InterestName": "MLB Phillies news",
+        "ConfidenceScore": 0.16,
+        "ConfidenceLevel": "low",
+        "Strength": 0.22626222507546542,
+        "State": "archived",
+        "DecayRate": 0.9016,
+        "TemporalType": "ephemeral",
+        "Seasonality": "seasonal_annual",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "global_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 1,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 1
+        },
+        "Signals": {
+          "PositiveCount": 0,
+          "NegativeCount": 0,
+          "NeutralCount": 2
+        },
+        "ActualActivity": "Previously clicked a Phillies-related transaction story on a single day; no new MLB/Phillies activity in the current slice.",
+        "IntentionInferred": "User may click major MLB transactions when timely; no evidence of sustained team-following in recent days.",
+        "Topics": [
+          {
+            "Topic": "Kyle Schwarber deal",
+            "Weight": 2
+          }
+        ],
+        "FirstDetectDate": "2025-12-10",
+        "LastDetectDate": "2025-12-10",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 75,
+          "ActiveDays": 1,
+          "EventCount": 2
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-10",
+            "source": "MSN",
+            "action": "Phillies manager sends message to Kyle Schwarber after $150 million deal"
+          },
+          {
+            "date": "2025-12-10",
+            "source": "Edge",
+            "action": "Phillies manager sends message to Kyle Schwarber after $150 million deal"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Single storyline; may not reflect broader sports fandom."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A casual sports-news reader who clicks major transactions and team updates when they are timely. They engage more around big announcements than daily coverage."
+      },
+      {
+        "InterestName": "Casual gaming videos",
+        "ConfidenceScore": 0.26,
+        "ConfidenceLevel": "low",
+        "Strength": 0.24593720116898418,
+        "State": "archived",
+        "DecayRate": 0.9016,
+        "TemporalType": "ephemeral",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "popularity_based",
+          "Value": "trending"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 1
+        },
+        "Signals": {
+          "PositiveCount": 0,
+          "NegativeCount": 0,
+          "NeutralCount": 1
+        },
+        "ActualActivity": "Previously watched a Minecraft-related clip; no new gaming content in the current slice.",
+        "IntentionInferred": "User may occasionally watch lightweight gaming clips when they appear, but there is no recent evidence of sustained gaming interest.",
+        "Topics": [
+          {
+            "Topic": "Minecraft gameplay",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-12-20",
+        "LastDetectDate": "2025-12-20",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 65,
+          "ActiveDays": 1,
+          "EventCount": 1
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-20",
+            "source": "MSN",
+            "action": "Minecraft, But On Baby Difficulty..."
+          }
+        ],
+        "UncertaintyNotes": [
+          "Single event; likely incidental feed viewing."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "An occasional entertainment viewer who clicks lightweight gaming clips when they look amusing or easy to watch."
+      },
+      {
+        "InterestName": "Home internet and Wi‑Fi devices",
+        "ConfidenceScore": 0.38,
+        "ConfidenceLevel": "low",
+        "Strength": 0.5208753199480319,
+        "State": "archived",
+        "DecayRate": 0.98,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 1,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 0,
+          "NegativeCount": 0,
+          "NeutralCount": 1
+        },
+        "ActualActivity": "Previously visited an Xfinity page about backup internet and Wi‑Fi extenders; no new connectivity-related activity in the current slice.",
+        "IntentionInferred": "User may have had a short, need-driven home connectivity question that is not currently active.",
+        "Topics": [
+          {
+            "Topic": "Xfinity backup internet",
+            "Weight": 1
+          },
+          {
+            "Topic": "Wi‑Fi extenders/boost devices",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-12-31",
+        "LastDetectDate": "2025-12-31",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 54,
+          "ActiveDays": 1,
+          "EventCount": 1
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-31",
+            "source": "Uet",
+            "action": "Xfinity Pro - Backup Internet, WiFi Extenders and Boost Devices"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Single visit; could be incidental curiosity rather than an active purchase/upgrade project."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A practical home-tech shopper who looks up connectivity solutions when a need arises. They focus on reliability and coverage rather than hobbyist networking tweaks."
+      },
+      {
+        "InterestName": "Guided fitness programs",
+        "ConfidenceScore": 0.3,
+        "ConfidenceLevel": "low",
+        "Strength": 0.5208753199480319,
+        "State": "archived",
+        "DecayRate": 0.98,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 2,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 0,
+          "NegativeCount": 0,
+          "NeutralCount": 2
+        },
+        "ActualActivity": "Previously looked up tailored workout routines; no new fitness-program browsing in the current slice.",
+        "IntentionInferred": "User may occasionally explore guided routines, but it is not recently reinforced.",
+        "Topics": [
+          {
+            "Topic": "Pilates routines (tailored programs)",
+            "Weight": 1
+          },
+          {
+            "Topic": "weight loss workouts",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-01-02",
+        "LastDetectDate": "2026-01-02",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 52,
+          "ActiveDays": 1,
+          "EventCount": 2
+        },
+        "Evidence": [
+          {
+            "date": "2026-01-02",
+            "source": "Uet",
+            "action": "Asian Pilates for Menopause | Harna"
+          },
+          {
+            "date": "2026-01-02",
+            "source": "Uet",
+            "action": "Easy workouts for weight loss - HARNA"
+          }
+        ],
+        "UncertaintyNotes": [
+          "A prior page title included potentially sensitive wording; this interest is kept generalized and does not imply any health status.",
+          "Only one day of activity; not enough to know if this is a sustained routine or a one-time lookup."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A fitness planner who looks for guided routines that feel tailored and achievable. They prefer structured programs (e.g., Pilates/workout guides) over unstructured trial-and-error."
+      },
+      {
+        "InterestName": "Copilot feature exploration",
+        "ConfidenceScore": 0.42,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.594,
+        "State": "declining",
+        "DecayRate": 0.99,
+        "TemporalType": "persistent",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "product_launch"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 1
+        },
+        "Signals": {
+          "PositiveCount": 0,
+          "NegativeCount": 0,
+          "NeutralCount": 1
+        },
+        "ActualActivity": "Previously visited the Microsoft Copilot landing/entry page once; no new Copilot-specific activity in the current slice.",
+        "IntentionInferred": "User may be trying Copilot as an AI assistant or checking what it can do; without reinforcement it remains a tentative interest.",
+        "Topics": [
+          {
+            "Topic": "Microsoft Copilot",
+            "Weight": 1
+          },
+          {
+            "Topic": "AI companion / assistant",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-02-10",
+        "LastDetectDate": "2026-02-10",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 13,
+          "ActiveDays": 1,
+          "EventCount": 1
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-10",
+            "source": "Uet",
+            "action": "Microsoft Copilot: Your AI companion"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Single event; could be accidental navigation or brief curiosity rather than adoption.",
+          "UET capture does not confirm feature use beyond page visit."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A curious early explorer who samples new AI assistant entry points when they appear relevant. They seem to prefer lightweight, low-commitment experimentation before investing time in deeper workflows."
+      }
+    ],
+    "UncertaintyNotes": [
+      "No explicit negative feedback signals (e.g., hide/not interested) were present in the incremental slice; all signals treated as neutral consumption/visits.",
+      "Commerce-page visits are recorded as UET events; purchase completion and cart actions are not observable from the provided data.",
+      "Some topics in prior history could be sensitive; this profile avoids inferring health status and keeps those labels generalized.",
+      "New home/household topics are based on same-day article views and may be incidental unless reinforced."
+    ]
+  },
+  "ProductUsage": {
+    "Version": "ProductUsage-v0.7",
+    "AsOfDate": "2026-02-23",
+    "Products": [
+      {
+        "ProductName": "MSN",
+        "EntryPoints": [
+          "Other"
+        ],
+        "EngagementTemperature": "Warm",
+        "SessionsPerDay": 0,
+        "TimeSpentPerDayHours": 0.0,
+        "MeaningfulInteractionsPerDay": 0,
+        "FirstUsage": "2025-12-09",
+        "LastUsage": "2026-02-23",
+        "UsageLifetimeDays": 76,
+        "Confidence": "medium",
+        "PII": {
+          "pii_class": "none"
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-23",
+            "source": "MSN",
+            "action": "Microsoft’s AI splurge rattles investors",
+            "raw_record": "MSN View: Microsoft AI spending business news"
+          },
+          {
+            "date": "2026-02-23",
+            "source": "MSN",
+            "action": "Inside an Immaculately Restored Georgian Home with Hannah",
+            "raw_record": "MSN View: home/interior design feature"
+          },
+          {
+            "date": "2026-02-23",
+            "source": "MSN",
+            "action": "These new sponges are designed around a common dishwashing ick",
+            "raw_record": "MSN View: household product design story"
+          }
+        ],
+        "UncertaintyNotes": [
+          "No session boundaries or dwell-time telemetry provided; engagement metrics are placeholders."
+        ]
+      },
+      {
+        "ProductName": "Edge",
+        "EntryPoints": [
+          "Windows-Desktop",
+          "Other"
+        ],
+        "EngagementTemperature": "Warm",
+        "SessionsPerDay": 0,
+        "TimeSpentPerDayHours": 0.0,
+        "MeaningfulInteractionsPerDay": 0,
+        "FirstUsage": "2025-12-09",
+        "LastUsage": "2026-02-23",
+        "UsageLifetimeDays": 76,
+        "Confidence": "medium",
+        "PII": {
+          "pii_class": "none"
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-23",
+            "source": "Edge",
+            "action": "Microsoft’s AI splurge rattles investors",
+            "raw_record": "BrowserEvents: tech business article"
+          },
+          {
+            "date": "2026-02-17",
+            "source": "Edge",
+            "action": "OpenAI Taps Anthropic Expert for Safety Push",
+            "raw_record": "BrowserEvents: AI safety hiring article"
+          },
+          {
+            "date": "2026-02-23",
+            "source": "Edge",
+            "action": "Inside an Immaculately Restored Georgian Home with Hannah",
+            "raw_record": "BrowserEvents: home/interior design feature"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Edge usage may be undercounted if only a subset of browser events is included in this slice."
+        ]
+      }
+    ],
+    "Notes": "Observed activity includes news consumption in MSN and browsing via Edge; commerce-page visits appear as UET events but the owning product surface is not fully specified in the signals provided.",
+    "UncertaintyNotes": [
+      "UET events indicate commerce page views/visits but do not uniquely identify the Microsoft product surface; therefore they are not assigned to a specific product here."
+    ]
+  },
+  "Preferences": {
+    "Version": "Preferences-v0.7",
+    "AsOfDate": "2026-02-23",
+    "Items": [
+      {
+        "PreferenceId": "pref.content.tech_policy_explainers",
+        "Dimension": "content_affinity",
+        "Value": "Tech policy/legal explainers and AI governance coverage",
+        "Scope": "global",
+        "AppliesTo": [
+          "MSN",
+          "Edge",
+          "Other"
+        ],
+        "ConfidenceScore": 0.68,
+        "FirstObserved": "2025-12-09",
+        "LastObserved": "2026-02-17",
+        "Evidence": [
+          {
+            "date": "2026-02-17",
+            "source": "Edge",
+            "action": "OpenAI Taps Anthropic Expert for Safety Push",
+            "raw_record": "BrowserEvents: AI safety hiring/oversight headline"
+          },
+          {
+            "date": "2025-12-09",
+            "source": "Edge",
+            "action": "OpenAI’s privacy defense didn’t hold up in court",
+            "raw_record": "Edge BrowserEvents: AI chat data privacy/legal implications"
+          }
+        ],
+        "PII": {
+          "pii_class": "none"
+        },
+        "UncertaintyNotes": [
+          "Derived from article-view behavior; does not indicate professional role or formal expertise."
+        ]
+      },
+      {
+        "PreferenceId": "pref.shopping.brand_comparison",
+        "Dimension": "shopping_style",
+        "Value": "Multi-retailer brand comparison for apparel before purchase",
+        "Scope": "global",
+        "AppliesTo": [
+          "Other"
+        ],
+        "ConfidenceScore": 0.64,
+        "FirstObserved": "2025-12-09",
+        "LastObserved": "2026-02-21",
+        "Evidence": [
+          {
+            "date": "2026-02-18",
+            "source": "Uet",
+            "action": "Eileen Fisher Mock Neck Ribbed Sweater | Nordstromrack",
+            "raw_record": "UetEvents: apparel product page"
+          },
+          {
+            "date": "2026-02-21",
+            "source": "Uet",
+            "action": "Franco Sarto Pippen Square Toe Boot (Women) | Nordstromrack",
+            "raw_record": "UetEvents: footwear product page"
+          }
+        ],
+        "PII": {
+          "pii_class": "none"
+        },
+        "UncertaintyNotes": [
+          "Only indicates browsing/comparison behavior; purchases are not observed."
+        ]
+      },
+      {
+        "PreferenceId": "pref.content.home_inspiration",
+        "Dimension": "content_affinity",
+        "Value": "Occasional home/interior design inspiration reads",
+        "Scope": "global",
+        "AppliesTo": [
+          "MSN",
+          "Edge",
+          "Other"
+        ],
+        "ConfidenceScore": 0.45,
+        "FirstObserved": "2026-02-23",
+        "LastObserved": "2026-02-23",
+        "Evidence": [
+          {
+            "date": "2026-02-23",
+            "source": "MSN",
+            "action": "Inside an Immaculately Restored Georgian Home with Hannah",
+            "raw_record": "MSN View: home tour/restoration feature"
+          }
+        ],
+        "PII": {
+          "pii_class": "none"
+        },
+        "UncertaintyNotes": [
+          "Based on a single day of content; treat as tentative until reinforced."
+        ]
+      }
+    ],
+    "TBDNotes": "Preference attributes are WIP; emit only grounded preferences from inputs.",
+    "UncertaintyNotes": [
+      "Preferences are inferred from a limited set of click/view signals and may shift with news cycles and seasonal shopping needs."
+    ]
+  },
+  "Biography": {
+    "Version": "Biography-v0.7",
+    "AsOfDate": "2026-02-23",
+    "Summary": "Yulan is an adult user who regularly uses online browsing and news to stay oriented on major AI and tech-business developments, especially safety/oversight narratives and big investment cycles. In parallel, they show sustained, detail-oriented comparison shopping for women’s apparel and footwear, often focusing on specific product pages at major retailers. Their content mix also includes occasional lifestyle reads such as home/interior design features and practical household-product stories, likely driven by what surfaces in the feed.",
+    "StageOfLifeSignals": "unknown",
+    "ActiveGoals": [
+      {
+        "goal": "Track major AI developments, including safety/oversight narratives and business implications",
+        "horizon": "weeks",
+        "linked_interests": [
+          "AI governance news",
+          "Tech industry updates"
+        ],
+        "confidence": "medium"
+      },
+      {
+        "goal": "Compare and select women’s seasonal clothing and footwear items",
+        "horizon": "days",
+        "linked_interests": [
+          "Women’s apparel shopping",
+          "Women’s footwear shopping"
+        ],
+        "confidence": "high"
+      }
+    ],
+    "LongTermGoals": [
+      {
+        "goal": "Maintain or improve long-range financial readiness (retirement/investing options)",
+        "horizon": "months",
+        "linked_interests": [
+          "Retirement investing research",
+          "Stock market investing news"
+        ],
+        "confidence": "low"
+      }
+    ],
+    "Highlights": [
+      "Recent reinforcement of women’s shopping (sweater and boots) suggests ongoing seasonal wardrobe decisions.",
+      "Same-day reads across MSN and Edge show active interest in AI investment cycles and workforce impact headlines.",
+      "New, tentative lifestyle threads appeared: home restoration/interior design and household product design content."
+    ],
+    "UncertaintyNotes": [
+      "News and shopping signals indicate reading/browsing behavior only; they do not confirm purchases, professional role, or offline activities.",
+      "Life stage cannot be inferred from the provided signals."
+    ]
+  },
+  "Memory": {
+    "Version": "Memory-v0.7",
+    "AsOfDate": "2026-02-23",
+    "Working": {
+      "WindowHours": 24,
+      "TopInterestsLast24h": [
+        {
+          "interest_ref": "Tech industry updates",
+          "summary": "Clustered reading on AI business dynamics (Microsoft AI spending, OpenAI capex implications) across Edge and MSN.",
+          "confidence": "high",
+          "evidence": [
+            {
+              "date": "2026-02-23",
+              "raw_record": "MSN View: Microsoft’s AI splurge rattles investors"
+            },
+            {
+              "date": "2026-02-23",
+              "raw_record": "MSN View: OpenAI's updated capex plans prove positive for Microsoft, Oracle: BNP Paribas"
+            }
+          ]
+        },
+        {
+          "interest_ref": "Home and interior design",
+          "summary": "Viewed a home restoration/interior design feature on both Edge and MSN the same day.",
+          "confidence": "medium",
+          "evidence": [
+            {
+              "date": "2026-02-23",
+              "raw_record": "MSN View: Inside an Immaculately Restored Georgian Home with Hannah"
+            }
+          ]
+        },
+        {
+          "interest_ref": "Household cleaning products",
+          "summary": "Engaged with a quick-read story about dishwashing sponge design on both Edge and MSN.",
+          "confidence": "medium",
+          "evidence": [
+            {
+              "date": "2026-02-23",
+              "raw_record": "MSN View: These new sponges are designed around a common dishwashing ick"
+            }
+          ]
+        }
+      ],
+      "OneDaySpikes": [
+        {
+          "interest_ref": "Home and interior design",
+          "summary": "Same-article repeat across products suggests a one-day curiosity spike.",
+          "confidence": "low",
+          "evidence": [
+            {
+              "date": "2026-02-23",
+              "raw_record": "Edge BrowserEvents + MSN View: restored Georgian home feature"
+            }
+          ]
+        }
+      ]
+    },
+    "ShortTerm": {
+      "WindowDays": 28,
+      "MultiDayRepeatedEngagement": [
+        {
+          "interest_ref": "Tech industry updates",
+          "summary": "Repeated AI/tech-business reading spanning multiple days (safety hiring, business spending, capex implications).",
+          "confidence": "high",
+          "evidence": [
+            {
+              "date": "2026-02-23",
+              "raw_record": "Edge/MSN: multiple AI business headlines"
+            },
+            {
+              "date": "2026-02-17",
+              "raw_record": "Edge: OpenAI safety hiring headline"
+            }
+          ]
+        },
+        {
+          "interest_ref": "Women’s apparel shopping",
+          "summary": "Retail product-page browsing continued with a new women’s sweater view, consistent with prior sustained apparel comparison-shopping.",
+          "confidence": "high",
+          "evidence": [
+            {
+              "date": "2026-02-18",
+              "raw_record": "UetEvents: Eileen Fisher sweater on Nordstrom Rack"
+            }
+          ]
+        },
+        {
+          "interest_ref": "Women’s footwear shopping",
+          "summary": "Footwear browsing re-appeared with a women’s boots product page visit.",
+          "confidence": "medium",
+          "evidence": [
+            {
+              "date": "2026-02-21",
+              "raw_record": "UetEvents: Franco Sarto women’s boot on Nordstrom Rack"
+            }
+          ]
+        }
+      ],
+      "WeeklyCycles": [
+        {
+          "pattern": "AI/tech headlines tend to be consumed in clusters when major stories break, approximating a weekly burst pattern.",
+          "linked_interests": [
+            "Tech industry updates",
+            "AI governance news"
+          ],
+          "confidence": "low"
+        }
+      ],
+      "CrossTopicCooccurrence": [
+        {
+          "interest_refs": [
+            "Tech industry updates",
+            "Stock market investing news"
+          ],
+          "summary": "AI business headlines sometimes include explicit investor/market framing (capex and stock impact).",
+          "confidence": "medium"
+        }
+      ],
+      "HighDwellConsumptions": [],
+      "PreferenceEvolution": [
+        {
+          "dimension": "content_affinity",
+          "trajectory": "Broader AI coverage expanded this week from safety/oversight to business spending and investment implications; a small new lifestyle/home-content thread appeared.",
+          "confidence": "low"
+        }
+      ]
+    },
+    "LongTerm": {
+      "WindowDays": 365,
+      "HighInterestFrequency": [
+        {
+          "interest_ref": "Women’s apparel shopping",
+          "summary": "Remains the highest-volume repeated behavior across the available history, with continued reinforcement in the latest week.",
+          "confidence": "high"
+        },
+        {
+          "interest_ref": "Tech industry updates",
+          "summary": "Ongoing, recurring engagement with AI/tech business headlines across sources over multiple months.",
+          "confidence": "medium"
+        }
+      ],
+      "ConsistentDomainAffinity": [
+        {
+          "domain_category": "other",
+          "summary": "Behavior shows two durable clusters: seasonal retail browsing (apparel/footwear) and periodic tech/AI news consumption; other categories appear more episodic.",
+          "confidence": "medium"
+        }
+      ],
+      "SeasonalRecurrences": [
+        {
+          "interest_ref": "Women’s apparel shopping",
+          "pattern": "Outerwear and layering items suggest winter-season shopping that may recur annually.",
+          "confidence": "low"
+        }
+      ]
+    },
+    "UncertaintyNotes": [
+      "Working/ShortTerm patterns are more reliable than LongTerm seasonality inferences because the observable history is limited and lacks full-year coverage."
+    ]
+  },
+  "Explanations": [
+    {
+      "Because": "User read multiple AI/tech business headlines (including capex and investor reaction) across Edge and MSN in the current slice.",
+      "Supports": [
+        {
+          "type": "interest",
+          "ref": "Tech industry updates"
+        },
+        {
+          "type": "memory",
+          "ref": "Working.TopInterestsLast24h"
+        }
+      ],
+      "Evidence": [
+        {
+          "date": "2026-02-23",
+          "source": "MSN",
+          "raw_record": "Microsoft’s AI splurge rattles investors"
+        },
+        {
+          "date": "2026-02-23",
+          "source": "Edge",
+          "raw_record": "OpenAI's updated capex plans prove positive for Microsoft, Oracle: BNP Paribas"
+        }
+      ]
+    },
+    {
+      "Because": "User continued women’s retail browsing with specific product pages for apparel and boots.",
+      "Supports": [
+        {
+          "type": "interest",
+          "ref": "Women’s apparel shopping"
+        },
+        {
+          "type": "interest",
+          "ref": "Women’s footwear shopping"
+        }
+      ],
+      "Evidence": [
+        {
+          "date": "2026-02-18",
+          "source": "Uet",
+          "raw_record": "Eileen Fisher Mock Neck Ribbed Sweater | Nordstromrack"
+        },
+        {
+          "date": "2026-02-21",
+          "source": "Uet",
+          "raw_record": "Franco Sarto Pippen Square Toe Boot (Women) | Nordstromrack"
+        }
+      ]
+    },
+    {
+      "Because": "User viewed a home/interior design feature on both Edge and MSN on the same day.",
+      "Supports": [
+        {
+          "type": "interest",
+          "ref": "Home and interior design"
+        },
+        {
+          "type": "preference",
+          "ref": "pref.content.home_inspiration"
+        }
+      ],
+      "Evidence": [
+        {
+          "date": "2026-02-23",
+          "source": "Edge",
+          "raw_record": "Inside an Immaculately Restored Georgian Home with Hannah"
+        },
+        {
+          "date": "2026-02-23",
+          "source": "MSN",
+          "raw_record": "Inside an Immaculately Restored Georgian Home with Hannah"
+        }
+      ]
+    }
+  ],
+  "Updates": {
+    "Version": "Updates-v0.7",
+    "AsOfDate": "2026-02-23",
+    "HasPriorProfile": true,
+    "Deltas": [
+      {
+        "type": "interest_strengthened",
+        "description": "Women’s apparel shopping reinforced by a new women’s sweater product-page view (2026-02-18)."
+      },
+      {
+        "type": "interest_strengthened",
+        "description": "Women’s footwear shopping reinforced by a new women’s boot product-page view (2026-02-21)."
+      },
+      {
+        "type": "interest_strengthened",
+        "description": "Tech industry updates strengthened with multiple AI business/investor headlines on 2026-02-23."
+      },
+      {
+        "type": "interest_strengthened",
+        "description": "AI governance news reinforced by renewed reading of OpenAI safety hiring/oversight headline (2026-02-17)."
+      },
+      {
+        "type": "interest_strengthened",
+        "description": "Stock market investing news lightly reinforced via AI capex/stock-implication analysis (2026-02-23)."
+      },
+      {
+        "type": "interest_added",
+        "description": "Added emerging interests: Home and interior design; Household cleaning products (based on same-day Edge+MSN article views)."
+      },
+      {
+        "type": "product_usage_changed",
+        "description": "Updated ProductUsage recency: Edge and MSN observed through 2026-02-23."
+      },
+      {
+        "type": "biography_updated",
+        "description": "Biography updated to reflect current-week AI investment/workforce-impact reading and continued apparel/footwear shopping."
+      },
+      {
+        "type": "memory_updated",
+        "description": "Memory updated with 2026-02-23 content cluster and 2026-02-17/18/21 shopping/news events."
+      }
+    ],
+    "UncertaintyNotes": [
+      "AllTime stats are conservative due to possible overlap with prior counts.",
+      "New lifestyle interests (home/interior, household products) are based on one-day activity and may not persist without reinforcement."
+    ]
+  }
+}

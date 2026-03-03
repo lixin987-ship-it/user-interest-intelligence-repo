@@ -1,0 +1,4088 @@
+{
+  "Version": "MAIProfile-Unified-v0.7",
+  "AsOfDate": "2026-02-23",
+  "Market": "EN-US",
+  "Window": {
+    "Incremental": {
+      "LookbackDays": 2,
+      "FromDate": "2026-02-22",
+      "ToDate": "2026-02-23"
+    },
+    "AllTime": {
+      "LookbackDays": 93,
+      "FromDate": "2025-11-23",
+      "ToDate": "2026-02-23"
+    }
+  },
+  "ActivityStats": {
+    "Incremental": {
+      "TotalEvents": 30,
+      "DistinctActiveDays": 2
+    },
+    "AllTime": {
+      "TotalEvents": 1540,
+      "DistinctActiveDays": 70,
+      "UncertaintyNotes": [
+        "AllTime totals are extended by summing the prior AllTime totals and this incremental slice totals; overlap/double-counting cannot be ruled out if the same underlying events were emitted in both feeds."
+      ]
+    }
+  },
+  "Facts": {
+    "Version": "Facts-v0.7",
+    "AsOfDate": "2026-02-23",
+    "Identity": {
+      "MAI_ID": "801BEF6D23662059D0FD7729FFFFFFFF",
+      "ANID": null,
+      "MUID": null,
+      "Name": null
+    },
+    "LifeStage": {
+      "value": "NewGradOrEarlyCareer",
+      "confidence": "medium",
+      "pii_class": "low",
+      "provenance": [
+        "DerivedFromSignals"
+      ],
+      "as_of": "2026-02-23"
+    },
+    "Locations": {
+      "CurrentLocation": {
+        "value": null,
+        "confidence": "low",
+        "pii_class": "none",
+        "provenance": [
+          "ProvidedFacts"
+        ],
+        "last_30d": false,
+        "as_of": null
+      },
+      "PastVisitedLocations": []
+    },
+    "Employment": {
+      "CurrentCompany": {
+        "value": null,
+        "confidence": "low",
+        "pii_class": "none",
+        "provenance": [
+          "ProvidedFacts"
+        ],
+        "as_of": null
+      },
+      "PastCompany": {
+        "value": null,
+        "confidence": "low",
+        "pii_class": "none",
+        "provenance": [
+          "ProvidedFacts"
+        ],
+        "as_of": null
+      },
+      "Occupation": {
+        "value": null,
+        "confidence": "low",
+        "pii_class": "none",
+        "provenance": [
+          "ProvidedFacts"
+        ],
+        "as_of": null
+      }
+    },
+    "UncertaintyNotes": [
+      "No provided demographic or location facts were available; demographics omitted.",
+      "LifeStage inference is based on sustained college portal/coursework activity; could also reflect continuing education rather than first-time early career."
+    ]
+  },
+  "Interests": {
+    "Version": "Interests-v0.7",
+    "AsOfDate": "2026-02-23",
+    "Interests": [
+      {
+        "InterestName": "College coursework study",
+        "ConfidenceScore": 0.99,
+        "ConfidenceLevel": "high",
+        "Strength": 0.99999731564544,
+        "State": "stable",
+        "DecayRate": 0.98,
+        "TemporalType": "persistent",
+        "Seasonality": "seasonal_quarterly",
+        "Trigger": {
+          "Type": "interval_based",
+          "Value": "weekly"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 763,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 763,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "Continued heavy use of Delta College/MyDelta, D2L course pages, and WileyPLUS. Recent activity includes BIO-110W peer review/rough draft submissions and LEIR work, ACC-212 Chapter 16 homework in WileyPLUS, MTH-208W variation/probability topics and assignment due dates, and HIS-237W weekly materials.",
+        "IntentionInferred": "User is actively managing ongoing coursework with a steady cadence: completing homework/quiz items, submitting writing components, and navigating course resources to meet near-term deadlines.",
+        "Topics": [
+          {
+            "Topic": "Delta College portal / students.delta.edu",
+            "Weight": 19
+          },
+          {
+            "Topic": "Delta eLearning / D2L content home",
+            "Weight": 15
+          },
+          {
+            "Topic": "Environmental Science BIO-110W (LEIR, peer review/rough draft, quiz, resources)",
+            "Weight": 241
+          },
+          {
+            "Topic": "Managerial Accounting ACC-212 (WileyPLUS, Chapter 16 homework questions)",
+            "Weight": 122
+          },
+          {
+            "Topic": "Elementary Statistics MTH-208W (variation of data, basic probability, assignments/due dates)",
+            "Weight": 86
+          },
+          {
+            "Topic": "History of Michigan HIS-237W (weekly modules/materials)",
+            "Weight": 193
+          },
+          {
+            "Topic": "WileyPLUS",
+            "Weight": 13
+          },
+          {
+            "Topic": "NWP Assessment Player/Builder (online assessment tool)",
+            "Weight": 7
+          }
+        ],
+        "FirstDetectDate": "2025-11-24",
+        "LastDetectDate": "2026-02-23",
+        "LifetimeDays": 91,
+        "TemporalStats": {
+          "RecencyDays": 0,
+          "ActiveDays": 61,
+          "EventCount": 777
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-23",
+            "source": "Edge/BrowserEvents",
+            "action": "Chapter 16 Homework - PRIN MANG ACCT - ACC-212-WN710-26/WI"
+          },
+          {
+            "date": "2026-02-23",
+            "source": "Edge/BrowserEvents",
+            "action": "Assignments 4, 5 and 6.. Due 2/20. Variation and basic probability, and probability distributions. . - ELEM STATISTICS - MTH-208W-WN720-26/WI"
+          },
+          {
+            "date": "2026-02-22",
+            "source": "Edge/BrowserEvents",
+            "action": "Introduction Peer Review and Rough (2nd) Draft Submissions - ENVIRON SCIENCE - BIO-110W-WN725-26/WI"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Education engagement is clear; the specific degree/program path and outcomes are not observable from browsing alone.",
+          "Some research-like pages may be assignment-related, but exact class linkage is not always explicit in titles."
+        ],
+        "Internal": {
+          "StrengthUpdate": "boost"
+        },
+        "Persona": "A motivated student who routinely uses course portals and learning platforms to stay on top of modules, assignments, and administrative tasks. They prioritize keeping pace with deadlines and preparing efficiently using structured course materials."
+      },
+      {
+        "InterestName": "Investing and retirement accounts",
+        "ConfidenceScore": 0.95,
+        "ConfidenceLevel": "high",
+        "Strength": 0.9741591972018792,
+        "State": "stable",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 16,
+          "Browser": 56,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 6,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 79,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "Read a market/news item about stocks near 52-week lows (MSN).",
+        "IntentionInferred": "User is likely continuing to learn about and track markets through articles and idea lists; whether they invest with real money is not observable from these events.",
+        "Topics": [
+          {
+            "Topic": "Investopedia stock simulator (register/stocks/portfolio/research/learn)",
+            "Weight": 56
+          },
+          {
+            "Topic": "investopedia (search/site navigation)",
+            "Weight": 2
+          },
+          {
+            "Topic": "Best 6-month CD rates (comparison)",
+            "Weight": 1
+          },
+          {
+            "Topic": "Fidelity investing / retirement plans / brokerage",
+            "Weight": 1
+          },
+          {
+            "Topic": "Palantir (company research)",
+            "Weight": 5
+          },
+          {
+            "Topic": "PLTR stock (quote/news)",
+            "Weight": 3
+          },
+          {
+            "Topic": "energy stocks (long-term picks)",
+            "Weight": 4
+          },
+          {
+            "Topic": "Nvidia stock (NVDA) lookup",
+            "Weight": 4
+          },
+          {
+            "Topic": "Meta stock (META) lookup",
+            "Weight": 3
+          },
+          {
+            "Topic": "52-week lows stocks list",
+            "Weight": 3
+          },
+          {
+            "Topic": "economic & macro news (Seeking Alpha etc.)",
+            "Weight": 6
+          },
+          {
+            "Topic": "public-figure portfolio trackers (congressional trading trackers)",
+            "Weight": 7
+          }
+        ],
+        "FirstDetectDate": "2025-11-28",
+        "LastDetectDate": "2026-02-22",
+        "LifetimeDays": 86,
+        "TemporalStats": {
+          "RecencyDays": 1,
+          "ActiveDays": 15,
+          "EventCount": 79
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-22",
+            "source": "MSN/MSN View",
+            "action": "3 magnificent stocks to buy that are near 52-week lows"
+          },
+          {
+            "date": "2026-02-17",
+            "source": "Edge/BrowserEvents",
+            "action": "Portfolio - Investopedia Stock Simulator"
+          },
+          {
+            "date": "2026-02-17",
+            "source": "Bing/Bing Search web",
+            "action": "nvidia stock"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Simulator usage indicates learning intent, but real-money investing behavior is not observable from these events.",
+          "Some finance reading is news-driven and may fluctuate with headlines."
+        ],
+        "Internal": {
+          "StrengthUpdate": "boost"
+        },
+        "Persona": "A hands-on finance learner who prefers interactive practice (paper trading/simulators) and uses explainers and market news to understand tradeoffs. They prioritize building confidence and comparing options before making real financial decisions."
+      },
+      {
+        "InterestName": "Direct selling business research",
+        "ConfidenceScore": 0.79,
+        "ConfidenceLevel": "high",
+        "Strength": 0.2713292111939794,
+        "State": "dormant",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 28,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 27,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 55,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new direct-selling training/program exploration detected in this slice; activity is dominated by coursework and a small amount of investing/news reading.",
+        "IntentionInferred": "User may have paused after an initial ramp-up; could return when continuing training or deciding on next steps.",
+        "Topics": [
+          {
+            "Topic": "Amway IBO registration / Become an IBO / Start your own business pages",
+            "Weight": 6
+          },
+          {
+            "Topic": "Account/consent/contracts pages (Amway)",
+            "Weight": 4
+          },
+          {
+            "Topic": "Incentives/bonuses (Strong Start Incentive, Personal Performance Bonus)",
+            "Weight": 2
+          },
+          {
+            "Topic": "Training modules (Bronze Foundation / Bronze Builder)",
+            "Weight": 2
+          },
+          {
+            "Topic": "Leadership/community sites (Legacy Leadership Collective)",
+            "Weight": 3
+          },
+          {
+            "Topic": "Personal volume document",
+            "Weight": 1
+          },
+          {
+            "Topic": "Ditto platform (Amway)",
+            "Weight": 3
+          },
+          {
+            "Topic": "MMP4You.com (related visit)",
+            "Weight": 1
+          },
+          {
+            "Topic": "ABCs of Selling (training)",
+            "Weight": 1
+          },
+          {
+            "Topic": "Verified Customer Sales (VCS)",
+            "Weight": 1
+          },
+          {
+            "Topic": "Learning path details",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-12-14",
+        "LastDetectDate": "2025-12-22",
+        "LifetimeDays": 8,
+        "TemporalStats": {
+          "RecencyDays": 63,
+          "ActiveDays": 6,
+          "EventCount": 55
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-22",
+            "source": "Edge/BrowserEvents",
+            "action": "Verified Customer Sales (VCS)"
+          },
+          {
+            "date": "2025-12-22",
+            "source": "Edge/BrowserEvents",
+            "action": "Learning Path details"
+          },
+          {
+            "date": "2025-12-21",
+            "source": "Edge/BrowserEvents",
+            "action": "ABCs of Selling - English"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Activity strongly indicates training/exploration steps, but enrollment success and real-world participation are not observable from these events."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "An opportunity-focused early-stage entrepreneur who researches program mechanics and learns through structured training before committing. They prioritize understanding the sales process and potential outcomes, and they tend to use guided learning paths and playbooks to build confidence."
+      },
+      {
+        "InterestName": "Nutrition supplements shopping",
+        "ConfidenceScore": 0.98,
+        "ConfidenceLevel": "high",
+        "Strength": 0.881727864643584,
+        "State": "stable",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "seasonal_annual",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 46,
+          "Browser": 88,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 23,
+          "Commerce": 0,
+          "Other": 1
+        },
+        "Signals": {
+          "PositiveCount": 215,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new supplement/ingredient shopping events in this slice; prior activity included repeated product browsing and checkout/order confirmation flows on supplement/ingredient retail sites.",
+        "IntentionInferred": "User appears to research supplement products in bursts and may return when considering another purchase; outcomes/usage are not observable.",
+        "Topics": [
+          {
+            "Topic": "MK-677 / Ibutamoren (search, product pages, sellers)",
+            "Weight": 37
+          },
+          {
+            "Topic": "Onyx Research (shop pages, product pages, checkout/order pages)",
+            "Weight": 86
+          },
+          {
+            "Topic": "BPC-157 peptide (product pages)",
+            "Weight": 10
+          },
+          {
+            "Topic": "GHK-Cu peptide (product page)",
+            "Weight": 10
+          },
+          {
+            "Topic": "Bacteriostatic water (product page)",
+            "Weight": 6
+          },
+          {
+            "Topic": "Researchemm/Researchem (site visit, product pages)",
+            "Weight": 20
+          },
+          {
+            "Topic": "Turkesterone (search + article)",
+            "Weight": 4
+          },
+          {
+            "Topic": "Alcohol prep pads/wipes (search + Amazon pages)",
+            "Weight": 5
+          },
+          {
+            "Topic": "Syringes/needles (Amazon pages)",
+            "Weight": 3
+          },
+          {
+            "Topic": "Ashwagandha gummies / probiotic gummies (Amazon pages)",
+            "Weight": 2
+          },
+          {
+            "Topic": "Detox drinks / liver detox supplements (search, ads, articles)",
+            "Weight": 10
+          },
+          {
+            "Topic": "Based Bodyworks (supplement/wellness-adjacent store)",
+            "Weight": 2
+          },
+          {
+            "Topic": "Enclomiphene (product page)",
+            "Weight": 1
+          },
+          {
+            "Topic": "Peptide blend (GHK-Cu/BPC157/TB500) (product page)",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-12-14",
+        "LastDetectDate": "2026-02-16",
+        "LifetimeDays": 64,
+        "TemporalStats": {
+          "RecencyDays": 7,
+          "ActiveDays": 19,
+          "EventCount": 215
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-16",
+            "source": "Edge/BrowserEvents",
+            "action": "Order received – Onyx Research"
+          },
+          {
+            "date": "2026-02-16",
+            "source": "Edge/BrowserEvents",
+            "action": "Checkout – Onyx Research"
+          },
+          {
+            "date": "2026-02-16",
+            "source": "Edge/BrowserEvents",
+            "action": "MK-677 – Onyx Research"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Browsing/searching does not confirm long-term use or outcomes.",
+          "This interest summarizes shopping/research behavior; it does not imply any health condition."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A goal-exploring wellness shopper who searches by ingredient or function and compares options across search, ads, and retailer pages. They prioritize convenient, claim-driven information and tend to research in bursts before deciding."
+      },
+      {
+        "InterestName": "Beauty and skincare products",
+        "ConfidenceScore": 0.64,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.3266556825873603,
+        "State": "declining",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 3,
+          "Browser": 2,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 2,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 11,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new spa/facial or beauty-product browsing observed in this slice.",
+        "IntentionInferred": "User may have been exploring professional skincare/spa services; recent activity is not present in this window.",
+        "Topics": [
+          {
+            "Topic": "Artistry product search and browsing",
+            "Weight": 2
+          },
+          {
+            "Topic": "Makeup primer search",
+            "Weight": 2
+          },
+          {
+            "Topic": "Skin nutrition / balancing collection material",
+            "Weight": 1
+          },
+          {
+            "Topic": "facial appointment near me (search)",
+            "Weight": 1
+          },
+          {
+            "Topic": "spa near me (search/maps)",
+            "Weight": 4
+          },
+          {
+            "Topic": "local med spa/aesthetic studio (maps)",
+            "Weight": 3
+          }
+        ],
+        "FirstDetectDate": "2025-12-14",
+        "LastDetectDate": "2026-01-08",
+        "LifetimeDays": 25,
+        "TemporalStats": {
+          "RecencyDays": 46,
+          "ActiveDays": 3,
+          "EventCount": 11
+        },
+        "Evidence": [
+          {
+            "date": "2026-01-08",
+            "source": "Edge/BrowserEvents",
+            "action": "facial appointment near me - Search"
+          },
+          {
+            "date": "2026-01-08",
+            "source": "Bing/Bing Search Maps",
+            "action": "spa near me"
+          },
+          {
+            "date": "2025-12-18",
+            "source": "Edge/BrowserEvents",
+            "action": "Artistry Skin Nutrition_Sell the Balancing Collection_EN"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Some beauty activity appears adjacent to sales/training material; it is unclear whether the user is shopping for personal use or reviewing content for learning/workflows."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A practical self-care shopper who looks up specific services or product types and focuses on options that seem easy to book and understand. They prioritize clarity on purpose and fit rather than broad browsing."
+      },
+      {
+        "InterestName": "Personal finance budgeting",
+        "ConfidenceScore": 0.81,
+        "ConfidenceLevel": "high",
+        "Strength": 0.2713292111939794,
+        "State": "dormant",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "seasonal_monthly",
+        "Trigger": {
+          "Type": "interval_based",
+          "Value": "monthly"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 5,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 5,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new budget sheet editing detected in this slice.",
+        "IntentionInferred": "User may return to budgeting activities on a monthly cadence.",
+        "Topics": [
+          {
+            "Topic": "Monthly budget sheet (Google Sheets)",
+            "Weight": 2
+          },
+          {
+            "Topic": "Budget files/folder (Google Drive)",
+            "Weight": 1
+          },
+          {
+            "Topic": "Copy/updated budget sheet edits",
+            "Weight": 2
+          }
+        ],
+        "FirstDetectDate": "2025-12-20",
+        "LastDetectDate": "2025-12-24",
+        "LifetimeDays": 4,
+        "TemporalStats": {
+          "RecencyDays": 61,
+          "ActiveDays": 2,
+          "EventCount": 5
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-24",
+            "source": "Edge/BrowserEvents",
+            "action": "Copy of Updated Monthy Budget Sheet.pdf - Google Sheets"
+          },
+          {
+            "date": "2025-12-20",
+            "source": "Edge/BrowserEvents",
+            "action": "Updated Monthy Budget Sheet.pdf - Google Sheets"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Edits suggest active use, but the specific financial goals (debt payoff, saving, etc.) are not directly observable from filenames/pages alone."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A hands-on budget planner who prefers spreadsheets for tracking and adjusting monthly finances. They prioritize practical control—reviewing, copying, and updating templates as their situation changes."
+      },
+      {
+        "InterestName": "Personal finance reading",
+        "ConfidenceScore": 0.68,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.2312441188490257,
+        "State": "archived",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 2,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 2,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No additional book/PDF reading signals observed in this slice beyond earlier activity (personal finance book document).",
+        "IntentionInferred": "May return if the user continues implementing budgeting/finance changes.",
+        "Topics": [
+          {
+            "Topic": "The Total Money Makeover (PDF/Google Docs)",
+            "Weight": 2
+          }
+        ],
+        "FirstDetectDate": "2025-12-15",
+        "LastDetectDate": "2025-12-16",
+        "LifetimeDays": 1,
+        "TemporalStats": {
+          "RecencyDays": 69,
+          "ActiveDays": 2,
+          "EventCount": 2
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-16",
+            "source": "Edge/BrowserEvents",
+            "action": "The Total Money Makeover - A Proven Plan for Financial Fitness - Google Docs"
+          },
+          {
+            "date": "2025-12-15",
+            "source": "Edge/BrowserEvents",
+            "action": "The Total Money Makeover - A Proven Plan for Financial Fitness.pdf - Google Drive"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Reading depth and completion are not observable; could be sampling rather than sustained reading."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A self-directed money learner who uses well-known personal finance books to shape practical habits. They prefer clear step-by-step guidance and return to materials when implementing changes."
+      },
+      {
+        "InterestName": "Thrifted and styled fashion",
+        "ConfidenceScore": 0.96,
+        "ConfidenceLevel": "high",
+        "Strength": 0.8819760354414429,
+        "State": "stable",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 62,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 38,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 103,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new fashion/apparel browsing observed in this slice; recent activity is dominated by coursework.",
+        "IntentionInferred": "User likely continues to compare apparel options and maintain shortlists, but this window does not add reinforcement.",
+        "Topics": [
+          {
+            "Topic": "American Eagle men's catalog",
+            "Weight": 8
+          },
+          {
+            "Topic": "Zara men's jackets",
+            "Weight": 9
+          },
+          {
+            "Topic": "PacSun likes/saved items",
+            "Weight": 8
+          },
+          {
+            "Topic": "Hollister saved list",
+            "Weight": 4
+          },
+          {
+            "Topic": "Fashion Nova browsing",
+            "Weight": 16
+          },
+          {
+            "Topic": "Abercrombie men's categories (tops/sweaters/hoodies/jackets)",
+            "Weight": 7
+          },
+          {
+            "Topic": "H&M browsing",
+            "Weight": 1
+          },
+          {
+            "Topic": "Shein browsing",
+            "Weight": 1
+          },
+          {
+            "Topic": "Boot Barn categories (workwear/western staples/hats/shirts/jeans)",
+            "Weight": 17
+          },
+          {
+            "Topic": "Boot Barn cart/checkout flow",
+            "Weight": 4
+          },
+          {
+            "Topic": "Columbia quarter-zip/outerwear browsing",
+            "Weight": 6
+          },
+          {
+            "Topic": "Ariat / Cody James / Brothers and Sons jackets (product pages)",
+            "Weight": 6
+          }
+        ],
+        "FirstDetectDate": "2025-11-24",
+        "LastDetectDate": "2026-02-18",
+        "LifetimeDays": 86,
+        "TemporalStats": {
+          "RecencyDays": 5,
+          "ActiveDays": 30,
+          "EventCount": 114
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-18",
+            "source": "Uet/UetEvents",
+            "action": "Search | Fashion Nova"
+          },
+          {
+            "date": "2026-02-16",
+            "source": "Edge/BrowserEvents",
+            "action": "Men's Jackets .* | ZARA United States"
+          },
+          {
+            "date": "2026-02-16",
+            "source": "Edge/BrowserEvents",
+            "action": "My Likes | PacSun"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Signals strongly indicate shopping consideration and list-building; purchases are not directly observable from these events."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A style-focused shopper who compares items across several menswear retailers and uses likes/saved lists to shortlist options. They prioritize variety and value and often revisit items before making decisions."
+      },
+      {
+        "InterestName": "Job search and gig work",
+        "ConfidenceScore": 0.63,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.3560036133739346,
+        "State": "declining",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "seasonal_annual",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 13,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 3,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 16,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No explicit job listings or gig-platform activity was observed in this slice.",
+        "IntentionInferred": "User may still be exploring student-friendly work via college-linked resources, but signals are not present in this window.",
+        "Topics": [
+          {
+            "Topic": "Delta College internship/co-op application",
+            "Weight": 2
+          },
+          {
+            "Topic": "Internships and co-op | Delta College",
+            "Weight": 4
+          },
+          {
+            "Topic": "delat college co-op (search)",
+            "Weight": 2
+          },
+          {
+            "Topic": "seasonal jobs near you",
+            "Weight": 1
+          },
+          {
+            "Topic": "general cleaner job (Midland, MI)",
+            "Weight": 1
+          },
+          {
+            "Topic": "paid online surveys (Branded Surveys)",
+            "Weight": 1
+          },
+          {
+            "Topic": "College Central Network (internships/jobs)",
+            "Weight": 2
+          },
+          {
+            "Topic": "Student employment (Delta College)",
+            "Weight": 1
+          },
+          {
+            "Topic": "Our Opportunities - Delta College",
+            "Weight": 3
+          }
+        ],
+        "FirstDetectDate": "2025-11-26",
+        "LastDetectDate": "2026-01-14",
+        "LifetimeDays": 49,
+        "TemporalStats": {
+          "RecencyDays": 40,
+          "ActiveDays": 9,
+          "EventCount": 20
+        },
+        "Evidence": [
+          {
+            "date": "2026-01-14",
+            "source": "Edge/BrowserEvents",
+            "action": "Our Opportunities - Delta College"
+          },
+          {
+            "date": "2026-01-13",
+            "source": "Edge/BrowserEvents",
+            "action": "Our Opportunities - Delta College"
+          },
+          {
+            "date": "2025-12-28",
+            "source": "Edge/BrowserEvents",
+            "action": "College Central Network®"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Some activity could be exploratory browsing; true application progress beyond page visits is not observable."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A pragmatic early-career seeker who explores internships and flexible work options to build income and experience. They compare role types and use college-linked resources to find opportunities that fit around coursework."
+      },
+      {
+        "InterestName": "Academic citation writing",
+        "ConfidenceScore": 0.7,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.6624344050278833,
+        "State": "declining",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "seasonal_quarterly",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 4,
+          "Browser": 8,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 12,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new citation-tool activity was observed in this slice; activity is concentrated on coursework platforms rather than citation resources.",
+        "IntentionInferred": "Likely assignment-specific and may reactivate around writing deadlines; current slice does not add new reinforcement.",
+        "Topics": [
+          {
+            "Topic": "Purdue OWL citation resources",
+            "Weight": 3
+          },
+          {
+            "Topic": "Citation Machine MLA (website/article)",
+            "Weight": 3
+          },
+          {
+            "Topic": "MLA citation for a news article (lookup)",
+            "Weight": 2
+          },
+          {
+            "Topic": "Library Research BIO111: citations/plagiarism steps",
+            "Weight": 3
+          },
+          {
+            "Topic": "APA citations (intro material)",
+            "Weight": 1
+          },
+          {
+            "Topic": "History research citations (book/publication detail lookups)",
+            "Weight": 4
+          }
+        ],
+        "FirstDetectDate": "2025-12-11",
+        "LastDetectDate": "2026-02-11",
+        "LifetimeDays": 62,
+        "TemporalStats": {
+          "RecencyDays": 12,
+          "ActiveDays": 3,
+          "EventCount": 16
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-11",
+            "source": "Bing/Bing Search web",
+            "action": "oney, Maureen. Creating Rosie the Riveter: Class, Gender, and Propaganda during World War II. University of Massachusetts Press, 1984."
+          },
+          {
+            "date": "2026-02-11",
+            "source": "Bing/Bing Search web Clicked",
+            "action": "Creating Rosie the Riveter - University of Massachusetts Press"
+          },
+          {
+            "date": "2026-01-28",
+            "source": "Edge/BrowserEvents",
+            "action": "Step 7 Introduction to Citations and Plagiarism - Library Research BIO111"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Citation-related activity appears assignment-driven; long-term persistence depends on ongoing writing-heavy coursework."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A practical student writer who uses trusted reference materials to format sources correctly and avoid plagiarism issues. They prioritize speed and correctness when deadlines are near."
+      },
+      {
+        "InterestName": "Literature study guides",
+        "ConfidenceScore": 0.52,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.13297630833198512,
+        "State": "archived",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "seasonal_quarterly",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 6,
+          "Browser": 8,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 1,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 15,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new study-guide usage observed in this slice.",
+        "IntentionInferred": "May reactivate around future reading/writing assignments.",
+        "Topics": [
+          {
+            "Topic": "Maus SparkNotes study guide",
+            "Weight": 5
+          },
+          {
+            "Topic": "Maus chapter summaries (1–5, Book II)",
+            "Weight": 7
+          },
+          {
+            "Topic": "maus sparknotes (search)",
+            "Weight": 3
+          }
+        ],
+        "FirstDetectDate": "2025-12-01",
+        "LastDetectDate": "2025-12-01",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 84,
+          "ActiveDays": 1,
+          "EventCount": 15
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-01",
+            "source": "Edge/BrowserEvents",
+            "action": "Maus: A Survivor's Tale: Study Guide | SparkNotes"
+          },
+          {
+            "date": "2025-12-01",
+            "source": "Edge/BrowserEvents",
+            "action": "Maus: A Survivor's Tale Chapter 5: The Second Honeymoon Summary & Analysis | SparkNotes"
+          },
+          {
+            "date": "2025-12-01",
+            "source": "Bing/Bing Search web",
+            "action": "maus sparknotes"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Engagement is concentrated on one day; could be assignment-driven rather than a durable interest."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A deadline-driven student who uses concise online study guides and chapter summaries to support reading comprehension and analysis. They prioritize quick synthesis of key themes when preparing for writing or discussion."
+      },
+      {
+        "InterestName": "Apartment and housing search",
+        "ConfidenceScore": 0.42,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.13297630833198512,
+        "State": "archived",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 2,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 5,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 6,
+          "NegativeCount": 1,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new housing-listing browsing observed in this slice.",
+        "IntentionInferred": "Current moving/renting urgency is unclear without recent signals.",
+        "Topics": [
+          {
+            "Topic": "Apartment List matches / Not for me",
+            "Weight": 2
+          },
+          {
+            "Topic": "Realtor.com apartments (Midland, MI)",
+            "Weight": 1
+          },
+          {
+            "Topic": "Realtor.com apartments (San Francisco, CA)",
+            "Weight": 1
+          },
+          {
+            "Topic": "Zillow homes (Auburn, MI)",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-12-04",
+        "LastDetectDate": "2025-12-04",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 81,
+          "ActiveDays": 1,
+          "EventCount": 6
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-04",
+            "source": "Uet/UetEvents",
+            "action": "Matches | Apartment List"
+          },
+          {
+            "date": "2025-12-04",
+            "source": "Uet/UetEvents",
+            "action": "Not for me | Apartment List"
+          },
+          {
+            "date": "2025-12-04",
+            "source": "Uet/UetEvents",
+            "action": "Apartments for Rent in San Francisco, CA - Daily Updates | Realtor.com®"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Only one day of activity; intent (active move vs exploratory browsing) is unclear. Location signals appear in listing pages but should not be treated as confirmed residence."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A comparison-oriented renter/home shopper who scans listing aggregators, filters options, and quickly rejects poor matches. They tend to explore multiple markets before narrowing to a shortlist."
+      },
+      {
+        "InterestName": "College football NIL news",
+        "ConfidenceScore": 0.38,
+        "ConfidenceLevel": "low",
+        "Strength": 0.13297630833198512,
+        "State": "archived",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "seasonal_annual",
+        "Trigger": {
+          "Type": "popularity_based",
+          "Value": "trending"
+        },
+        "SignalSourceCounts": {
+          "Search": 5,
+          "Browser": 4,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 9,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new NIL/news browsing observed in this slice.",
+        "IntentionInferred": "May return around major announcements or peak college football news cycles.",
+        "Topics": [
+          {
+            "Topic": "NCAA revenue sharing & NIL estimates 2025",
+            "Weight": 2
+          },
+          {
+            "Topic": "biggest NIL spenders / NIL efforts rankings",
+            "Weight": 3
+          },
+          {
+            "Topic": "college football NIL values by school (search)",
+            "Weight": 4
+          }
+        ],
+        "FirstDetectDate": "2025-12-05",
+        "LastDetectDate": "2025-12-05",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 80,
+          "ActiveDays": 1,
+          "EventCount": 9
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-05",
+            "source": "Edge/BrowserEvents",
+            "action": "NCAA Revenue Sharing & NIL Estimates 2025"
+          },
+          {
+            "date": "2025-12-05",
+            "source": "Bing/Bing Search web",
+            "action": "college football nil values"
+          },
+          {
+            "date": "2025-12-05",
+            "source": "Edge/BrowserEvents",
+            "action": "College football's top 50 programs ranked by NIL efforts - 247Sports"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Observed on a single day; may be news-driven and time-limited."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A sports-news reader who follows college football business storylines and uses search to compare figures across programs. They prioritize rankings, estimates, and summary explainers over deep statistical analysis."
+      },
+      {
+        "InterestName": "Hunting rifle research",
+        "ConfidenceScore": 0.78,
+        "ConfidenceLevel": "high",
+        "Strength": 0.5987014460512766,
+        "State": "declining",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "seasonal_annual",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 6,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 10,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 16,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new hunting rifle browsing observed in this slice beyond earlier retailer category/filter page visits.",
+        "IntentionInferred": "User may be continuing purchase research or seasonal planning for hunting equipment; intent (purchase vs general interest) is not confirmed.",
+        "Topics": [
+          {
+            "Topic": "Cabela's centerfire rifles",
+            "Weight": 16
+          },
+          {
+            "Topic": "big & small game hunting",
+            "Weight": 1
+          },
+          {
+            "Topic": "Browning rifles filter",
+            "Weight": 2
+          },
+          {
+            "Topic": "Ruger rifles filter",
+            "Weight": 2
+          }
+        ],
+        "FirstDetectDate": "2025-11-26",
+        "LastDetectDate": "2026-01-28",
+        "LifetimeDays": 63,
+        "TemporalStats": {
+          "RecencyDays": 26,
+          "ActiveDays": 10,
+          "EventCount": 18
+        },
+        "Evidence": [
+          {
+            "date": "2026-01-28",
+            "source": "Edge/BrowserEvents",
+            "action": "Centerfire Rifles for Big & Small Game Hunting | Cabela's"
+          },
+          {
+            "date": "2026-01-25",
+            "source": "Edge/BrowserEvents",
+            "action": "www.cabelas.com"
+          },
+          {
+            "date": "2026-01-24",
+            "source": "Edge/BrowserEvents",
+            "action": "cabelas.com/l/centerfire-rifles#f-brand=Browning,Ruger"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Browsing is mostly retailer category/filter pages; could be general interest, gift research, or early purchase planning."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A comparison-driven outdoor shopper who uses major retailer category pages to understand hunting rifle options and tradeoffs. They tend to research in short bursts, often around seasonal or planned activities."
+      },
+      {
+        "InterestName": "Kitchen stand mixer research",
+        "ConfidenceScore": 0.24,
+        "ConfidenceLevel": "low",
+        "Strength": 0.18616683166477913,
+        "State": "archived",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "seasonal_annual",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 2,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 2,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new appliance research observed in this slice beyond prior activity.",
+        "IntentionInferred": "Likely casual comparison rather than an active purchase plan.",
+        "Topics": [
+          {
+            "Topic": "KitchenAid tilt-head stand mixer",
+            "Weight": 2
+          },
+          {
+            "Topic": "Design Series Evergreen",
+            "Weight": 2
+          }
+        ],
+        "FirstDetectDate": "2025-11-23",
+        "LastDetectDate": "2025-12-03",
+        "LifetimeDays": 10,
+        "TemporalStats": {
+          "RecencyDays": 82,
+          "ActiveDays": 2,
+          "EventCount": 2
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-03",
+            "source": "Uet/UetEvents",
+            "action": "2024 Design Series Evergreen Tilt-Head Stand Mixer | KitchenAid US"
+          },
+          {
+            "date": "2025-11-23",
+            "source": "Uet/UetEvents",
+            "action": "2024 Design Series Evergreen Tilt-Head Stand Mixer | KitchenAid US"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Low volume; could be aspirational browsing rather than purchase intent."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A practical home cook who occasionally revisits specific appliance models to compare features and aesthetics. They tend to bookmark a few options and return when considering an upgrade or gift."
+      },
+      {
+        "InterestName": "Tarot and psychics",
+        "ConfidenceScore": 0.44,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.042583286496218314,
+        "State": "archived",
+        "DecayRate": 0.588,
+        "TemporalType": "ephemeral",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 1,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 12,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 13,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new spiritual/occult-style guidance browsing observed in this slice.",
+        "IntentionInferred": "Engagement appears occasional rather than sustained.",
+        "Topics": [
+          {
+            "Topic": "Keen tarot readings",
+            "Weight": 7
+          },
+          {
+            "Topic": "California Psychics",
+            "Weight": 5
+          },
+          {
+            "Topic": "Aquarius horoscope",
+            "Weight": 2
+          },
+          {
+            "Topic": "love and relationship tarot",
+            "Weight": 1
+          },
+          {
+            "Topic": "Crystal healing (article)",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-11-23",
+        "LastDetectDate": "2026-01-18",
+        "LifetimeDays": 56,
+        "TemporalStats": {
+          "RecencyDays": 36,
+          "ActiveDays": 2,
+          "EventCount": 13
+        },
+        "Evidence": [
+          {
+            "date": "2026-01-18",
+            "source": "Edge/BrowserEvents",
+            "action": "A Beginner’s Guide to Crystal Healing—Just in Time for 2026 | Vogue"
+          },
+          {
+            "date": "2025-11-23",
+            "source": "Uet/UetEvents",
+            "action": "Tarot Readings | Online Tarot Readings | Keen"
+          },
+          {
+            "date": "2025-11-23",
+            "source": "Uet/UetEvents",
+            "action": "Psychic Tarot Card Readings Online | California Psychics"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Signals are sparse and separated in time; may be occasional curiosity rather than a durable interest."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A curious explorer who occasionally samples online spiritual guidance content and scans sources to get a quick sense of what's credible or useful. They tend to engage in short bursts and return only when a specific question or curiosity arises."
+      },
+      {
+        "InterestName": "Real estate auctions research",
+        "ConfidenceScore": 0.16,
+        "ConfidenceLevel": "low",
+        "Strength": 0.11728510394881088,
+        "State": "archived",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 2,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 2,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new auction-related searches observed in this slice; prior activity was a single-day query.",
+        "IntentionInferred": "May have been curiosity about how auctions work rather than active buying intent.",
+        "Topics": [
+          {
+            "Topic": "real estate auctions",
+            "Weight": 2
+          }
+        ],
+        "FirstDetectDate": "2025-11-24",
+        "LastDetectDate": "2025-11-24",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 91,
+          "ActiveDays": 1,
+          "EventCount": 2
+        },
+        "Evidence": [
+          {
+            "date": "2025-11-24",
+            "source": "Edge/BrowserEvents",
+            "action": "real estate auctions - Search"
+          },
+          {
+            "date": "2025-11-24",
+            "source": "Bing/Bing Search web",
+            "action": " real estate auctions "
+          }
+        ],
+        "UncertaintyNotes": [
+          "Single-day search; intent (buying vs curiosity) remains unclear."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A deal-oriented researcher who occasionally uses search to understand how real estate auctions work and what opportunities exist. They likely compare options and requirements before taking action."
+      },
+      {
+        "InterestName": "Vehicle and mower maintenance",
+        "ConfidenceScore": 0.16,
+        "ConfidenceLevel": "low",
+        "Strength": 0.11728510394881088,
+        "State": "archived",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "seasonal_annual",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 3,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 3,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new maintenance-related browsing observed in this slice.",
+        "IntentionInferred": "Likely a one-off maintenance task.",
+        "Topics": [
+          {
+            "Topic": "oil filter lookup by vehicle",
+            "Weight": 1
+          },
+          {
+            "Topic": "lawn mower oil filter (Kawasaki models)",
+            "Weight": 2
+          }
+        ],
+        "FirstDetectDate": "2025-11-24",
+        "LastDetectDate": "2025-11-24",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 91,
+          "ActiveDays": 1,
+          "EventCount": 3
+        },
+        "Evidence": [
+          {
+            "date": "2025-11-24",
+            "source": "Uet/UetEvents",
+            "action": "Oil Filters - Oil Filter Lookup by Vehicle"
+          },
+          {
+            "date": "2025-11-24",
+            "source": "Uet/UetEvents",
+            "action": "Cub Cadet Lawn Mower Oil Filter for Select Kawasaki Models at Tractor Supply Co"
+          },
+          {
+            "date": "2025-11-24",
+            "source": "Uet/UetEvents",
+            "action": "Arnold Lawn Mower Oil Filter for Select Kawasaki Models at Tractor Supply Co"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Observed in one burst; may have been a single maintenance task."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A practical maintainer who checks fit and compares parts before buying for routine upkeep. They tend to research quickly, then act once the right match is confirmed."
+      },
+      {
+        "InterestName": "Home crafts and soap making",
+        "ConfidenceScore": 0.13,
+        "ConfidenceLevel": "low",
+        "Strength": 0.11728510394881088,
+        "State": "archived",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 1,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 1,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new DIY/craft activity observed in this slice.",
+        "IntentionInferred": "May have been incidental browsing.",
+        "Topics": [
+          {
+            "Topic": "soap making supplies",
+            "Weight": 1
+          },
+          {
+            "Topic": "CandleScience / SoapScience",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-11-24",
+        "LastDetectDate": "2025-11-24",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 91,
+          "ActiveDays": 1,
+          "EventCount": 1
+        },
+        "Evidence": [
+          {
+            "date": "2025-11-24",
+            "source": "Uet/UetEvents",
+            "action": "SoapScience Soap Making Supplies - CandleScience"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Only one event; could be incidental browsing."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A casual DIY hobby explorer who occasionally clicks into craft supply pages when considering small projects or gifts. They may return seasonally or when inspiration strikes."
+      },
+      {
+        "InterestName": "Fast casual takeout",
+        "ConfidenceScore": 0.35,
+        "ConfidenceLevel": "low",
+        "Strength": 0.005451311693174305,
+        "State": "archived",
+        "DecayRate": 0.588,
+        "TemporalType": "ephemeral",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "interval_based",
+          "Value": "weekly"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 7,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 7,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new delivery/restaurant ordering signals observed in this slice.",
+        "IntentionInferred": "Likely occasional convenience ordering.",
+        "Topics": [
+          {
+            "Topic": "DoorDash delivery (food/grocery/retail)",
+            "Weight": 1
+          },
+          {
+            "Topic": "Buffalo Wild Wings menu",
+            "Weight": 4
+          },
+          {
+            "Topic": "Bacon Mac & Cheese Burger",
+            "Weight": 1
+          },
+          {
+            "Topic": "delivery or pickup",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-11-25",
+        "LastDetectDate": "2025-12-24",
+        "LifetimeDays": 29,
+        "TemporalStats": {
+          "RecencyDays": 61,
+          "ActiveDays": 2,
+          "EventCount": 7
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-24",
+            "source": "Uet/UetEvents",
+            "action": "DoorDash: Food, Grocery and Retail - Fast Same Day Delivery"
+          },
+          {
+            "date": "2025-11-25",
+            "source": "Uet/UetEvents",
+            "action": "Menu | Buffalo Wild Wings"
+          },
+          {
+            "date": "2025-11-25",
+            "source": "Uet/UetEvents",
+            "action": "Bacon Mac & Cheese Burger - Nearby For Delivery or Pick Up | Buffalo Wild Wings"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Food-ordering intent is plausible but purchase completion is not observable."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A convenience-first delivery user who turns to aggregator apps when deciding on a meal or quick household delivery. They tend to act quickly once they find an acceptable option rather than doing extensive comparison."
+      },
+      {
+        "InterestName": "Windows 11 features",
+        "ConfidenceScore": 0.11,
+        "ConfidenceLevel": "low",
+        "Strength": 0.11728510394881088,
+        "State": "archived",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "product_launch"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 2,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 2,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new Windows feature browsing observed in this slice.",
+        "IntentionInferred": "May reflect occasional OS curiosity rather than a planned change.",
+        "Topics": [
+          {
+            "Topic": "Windows 11 latest features",
+            "Weight": 2
+          }
+        ],
+        "FirstDetectDate": "2025-11-26",
+        "LastDetectDate": "2025-11-26",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 89,
+          "ActiveDays": 1,
+          "EventCount": 2
+        },
+        "Evidence": [
+          {
+            "date": "2025-11-26",
+            "source": "Uet/UetEvents",
+            "action": "Latest Features | Windows 11"
+          },
+          {
+            "date": "2025-11-26",
+            "source": "Edge/BrowserEvents",
+            "action": "Latest Features | Windows 11"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Could be routine curiosity rather than an active upgrade plan."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A practical PC user who checks official feature summaries to decide whether an update is worth attention. They engage briefly and move on unless a specific need arises."
+      },
+      {
+        "InterestName": "Work boots and outerwear",
+        "ConfidenceScore": 0.7,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.422799271500499,
+        "State": "declining",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "seasonal_annual",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 2,
+          "Browser": 9,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 9,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 20,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new workwear-specific browsing observed in this slice.",
+        "IntentionInferred": "Workwear/outerwear purchase intent may have cooled after a stronger earlier burst; could reactivate seasonally.",
+        "Topics": [
+          {
+            "Topic": "Boot Barn clearance outerwear",
+            "Weight": 4
+          },
+          {
+            "Topic": "Boot Barn men's workwear categories",
+            "Weight": 6
+          },
+          {
+            "Topic": "Boot Barn jacket product pages (Ariat/Cody James/Brothers and Sons)",
+            "Weight": 6
+          },
+          {
+            "Topic": "Boot Barn cart/checkout",
+            "Weight": 4
+          },
+          {
+            "Topic": "Columbia outerwear / quarter-zip (site + ads)",
+            "Weight": 4
+          },
+          {
+            "Topic": "boot barn (search)",
+            "Weight": 2
+          }
+        ],
+        "FirstDetectDate": "2025-11-30",
+        "LastDetectDate": "2026-01-11",
+        "LifetimeDays": 42,
+        "TemporalStats": {
+          "RecencyDays": 43,
+          "ActiveDays": 3,
+          "EventCount": 20
+        },
+        "Evidence": [
+          {
+            "date": "2026-01-11",
+            "source": "Uet/UetEvents",
+            "action": "Checkout | Boot Barn"
+          },
+          {
+            "date": "2026-01-11",
+            "source": "Edge/BrowserEvents",
+            "action": "Men's Clearance Outerwear - Boot Barn"
+          },
+          {
+            "date": "2026-01-11",
+            "source": "Ads/AdEvents",
+            "action": "Columbia® Apparel - Built for Adventure - Split Up Payments with Klarna"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Recent browsing is clear, but whether it is job-required workwear or general fashion preference is not directly observable.",
+          "Cart/checkout events suggest strong purchase intent but do not confirm purchase completion."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A practicality-first shopper who looks for durable boots and functional outerwear and uses retailer categories, clearance sections, and product pages to compare value. They tend to narrow to a few candidates and proceed to cart/checkout when something fits."
+      },
+      {
+        "InterestName": "Self-improvement reading",
+        "ConfidenceScore": 0.22,
+        "ConfidenceLevel": "low",
+        "Strength": 0.25411329522108966,
+        "State": "archived",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 1,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 1,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new self-improvement book/audiobook browsing detected in this slice beyond prior activity.",
+        "IntentionInferred": "May be occasional and need-based rather than sustained.",
+        "Topics": [
+          {
+            "Topic": "The Magic Of Thinking Big (PDF)",
+            "Weight": 1
+          },
+          {
+            "Topic": "How to Start a Conversation and Make Friends (audiobook)",
+            "Weight": 3
+          }
+        ],
+        "FirstDetectDate": "2025-12-02",
+        "LastDetectDate": "2025-12-22",
+        "LifetimeDays": 20,
+        "TemporalStats": {
+          "RecencyDays": 63,
+          "ActiveDays": 2,
+          "EventCount": 4
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-22",
+            "source": "Bing/Bing Search web",
+            "action": "How to Start a Conversation and Make Friends audio book"
+          },
+          {
+            "date": "2025-12-22",
+            "source": "Edge/BrowserEvents",
+            "action": "How To Start A Conversation And Make Friends Audiobook by Don Gabor"
+          },
+          {
+            "date": "2025-12-02",
+            "source": "Edge/BrowserEvents",
+            "action": "The Magic Of Thinking Big.pdf"
+          }
+        ],
+        "UncertaintyNotes": [
+          "This merges two different self-help themes (mindset book vs social skills); may represent separate short-lived needs rather than a stable category."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A curiosity-driven self-improvement learner who looks for practical guidance they can apply quickly (mindset or social skills). They tend to sample content first and continue if it feels immediately actionable."
+      },
+      {
+        "InterestName": "Weight management and supplements",
+        "ConfidenceScore": 0.22,
+        "ConfidenceLevel": "low",
+        "Strength": 0.46797206612366155,
+        "State": "declining",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 4,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 2,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 6,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new goal-specific weight-management browsing observed in this slice; recent behavior is better captured by broader supplement shopping/research when present.",
+        "IntentionInferred": "This cluster remains weakly separated from broader supplement shopping and may be redundant; goal-specific intent cannot be determined from browsing alone.",
+        "Topics": [
+          {
+            "Topic": "Protein supplements (whey protein / XS brand)",
+            "Weight": 7
+          },
+          {
+            "Topic": "Preworkout supplements",
+            "Weight": 2
+          },
+          {
+            "Topic": "Probiotics",
+            "Weight": 4
+          },
+          {
+            "Topic": "Sleep support / sleep gummies",
+            "Weight": 4
+          },
+          {
+            "Topic": "Ashwagandha gummies",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-12-03",
+        "LastDetectDate": "2026-01-29",
+        "LifetimeDays": 57,
+        "TemporalStats": {
+          "RecencyDays": 25,
+          "ActiveDays": 5,
+          "EventCount": 8
+        },
+        "Evidence": [
+          {
+            "date": "2026-01-29",
+            "source": "Edge/BrowserEvents",
+            "action": "Amazon.com : goli pre post probiotics gummies 3 in 1"
+          },
+          {
+            "date": "2026-01-29",
+            "source": "Edge/BrowserEvents",
+            "action": "Amazon.com : goli ashwagandha gummies"
+          },
+          {
+            "date": "2025-12-16",
+            "source": "Edge/BrowserEvents",
+            "action": "Sleep | Amway United States"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Signals are sparse and mixed; supplement browsing does not necessarily indicate a health condition or a specific outcome goal.",
+          "Recent Onyx Research shopping is better represented by the broader supplement-shopping interest."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A goal-exploring fitness consumer who samples product pages and ingredient searches when considering changes to training or wellness routines. They tend to compare approaches before committing to a plan."
+      },
+      {
+        "InterestName": "Personal care shopping",
+        "ConfidenceScore": 0.3,
+        "ConfidenceLevel": "low",
+        "Strength": 0.1507667894920466,
+        "State": "archived",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 3,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 3,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new personal-care item browsing observed in this slice beyond earlier activity.",
+        "IntentionInferred": "May resume when the user needs a specific personal-care item.",
+        "Topics": [
+          {
+            "Topic": "foot peel mask",
+            "Weight": 2
+          },
+          {
+            "Topic": "Vitamasques Ultra Peeling Foot Mask",
+            "Weight": 1
+          },
+          {
+            "Topic": "Walgreens product pages",
+            "Weight": 2
+          }
+        ],
+        "FirstDetectDate": "2025-12-12",
+        "LastDetectDate": "2025-12-12",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 73,
+          "ActiveDays": 1,
+          "EventCount": 3
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-12",
+            "source": "Uet/UetEvents",
+            "action": "Vitamasques Ultra Peeling Foot Mask | Walgreens"
+          },
+          {
+            "date": "2025-12-12",
+            "source": "Uet/UetEvents",
+            "action": "Foot peel mask | Walgreens"
+          },
+          {
+            "date": "2025-12-12",
+            "source": "Edge/BrowserEvents",
+            "action": "Homepage - WEIGHT TRAINING - LWA-108-FA710-25/FA"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Only one day of commerce-style browsing; purchase completion is not observable."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A practical shopper who makes small personal-care buys by checking specific product pages and brands. They tend to focus on a single item type rather than broad browsing."
+      },
+      {
+        "InterestName": "LEGO parts shopping",
+        "ConfidenceScore": 0.26,
+        "ConfidenceLevel": "low",
+        "Strength": 0.0013956890455738204,
+        "State": "archived",
+        "DecayRate": 0.57624,
+        "TemporalType": "ephemeral",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 1,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 1,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new LEGO/parts marketplace activity observed in this slice.",
+        "IntentionInferred": "Could be a one-off replacement part need; persistence remains unclear.",
+        "Topics": [
+          {
+            "Topic": "LEGO Technic lift arm (part listing)",
+            "Weight": 1
+          },
+          {
+            "Topic": "eBay LEGO parts",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-12-11",
+        "LastDetectDate": "2025-12-11",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 74,
+          "ActiveDays": 1,
+          "EventCount": 1
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-11",
+            "source": "Uet/UetEvents",
+            "action": "Lego Parts 41239 (1pc) 1x13 Technic Lift Arm Dark Stone Gray | eBay"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Single marketplace page view; could be incidental or part of a one-off purchase."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A targeted hobby shopper who looks for specific replacement parts rather than browsing broad kits. They likely return only when working on a particular build or repair."
+      },
+      {
+        "InterestName": "Social skills learning",
+        "ConfidenceScore": 0.62,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.193806579424271,
+        "State": "archived",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 2,
+          "Browser": 3,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 3,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 8,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new social-skills audiobook browsing detected in this slice.",
+        "IntentionInferred": "May have been a near-term need; unclear if it will persist.",
+        "Topics": [
+          {
+            "Topic": "How to Start a Conversation and Make Friends (Don Gabor) audiobook",
+            "Weight": 4
+          },
+          {
+            "Topic": "Chirp Audiobooks browsing",
+            "Weight": 2
+          },
+          {
+            "Topic": "no-subscription audiobook deals (ad)",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-12-22",
+        "LastDetectDate": "2025-12-22",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 63,
+          "ActiveDays": 1,
+          "EventCount": 8
+        },
+        "Evidence": [
+          {
+            "date": "2025-12-22",
+            "source": "Bing/Bing Search web",
+            "action": "How to Start a Conversation and Make Friends audio book"
+          },
+          {
+            "date": "2025-12-22",
+            "source": "Edge/BrowserEvents",
+            "action": "How To Start A Conversation And Make Friends Audiobook by Don Gabor"
+          },
+          {
+            "date": "2025-12-22",
+            "source": "Uet/UetEvents",
+            "action": "Chirp Audiobooks"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Single-day cluster; may be a one-off need rather than an enduring interest.",
+          "Audiobook browsing does not confirm purchase or completion."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A self-improvement learner who seeks practical, step-by-step communication advice and prefers audio formats for easy consumption. They tend to start with a specific title and then browse adjacent deals or catalogs before committing."
+      },
+      {
+        "InterestName": "Scholarship opportunities research",
+        "ConfidenceScore": 0.9,
+        "ConfidenceLevel": "high",
+        "Strength": 0.6669779558064538,
+        "State": "declining",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "seasonal_annual",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 4,
+          "Browser": 46,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 50,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new scholarship/opportunity portal activity observed in this slice.",
+        "IntentionInferred": "User may have completed or paused scholarship research after earlier application-flow activity; may return as deadlines approach.",
+        "Topics": [
+          {
+            "Topic": "Delta College scholarships (multiple named scholarships)",
+            "Weight": 18
+          },
+          {
+            "Topic": "External opportunities lists (Delta College)",
+            "Weight": 4
+          },
+          {
+            "Topic": "Saginaw Community Foundation / saginawfoundation.org",
+            "Weight": 4
+          },
+          {
+            "Topic": "GOapply application portal",
+            "Weight": 12
+          },
+          {
+            "Topic": "BigFuture / College Board scholarship search + listings",
+            "Weight": 7
+          },
+          {
+            "Topic": "Chick-fil-A scholarship (search)",
+            "Weight": 2
+          },
+          {
+            "Topic": "MI Student Aid (student aid info)",
+            "Weight": 1
+          },
+          {
+            "Topic": "Honors scholarships (Delta College)",
+            "Weight": 6
+          }
+        ],
+        "FirstDetectDate": "2025-12-24",
+        "LastDetectDate": "2026-02-05",
+        "LifetimeDays": 43,
+        "TemporalStats": {
+          "RecencyDays": 18,
+          "ActiveDays": 9,
+          "EventCount": 50
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-05",
+            "source": "Edge/BrowserEvents",
+            "action": "Saginaw Community Foundation Scholarship Program - GOapply"
+          },
+          {
+            "date": "2026-02-05",
+            "source": "Edge/BrowserEvents",
+            "action": "Application - Delta College Honors Scholarship - Delta College"
+          },
+          {
+            "date": "2026-02-03",
+            "source": "Edge/BrowserEvents",
+            "action": "General Application - Delta College"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Signals show research and application flow entry; actual submissions/awards are not observable from these events."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A resourceful student who hunts for reputable scholarship programs and quickly evaluates eligibility and next steps across school and foundation portals. They prioritize reducing education costs and follow through by opening application/search tools when opportunities look promising."
+      },
+      {
+        "InterestName": "Snowboarding gear shopping",
+        "ConfidenceScore": 0.95,
+        "ConfidenceLevel": "high",
+        "Strength": 0.8805549312,
+        "State": "stable",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "seasonal_annual",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 4,
+          "Browser": 5,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 16,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 25,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new snowboarding gear browsing observed in this slice.",
+        "IntentionInferred": "User likely considers winter gear purchases around the season; this window does not reinforce it but recent history supports a seasonal shopping sprint.",
+        "Topics": [
+          {
+            "Topic": "Burton snowboards / Burton.com browsing",
+            "Weight": 17
+          },
+          {
+            "Topic": "snowboard (search)",
+            "Weight": 2
+          },
+          {
+            "Topic": "Shop snowboards for every rider",
+            "Weight": 16
+          },
+          {
+            "Topic": "Men's Burton Gear (outerwear/clothing)",
+            "Weight": 2
+          },
+          {
+            "Topic": "snowboarding helmets (search)",
+            "Weight": 2
+          }
+        ],
+        "FirstDetectDate": "2026-01-02",
+        "LastDetectDate": "2026-02-14",
+        "LifetimeDays": 43,
+        "TemporalStats": {
+          "RecencyDays": 9,
+          "ActiveDays": 12,
+          "EventCount": 25
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-14",
+            "source": "Uet/UetEvents",
+            "action": "Shop Snowboards for Every Rider | Burton Snowboards US"
+          },
+          {
+            "date": "2026-02-11",
+            "source": "Uet/UetEvents",
+            "action": "Shop Snowboards for Every Rider | Burton Snowboards US"
+          },
+          {
+            "date": "2026-02-08",
+            "source": "Uet/UetEvents",
+            "action": "Shop Snowboards for Every Rider | Burton Snowboards US"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Browsing indicates shopping interest, but purchase timing and skill level are not observable."
+        ],
+        "Internal": {
+          "StrengthUpdate": "freeze"
+        },
+        "Persona": "A winter-sports shopper who uses search and major brand sites to compare snowboard options and find gear that matches their needs. They prioritize reputable brands and browse product categories before narrowing to specific models."
+      },
+      {
+        "InterestName": "Ice hockey gear shopping",
+        "ConfidenceScore": 0.8,
+        "ConfidenceLevel": "high",
+        "Strength": 0.44064349124210533,
+        "State": "declining",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "seasonal_annual",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 4,
+          "Browser": 3,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 6,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 13,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new hockey-gear deal-checking observed in this slice.",
+        "IntentionInferred": "User may still be comparing skates and watching for sales, but signals are not present in this window.",
+        "Topics": [
+          {
+            "Topic": "Bauer (brand research)",
+            "Weight": 4
+          },
+          {
+            "Topic": "men's ice skates (search)",
+            "Weight": 2
+          },
+          {
+            "Topic": "Pure Hockey Bauer skates (Vapor/Supreme/Nexus)",
+            "Weight": 3
+          },
+          {
+            "Topic": "Bauer skate sale / deals",
+            "Weight": 4
+          },
+          {
+            "Topic": "Bauer hockey equipment (sticks, skates, more)",
+            "Weight": 2
+          }
+        ],
+        "FirstDetectDate": "2026-01-02",
+        "LastDetectDate": "2026-01-13",
+        "LifetimeDays": 11,
+        "TemporalStats": {
+          "RecencyDays": 41,
+          "ActiveDays": 4,
+          "EventCount": 13
+        },
+        "Evidence": [
+          {
+            "date": "2026-01-13",
+            "source": "Uet/UetEvents",
+            "action": "Bauer Ice Hockey Skate Sale | Pure Hockey"
+          },
+          {
+            "date": "2026-01-08",
+            "source": "Uet/UetEvents",
+            "action": "Bauer Ice Hockey Skate Sale | Pure Hockey"
+          },
+          {
+            "date": "2026-01-02",
+            "source": "Edge/BrowserEvents",
+            "action": "mens ice skates - Search"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Signals show shopping interest and deal-seeking; whether the user plays hockey or is buying for someone else is not observable."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A deal-conscious sports gear shopper who researches major hockey brands and compares skate lines and sales pages before committing. They prioritize fit and value and tend to cross-check search results with specialty retailer catalogs."
+      },
+      {
+        "InterestName": "Concert ticket shopping",
+        "ConfidenceScore": 0.7,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.008573731109620364,
+        "State": "archived",
+        "DecayRate": 0.588,
+        "TemporalType": "ephemeral",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 1,
+          "Browser": 3,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 2,
+          "Commerce": 0,
+          "Other": 1
+        },
+        "Signals": {
+          "PositiveCount": 7,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new ticket marketplace activity observed in this slice.",
+        "IntentionInferred": "Likely a time-bounded purchase decision that may reactivate when prices/availability change.",
+        "Topics": [
+          {
+            "Topic": "Morgan Wallen tickets (StubHub)",
+            "Weight": 5
+          },
+          {
+            "Topic": "morgan wallen big house concert (search)",
+            "Weight": 2
+          },
+          {
+            "Topic": "concert tour tickets ad click",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-01-02",
+        "LastDetectDate": "2026-01-02",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 52,
+          "ActiveDays": 1,
+          "EventCount": 7
+        },
+        "Evidence": [
+          {
+            "date": "2026-01-02",
+            "source": "Edge/BrowserEvents",
+            "action": "Morgan Wallen Tickets & 2026 Tour Dates | StubHub"
+          },
+          {
+            "date": "2026-01-02",
+            "source": "Edge/BrowserEvents",
+            "action": "Morgan Wallen Ann Arbor Tickets | July 24, 2026 | StubHub"
+          },
+          {
+            "date": "2026-01-02",
+            "source": "Ads/AdEvents",
+            "action": "2026 Concert Tour Tickets - Morgan Wallen Tickets - Get Ann Arbor Tickets Now"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Ticket page views and ad clicks suggest intent, but purchase completion is not observable."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A live-events shopper who uses search and major ticket marketplaces to compare dates and availability before buying. They prioritize finding the right event listing quickly and may revisit pages when deciding."
+      },
+      {
+        "InterestName": "AI assistant exploration",
+        "ConfidenceScore": 0.78,
+        "ConfidenceLevel": "high",
+        "Strength": 0.542224111311913,
+        "State": "stable",
+        "DecayRate": 0.588,
+        "TemporalType": "ephemeral",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 2,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 8
+        },
+        "Signals": {
+          "PositiveCount": 10,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new Copilot/assistant visits observed in this slice.",
+        "IntentionInferred": "User appears to try AI assistants intermittently; this window does not add new detail on tasks or depth of use.",
+        "Topics": [
+          {
+            "Topic": "Microsoft Copilot",
+            "Weight": 8
+          },
+          {
+            "Topic": "ChatGPT / chat gpt (search)",
+            "Weight": 2
+          },
+          {
+            "Topic": "ChatGPT ads / official site / marketing & sales use cases",
+            "Weight": 3
+          }
+        ],
+        "FirstDetectDate": "2025-12-30",
+        "LastDetectDate": "2026-02-16",
+        "LifetimeDays": 48,
+        "TemporalStats": {
+          "RecencyDays": 7,
+          "ActiveDays": 7,
+          "EventCount": 13
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-16",
+            "source": "Uet/UetEvents",
+            "action": "Microsoft Copilot: Your AI companion"
+          },
+          {
+            "date": "2026-02-15",
+            "source": "Uet/UetEvents",
+            "action": "Microsoft Copilot: Your AI companion"
+          },
+          {
+            "date": "2026-02-12",
+            "source": "Uet/UetEvents",
+            "action": "Microsoft Copilot: Your AI companion"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Events indicate tool exposure but not task type, depth of use, or sustained adoption."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A curious tool-sampler who occasionally tries digital assistants to see what they can do. They are likely to continue only if it quickly helps with a concrete task."
+      },
+      {
+        "InterestName": "Bahamas trip planning",
+        "ConfidenceScore": 0.82,
+        "ConfidenceLevel": "high",
+        "Strength": 0.433239225356358,
+        "State": "archived",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 10,
+          "Browser": 20,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 8,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 38,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new destination-specific Bahamas flight/hotel searches observed in this slice.",
+        "IntentionInferred": "User may still be considering a Bahamas trip, but this window does not reinforce the earlier destination-specific planning signals.",
+        "Topics": [
+          {
+            "Topic": "Bahamas trip planning (search)",
+            "Weight": 4
+          },
+          {
+            "Topic": "Nassau attractions/activities (search)",
+            "Weight": 6
+          },
+          {
+            "Topic": "Bahamas hotels/resorts (search/results)",
+            "Weight": 8
+          },
+          {
+            "Topic": "Tripadvisor Bahamas hotel deals",
+            "Weight": 1
+          },
+          {
+            "Topic": "Sandals Royal Bahamian (resort research)",
+            "Weight": 2
+          },
+          {
+            "Topic": "Margaritaville Beach Resort Nassau",
+            "Weight": 2
+          },
+          {
+            "Topic": "Breezes Resort Bahamas",
+            "Weight": 2
+          },
+          {
+            "Topic": "Pink Sands Resort reviews/prices",
+            "Weight": 1
+          },
+          {
+            "Topic": "Flights Detroit to Nassau (DTT to NAS)",
+            "Weight": 5
+          },
+          {
+            "Topic": "Expedia flight deal page (Detroit–Nassau)",
+            "Weight": 1
+          },
+          {
+            "Topic": "Expedia travel site (general visit)",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-01-05",
+        "LastDetectDate": "2026-01-25",
+        "LifetimeDays": 20,
+        "TemporalStats": {
+          "RecencyDays": 29,
+          "ActiveDays": 4,
+          "EventCount": 38
+        },
+        "Evidence": [
+          {
+            "date": "2026-01-25",
+            "source": "Edge/BrowserEvents",
+            "action": "www.expedia.com"
+          },
+          {
+            "date": "2026-01-24",
+            "source": "Edge/BrowserEvents",
+            "action": "DTT to NAS flights"
+          },
+          {
+            "date": "2026-01-05",
+            "source": "Edge/BrowserEvents",
+            "action": "$109 Cheap flights from Detroit to Nassau (DTT to NAS) - Expedia"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Travel research suggests planning intent, but booking completion is not observable.",
+          "Destination inference is based on page titles/queries; an Expedia visit alone is not destination-specific."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A deal-aware trip planner who starts with destination activities and then shifts into comparing hotels and flights across aggregators and resort sites. They prioritize price and convenience and tend to revisit a few shortlisted options while refining a plan."
+      },
+      {
+        "InterestName": "Massage and spa services",
+        "ConfidenceScore": 0.62,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.24913305081765186,
+        "State": "declining",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 5,
+          "Browser": 3,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 2,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 10,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new massage/spa service browsing observed in this slice.",
+        "IntentionInferred": "User may have been seeking a near-term appointment; current intent is unclear without more recent activity.",
+        "Topics": [
+          {
+            "Topic": "spa near me (search/maps)",
+            "Weight": 4
+          },
+          {
+            "Topic": "deep tissue massage (service search)",
+            "Weight": 2
+          },
+          {
+            "Topic": "muscle recovery massage (search)",
+            "Weight": 2
+          },
+          {
+            "Topic": "local spa/med-spa listings (maps)",
+            "Weight": 3
+          },
+          {
+            "Topic": "facial appointment (search)",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-01-08",
+        "LastDetectDate": "2026-01-08",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 46,
+          "ActiveDays": 1,
+          "EventCount": 10
+        },
+        "Evidence": [
+          {
+            "date": "2026-01-08",
+            "source": "Edge/BrowserEvents",
+            "action": "spa near me - Search"
+          },
+          {
+            "date": "2026-01-08",
+            "source": "Edge/BrowserEvents",
+            "action": "Deep Tissue Massage"
+          },
+          {
+            "date": "2026-01-08",
+            "source": "Edge/BrowserEvents",
+            "action": "deep tissue muscle recovery massage saginaw michgigan - Search"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Service browsing suggests intent to book, but booking completion is not observable."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A self-care service shopper who uses local search and maps to compare nearby providers and quickly narrow to a short list. They prioritize convenience and service fit (e.g., deep tissue) over extensive browsing."
+      },
+      {
+        "InterestName": "International drinking age lookup",
+        "ConfidenceScore": 0.54,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.014581175356497219,
+        "State": "archived",
+        "DecayRate": 0.588,
+        "TemporalType": "ephemeral",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 14,
+          "Browser": 11,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 25,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new legal drinking age lookups observed in this slice; prior activity was a one-day batch of country-by-country queries.",
+        "IntentionInferred": "Likely a one-off curiosity or travel-related subtask; may recur intermittently.",
+        "Topics": [
+          {
+            "Topic": "legal drinking age by country (queries)",
+            "Weight": 25
+          }
+        ],
+        "FirstDetectDate": "2026-01-05",
+        "LastDetectDate": "2026-01-05",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 49,
+          "ActiveDays": 1,
+          "EventCount": 25
+        },
+        "Evidence": [
+          {
+            "date": "2026-01-05",
+            "source": "Edge/BrowserEvents",
+            "action": "what is the legal drinking age in japan - Search"
+          },
+          {
+            "date": "2026-01-05",
+            "source": "Bing/Bing Search web",
+            "action": "what is the legal drinking age in italy"
+          },
+          {
+            "date": "2026-01-05",
+            "source": "Bing/Bing Search web",
+            "action": "what is the legal drinking age in the bahamas"
+          }
+        ],
+        "UncertaintyNotes": [
+          "High volume but concentrated in one day; may reflect a one-off curiosity or a travel-planning subtask."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A quick-facts researcher who uses repeated searches to compare rules across destinations and get a clear yes/no answer fast. They tend to batch similar lookups in a single session."
+      },
+      {
+        "InterestName": "Boyne Mountain trip planning",
+        "ConfidenceScore": 0.83,
+        "ConfidenceLevel": "high",
+        "Strength": 0.4995957950590763,
+        "State": "archived",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "seasonal_annual",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 2,
+          "Browser": 12,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 8,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 22,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new Boyne Mountain lodging/booking pages observed in this slice.",
+        "IntentionInferred": "User may still be planning a winter trip, but this window does not reinforce the earlier lodging availability/booking-adjacent signals.",
+        "Topics": [
+          {
+            "Topic": "Boyne Mountain Resort (search/site)",
+            "Weight": 4
+          },
+          {
+            "Topic": "Hotel search results (Boyne Mountain)",
+            "Weight": 14
+          },
+          {
+            "Topic": "Expedia Boyne Mountain hotel search/details",
+            "Weight": 3
+          },
+          {
+            "Topic": "travel deals/flights page",
+            "Weight": 1
+          },
+          {
+            "Topic": "Hotel booking/search URL with dates (Expedia)",
+            "Weight": 2
+          }
+        ],
+        "FirstDetectDate": "2026-01-07",
+        "LastDetectDate": "2026-01-24",
+        "LifetimeDays": 17,
+        "TemporalStats": {
+          "RecencyDays": 30,
+          "ActiveDays": 6,
+          "EventCount": 22
+        },
+        "Evidence": [
+          {
+            "date": "2026-01-24",
+            "source": "Edge/BrowserEvents",
+            "action": "expedia.com/Hotel-Search?...destination=Boyne Mountain Resort&startDate=2026-01-09&endDate=2026-01-11"
+          },
+          {
+            "date": "2026-01-24",
+            "source": "Uet/UetEvents",
+            "action": "Boyne Mountain Resort Hotel Search Results"
+          },
+          {
+            "date": "2026-01-20",
+            "source": "Edge/BrowserEvents",
+            "action": "Boyne Mountain Resort Hotel Search Results"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Travel/lodging research suggests planning, but booking completion is not observable."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A practical weekend-trip planner who uses search and aggregators to check availability and compare lodging options for a specific destination. They prioritize price and convenience and tend to confirm details (dates/results pages) before deciding."
+      },
+      {
+        "InterestName": "College application planning",
+        "ConfidenceScore": 0.58,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.4483552006940429,
+        "State": "declining",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "seasonal_annual",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 2,
+          "Browser": 8,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 10,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new Common App or student planning tool activity observed in this slice beyond continued Delta College portal use captured in coursework study.",
+        "IntentionInferred": "User may have shifted from planning tools back into day-to-day coursework; exact application intent remains unclear.",
+        "Topics": [
+          {
+            "Topic": "Common App (search + site visit)",
+            "Weight": 4
+          },
+          {
+            "Topic": "Apply to college with Common App (page)",
+            "Weight": 2
+          },
+          {
+            "Topic": "Delta Student Application (planning/progress/catalog)",
+            "Weight": 8
+          }
+        ],
+        "FirstDetectDate": "2026-01-14",
+        "LastDetectDate": "2026-01-20",
+        "LifetimeDays": 6,
+        "TemporalStats": {
+          "RecencyDays": 34,
+          "ActiveDays": 2,
+          "EventCount": 10
+        },
+        "Evidence": [
+          {
+            "date": "2026-01-20",
+            "source": "Edge/BrowserEvents",
+            "action": "Student Planning - Delta Student Application"
+          },
+          {
+            "date": "2026-01-20",
+            "source": "Edge/BrowserEvents",
+            "action": "My Progress - Delta Student Application"
+          },
+          {
+            "date": "2026-01-18",
+            "source": "Edge/BrowserEvents",
+            "action": "Delta Student Application"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Student-system activity is clear when present; specific institutions, submissions, and outcomes are not observable."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A planning-oriented student who explores application and planning pathways and uses official portals to understand requirements and next steps. They prioritize clarity and tend to start with the primary platform before narrowing to specifics."
+      },
+      {
+        "InterestName": "Lawn and pest control",
+        "ConfidenceScore": 0.62,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.3202537147814592,
+        "State": "declining",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "seasonal_annual",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 12,
+          "Browser": 3,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 15,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new fertilizer dosing or pest-control browsing observed in this slice.",
+        "IntentionInferred": "Likely a task-driven need that may recur seasonally or when maintenance is needed.",
+        "Topics": [
+          {
+            "Topic": "NPK fertilizer dosing (queries)",
+            "Weight": 6
+          },
+          {
+            "Topic": "phosphate nitrogen potassium fertilizer (query)",
+            "Weight": 1
+          },
+          {
+            "Topic": "N-P-K Fertilizer Calculation Formula (Haifa Group)",
+            "Weight": 1
+          },
+          {
+            "Topic": "Fertilizer Dose Calculator / NPK planning tool",
+            "Weight": 2
+          },
+          {
+            "Topic": "pest control (local search)",
+            "Weight": 2
+          },
+          {
+            "Topic": "insecticide farming (local search)",
+            "Weight": 2
+          },
+          {
+            "Topic": "Four Seasons Exterminating (site visit)",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-01-21",
+        "LastDetectDate": "2026-01-21",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 33,
+          "ActiveDays": 1,
+          "EventCount": 15
+        },
+        "Evidence": [
+          {
+            "date": "2026-01-21",
+            "source": "Edge/BrowserEvents",
+            "action": "Fertilizer Dose Calculator | NPK Nutrient Planning Tool"
+          },
+          {
+            "date": "2026-01-21",
+            "source": "Bing/Bing Search web",
+            "action": "pest control saginaw mi"
+          },
+          {
+            "date": "2026-01-21",
+            "source": "Edge/BrowserEvents",
+            "action": "npk fertilizer farm dose - Search"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Single-day cluster suggests a task-driven need; persistence is uncertain."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A task-focused home or outdoor maintainer who uses calculators and local search to get practical answers on dosing, supplies, and service options. They prioritize quick, actionable guidance and tend to act in short bursts when a need comes up."
+      },
+      {
+        "InterestName": "Graphing calculator shopping",
+        "ConfidenceScore": 0.78,
+        "ConfidenceLevel": "high",
+        "Strength": 0.3630994498656,
+        "State": "declining",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 2,
+          "Browser": 5,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 1
+        },
+        "Signals": {
+          "PositiveCount": 8,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new TI-84 shopping activity observed in this slice beyond prior comparison browsing.",
+        "IntentionInferred": "User likely needed a graphing calculator for coursework (or exam preparation) and compared models and prices; current window does not add new shopping evidence.",
+        "Topics": [
+          {
+            "Topic": "TI-84 calculator (shopping search)",
+            "Weight": 4
+          },
+          {
+            "Topic": "Walmart TI-84 listings (Plus CE / Python variants)",
+            "Weight": 3
+          },
+          {
+            "Topic": "TI-84 graphing calculator (Amazon search)",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-01-29",
+        "LastDetectDate": "2026-01-29",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 25,
+          "ActiveDays": 1,
+          "EventCount": 8
+        },
+        "Evidence": [
+          {
+            "date": "2026-01-29",
+            "source": "Edge/BrowserEvents",
+            "action": "ti-84 calculator - Search Shopping"
+          },
+          {
+            "date": "2026-01-29",
+            "source": "Edge/BrowserEvents",
+            "action": "Texas Instruments TI-84 Plus CE Radical Red Color Graphing Calculator - Walmart.com"
+          },
+          {
+            "date": "2026-01-29",
+            "source": "Edge/BrowserEvents",
+            "action": "Free Shipping! Texas Instruments TI-84 Plus CE Python Graphing Calculator - Walmart.com"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Shopping signals show comparison intent; whether it is required for a specific class is inferred from co-occurring coursework activity."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A cost-conscious student shopper who uses shopping search and big-box retailer listings to compare calculator models and features before buying. They prioritize compatibility (the right model) and value, and they make decisions quickly once requirements are clear."
+      },
+      {
+        "InterestName": "Mini fridge shopping",
+        "ConfidenceScore": 0.62,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.3630994498656,
+        "State": "declining",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 2,
+          "Browser": 2,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 4,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new mini-fridge shopping activity observed in this slice beyond prior feature-based searches and an Amazon product view.",
+        "IntentionInferred": "User likely considered a small appliance purchase for personal convenience, with attention to temperature control; current window does not add new evidence.",
+        "Topics": [
+          {
+            "Topic": "temp controlled desk fridge (search)",
+            "Weight": 2
+          },
+          {
+            "Topic": "mini fridge with temp control (Amazon search/pages)",
+            "Weight": 2
+          },
+          {
+            "Topic": "Cooluli 20 Liter Mini Fridge with Temperature Control (Amazon product)",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-01-28",
+        "LastDetectDate": "2026-01-29",
+        "LifetimeDays": 1,
+        "TemporalStats": {
+          "RecencyDays": 25,
+          "ActiveDays": 2,
+          "EventCount": 4
+        },
+        "Evidence": [
+          {
+            "date": "2026-01-29",
+            "source": "Edge/BrowserEvents",
+            "action": "Amazon.com: Cooluli 20 Liter Mini Fridge with Temperature Control - Black"
+          },
+          {
+            "date": "2026-01-28",
+            "source": "Edge/BrowserEvents",
+            "action": "temp controlled desk fridge - Search"
+          },
+          {
+            "date": "2026-01-28",
+            "source": "Edge/BrowserEvents",
+            "action": "Amazon.com : mini fridge with temp control"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Short burst of shopping; could be exploratory rather than imminent purchase."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A practical convenience shopper who starts with feature-based search (temperature control) and then narrows to a few specific models on major marketplaces. They prioritize clear specs and straightforward purchase options over extensive brand exploration."
+      },
+      {
+        "InterestName": "Online sports streaming",
+        "ConfidenceScore": 0.7,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.3916660690239897,
+        "State": "declining",
+        "DecayRate": 0.57624,
+        "TemporalType": "ephemeral",
+        "Seasonality": "seasonal_annual",
+        "Trigger": {
+          "Type": "popularity_based",
+          "Value": "trending"
+        },
+        "SignalSourceCounts": {
+          "Search": 2,
+          "Browser": 3,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 4,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new sports-streaming site checks observed in this slice.",
+        "IntentionInferred": "User appears to access live sports streams in event-driven bursts; this window does not add reinforcement.",
+        "Topics": [
+          {
+            "Topic": "StreamEast live sports streams (NFL/CFB/UFC)",
+            "Weight": 3
+          },
+          {
+            "Topic": "streameast (search)",
+            "Weight": 2
+          },
+          {
+            "Topic": "StreamEast shutdown/alternatives",
+            "Weight": 2
+          }
+        ],
+        "FirstDetectDate": "2026-01-31",
+        "LastDetectDate": "2026-02-18",
+        "LifetimeDays": 18,
+        "TemporalStats": {
+          "RecencyDays": 5,
+          "ActiveDays": 2,
+          "EventCount": 4
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-18",
+            "source": "Edge/BrowserEvents",
+            "action": "streameast.ga"
+          },
+          {
+            "date": "2026-02-18",
+            "source": "Edge/BrowserEvents",
+            "action": "Streameast Shutdown: 7+ Safe Alternatives to Stream NFL, NBA & More Live Sports This Fall | Cord Cutters News"
+          },
+          {
+            "date": "2026-02-17",
+            "source": "Edge/BrowserEvents",
+            "action": "StreamEast - Watch Free Live Sports Online | NFL, CFB, UFC Streams"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Observed in short bursts; could be event-driven viewing rather than a stable preference."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A sports viewer who occasionally looks for quick access to live games or events online. They tend to act in the moment and may only return when a specific event is happening."
+      },
+      {
+        "InterestName": "MBA program research",
+        "ConfidenceScore": 0.6,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.4116773808,
+        "State": "declining",
+        "DecayRate": 0.882,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 1,
+          "Browser": 1,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 2,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new MBA-related research observed in this slice beyond the earlier broad “mba” searches.",
+        "IntentionInferred": "User may be exploring graduate business education options at a high level; intent (career planning vs general curiosity) is unclear from limited searches.",
+        "Topics": [
+          {
+            "Topic": "mba (search query)",
+            "Weight": 2
+          }
+        ],
+        "FirstDetectDate": "2026-02-05",
+        "LastDetectDate": "2026-02-05",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 18,
+          "ActiveDays": 1,
+          "EventCount": 2
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-05",
+            "source": "Edge/BrowserEvents",
+            "action": "mba - Search"
+          },
+          {
+            "date": "2026-02-05",
+            "source": "Bing/Bing Search web",
+            "action": "mba"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Only two search events with a broad query; no program, school, or application behavior is visible."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A career-curious learner who occasionally does broad scouting searches to understand education pathways before going deep on specific programs. They prioritize quick orientation and will likely refine queries if the option feels relevant."
+      },
+      {
+        "InterestName": "Music listening (online)",
+        "ConfidenceScore": 0.34,
+        "ConfidenceLevel": "low",
+        "Strength": 0.11480517255997438,
+        "State": "archived",
+        "DecayRate": 0.57624,
+        "TemporalType": "ephemeral",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "popularity_based",
+          "Value": "trending"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 1,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 1,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "Opened a page for a specific song track (Rae Sremmurd).",
+        "IntentionInferred": "User may be listening to music online; with a single event, it could also be incidental (e.g., autoplay or a shared link).",
+        "Topics": [
+          {
+            "Topic": "Rae Sremmurd (song page)",
+            "Weight": 1
+          },
+          {
+            "Topic": "Come Get Her (track)",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-02-06",
+        "LastDetectDate": "2026-02-06",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 17,
+          "ActiveDays": 1,
+          "EventCount": 1
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-06",
+            "source": "Edge/BrowserEvents",
+            "action": "Come Get Her • Rae Sremmurd"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Single event; platform/context (streaming service vs embedded player) is not visible from the action string."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A casual music listener who occasionally opens a track directly when something catches their attention. They tend to sample quickly rather than follow a long exploration path."
+      },
+      {
+        "InterestName": "AI content detection tools",
+        "ConfidenceScore": 0.6,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.345744,
+        "State": "declining",
+        "DecayRate": 0.57624,
+        "TemporalType": "ephemeral",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "personal_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 2,
+          "Browser": 2,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 2,
+          "Commerce": 0,
+          "Other": 1
+        },
+        "Signals": {
+          "PositiveCount": 7,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new AI-detector tool searches observed in this slice beyond the earlier single-day cluster.",
+        "IntentionInferred": "May have been a one-off need to check whether text appears AI-generated; motivation is not directly observable from logs.",
+        "Topics": [
+          {
+            "Topic": "ai detector free (search)",
+            "Weight": 2
+          },
+          {
+            "Topic": "AI Detector: Free AI Checker for ChatGPT, GPT5 & Gemini",
+            "Weight": 3
+          },
+          {
+            "Topic": "Free AI Detector (ad)",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-02-16",
+        "LastDetectDate": "2026-02-16",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 7,
+          "ActiveDays": 1,
+          "EventCount": 7
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-16",
+            "source": "Bing/Bing Search web",
+            "action": "ai detector free"
+          },
+          {
+            "date": "2026-02-16",
+            "source": "Edge/BrowserEvents",
+            "action": "ai detector free - Search"
+          },
+          {
+            "date": "2026-02-16",
+            "source": "Uet/UetEvents",
+            "action": "AI Detector: Free AI Checker for ChatGPT, GPT5 & Gemini"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Single-day cluster; could be a one-off need around a specific assignment or document.",
+          "This does not indicate plagiarism or wrongdoing; it only reflects tool-seeking behavior."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A task-focused tool seeker who uses quick searches and lightweight web tools to validate content characteristics before submitting or sharing. They prioritize fast answers and free, easy-to-try options."
+      }
+    ],
+    "UncertaintyNotes": [
+      "Negative/neutral signal detection is limited; events were treated as positive unless explicitly negative.",
+      "Some interests are retailer-, brand-, or marketplace-centric; these may represent short shopping sprints rather than durable long-term preferences.",
+      "Supplement-related shopping signals are summarized as commerce/research behavior and should not be interpreted as health-related conclusions.",
+      "Finance/news activity includes public-figure portfolio tracker browsing; this is treated as general market curiosity/news consumption, not as an indicator of political identity.",
+      "Some page titles contain location names; these should not be treated as confirmed residence or identity facts."
+    ]
+  },
+  "ProductUsage": {
+    "Version": "ProductUsage-v0.7",
+    "AsOfDate": "2026-02-23",
+    "Products": [
+      {
+        "ProductName": "Microsoft Edge",
+        "EntryPoints": [
+          "Windows-Desktop"
+        ],
+        "EngagementTemperature": "Warm",
+        "SessionsPerDay": 1,
+        "TimeSpentPerDayHours": 0.0,
+        "MeaningfulInteractionsPerDay": 0,
+        "FirstUsage": "2025-11-24",
+        "LastUsage": "2026-02-23",
+        "UsageLifetimeDays": 91,
+        "Confidence": "medium",
+        "PII": {
+          "pii_class": "none"
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-23",
+            "source": "Edge/BrowserEvents",
+            "action": "Homepage - Delta College",
+            "raw_record": "Edge/BrowserEvents: Delta College student portal access"
+          },
+          {
+            "date": "2026-02-23",
+            "source": "Edge/BrowserEvents",
+            "action": "WileyPLUS",
+            "raw_record": "Edge/BrowserEvents: coursework platform use"
+          },
+          {
+            "date": "2026-02-22",
+            "source": "Edge/BrowserEvents",
+            "action": "Student Resources - ENVIRON SCIENCE - BIO-110W-WN725-26/WI",
+            "raw_record": "Edge/BrowserEvents: course resources page"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Session frequency and time spent are not directly observable from these event logs; values are placeholders."
+        ]
+      },
+      {
+        "ProductName": "MSN",
+        "EntryPoints": [
+          "Windows-Desktop"
+        ],
+        "EngagementTemperature": "Cold",
+        "SessionsPerDay": 0,
+        "TimeSpentPerDayHours": 0.0,
+        "MeaningfulInteractionsPerDay": 0,
+        "FirstUsage": "2026-02-22",
+        "LastUsage": "2026-02-22",
+        "UsageLifetimeDays": 0,
+        "Confidence": "low",
+        "PII": {
+          "pii_class": "none"
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-22",
+            "source": "MSN/MSN View",
+            "action": "3 magnificent stocks to buy that are near 52-week lows",
+            "raw_record": "MSN View: finance article"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Only one MSN view event observed in this incremental slice; overall MSN usage level is uncertain."
+        ]
+      }
+    ],
+    "Notes": "Product usage derived from Edge BrowserEvents and an MSN View event in the incremental slice, plus prior profile evidence.",
+    "UncertaintyNotes": [
+      "Uet/UetEvents are treated as watch/read/click style events; mapping to specific Microsoft products is not reliable from the provided fields."
+    ]
+  },
+  "Preferences": {
+    "Version": "Preferences-v0.7",
+    "AsOfDate": "2026-02-23",
+    "Items": [
+      {
+        "PreferenceId": "pref.shopping.value_thrift_curated",
+        "Dimension": "shopping_style",
+        "Value": "Explores thrift/consignment and curated styling options alongside mainstream retailers",
+        "Scope": "global",
+        "AppliesTo": [
+          "Edge",
+          "Other"
+        ],
+        "ConfidenceScore": 0.66,
+        "FirstObserved": "2025-11-24",
+        "LastObserved": "2025-11-27",
+        "Evidence": [
+          {
+            "date": "2025-11-27",
+            "source": "Uet/UetEvents",
+            "action": "ThredUp | An Online Consignment & Thrift Store",
+            "raw_record": "Visited thrift/consignment store"
+          },
+          {
+            "date": "2025-11-24",
+            "source": "Uet/UetEvents",
+            "action": "Your Online Personal Stylist | Stitch Fix",
+            "raw_record": "Visited online styling service"
+          }
+        ],
+        "PII": {
+          "pii_class": "none"
+        },
+        "UncertaintyNotes": [
+          "Based on browsing; purchase behavior not confirmed.",
+          "Not reinforced in the current incremental window."
+        ]
+      },
+      {
+        "PreferenceId": "pref.research.comparison_browsing",
+        "Dimension": "decision_making",
+        "Value": "Compares multiple options/providers before choosing",
+        "Scope": "global",
+        "AppliesTo": [
+          "Edge",
+          "Bing",
+          "Other"
+        ],
+        "ConfidenceScore": 0.6,
+        "FirstObserved": "2025-11-23",
+        "LastObserved": "2025-11-28",
+        "Evidence": [
+          {
+            "date": "2025-11-23",
+            "source": "Uet/UetEvents",
+            "action": "10 Best Psychics Readings 2025 - Psychic Services, Costs, Reviews",
+            "raw_record": "Comparison-style page"
+          },
+          {
+            "date": "2025-11-24",
+            "source": "Uet/UetEvents",
+            "action": "Arnold Lawn Mower Oil Filter for Select Kawasaki Models at Tractor Supply Co",
+            "raw_record": "Compared product options"
+          }
+        ],
+        "PII": {
+          "pii_class": "none"
+        },
+        "UncertaintyNotes": [
+          "Inferred from repeated multi-option browsing patterns; not directly stated by the user.",
+          "Not directly reinforced in the current incremental window, but consistent with prior multi-site research behavior."
+        ]
+      }
+    ],
+    "TBDNotes": "Preference attributes are WIP; emit only grounded preferences from inputs.",
+    "UncertaintyNotes": [
+      "Limited telemetry for dwell time, content formats, and explicit preference controls (e.g., hide/not interested)."
+    ]
+  },
+  "Biography": {
+    "Version": "Biography-v0.7",
+    "AsOfDate": "2026-02-23",
+    "Summary": "The user’s recent activity is dominated by sustained college coursework workstreams, including navigating course homepages, completing multi-question homework, and submitting writing-related components. They also show periodic interest in personal finance and investing content, including reading stock idea articles. Across their history, they mix practical shopping/research behavior (apparel and other items) with goal-driven task completion on education platforms. Overall signals fit a student or early-career phase, with most observable effort going toward meeting course deadlines.",
+    "StageOfLifeSignals": "Signals point to active, ongoing college coursework (multiple classes and platforms like WileyPLUS), suggesting a student or early-career phase; household/family status is unknown.",
+    "ActiveGoals": [
+      {
+        "goal": "Complete near-term homework, quizzes, and submissions across current courses",
+        "horizon": "days",
+        "linked_interests": [
+          "College coursework study"
+        ],
+        "confidence": "high"
+      },
+      {
+        "goal": "Stay oriented on market ideas and potential stock opportunities via articles and learning tools",
+        "horizon": "weeks",
+        "linked_interests": [
+          "Investing and retirement accounts"
+        ],
+        "confidence": "medium"
+      }
+    ],
+    "LongTermGoals": [
+      {
+        "goal": "Progress through ongoing coursework toward an education or training milestone",
+        "horizon": "months",
+        "linked_interests": [
+          "College coursework study"
+        ],
+        "confidence": "medium"
+      }
+    ],
+    "Highlights": [
+      "High-volume course activity on 2026-02-23 across environmental science, managerial accounting (WileyPLUS), statistics, and history modules.",
+      "Evidence of writing workflow in environmental science (peer review/rough draft submissions; LEIR work).",
+      "Continued (light) consumption of stock-market idea content (52-week lows article)."
+    ],
+    "UncertaintyNotes": [
+      "No explicit user-provided demographics, location, or employment facts are available; personal context is inferred only from activity patterns.",
+      "Finance activity reflects reading and learning signals; real-money investing behavior cannot be confirmed from these logs."
+    ]
+  },
+  "Memory": {
+    "Version": "Memory-v0.7",
+    "AsOfDate": "2026-02-23",
+    "Working": {
+      "WindowHours": 24,
+      "TopInterestsLast24h": [
+        {
+          "interest_ref": "College coursework study",
+          "summary": "Heavy coursework execution: completed a sequence of Chapter 16 homework questions, opened multiple course homepages, and reviewed statistics topics (variation/probability) plus course weekly materials.",
+          "confidence": "high",
+          "evidence": [
+            {
+              "date": "2026-02-23",
+              "raw_record": "Chapter 16 Homework - PRIN MANG ACCT - ACC-212-WN710-26/WI; Question 1-7 of 7 - Chapter 16 Homework; Assignments 4, 5 and 6.. Due 2/20...; Homepage - Delta College"
+            }
+          ]
+        },
+        {
+          "interest_ref": "Investing and retirement accounts",
+          "summary": "Read a market-ideas article about stocks near 52-week lows.",
+          "confidence": "medium",
+          "evidence": [
+            {
+              "date": "2026-02-22",
+              "raw_record": "MSN View: 3 magnificent stocks to buy that are near 52-week lows"
+            }
+          ]
+        }
+      ],
+      "OneDaySpikes": [
+        {
+          "interest_ref": "College coursework study",
+          "summary": "Single-day spike in coursework events concentrated on multi-step homework/quiz workflows across several classes.",
+          "confidence": "medium",
+          "evidence": [
+            {
+              "date": "2026-02-23",
+              "raw_record": "Multiple 'Question X of 7' homework pages + WileyPLUS + course homepages"
+            }
+          ]
+        }
+      ]
+    },
+    "ShortTerm": {
+      "WindowDays": 28,
+      "MultiDayRepeatedEngagement": [
+        {
+          "interest_ref": "College coursework study",
+          "summary": "Repeated multi-day engagement with Delta College and course platforms; includes submissions (peer review/rough draft) and quantitative coursework (accounting homework, statistics topics).",
+          "confidence": "high",
+          "evidence": [
+            {
+              "date": "2026-02-22",
+              "raw_record": "Introduction Peer Review and Rough (2nd) Draft Submissions - BIO-110W"
+            },
+            {
+              "date": "2026-02-23",
+              "raw_record": "WileyPLUS; Chapter 16 Homework; Variation of data / Basic probability - MTH-208W"
+            }
+          ]
+        }
+      ],
+      "WeeklyCycles": [
+        {
+          "pattern": "Course activity clusters around weekly modules and homework/quiz flows (e.g., 'Week 7' pages and multi-question homework sequences).",
+          "linked_interests": [
+            "College coursework study"
+          ],
+          "confidence": "medium"
+        }
+      ],
+      "CrossTopicCooccurrence": [
+        {
+          "interest_refs": [
+            "College coursework study",
+            "Investing and retirement accounts"
+          ],
+          "summary": "Coursework-heavy days occasionally include brief finance/news consumption, suggesting short breaks or parallel learning interest.",
+          "confidence": "low"
+        }
+      ],
+      "HighDwellConsumptions": [],
+      "PreferenceEvolution": [
+        {
+          "dimension": "engagement_style",
+          "trajectory": "Recent activity shows task completion over exploratory browsing (many sequential homework question pages and submissions).",
+          "confidence": "medium"
+        }
+      ]
+    },
+    "LongTerm": {
+      "WindowDays": 365,
+      "HighInterestFrequency": [
+        {
+          "interest_ref": "College coursework study",
+          "summary": "Most sustained and frequent behavior across the observed period is education workflow: repeated portal logins, course navigation, assignments, and quizzes.",
+          "confidence": "high"
+        }
+      ],
+      "ConsistentDomainAffinity": [
+        {
+          "domain_category": "other",
+          "summary": "Observed behavior is dominated by education/studying, with secondary bursts in shopping and finance/news reading.",
+          "confidence": "medium"
+        }
+      ],
+      "SeasonalRecurrences": [
+        {
+          "interest_ref": "Snowboarding gear shopping",
+          "pattern": "Winter-season gear browsing appears time-bounded and may recur annually; not reinforced in the latest slice.",
+          "confidence": "low"
+        }
+      ]
+    },
+    "UncertaintyNotes": [
+      "Memory is derived from a limited set of observable logs; it summarizes patterns rather than complete activity.",
+      "AllTime window and totals may include overlap due to aggregation across profile updates."
+    ]
+  },
+  "Explanations": [
+    {
+      "Because": "A dense cluster of Delta College course pages and WileyPLUS homework question pages on 2026-02-23 indicates active studying and assignment completion across multiple classes.",
+      "Supports": [
+        {
+          "type": "interest",
+          "ref": "College coursework study"
+        },
+        {
+          "type": "biography",
+          "ref": "Summary"
+        },
+        {
+          "type": "memory",
+          "ref": "Working.TopInterestsLast24h"
+        }
+      ],
+      "Evidence": [
+        {
+          "date": "2026-02-23",
+          "source": "Edge/BrowserEvents",
+          "raw_record": "Question 1-7 of 7 - Chapter 16 Homework; WileyPLUS; Homepage - Delta College; Variation of data - MTH-208W; Week 7 - ACC-212; Ch. 9 Fossil Fuel & Nuclear Energy Quiz - BIO-110W"
+        }
+      ]
+    },
+    {
+      "Because": "A finance article view about stocks near 52-week lows reinforces ongoing market-learning behavior previously seen via simulator/news activity.",
+      "Supports": [
+        {
+          "type": "interest",
+          "ref": "Investing and retirement accounts"
+        },
+        {
+          "type": "memory",
+          "ref": "Working.TopInterestsLast24h"
+        }
+      ],
+      "Evidence": [
+        {
+          "date": "2026-02-22",
+          "source": "MSN",
+          "raw_record": "3 magnificent stocks to buy that are near 52-week lows"
+        }
+      ]
+    }
+  ],
+  "Updates": {
+    "Version": "Updates-v0.7",
+    "AsOfDate": "2026-02-23",
+    "HasPriorProfile": true,
+    "Deltas": [
+      {
+        "type": "interest_strengthened",
+        "description": "College coursework study reinforced with substantial new activity (homework question sequence, submissions, course navigation) on 2026-02-22 to 2026-02-23."
+      },
+      {
+        "type": "interest_strengthened",
+        "description": "Investing and retirement accounts lightly reinforced by MSN finance article view (stocks near 52-week lows) on 2026-02-22."
+      },
+      {
+        "type": "product_usage_changed",
+        "description": "Updated ProductUsage to reflect Edge usage through 2026-02-23 and added MSN as a low-confidence product entry based on a single view event."
+      },
+      {
+        "type": "biography_updated",
+        "description": "Biography refreshed to emphasize current coursework execution and recent light investing/news reading."
+      },
+      {
+        "type": "memory_updated",
+        "description": "Memory updated with a last-24h spike in coursework homework/submission activity and a finance article view."
+      }
+    ],
+    "UncertaintyNotes": [
+      "No ProvidedFacts were supplied beyond MAI_ID, so facts remain sparse and inferred only where allowed (LifeStage).",
+      "Interest Strength values were not recalculated here; updates are recorded via Internal.StrengthUpdate for downstream processing."
+    ]
+  }
+}

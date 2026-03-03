@@ -1,0 +1,2396 @@
+{
+  "Version": "MAIProfile-Unified-v0.7",
+  "AsOfDate": "2026-02-23",
+  "Market": "en-us",
+  "Window": {
+    "Incremental": {
+      "LookbackDays": 7,
+      "FromDate": "2026-02-17",
+      "ToDate": "2026-02-23"
+    },
+    "AllTime": {
+      "LookbackDays": 77,
+      "FromDate": "2025-12-09",
+      "ToDate": "2026-02-23"
+    }
+  },
+  "ActivityStats": {
+    "Incremental": {
+      "TotalEvents": 38,
+      "DistinctActiveDays": 5
+    },
+    "AllTime": {
+      "TotalEvents": 230,
+      "DistinctActiveDays": 49
+    }
+  },
+  "Facts": {
+    "Version": "Facts-v0.7",
+    "AsOfDate": "2026-02-23",
+    "Identity": {
+      "MAI_ID": "794F81383C36D450B2E633EFFFFFFFFF",
+      "ANID": null,
+      "MUID": null,
+      "Name": "Tao"
+    },
+    "Demographics": {
+      "Age": {
+        "value": 53,
+        "confidence": "high",
+        "pii_class": "moderate",
+        "provenance": [
+          "ProvidedFacts"
+        ],
+        "as_of": "2026-02-23"
+      },
+      "Gender": {
+        "value": "male",
+        "confidence": "high",
+        "pii_class": "moderate",
+        "provenance": [
+          "ProvidedFacts"
+        ],
+        "as_of": "2026-02-23"
+      },
+      "Generation": {
+        "value": "Gen X",
+        "confidence": "medium",
+        "pii_class": "low",
+        "provenance": [
+          "DerivedFromProvidedFacts"
+        ],
+        "as_of": "2026-02-23"
+      }
+    },
+    "LifeStage": {
+      "value": "unknown",
+      "confidence": "low",
+      "pii_class": "none",
+      "provenance": [
+        "DerivedFromSignals"
+      ],
+      "as_of": "2026-02-23"
+    },
+    "Locations": {
+      "CurrentLocation": {
+        "value": null,
+        "confidence": "low",
+        "pii_class": "none",
+        "provenance": [
+          "ProvidedFacts"
+        ],
+        "last_30d": false,
+        "as_of": null
+      },
+      "PastVisitedLocations": []
+    },
+    "Employment": {
+      "CurrentCompany": {
+        "value": null,
+        "confidence": "low",
+        "pii_class": "none",
+        "provenance": [
+          "ProvidedFacts"
+        ],
+        "as_of": null
+      },
+      "PastCompany": {
+        "value": null,
+        "confidence": "low",
+        "pii_class": "none",
+        "provenance": [
+          "ProvidedFacts"
+        ],
+        "as_of": null
+      },
+      "Occupation": {
+        "value": null,
+        "confidence": "low",
+        "pii_class": "none",
+        "provenance": [
+          "ProvidedFacts"
+        ],
+        "as_of": null
+      }
+    },
+    "UncertaintyNotes": [
+      "Life stage, location, and employment are not provided and cannot be safely inferred from the observed activity.",
+      "Repeated queries for developer tools and a careers portal suggest work- or learning-related tasks, but are insufficient to infer employer or occupation."
+    ]
+  },
+  "Interests": {
+    "Version": "Interests-v0.7",
+    "AsOfDate": "2026-02-23",
+    "Interests": [
+      {
+        "InterestName": "NFL news tracking",
+        "ConfidenceScore": 0.99,
+        "ConfidenceLevel": "high",
+        "Strength": 0.99995805696,
+        "State": "stable",
+        "DecayRate": 0.784,
+        "TemporalType": "short_term",
+        "Seasonality": "seasonal_annual",
+        "Trigger": {
+          "Type": "interval_based",
+          "Value": "weekly"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 5,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 5,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "Continued reading Seahawks/NFL headlines on MSN across multiple days (including tag window and player-news items).",
+        "IntentionInferred": "User is maintaining frequent, in-season NFL awareness with a Seahawks-heavy focus.",
+        "Topics": [
+          {
+            "Topic": "Seahawks",
+            "Weight": 27
+          },
+          {
+            "Topic": "Kenneth Walker III",
+            "Weight": 2
+          },
+          {
+            "Topic": "tag window",
+            "Weight": 1
+          },
+          {
+            "Topic": "Rashid Shaheed",
+            "Weight": 2
+          },
+          {
+            "Topic": "Patriots",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-12-10",
+        "LastDetectDate": "2026-02-20",
+        "LifetimeDays": 72,
+        "TemporalStats": {
+          "RecencyDays": 3,
+          "ActiveDays": 28,
+          "EventCount": 79
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-20",
+            "source": "MSN",
+            "action": "Rashid Shaheed wants to 'run it back' with the Seahawks"
+          },
+          {
+            "date": "2026-02-18",
+            "source": "MSN",
+            "action": "Tag window opens Tuesday with eyes on Cowboys, Seahawks"
+          },
+          {
+            "date": "2026-02-17",
+            "source": "MSN",
+            "action": "Terrific photos of Seahawks RB Kenneth Walker III's epic Super Bowl MVP performance against the Patriots"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Seahawks-heavy consumption suggests team-following behavior, but explicit self-identification as a fan is not directly observed."
+        ],
+        "Internal": {
+          "StrengthUpdate": "boost"
+        },
+        "Persona": "A season-driven NFL follower who checks frequent game-week headlines for roster shifts, coaching changes, and major event context. They prioritize Seahawks-related coverage and broaden to league-wide storylines when stakes rise."
+      },
+      {
+        "InterestName": "Seattle-area real estate browsing",
+        "ConfidenceScore": 0.88,
+        "ConfidenceLevel": "high",
+        "Strength": 0.8870267904,
+        "State": "stable",
+        "DecayRate": 0.784,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "interval_based",
+          "Value": "weekly"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 5
+        },
+        "Signals": {
+          "PositiveCount": 5,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "Returned to Redfin multiple times (including a Seattle-area ZIP search page and general Redfin browsing) across several days.",
+        "IntentionInferred": "User may be monitoring Seattle-area inventory/prices or exploring options in a specific area; timing and transaction intent are not observable.",
+        "Topics": [
+          {
+            "Topic": "Redfin",
+            "Weight": 12
+          },
+          {
+            "Topic": "98006",
+            "Weight": 10
+          },
+          {
+            "Topic": "homes for sale",
+            "Weight": 6
+          },
+          {
+            "Topic": "real estate listings",
+            "Weight": 4
+          },
+          {
+            "Topic": "Seattle-area (coarse)",
+            "Weight": 2
+          }
+        ],
+        "FirstDetectDate": "2026-01-15",
+        "LastDetectDate": "2026-02-23",
+        "LifetimeDays": 39,
+        "TemporalStats": {
+          "RecencyDays": 0,
+          "ActiveDays": 8,
+          "EventCount": 17
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-23",
+            "source": "Uet",
+            "action": "98006, WA Real Estate & Homes for Sale | Redfin"
+          },
+          {
+            "date": "2026-02-21",
+            "source": "Uet",
+            "action": "Redfin | Real Estate & Homes for Sale, Rentals, Mortgages & Agents"
+          },
+          {
+            "date": "2026-02-17",
+            "source": "Uet",
+            "action": "98006, WA Real Estate & Homes for Sale | Redfin"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Browsing does not confirm a transaction, budget, or timeline; avoid inferring current residence or homeownership from ZIP-focused listing views.",
+          "Listing pages can contain addresses; keep summaries coarse and avoid treating viewed listings as user PII."
+        ],
+        "Internal": {
+          "StrengthUpdate": "boost"
+        },
+        "Persona": "A practical home-market monitor who uses listing sites to scan what’s available and compare prices/features over short bursts. They may be exploring options in a specific area, but intent and timeline are not confirmed."
+      },
+      {
+        "InterestName": "Home improvement deal hunting",
+        "ConfidenceScore": 0.72,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.69067247960064,
+        "State": "emerging",
+        "DecayRate": 0.784,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "product_launch"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 2
+        },
+        "Signals": {
+          "PositiveCount": 2,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "Checked deals for home/DIY-related items (tool accessory and bathroom hardware set).",
+        "IntentionInferred": "User is value-focused and intermittently checks practical home/DIY items when a deal appears; purchase completion is not observable.",
+        "Topics": [
+          {
+            "Topic": "tool deals",
+            "Weight": 2
+          },
+          {
+            "Topic": "Klein Tools",
+            "Weight": 2
+          },
+          {
+            "Topic": "bathroom hardware set",
+            "Weight": 1
+          },
+          {
+            "Topic": "Amazon deal page",
+            "Weight": 1
+          },
+          {
+            "Topic": "Prime Members deal",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-01-15",
+        "LastDetectDate": "2026-02-20",
+        "LifetimeDays": 36,
+        "TemporalStats": {
+          "RecencyDays": 3,
+          "ActiveDays": 3,
+          "EventCount": 4
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-20",
+            "source": "Uet",
+            "action": "Prime Members: 5-Piece Kitsure Bathroom Accessory Hardware Set (Matte Black) - 2026-02-19"
+          },
+          {
+            "date": "2026-02-17",
+            "source": "Uet",
+            "action": "$19.98* | Klein Tools 11-in-1 Pass Through Magnetic Multi-Nut Metric Driver at Amazon - 2026-02-12"
+          },
+          {
+            "date": "2026-01-15",
+            "source": "Uet",
+            "action": "Select Home Depot Stores: Klein Tools Digital Multimeter & Voltage Tester Set - 2026-01-14"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Deal interactions do not confirm purchase; avoid inferring household status or property type."
+        ],
+        "Internal": {
+          "StrengthUpdate": "boost"
+        },
+        "Persona": "A value-conscious DIY shopper who pays attention to practical tool and hardware deals. They prioritize usefulness and price over extended brand exploration when shopping is active."
+      },
+      {
+        "InterestName": "Consumer tech accessory deals",
+        "ConfidenceScore": 0.74,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.905856,
+        "State": "stable",
+        "DecayRate": 0.686,
+        "TemporalType": "ephemeral",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "product_launch"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 2
+        },
+        "Signals": {
+          "PositiveCount": 2,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "Browsed Slickdeals on multiple days, indicating continued deal-checking behavior.",
+        "IntentionInferred": "User is deal-driven and scans deal aggregators for practical tech/accessory savings; specific purchases are not observable.",
+        "Topics": [
+          {
+            "Topic": "Slickdeals",
+            "Weight": 4
+          },
+          {
+            "Topic": "deals and coupons",
+            "Weight": 3
+          },
+          {
+            "Topic": "deal shopping",
+            "Weight": 2
+          }
+        ],
+        "FirstDetectDate": "2026-02-02",
+        "LastDetectDate": "2026-02-20",
+        "LifetimeDays": 18,
+        "TemporalStats": {
+          "RecencyDays": 3,
+          "ActiveDays": 5,
+          "EventCount": 5
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-20",
+            "source": "Uet",
+            "action": "Slickdeals: The Best Deals, Coupons, Promo Codes & Discounts"
+          },
+          {
+            "date": "2026-02-18",
+            "source": "Uet",
+            "action": "Slickdeals: The Best Deals, Coupons, Promo Codes & Discounts"
+          },
+          {
+            "date": "2026-02-13",
+            "source": "Uet",
+            "action": "Slickdeals: The Best Deals, Coupons, Promo Codes & Discounts"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Deal interactions do not confirm purchase or device ownership."
+        ],
+        "Internal": {
+          "StrengthUpdate": "boost"
+        },
+        "Persona": "A value-first accessory shopper who checks deal aggregators and evaluates practical bundles. They prioritize clear savings and utility over brand exploration."
+      },
+      {
+        "InterestName": "Design tool usage (Figma)",
+        "ConfidenceScore": 0.62,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.84,
+        "State": "emerging",
+        "DecayRate": 0.98,
+        "TemporalType": "persistent",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "interval_based",
+          "Value": "weekly"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 1
+        },
+        "Signals": {
+          "PositiveCount": 1,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "Opened/used Figma again via UET events.",
+        "IntentionInferred": "User appears to use Figma for design/prototyping tasks; context (work vs. personal) remains unclear from these events alone.",
+        "Topics": [
+          {
+            "Topic": "Figma",
+            "Weight": 3
+          },
+          {
+            "Topic": "design",
+            "Weight": 1
+          },
+          {
+            "Topic": "prototyping",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-02-10",
+        "LastDetectDate": "2026-02-17",
+        "LifetimeDays": 7,
+        "TemporalStats": {
+          "RecencyDays": 6,
+          "ActiveDays": 3,
+          "EventCount": 3
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-17",
+            "source": "Uet",
+            "action": "Figma"
+          },
+          {
+            "date": "2026-02-13",
+            "source": "Uet",
+            "action": "Figma"
+          },
+          {
+            "date": "2026-02-10",
+            "source": "Uet",
+            "action": "Figma"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Tool usage does not by itself establish occupation; avoid inferring job role from limited app events."
+        ],
+        "Internal": {
+          "StrengthUpdate": "boost"
+        },
+        "Persona": "A hands-on creator who uses a prototyping/design tool for practical build-and-iterate tasks. They likely value fast iteration and visual organization, though the specific project context is unknown from current signals."
+      },
+      {
+        "InterestName": "Developer tool setup",
+        "ConfidenceScore": 0.78,
+        "ConfidenceLevel": "high",
+        "Strength": 0.6,
+        "State": "emerging",
+        "DecayRate": 0.784,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 8,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 8,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "Searched for and clicked install/download resources for Visual Studio Code and Git across multiple days.",
+        "IntentionInferred": "User is likely setting up or refreshing a development environment (editor + Git) for coding or technical work; depth and purpose are not fully observable.",
+        "Topics": [
+          {
+            "Topic": "Visual Studio Code",
+            "Weight": 4
+          },
+          {
+            "Topic": "VS Code",
+            "Weight": 1
+          },
+          {
+            "Topic": "Git install",
+            "Weight": 1
+          },
+          {
+            "Topic": "Git download",
+            "Weight": 3
+          },
+          {
+            "Topic": "developer tools",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-02-17",
+        "LastDetectDate": "2026-02-21",
+        "LifetimeDays": 4,
+        "TemporalStats": {
+          "RecencyDays": 2,
+          "ActiveDays": 3,
+          "EventCount": 8
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-18",
+            "source": "Bing",
+            "action": "Git - Install"
+          },
+          {
+            "date": "2026-02-18",
+            "source": "Bing",
+            "action": "visual studio code"
+          },
+          {
+            "date": "2026-02-17",
+            "source": "Bing",
+            "action": "vs code"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Installing developer tools can be for work, hobby, or assisting someone else; do not infer occupation from these signals alone."
+        ],
+        "Internal": {
+          "StrengthUpdate": null
+        },
+        "Persona": "A task-focused tech user who sets up coding essentials (an editor and version control) when a project requires it. They prioritize direct install steps and getting productive quickly rather than extended tool comparisons."
+      },
+      {
+        "InterestName": "Ad blocker setup (Edge)",
+        "ConfidenceScore": 0.72,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.6,
+        "State": "emerging",
+        "DecayRate": 0.686,
+        "TemporalType": "ephemeral",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 3,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 3,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "Searched for Edge adblockers and clicked the Edge Add-ons page for AdBlock.",
+        "IntentionInferred": "User is likely trying to reduce ads/distractions in Microsoft Edge by installing an ad-blocking extension.",
+        "Topics": [
+          {
+            "Topic": "adblock edge",
+            "Weight": 2
+          },
+          {
+            "Topic": "AdBlock Edge Add-ons",
+            "Weight": 1
+          },
+          {
+            "Topic": "Edge extensions",
+            "Weight": 1
+          },
+          {
+            "Topic": "block ads",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-02-17",
+        "LastDetectDate": "2026-02-18",
+        "LifetimeDays": 1,
+        "TemporalStats": {
+          "RecencyDays": 5,
+          "ActiveDays": 2,
+          "EventCount": 3
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-17",
+            "source": "Bing",
+            "action": "AdBlock — block ads across the web - Microsoft Edge Addons"
+          },
+          {
+            "date": "2026-02-17",
+            "source": "Bing",
+            "action": "adblock edge"
+          },
+          {
+            "date": "2026-02-18",
+            "source": "Bing",
+            "action": "adblock edge"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Clicks suggest intent to install; completion/enablement is not observable from these logs."
+        ],
+        "Internal": {
+          "StrengthUpdate": null
+        },
+        "Persona": "A distraction-minimizer who tweaks their browser setup to improve day-to-day browsing. They rely on quick searches and official add-on listings to get to a working solution fast."
+      },
+      {
+        "InterestName": "Microsoft careers portal access",
+        "ConfidenceScore": 0.6,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.6,
+        "State": "emerging",
+        "DecayRate": 0.784,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 2,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 2,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "Searched for 'microsoft careers hub' on two separate days.",
+        "IntentionInferred": "User is trying to access Microsoft Careers Hub resources; purpose could be job-related, internal resources, or general information and is not clear enough to label as job seeking.",
+        "Topics": [
+          {
+            "Topic": "microsoft careers hub",
+            "Weight": 2
+          },
+          {
+            "Topic": "careers resources",
+            "Weight": 1
+          },
+          {
+            "Topic": "portal access",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-02-18",
+        "LastDetectDate": "2026-02-19",
+        "LifetimeDays": 1,
+        "TemporalStats": {
+          "RecencyDays": 4,
+          "ActiveDays": 2,
+          "EventCount": 2
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-19",
+            "source": "Bing",
+            "action": "microsoft careers hub"
+          },
+          {
+            "date": "2026-02-18",
+            "source": "Bing",
+            "action": "microsoft careers hub"
+          }
+        ],
+        "UncertaintyNotes": [
+          "A careers-portal search alone does not establish job seeking, employer, or employment status."
+        ],
+        "Internal": {
+          "StrengthUpdate": null
+        },
+        "Persona": "A goal-oriented portal user who searches for the right entry point to a careers or resource hub and returns when needed. They prioritize direct access over browsing peripheral content."
+      },
+      {
+        "InterestName": "Olympic hockey updates",
+        "ConfidenceScore": 0.78,
+        "ConfidenceLevel": "high",
+        "Strength": 0.6,
+        "State": "emerging",
+        "DecayRate": 0.686,
+        "TemporalType": "ephemeral",
+        "Seasonality": "seasonal_multi_year",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "global_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 4,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 4,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "Read multiple Olympics hockey articles across several days (bracket/tournament updates and a Crosby/Canada item).",
+        "IntentionInferred": "User is following big-event sports updates tied to the Olympics; likely event-driven rather than a year-round hockey focus.",
+        "Topics": [
+          {
+            "Topic": "Olympic hockey",
+            "Weight": 4
+          },
+          {
+            "Topic": "bracket set",
+            "Weight": 3
+          },
+          {
+            "Topic": "Crosby / Canada",
+            "Weight": 1
+          },
+          {
+            "Topic": "tournament updates",
+            "Weight": 2
+          }
+        ],
+        "FirstDetectDate": "2026-02-17",
+        "LastDetectDate": "2026-02-23",
+        "LifetimeDays": 6,
+        "TemporalStats": {
+          "RecencyDays": 0,
+          "ActiveDays": 4,
+          "EventCount": 4
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-23",
+            "source": "MSN",
+            "action": "Olympic hockey bracket set after fierce prelims"
+          },
+          {
+            "date": "2026-02-19",
+            "source": "MSN",
+            "action": "Olympic hockey bracket set after fierce prelims"
+          },
+          {
+            "date": "2026-02-17",
+            "source": "MSN",
+            "action": "Crosby leads Canada in Olympic quest"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Repeated reading indicates short-term event following; broader sports preferences are not determinable from this alone."
+        ],
+        "Internal": {
+          "StrengthUpdate": null
+        },
+        "Persona": "A big-event sports headline reader who checks tournament structure and key-player narratives when the Olympics are in the news. They prefer concise recaps and bracket-style updates over deep analysis, based on current evidence."
+      },
+      {
+        "InterestName": "Xbox Game Pass exploration",
+        "ConfidenceScore": 0.72,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.84,
+        "State": "emerging",
+        "DecayRate": 0.784,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 1
+        },
+        "Signals": {
+          "PositiveCount": 1,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "Browsed the Xbox Game Pass games catalog again.",
+        "IntentionInferred": "User may be evaluating whether to subscribe to Xbox Game Pass by checking what's included; subscription and platform ownership are not observable.",
+        "Topics": [
+          {
+            "Topic": "Xbox Game Pass",
+            "Weight": 3
+          },
+          {
+            "Topic": "game catalog browsing",
+            "Weight": 2
+          },
+          {
+            "Topic": "subscription evaluation",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-02-13",
+        "LastDetectDate": "2026-02-18",
+        "LifetimeDays": 5,
+        "TemporalStats": {
+          "RecencyDays": 5,
+          "ActiveDays": 2,
+          "EventCount": 4
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-18",
+            "source": "Uet",
+            "action": "Browse Xbox Game Pass Games | Xbox"
+          },
+          {
+            "date": "2026-02-13",
+            "source": "Uet",
+            "action": "Browse Xbox Game Pass Games | Xbox"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Page visits indicate evaluation, not confirmed purchase/subscription."
+        ],
+        "Internal": {
+          "StrengthUpdate": "boost"
+        },
+        "Persona": "A value-minded entertainment explorer who evaluates subscription services by inspecting the catalog before committing. They focus on 'what do I get' rather than following game news, based on limited evidence."
+      },
+      {
+        "InterestName": "Perplexity AI lookup",
+        "ConfidenceScore": 0.6,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.6,
+        "State": "emerging",
+        "DecayRate": 0.686,
+        "TemporalType": "ephemeral",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 2,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 2,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "Searched for 'perplexity ai' on two separate days.",
+        "IntentionInferred": "User is likely trying to understand or access Perplexity AI; whether this is casual curiosity or tool adoption is unclear.",
+        "Topics": [
+          {
+            "Topic": "Perplexity AI",
+            "Weight": 2
+          },
+          {
+            "Topic": "AI search/assistant tools",
+            "Weight": 1
+          },
+          {
+            "Topic": "tool access",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-02-21",
+        "LastDetectDate": "2026-02-23",
+        "LifetimeDays": 2,
+        "TemporalStats": {
+          "RecencyDays": 0,
+          "ActiveDays": 2,
+          "EventCount": 2
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-23",
+            "source": "Bing",
+            "action": "perplexity ai"
+          },
+          {
+            "date": "2026-02-21",
+            "source": "Bing",
+            "action": "perplexity ai"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Do not infer user’s employer affiliation or professional AI usage from these two lookups."
+        ],
+        "Internal": {
+          "StrengthUpdate": null
+        },
+        "Persona": "A curiosity-driven tool explorer who searches for an AI product by name to quickly reach the official site or a clear explanation. They prefer direct access and a fast understanding of what the tool does."
+      },
+      {
+        "InterestName": "Celebrity news browsing",
+        "ConfidenceScore": 0.62,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.84,
+        "State": "emerging",
+        "DecayRate": 0.686,
+        "TemporalType": "ephemeral",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "popularity_based",
+          "Value": "trending"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 2,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 2,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "Read multiple celebrity relationship/divorce headlines about Jessica Alba.",
+        "IntentionInferred": "User occasionally clicks trending celebrity updates; likely opportunistic rather than a dedicated entertainment focus.",
+        "Topics": [
+          {
+            "Topic": "Jessica Alba",
+            "Weight": 2
+          },
+          {
+            "Topic": "divorce news",
+            "Weight": 2
+          },
+          {
+            "Topic": "celebrity news",
+            "Weight": 2
+          }
+        ],
+        "FirstDetectDate": "2026-02-10",
+        "LastDetectDate": "2026-02-20",
+        "LifetimeDays": 10,
+        "TemporalStats": {
+          "RecencyDays": 3,
+          "ActiveDays": 3,
+          "EventCount": 4
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-20",
+            "source": "MSN",
+            "action": "Jessica Alba and Cash Warren conclude their divorce respectfully"
+          },
+          {
+            "date": "2026-02-20",
+            "source": "MSN",
+            "action": "Jessica Alba talks 'shedding what no longer serves' after agreeing to pay ex-husband $3 million"
+          },
+          {
+            "date": "2026-02-12",
+            "source": "MSN",
+            "action": "Patriots legend Tom Brady roasts Logan Paul over ridiculous claims"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Headline choice does not indicate personal relationship to the individuals; treat as general entertainment/news browsing."
+        ],
+        "Internal": {
+          "StrengthUpdate": "boost"
+        },
+        "Persona": "A general headline browser who sometimes clicks celebrity stories when they’re prominent. They likely want quick context rather than ongoing celebrity coverage, based on current evidence."
+      },
+      {
+        "InterestName": "Human-interest story browsing",
+        "ConfidenceScore": 0.55,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.6,
+        "State": "ephemeral",
+        "DecayRate": 0.686,
+        "TemporalType": "ephemeral",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "popularity_based",
+          "Value": "trending"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 1,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 1,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "Read a quirky human-interest story on MSN.",
+        "IntentionInferred": "User occasionally clicks viral/oddity stories for quick entertainment or curiosity.",
+        "Topics": [
+          {
+            "Topic": "human-interest story",
+            "Weight": 1
+          },
+          {
+            "Topic": "thrift store portrait",
+            "Weight": 1
+          },
+          {
+            "Topic": "quirky news",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-02-17",
+        "LastDetectDate": "2026-02-17",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 6,
+          "ActiveDays": 1,
+          "EventCount": 1
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-17",
+            "source": "MSN",
+            "action": "Man finds portrait at thrift store that looks like him—then sees the date"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Single click; could be incidental within broader MSN browsing."
+        ],
+        "Internal": {
+          "StrengthUpdate": null
+        },
+        "Persona": "A casual news browser who occasionally clicks quirky, shareable human-interest stories for a quick diversion. They likely prefer short reads with a clear hook, based on limited evidence."
+      },
+      {
+        "InterestName": "Coin collecting curiosity",
+        "ConfidenceScore": 0.62,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.6,
+        "State": "emerging",
+        "DecayRate": 0.686,
+        "TemporalType": "ephemeral",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "global_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 2,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 2,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "Read the same MSN article twice about what to do with a penny collection after production ends.",
+        "IntentionInferred": "User is likely curious about practical next steps or value/handling guidance for coins; actual collecting intensity is unclear.",
+        "Topics": [
+          {
+            "Topic": "penny collection",
+            "Weight": 2
+          },
+          {
+            "Topic": "coin collecting guidance",
+            "Weight": 1
+          },
+          {
+            "Topic": "US penny production ends",
+            "Weight": 2
+          }
+        ],
+        "FirstDetectDate": "2026-02-17",
+        "LastDetectDate": "2026-02-18",
+        "LifetimeDays": 1,
+        "TemporalStats": {
+          "RecencyDays": 5,
+          "ActiveDays": 2,
+          "EventCount": 2
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-18",
+            "source": "MSN",
+            "action": "What to do with your penny collection after US production ends"
+          },
+          {
+            "date": "2026-02-17",
+            "source": "MSN",
+            "action": "What to do with your penny collection after US production ends"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Repeated reads suggest in-the-moment curiosity; do not infer assets or collection value from an article view."
+        ],
+        "Internal": {
+          "StrengthUpdate": null
+        },
+        "Persona": "A practical curiosity-seeker who clicks guidance articles when a timely change raises a 'what should I do now?' question. They prefer actionable steps and simple explanations over deep collecting research, based on current evidence."
+      },
+      {
+        "InterestName": "Snoqualmie winter trip planning",
+        "ConfidenceScore": 0.86,
+        "ConfidenceLevel": "high",
+        "Strength": 0.7783314562351105,
+        "State": "declining",
+        "DecayRate": 0.784,
+        "TemporalType": "short_term",
+        "Seasonality": "seasonal_annual",
+        "Trigger": {
+          "Type": "interval_based",
+          "Value": "weekly"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 0,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new Snoqualmie Pass hours/webcam/ticket checks in this slice.",
+        "IntentionInferred": "Earlier winter outing monitoring may have paused or concluded; could re-activate with new trip timing or conditions.",
+        "Topics": [
+          {
+            "Topic": "Snoqualmie Pass",
+            "Weight": 6
+          },
+          {
+            "Topic": "lift tickets",
+            "Weight": 9
+          },
+          {
+            "Topic": "Summit at Snoqualmie hours",
+            "Weight": 2
+          },
+          {
+            "Topic": "webcam",
+            "Weight": 2
+          },
+          {
+            "Topic": "chain requirements",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-12-21",
+        "LastDetectDate": "2026-02-13",
+        "LifetimeDays": 54,
+        "TemporalStats": {
+          "RecencyDays": 10,
+          "ActiveDays": 10,
+          "EventCount": 16
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-13",
+            "source": "Bing",
+            "action": "snoqualmie pass webcam"
+          },
+          {
+            "date": "2026-02-13",
+            "source": "Bing",
+            "action": "Calendar & Hours - Summit at Snoqualmie"
+          },
+          {
+            "date": "2026-02-06",
+            "source": "Bing",
+            "action": "snoqualmie pass lift tickets"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Absence of recent queries may reflect completed planning or simply no need to check conditions this week."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A practical winter-outing planner who checks operating hours, ticketing logistics, and real-time conditions close to the intended date. They prioritize avoiding surprises (availability, costs, and road/conditions changes) as plans firm up."
+      },
+      {
+        "InterestName": "Outdoor gear deal shopping",
+        "ConfidenceScore": 0.62,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.51631104,
+        "State": "dormant",
+        "DecayRate": 0.784,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 0,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new outdoor-gear retailer/footwear deal searches in this slice.",
+        "IntentionInferred": "Earlier deal-shopping thread appears inactive right now.",
+        "Topics": [
+          {
+            "Topic": "discount outdoor gear",
+            "Weight": 3
+          },
+          {
+            "Topic": "Sierra Trading Post",
+            "Weight": 2
+          },
+          {
+            "Topic": "Cheap & Steep",
+            "Weight": 2
+          },
+          {
+            "Topic": "outdoor footwear",
+            "Weight": 2
+          },
+          {
+            "Topic": "Scarpa Vento GTX boot (men's)",
+            "Weight": 2
+          }
+        ],
+        "FirstDetectDate": "2026-02-02",
+        "LastDetectDate": "2026-02-06",
+        "LifetimeDays": 4,
+        "TemporalStats": {
+          "RecencyDays": 17,
+          "ActiveDays": 3,
+          "EventCount": 6
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-06",
+            "source": "Bing",
+            "action": "sierra trading post"
+          },
+          {
+            "date": "2026-02-05",
+            "source": "Bing",
+            "action": "scarpa Vento GTX Boot - Men's"
+          },
+          {
+            "date": "2026-02-05",
+            "source": "Bing",
+            "action": "cheap and steep gear"
+          }
+        ],
+        "UncertaintyNotes": [
+          "No recent reinforcement; may reappear seasonally or alongside other travel/outdoor planning."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A deal-oriented outdoor gear shopper who starts with discount retailers and narrows into specific footwear items. They prioritize value and practical product selection over brand browsing when shopping is active."
+      },
+      {
+        "InterestName": "Vision-language model learning",
+        "ConfidenceScore": 0.62,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.4196747350872311,
+        "State": "declining",
+        "DecayRate": 0.686,
+        "TemporalType": "ephemeral",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 0,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No additional VLM/model-card lookups in this slice.",
+        "IntentionInferred": "Earlier model exploration may have been a short research burst; could re-activate with new AI topics or tools.",
+        "Topics": [
+          {
+            "Topic": "Qwen3-VL-8B-Instruct",
+            "Weight": 2
+          },
+          {
+            "Topic": "Hugging Face model page",
+            "Weight": 1
+          },
+          {
+            "Topic": "vision-language models",
+            "Weight": 1
+          },
+          {
+            "Topic": "VLM",
+            "Weight": 1
+          },
+          {
+            "Topic": "machine learning",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-12-13",
+        "LastDetectDate": "2026-02-13",
+        "LifetimeDays": 62,
+        "TemporalStats": {
+          "RecencyDays": 10,
+          "ActiveDays": 2,
+          "EventCount": 2
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-13",
+            "source": "Bing",
+            "action": "Qwen/Qwen3-VL-8B-Instruct · Hugging Face"
+          },
+          {
+            "date": "2026-02-13",
+            "source": "Bing",
+            "action": "qwen 8b instruct"
+          },
+          {
+            "date": "2025-12-13",
+            "source": "Bing",
+            "action": "machine learning VLM"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Do not infer professional role or advanced expertise from a small number of model lookups."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A curious tech learner who samples emerging AI topics via targeted searches and model-card pages. They likely value quick, concrete details over long-form coursework, based on limited evidence."
+      },
+      {
+        "InterestName": "MSFT AI investor news",
+        "ConfidenceScore": 0.6,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.416075653840896,
+        "State": "dormant",
+        "DecayRate": 0.784,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "global_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 0,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new MSFT/AI investor headlines in this slice.",
+        "IntentionInferred": "User may re-engage when major Microsoft/AI catalysts are in the news.",
+        "Topics": [
+          {
+            "Topic": "Microsoft (MSFT)",
+            "Weight": 8
+          },
+          {
+            "Topic": "AI strategy",
+            "Weight": 4
+          },
+          {
+            "Topic": "stock upside",
+            "Weight": 2
+          },
+          {
+            "Topic": "Azure",
+            "Weight": 1
+          },
+          {
+            "Topic": "earnings",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-01-09",
+        "LastDetectDate": "2026-02-02",
+        "LifetimeDays": 24,
+        "TemporalStats": {
+          "RecencyDays": 21,
+          "ActiveDays": 5,
+          "EventCount": 8
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-02",
+            "source": "MSN",
+            "action": "Perplexity Microsoft Azure Deal"
+          },
+          {
+            "date": "2026-01-27",
+            "source": "MSN",
+            "action": "Microsoft reports Q2 earnings Jan. 28. Is MSFT stock a buy before then?"
+          },
+          {
+            "date": "2026-01-13",
+            "source": "MSN",
+            "action": "Microsoft stock can rise 37%, Goldman says. It has lots of ways to gain from AI."
+          }
+        ],
+        "UncertaintyNotes": [
+          "Do not infer holdings, trading activity, or employer affiliation from MSFT-focused reading/search."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A market-and-tech news skimmer who follows Microsoft’s AI direction through earnings-adjacent headlines and ecosystem updates. They prioritize concise framing of catalysts and may re-engage when new MSFT/AI developments break."
+      },
+      {
+        "InterestName": "US policy and immigration news",
+        "ConfidenceScore": 0.62,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.6163986505134401,
+        "State": "declining",
+        "DecayRate": 0.784,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "event_based",
+          "Value": "global_event"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 0,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No additional US policy/legal/immigration headline reads observed in this slice.",
+        "IntentionInferred": "Earlier headline-driven public-affairs monitoring may be situational and could re-activate with major developments.",
+        "Topics": [
+          {
+            "Topic": "ICE news",
+            "Weight": 6
+          },
+          {
+            "Topic": "US immigration policy / enforcement",
+            "Weight": 3
+          },
+          {
+            "Topic": "US-Canada tensions",
+            "Weight": 2
+          },
+          {
+            "Topic": "legal/political news",
+            "Weight": 2
+          },
+          {
+            "Topic": "polling",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2025-12-17",
+        "LastDetectDate": "2026-02-13",
+        "LifetimeDays": 58,
+        "TemporalStats": {
+          "RecencyDays": 10,
+          "ActiveDays": 8,
+          "EventCount": 12
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-13",
+            "source": "MSN",
+            "action": "Canadian PM responds to Trump threat to block bridge between US and Canada"
+          },
+          {
+            "date": "2026-02-12",
+            "source": "MSN",
+            "action": "US judge blocks Pentagon's effort to punish Senator Mark Kelly"
+          },
+          {
+            "date": "2026-02-11",
+            "source": "MSN",
+            "action": "Polls show Trump slipping before midterms"
+          }
+        ],
+        "UncertaintyNotes": [
+          "News reads do not indicate immigration status, legal situation, or political affiliation."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A current-events reader who follows policy and institutional headlines for timely awareness of what’s changing and what it could mean in practice. They prefer article-style summaries and may return when major developments or follow-ups occur."
+      },
+      {
+        "InterestName": "Italy trip itinerary ideas",
+        "ConfidenceScore": 0.5,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.4704,
+        "State": "declining",
+        "DecayRate": 0.784,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "other",
+          "Value": "other"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 0,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new Italy itinerary reads in this slice.",
+        "IntentionInferred": "Earlier Florence itinerary read may have been travel inspiration rather than active booking research.",
+        "Topics": [
+          {
+            "Topic": "Florence itinerary",
+            "Weight": 1
+          },
+          {
+            "Topic": "3 days in Florence",
+            "Weight": 1
+          },
+          {
+            "Topic": "Italy travel ideas",
+            "Weight": 1
+          },
+          {
+            "Topic": "art / food / vistas",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-02-10",
+        "LastDetectDate": "2026-02-10",
+        "LifetimeDays": 0,
+        "TemporalStats": {
+          "RecencyDays": 13,
+          "ActiveDays": 1,
+          "EventCount": 1
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-10",
+            "source": "MSN",
+            "action": "Florence in 3 days: Art, food, vistas"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Single article view; could be general-interest travel content rather than active trip planning."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A travel-inspiration reader who uses concise itineraries to picture what a short city trip could look like. They likely value practical day-by-day structure, but commitment level is unclear from limited signals."
+      },
+      {
+        "InterestName": "Family travel inspiration",
+        "ConfidenceScore": 0.5,
+        "ConfidenceLevel": "medium",
+        "Strength": 0.4704,
+        "State": "declining",
+        "DecayRate": 0.784,
+        "TemporalType": "short_term",
+        "Seasonality": "not_applicable",
+        "Trigger": {
+          "Type": "interval_based",
+          "Value": "daily"
+        },
+        "SignalSourceCounts": {
+          "Search": 0,
+          "Browser": 0,
+          "MobileApp": 0,
+          "Notifications": 0,
+          "WatchReadClick": 0,
+          "Commerce": 0,
+          "Other": 0
+        },
+        "Signals": {
+          "PositiveCount": 0,
+          "NegativeCount": 0,
+          "NeutralCount": 0
+        },
+        "ActualActivity": "No new family-travel feature reads in this slice.",
+        "IntentionInferred": "Earlier repeated New Zealand family-travel reads may have been short-burst destination inspiration.",
+        "Topics": [
+          {
+            "Topic": "New Zealand travel",
+            "Weight": 3
+          },
+          {
+            "Topic": "family travel",
+            "Weight": 3
+          },
+          {
+            "Topic": "adventure activities",
+            "Weight": 2
+          },
+          {
+            "Topic": "travel inspiration article",
+            "Weight": 1
+          }
+        ],
+        "FirstDetectDate": "2026-02-10",
+        "LastDetectDate": "2026-02-12",
+        "LifetimeDays": 2,
+        "TemporalStats": {
+          "RecencyDays": 11,
+          "ActiveDays": 3,
+          "EventCount": 3
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-12",
+            "source": "MSN",
+            "action": "New Zealand adventures offer endless family thrills"
+          },
+          {
+            "date": "2026-02-11",
+            "source": "MSN",
+            "action": "New Zealand adventures offer endless family thrills"
+          },
+          {
+            "date": "2026-02-10",
+            "source": "MSN",
+            "action": "New Zealand adventures offer endless family thrills"
+          }
+        ],
+        "UncertaintyNotes": [
+          "Repeated views indicate short-term interest; whether it reflects concrete planning is not observable."
+        ],
+        "Internal": {
+          "StrengthUpdate": "decay"
+        },
+        "Persona": "A travel-ideas browser who is drawn to family-friendly destination roundups and activity lists. They likely prioritize practical inspiration (what to do) over detailed booking research, based on current evidence."
+      }
+    ],
+    "UncertaintyNotes": [
+      "Interests were updated using the 2026-02-17 to 2026-02-23 incremental slice and merged into the prior profile.",
+      "AllTime activity counts are extended by summing prior AllTime (192) and this slice (38); exact de-duplication cannot be guaranteed without event IDs, but date ranges are non-overlapping (prior ToDate 2026-02-13 vs new FromDate 2026-02-17).",
+      "Negative feedback signals (hide/not-interested) were not present in the TSV; NegativeCount is set to 0.",
+      "Real-estate browsing can include addresses; this profile keeps it at ZIP/city-area level and avoids treating listing views as user PII.",
+      "Some signals reference public-figure/policy content; treat strictly as news consumption and do not infer personal beliefs or affiliations."
+    ]
+  },
+  "ProductUsage": {
+    "Version": "ProductUsage-v0.7",
+    "AsOfDate": "2026-02-23",
+    "Products": [
+      {
+        "ProductName": "Bing",
+        "EntryPoints": [
+          "Classic"
+        ],
+        "EngagementTemperature": "Warm",
+        "SessionsPerDay": 0,
+        "TimeSpentPerDayHours": 0.0,
+        "MeaningfulInteractionsPerDay": 0,
+        "FirstUsage": "2025-12-09",
+        "LastUsage": "2026-02-23",
+        "UsageLifetimeDays": 76,
+        "Confidence": "low",
+        "PII": {
+          "pii_class": "none"
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-23",
+            "source": "Bing",
+            "action": "perplexity ai",
+            "raw_record": "Bing Search web | perplexity ai"
+          },
+          {
+            "date": "2026-02-18",
+            "source": "Bing",
+            "action": "Git - Install",
+            "raw_record": "Bing Search web Clicked | Git - Install"
+          },
+          {
+            "date": "2026-02-17",
+            "source": "Bing",
+            "action": "AdBlock — block ads across the web - Microsoft Edge Addons",
+            "raw_record": "Bing Search web Clicked | AdBlock — block ads across the web - Microsoft Edge Addons"
+          }
+        ],
+        "UncertaintyNotes": [
+          "No session/time metrics available; usage fields are conservative placeholders based on event logs only.",
+          "EngagementTemperature is inferred from multi-day presence of Bing searches/clicks, not from measured dwell time."
+        ]
+      },
+      {
+        "ProductName": "MSN",
+        "EntryPoints": [
+          "Classic"
+        ],
+        "EngagementTemperature": "Warm",
+        "SessionsPerDay": 0,
+        "TimeSpentPerDayHours": 0.0,
+        "MeaningfulInteractionsPerDay": 0,
+        "FirstUsage": "2025-12-09",
+        "LastUsage": "2026-02-23",
+        "UsageLifetimeDays": 76,
+        "Confidence": "low",
+        "PII": {
+          "pii_class": "none"
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-23",
+            "source": "MSN",
+            "action": "Olympic hockey bracket set after fierce prelims",
+            "raw_record": "MSN View | Olympic hockey bracket set after fierce prelims"
+          },
+          {
+            "date": "2026-02-20",
+            "source": "MSN",
+            "action": "Rashid Shaheed wants to 'run it back' with the Seahawks",
+            "raw_record": "MSN View | Rashid Shaheed wants to 'run it back' with the Seahawks"
+          },
+          {
+            "date": "2026-02-17",
+            "source": "MSN",
+            "action": "What to do with your penny collection after US production ends",
+            "raw_record": "MSN View | What to do with your penny collection after US production ends"
+          }
+        ],
+        "UncertaintyNotes": [
+          "No dwell time or frequency instrumentation provided; engagement estimates are based on event presence across days."
+        ]
+      },
+      {
+        "ProductName": "Edge/Windows web (UET)",
+        "EntryPoints": [
+          "Windows-Desktop"
+        ],
+        "EngagementTemperature": "Warm",
+        "SessionsPerDay": 0,
+        "TimeSpentPerDayHours": 0.0,
+        "MeaningfulInteractionsPerDay": 0,
+        "FirstUsage": "2026-01-15",
+        "LastUsage": "2026-02-23",
+        "UsageLifetimeDays": 39,
+        "Confidence": "low",
+        "PII": {
+          "pii_class": "none"
+        },
+        "Evidence": [
+          {
+            "date": "2026-02-23",
+            "source": "Uet",
+            "action": "98006, WA Real Estate & Homes for Sale | Redfin",
+            "raw_record": "UetEvents | 98006, WA Real Estate & Homes for Sale | Redfin"
+          },
+          {
+            "date": "2026-02-20",
+            "source": "Uet",
+            "action": "Slickdeals: The Best Deals, Coupons, Promo Codes & Discounts",
+            "raw_record": "UetEvents | Slickdeals: The Best Deals, Coupons, Promo Codes & Discounts"
+          },
+          {
+            "date": "2026-02-17",
+            "source": "Uet",
+            "action": "Figma",
+            "raw_record": "UetEvents | Figma"
+          }
+        ],
+        "UncertaintyNotes": [
+          "UET events indicate page/app opens but do not provide reliable sessionization or time spent."
+        ]
+      }
+    ],
+    "Notes": "Recent activity shows repeated use of MSN for news reading and Bing for targeted searches/clicks, plus UET-tracked browsing of Redfin, deal sites, and a design tool.",
+    "UncertaintyNotes": [
+      "Product usage metrics (sessions/day, time spent) are not directly observable from the provided TSV and are left as conservative placeholders."
+    ]
+  },
+  "Preferences": {
+    "Version": "Preferences-v0.7",
+    "AsOfDate": "2026-02-23",
+    "Items": [
+      {
+        "PreferenceId": "pref_content_format_news_headlines",
+        "Dimension": "content_format",
+        "Value": "reads news headlines/articles (MSN)",
+        "Scope": "global",
+        "AppliesTo": [
+          "MSN"
+        ],
+        "ConfidenceScore": 0.7,
+        "FirstObserved": "2025-12-09",
+        "LastObserved": "2026-02-23",
+        "Evidence": [
+          {
+            "date": "2026-02-23",
+            "source": "MSN",
+            "action": "Olympic hockey bracket set after fierce prelims",
+            "raw_record": "MSN View"
+          },
+          {
+            "date": "2026-02-20",
+            "source": "MSN",
+            "action": "Jessica Alba and Cash Warren conclude their divorce respectfully",
+            "raw_record": "MSN View"
+          },
+          {
+            "date": "2026-02-18",
+            "source": "MSN",
+            "action": "Tag window opens Tuesday with eyes on Cowboys, Seahawks",
+            "raw_record": "MSN View"
+          }
+        ],
+        "PII": {
+          "pii_class": "none"
+        },
+        "UncertaintyNotes": [
+          "Preference inferred from repeated MSN View events; exact reading depth is not observable."
+        ]
+      },
+      {
+        "PreferenceId": "pref_behavior_deal_aggregators",
+        "Dimension": "shopping_behavior",
+        "Value": "checks deal aggregators during shopping research",
+        "Scope": "global",
+        "AppliesTo": [
+          "Edge",
+          "Bing",
+          "Other"
+        ],
+        "ConfidenceScore": 0.62,
+        "FirstObserved": "2026-02-02",
+        "LastObserved": "2026-02-20",
+        "Evidence": [
+          {
+            "date": "2026-02-20",
+            "source": "Uet",
+            "action": "Slickdeals: The Best Deals, Coupons, Promo Codes & Discounts",
+            "raw_record": "UetEvents"
+          },
+          {
+            "date": "2026-02-18",
+            "source": "Uet",
+            "action": "Slickdeals: The Best Deals, Coupons, Promo Codes & Discounts",
+            "raw_record": "UetEvents"
+          }
+        ],
+        "PII": {
+          "pii_class": "none"
+        },
+        "UncertaintyNotes": [
+          "Deal browsing does not confirm purchase; preference reflects browsing pattern only."
+        ]
+      },
+      {
+        "PreferenceId": "pref_browsing_reduce_ads",
+        "Dimension": "browser_setup",
+        "Value": "tries to reduce ads/distractions (ad blocker setup)",
+        "Scope": "product_specific",
+        "AppliesTo": [
+          "Edge"
+        ],
+        "ConfidenceScore": 0.58,
+        "FirstObserved": "2026-02-17",
+        "LastObserved": "2026-02-18",
+        "Evidence": [
+          {
+            "date": "2026-02-17",
+            "source": "Bing",
+            "action": "AdBlock — block ads across the web - Microsoft Edge Addons",
+            "raw_record": "Bing Search web Clicked"
+          },
+          {
+            "date": "2026-02-17",
+            "source": "Bing",
+            "action": "adblock edge",
+            "raw_record": "Bing Search web"
+          }
+        ],
+        "PII": {
+          "pii_class": "none"
+        },
+        "UncertaintyNotes": [
+          "Logs show search/click intent; installation success is not observable."
+        ]
+      }
+    ],
+    "TBDNotes": "Preference attributes are WIP; emit only grounded preferences from inputs.",
+    "UncertaintyNotes": [
+      "Avoid inferring political orientation, investing behavior, or sensitive attributes from news topics alone."
+    ]
+  },
+  "Biography": {
+    "Version": "Biography-v0.7",
+    "AsOfDate": "2026-02-23",
+    "Summary": "Tao is a Gen X adult who uses Microsoft surfaces for a mix of quick news consumption and task-driven searches. Recent activity shows strong, recurring attention to Seahawks/NFL updates and repeated browsing of Seattle-area real-estate listings. They also show practical “get it set up” behavior around software tools (VS Code, Git) and browser configuration (ad blocking), alongside opportunistic clicks into big-event sports (Olympic hockey), celebrity headlines, and timely curiosity pieces. Broader personal context (location, work status, family) is not explicit in the signals and should be treated as unknown.",
+    "StageOfLifeSignals": "unknown",
+    "ActiveGoals": [
+      {
+        "goal": "Stay up to date on Seahawks/NFL developments during the season",
+        "horizon": "weeks",
+        "linked_interests": [
+          "NFL news tracking"
+        ],
+        "confidence": "high"
+      },
+      {
+        "goal": "Monitor Seattle-area home listings in a specific ZIP and compare options",
+        "horizon": "weeks",
+        "linked_interests": [
+          "Seattle-area real estate browsing"
+        ],
+        "confidence": "medium"
+      },
+      {
+        "goal": "Set up or refresh coding tools (editor + Git)",
+        "horizon": "days",
+        "linked_interests": [
+          "Developer tool setup"
+        ],
+        "confidence": "medium"
+      }
+    ],
+    "LongTermGoals": [
+      {
+        "goal": "Maintain a lightweight habit of scanning headline news for sports and general interest updates",
+        "horizon": "months",
+        "linked_interests": [
+          "Olympic hockey updates",
+          "Celebrity news browsing"
+        ],
+        "confidence": "medium"
+      },
+      {
+        "goal": "Improve everyday browsing efficiency by reducing distractions",
+        "horizon": "months",
+        "linked_interests": [
+          "Ad blocker setup (Edge)"
+        ],
+        "confidence": "low"
+      }
+    ],
+    "Highlights": [
+      "Multi-day Seahawks/NFL reading continues to be the strongest repeated theme.",
+      "Redfin browsing re-activated and sustained across multiple days, suggesting renewed market monitoring.",
+      "Shift toward practical setup actions: VS Code/Git searches and an Edge ad blocker click.",
+      "Deal-checking remains present via Slickdeals and occasional practical home/DIY deals."
+    ],
+    "UncertaintyNotes": [
+      "Do not infer residence, homeownership, or transaction intent from Redfin browsing alone.",
+      "Do not infer occupation/employer from developer-tool installation or careers-portal access.",
+      "News choices can be incidental; avoid inferring beliefs, affiliations, or personal circumstances."
+    ]
+  },
+  "Memory": {
+    "Version": "Memory-v0.7",
+    "AsOfDate": "2026-02-23",
+    "Working": {
+      "WindowHours": 24,
+      "TopInterestsLast24h": [
+        {
+          "interest_ref": "Olympic hockey updates",
+          "summary": "Read another Olympics hockey bracket update on MSN.",
+          "confidence": "high",
+          "evidence": [
+            {
+              "date": "2026-02-23",
+              "raw_record": "MSN View | Olympic hockey bracket set after fierce prelims"
+            }
+          ]
+        },
+        {
+          "interest_ref": "Perplexity AI lookup",
+          "summary": "Looked up Perplexity AI again via Bing search.",
+          "confidence": "medium",
+          "evidence": [
+            {
+              "date": "2026-02-23",
+              "raw_record": "Bing Search web | perplexity ai"
+            }
+          ]
+        },
+        {
+          "interest_ref": "Seattle-area real estate browsing",
+          "summary": "Visited the Redfin 98006 homes-for-sale page again.",
+          "confidence": "high",
+          "evidence": [
+            {
+              "date": "2026-02-23",
+              "raw_record": "UetEvents | 98006, WA Real Estate & Homes for Sale | Redfin"
+            }
+          ]
+        }
+      ],
+      "OneDaySpikes": [
+        {
+          "interest_ref": "Seattle-area real estate browsing",
+          "summary": "Notable same-day return to the 98006 Redfin page, consistent with active monitoring rather than one-off browsing.",
+          "confidence": "medium",
+          "evidence": [
+            {
+              "date": "2026-02-23",
+              "raw_record": "UetEvents | 98006, WA Real Estate & Homes for Sale | Redfin"
+            }
+          ]
+        }
+      ]
+    },
+    "ShortTerm": {
+      "WindowDays": 28,
+      "MultiDayRepeatedEngagement": [
+        {
+          "interest_ref": "Seattle-area real estate browsing",
+          "summary": "Redfin browsing repeated across multiple days (ZIP page plus general listings), indicating ongoing market scanning.",
+          "confidence": "high",
+          "evidence": [
+            {
+              "date": "2026-02-20",
+              "raw_record": "UetEvents | Redfin | Real Estate & Homes for Sale, Rentals, Mortgages & Agents"
+            }
+          ]
+        },
+        {
+          "interest_ref": "NFL news tracking",
+          "summary": "Seahawks/NFL reading continued across several days, including player news and team-focused updates.",
+          "confidence": "high",
+          "evidence": [
+            {
+              "date": "2026-02-20",
+              "raw_record": "MSN View | Rashid Shaheed wants to 'run it back' with the Seahawks"
+            }
+          ]
+        },
+        {
+          "interest_ref": "Developer tool setup",
+          "summary": "Repeated searches/clicks for VS Code and Git suggest an active setup thread spanning multiple days.",
+          "confidence": "medium",
+          "evidence": [
+            {
+              "date": "2026-02-18",
+              "raw_record": "Bing Search web Clicked | Git - Install"
+            }
+          ]
+        },
+        {
+          "interest_ref": "Olympic hockey updates",
+          "summary": "Multiple Olympic hockey reads across 2/17–2/23 suggest event-following behavior.",
+          "confidence": "medium",
+          "evidence": [
+            {
+              "date": "2026-02-19",
+              "raw_record": "MSN View | Olympic hockey bracket set after fierce prelims"
+            }
+          ]
+        }
+      ],
+      "WeeklyCycles": [
+        {
+          "pattern": "Sports attention is clustered around timely updates: NFL team/player items and Olympics bracket/tournament news.",
+          "linked_interests": [
+            "NFL news tracking",
+            "Olympic hockey updates"
+          ],
+          "confidence": "medium"
+        }
+      ],
+      "CrossTopicCooccurrence": [
+        {
+          "interest_refs": [
+            "Seattle-area real estate browsing",
+            "Home improvement deal hunting"
+          ],
+          "summary": "Real-estate browsing co-occurs with practical home/DIY deal checks, consistent with occasional home-focused shopping research.",
+          "confidence": "low"
+        }
+      ],
+      "HighDwellConsumptions": [],
+      "PreferenceEvolution": [
+        {
+          "dimension": "browser_setup",
+          "trajectory": "New short-burst configuration behavior appeared (ad blocker searches/click).",
+          "confidence": "low"
+        }
+      ]
+    },
+    "LongTerm": {
+      "WindowDays": 365,
+      "HighInterestFrequency": [
+        {
+          "interest_ref": "NFL news tracking",
+          "summary": "NFL/Seahawks news remains the most consistently reinforced interest across the known history window.",
+          "confidence": "high"
+        },
+        {
+          "interest_ref": "Seattle-area real estate browsing",
+          "summary": "Real-estate browsing shows recurring bursts and was recently reinforced with multiple-day activity.",
+          "confidence": "medium"
+        }
+      ],
+      "ConsistentDomainAffinity": [
+        {
+          "domain_category": "other",
+          "summary": "Overall behavior is a blend of headline-driven news reading (sports/general interest) and practical, task-based web searches (tools, setup, shopping research).",
+          "confidence": "medium"
+        }
+      ],
+      "SeasonalRecurrences": [
+        {
+          "interest_ref": "NFL news tracking",
+          "pattern": "Likely seasonal recurrence aligned with the NFL season (topic-inherent), with strong reinforcement in recent weeks.",
+          "confidence": "medium"
+        },
+        {
+          "interest_ref": "Olympic hockey updates",
+          "pattern": "Event-driven recurrence tied to Olympic cycles and tournament milestones (topic-inherent).",
+          "confidence": "medium"
+        }
+      ]
+    },
+    "UncertaintyNotes": [
+      "Working-memory window is approximated using date-only logs; intraday timing is not available.",
+      "Long-term patterns are limited to the best-known activity window since 2025-12-09."
+    ]
+  },
+  "Explanations": [
+    {
+      "Because": "User repeatedly viewed Seahawks/NFL MSN articles across multiple days in the new slice.",
+      "Supports": [
+        {
+          "type": "interest",
+          "ref": "NFL news tracking"
+        },
+        {
+          "type": "biography",
+          "ref": "ActiveGoals:Stay up to date on Seahawks/NFL developments during the season"
+        },
+        {
+          "type": "memory",
+          "ref": "ShortTerm.MultiDayRepeatedEngagement:NFL news tracking"
+        }
+      ],
+      "Evidence": [
+        {
+          "date": "2026-02-18",
+          "source": "MSN",
+          "raw_record": "MSN View | Tag window opens Tuesday with eyes on Cowboys, Seahawks"
+        },
+        {
+          "date": "2026-02-20",
+          "source": "MSN",
+          "raw_record": "MSN View | Rashid Shaheed wants to 'run it back' with the Seahawks"
+        }
+      ]
+    },
+    {
+      "Because": "User visited Redfin listing pages (including the 98006 homes-for-sale page) across several days in the new slice.",
+      "Supports": [
+        {
+          "type": "interest",
+          "ref": "Seattle-area real estate browsing"
+        },
+        {
+          "type": "biography",
+          "ref": "ActiveGoals:Monitor Seattle-area home listings in a specific ZIP and compare options"
+        },
+        {
+          "type": "memory",
+          "ref": "Working.TopInterestsLast24h:Seattle-area real estate browsing"
+        }
+      ],
+      "Evidence": [
+        {
+          "date": "2026-02-20",
+          "source": "Uet",
+          "raw_record": "UetEvents | Redfin | Real Estate & Homes for Sale, Rentals, Mortgages & Agents"
+        },
+        {
+          "date": "2026-02-23",
+          "source": "Uet",
+          "raw_record": "UetEvents | 98006, WA Real Estate & Homes for Sale | Redfin"
+        }
+      ]
+    },
+    {
+      "Because": "User searched/clicked installation resources for VS Code and Git across multiple days.",
+      "Supports": [
+        {
+          "type": "interest",
+          "ref": "Developer tool setup"
+        },
+        {
+          "type": "product_usage",
+          "ref": "Bing"
+        },
+        {
+          "type": "biography",
+          "ref": "ActiveGoals:Set up or refresh coding tools (editor + Git)"
+        }
+      ],
+      "Evidence": [
+        {
+          "date": "2026-02-17",
+          "source": "Bing",
+          "raw_record": "Bing Search web | vs code"
+        },
+        {
+          "date": "2026-02-18",
+          "source": "Bing",
+          "raw_record": "Bing Search web Clicked | Git - Install"
+        }
+      ]
+    }
+  ],
+  "Updates": {
+    "Version": "Updates-v0.7",
+    "AsOfDate": "2026-02-23",
+    "HasPriorProfile": true,
+    "Deltas": [
+      {
+        "type": "interest_strengthened",
+        "description": "NFL news tracking reinforced by additional Seahawks/NFL reads (2/17–2/20)."
+      },
+      {
+        "type": "interest_strengthened",
+        "description": "Seattle-area real estate browsing re-activated/strengthened with repeated Redfin activity through 2/23."
+      },
+      {
+        "type": "interest_added",
+        "description": "Added Developer tool setup (VS Code/Git install/download searches and clicks)."
+      },
+      {
+        "type": "interest_added",
+        "description": "Added Ad blocker setup (Edge) (adblock searches and Edge Add-ons click)."
+      },
+      {
+        "type": "interest_added",
+        "description": "Added Microsoft careers portal access (repeated searches for 'microsoft careers hub')."
+      },
+      {
+        "type": "interest_added",
+        "description": "Added Olympic hockey updates (repeated Olympics hockey bracket/tournament reads)."
+      },
+      {
+        "type": "interest_strengthened",
+        "description": "Home improvement deal hunting reinforced by new practical deal checks (tools/hardware)."
+      },
+      {
+        "type": "product_usage_changed",
+        "description": "Updated product usage recency: Bing and MSN last usage moved to 2026-02-23; added UET-tracked browsing as a product-usage entry."
+      },
+      {
+        "type": "biography_updated",
+        "description": "Biography updated to reflect renewed real-estate browsing and new setup-related behavior (developer tools, ad blocker)."
+      },
+      {
+        "type": "memory_updated",
+        "description": "Memory updated with last-24h and short-term repeated engagement patterns from the new slice."
+      }
+    ],
+    "UncertaintyNotes": [
+      "New interests begin at Strength=0.60 per spec; existing strengths were carried forward from the prior profile.",
+      "AllTime counts are extended conservatively by summing due to lack of event IDs; overlaps are unlikely given non-overlapping date windows but cannot be guaranteed."
+    ]
+  }
+}
