@@ -193,11 +193,6 @@ function BiographySection({ biography }: { biography: any }) {
             <Card.Body style={{ padding: '24px 28px' }}>
                 <div style={styles.biographyTitle}>
                     <span>Biography</span>
-                    {biography.StageOfLifeSignals && (
-                        <span style={{ fontSize: '0.78rem', color: '#8E8E93', fontWeight: '400' }}>
-                            — Life stage: {biography.StageOfLifeSignals}
-                        </span>
-                    )}
                 </div>
                 {paragraphs.map((para: string, i: number) => (
                     <p key={i} style={styles.biographyText}>{para}</p>
