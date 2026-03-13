@@ -1,22 +1,11 @@
 import { useState, useMemo } from 'react';
-import { Container, Card, Form, Button, Row, Col, Spinner } from 'react-bootstrap';
+import { Container, Card, Form, Button, Row, Col, Spinner, Nav } from 'react-bootstrap';
 import MAIProfileView from './MAIProfileView';
+import RawSignalsView from './RawSignalsView';
 
-// Load the NDJSON interest file and TSV demographics file as raw text
-const jsonRaw = import.meta.glob('./Data/*.json', { eager: true, query: '?raw', import: 'default' });
+// Load all data files as raw text at build time
+const jsonlRaw = import.meta.glob('./Data/*.jsonl', { eager: true, query: '?raw', import: 'default' });
 const tsvRaw = import.meta.glob('./Data/*.tsv', { eager: true, query: '?raw', import: 'default' });
-
-interface V3UserRecord {
-    UserId: string;
-    Date: string;
-    FromDate: string;
-    ToDate: string;
-    Version: string;
-    Layer: string;
-    Interests: any[];
-    Biography: string;
-    LifeStage: { Value: string; Confidence: string; Evidence: string[] };
-}
 
 interface TsvDemographics {
     CurrentLocation: string;
@@ -25,8 +14,11 @@ interface TsvDemographics {
     Gender: string;
 }
 
-function parseNdjson(raw: string): V3UserRecord[] {
-    return raw.trim().split('\n').filter(l => l.trim()).map(l => JSON.parse(l));
+interface ParsedData {
+    profiles: Map<string, any>;
+    signals: Map<string, any[]>;
+    demographics: Map<string, TsvDemographics>;
+    userIds: string[];
 }
 
 function parseTsv(raw: string): Map<string, TsvDemographics> {
@@ -47,26 +39,52 @@ function parseTsv(raw: string): Map<string, TsvDemographics> {
     return map;
 }
 
-function loadData() {
-    // Parse the first (only) JSON file
-    const jsonPath = Object.keys(jsonRaw)[0];
-    const records = jsonPath ? parseNdjson(jsonRaw[jsonPath] as string) : [];
+function parseAllData(): ParsedData {
+    const profiles = new Map<string, any>();
+    const signals = new Map<string, any[]>();
+    let demographics = new Map<string, TsvDemographics>();
 
-    // Parse the first (only) TSV file
+    for (const [path, raw] of Object.entries(jsonlRaw)) {
+        const filename = path.split('/').pop() || '';
+        const text = raw as string;
+        const lines = text.trim().split('\n').filter(l => l.trim());
+
+        if (filename.toLowerCase().includes('interest')) {
+            for (const line of lines) {
+                const obj = JSON.parse(line);
+                const userId = obj.Facts?.Identity?.MAI_ID;
+                if (userId) profiles.set(userId, obj);
+            }
+        } else if (filename.toLowerCase().includes('signal')) {
+            for (const line of lines) {
+                const obj = JSON.parse(line);
+                const userId = obj.user_id;
+                if (userId) {
+                    if (!signals.has(userId)) signals.set(userId, []);
+                    signals.get(userId)!.push(obj);
+                }
+            }
+        }
+    }
+
+    // Parse TSV demographics
     const tsvPath = Object.keys(tsvRaw)[0];
-    const demographics = tsvPath ? parseTsv(tsvRaw[tsvPath] as string) : new Map<string, TsvDemographics>();
+    if (tsvPath) demographics = parseTsv(tsvRaw[tsvPath] as string);
 
-    return { records, demographics };
+    const allIds = new Set([...profiles.keys(), ...signals.keys()]);
+    const userIds = [...allIds].sort();
+    return { profiles, signals, demographics, userIds };
 }
 
 function MAIProfileSamples() {
-    const { records, demographics } = useMemo(() => loadData(), []);
-    const availableUserIds = useMemo(() => records.map(r => r.UserId), [records]);
+    const { profiles, signals, demographics, userIds } = useMemo(() => parseAllData(), []);
 
-    const [userId, setUserId] = useState<string>(availableUserIds[0] || '');
+    const [userId, setUserId] = useState<string>(userIds[0] || '');
     const [isLoading, setIsLoading] = useState(false);
-    const [sampleData, setSampleData] = useState<any>(null);
+    const [profileData, setProfileData] = useState<any>(null);
+    const [signalData, setSignalData] = useState<any[]>([]);
     const [errorMessage, setErrorMessage] = useState<string>('');
+    const [activeTab, setActiveTab] = useState<string>('profile');
 
     const handleSubmit = () => {
         if (!userId) {
@@ -75,22 +93,27 @@ function MAIProfileSamples() {
         }
         setErrorMessage('');
         setIsLoading(true);
-        setSampleData(null);
+        setProfileData(null);
+        setSignalData([]);
 
         try {
-            const record = records.find(r => r.UserId === userId);
-            if (!record) {
-                throw new Error('No matching user record found.');
+            const profile = profiles.get(userId) || null;
+            const sigs = signals.get(userId) || [];
+            if (!profile && sigs.length === 0) {
+                throw new Error('No data found for this user.');
             }
-            const demo = demographics.get(userId);
-            // Build combined data for the view
-            setSampleData({ ...record, demographics: demo || null });
+            const demo = demographics.get(userId) || null;
+            setProfileData({ ...profile, _demographics: demo });
+            setSignalData(sigs);
         } catch (err: any) {
-            setErrorMessage(err.message || 'An error occurred while loading sample data.');
+            setErrorMessage(err.message || 'An error occurred.');
         } finally {
             setIsLoading(false);
         }
     };
+
+    const hasProfile = profileData != null;
+    const hasSignals = signalData.length > 0;
 
     return (
         <Container className="mt-4">
@@ -107,11 +130,12 @@ function MAIProfileSamples() {
                                     value={userId}
                                     onChange={(e) => {
                                         setUserId(e.target.value);
-                                        setSampleData(null);
+                                        setProfileData(null);
+                                        setSignalData([]);
                                     }}
                                 >
-                                    {availableUserIds.length === 0 && <option value="">No samples available</option>}
-                                    {availableUserIds.map(id => (
+                                    {userIds.length === 0 && <option value="">No samples available</option>}
+                                    {userIds.map(id => (
                                         <option key={id} value={id}>{id}</option>
                                     ))}
                                 </Form.Select>
@@ -121,7 +145,7 @@ function MAIProfileSamples() {
                             <Button
                                 variant="primary"
                                 onClick={handleSubmit}
-                                disabled={isLoading || availableUserIds.length === 0}
+                                disabled={isLoading || userIds.length === 0}
                             >
                                 {isLoading ? (
                                     <>
@@ -138,8 +162,20 @@ function MAIProfileSamples() {
                 </Card.Body>
             </Card>
 
-            {sampleData && (
-                <MAIProfileView data={sampleData} userId={userId} />
+            {(hasProfile || hasSignals) && (
+                <>
+                    <Nav variant="tabs" activeKey={activeTab} onSelect={(k) => setActiveTab(k || 'profile')} className="mb-3">
+                        {hasProfile && <Nav.Item><Nav.Link eventKey="profile">MAI Profile</Nav.Link></Nav.Item>}
+                        {hasSignals && <Nav.Item><Nav.Link eventKey="signals">Raw Signals ({signalData.length})</Nav.Link></Nav.Item>}
+                    </Nav>
+
+                    {activeTab === 'profile' && hasProfile && (
+                        <MAIProfileView data={profileData} userId={userId} />
+                    )}
+                    {activeTab === 'signals' && hasSignals && (
+                        <RawSignalsView signals={signalData} />
+                    )}
+                </>
             )}
         </Container>
     );
