@@ -48,6 +48,10 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: './mai-profile-samples-20260317/dist'
+
+  deploy:
+    environment:
+      name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
