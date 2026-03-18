@@ -448,42 +448,52 @@ function RunDetailsSection({ summary }: { summary: any }) {
     const elapsed = summary.run_elapsed_seconds;
     const minutes = elapsed != null ? `${Math.floor(elapsed / 60)}m ${Math.round(elapsed % 60)}s` : '—';
 
-    const items: { label: string; value: string }[] = [
-        { label: 'Description', value: config.description || summary.description || '—' },
-        { label: 'LLM Model', value: config.llm_model_key || '—' },
-        { label: 'Run Started (UTC)', value: summary.run_started_utc || '—' },
-        { label: 'Run Ended (UTC)', value: summary.run_ended_utc || '—' },
-        { label: 'Elapsed', value: elapsed != null ? `${elapsed.toFixed(1)}s (${minutes})` : '—' },
-        { label: 'Total Users', value: summary.total_users != null ? String(summary.total_users) : '—' },
-        { label: 'Succeeded / Failed', value: `${summary.succeeded ?? '—'} / ${summary.failed ?? '—'}` },
-        { label: 'Raw Data Path', value: config.raw_data_path || '—' },
-        { label: 'Output Root', value: config.output_root || '—' },
-        { label: 'Git Commit', value: summary.git_commit ? `${summary.git_commit.slice(0, 10)}${summary.git_dirty ? ' (dirty)' : ''}` : '—' },
+    const rows: [string, string, string, string][] = [
+        ['Description', config.description || summary.description || '—', 'LLM Model', config.llm_model_key || '—'],
+        ['Run Started (UTC)', summary.run_started_utc || '—', 'Run Ended (UTC)', summary.run_ended_utc || '—'],
+        ['Elapsed', elapsed != null ? `${elapsed.toFixed(1)}s (${minutes})` : '—', 'Total Users', summary.total_users != null ? String(summary.total_users) : '—'],
+        ['Succeeded / Failed', `${summary.succeeded ?? '—'} / ${summary.failed ?? '—'}`, 'Raw Data Path', config.raw_data_path || '—'],
+        ['Output Root', config.output_root || '—', 'Git Commit', summary.git_commit ? `${summary.git_commit.slice(0, 10)}${summary.git_dirty ? ' (dirty)' : ''}` : '—'],
     ];
+
+    const labelStyle: React.CSSProperties = {
+        color: '#94A3B8', fontWeight: '500', fontSize: '0.78rem',
+        whiteSpace: 'nowrap', paddingRight: '12px', paddingTop: '8px', paddingBottom: '8px',
+        verticalAlign: 'top', width: '160px',
+    };
+    const valueStyle: React.CSSProperties = {
+        color: '#334155', fontWeight: '600', fontSize: '0.82rem',
+        paddingTop: '8px', paddingBottom: '8px', verticalAlign: 'top',
+        wordBreak: 'break-all',
+    };
+    const monoValueStyle: React.CSSProperties = {
+        ...valueStyle, fontFamily: 'monospace', fontSize: '0.78rem',
+    };
 
     return (
         <Card style={{
             borderRadius: '12px', border: '1px solid #E2E8F0',
             backgroundColor: '#F8FAFC', marginBottom: '24px',
         }}>
-            <Card.Body style={{ padding: '16px 24px' }}>
+            <Card.Body style={{ padding: '20px 28px' }}>
                 <div style={{
                     fontSize: '0.82rem', fontWeight: '700', color: '#64748B',
-                    textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '12px',
+                    textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '16px',
                 }}>
                     🔧 Run Details
                 </div>
-                <div style={{
-                    display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px 32px',
-                    fontSize: '0.82rem',
-                }}>
-                    {items.map((item, i) => (
-                        <div key={i} style={{ display: 'flex', gap: '8px', alignItems: 'baseline' }}>
-                            <span style={{ color: '#94A3B8', fontWeight: '500', minWidth: '130px', flexShrink: 0 }}>{item.label}</span>
-                            <span style={{ color: '#334155', fontWeight: '600', fontFamily: item.label.includes('Git') || item.label.includes('Path') || item.label.includes('Output') ? 'monospace' : 'inherit', fontSize: item.label.includes('Git') || item.label.includes('Path') || item.label.includes('Output') ? '0.78rem' : 'inherit', wordBreak: 'break-all' }}>{item.value}</span>
-                        </div>
-                    ))}
-                </div>
+                <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                    <tbody>
+                        {rows.map(([l1, v1, l2, v2], i) => (
+                            <tr key={i} style={{ borderBottom: i < rows.length - 1 ? '1px solid #EEF2FF' : 'none' }}>
+                                <td style={labelStyle}>{l1}</td>
+                                <td style={l1.includes('Path') || l1.includes('Output') ? monoValueStyle : valueStyle}>{v1}</td>
+                                <td style={{ ...labelStyle, paddingLeft: '32px' }}>{l2}</td>
+                                <td style={l2.includes('Git') || l2.includes('Path') ? monoValueStyle : valueStyle}>{v2}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </Card.Body>
         </Card>
     );
