@@ -1,12 +1,10 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Card, Form, Badge, Row, Col } from 'react-bootstrap';
 import React from 'react';
 
 // ─── Types ───────────────────────────────────────────────────────────
 
 interface Signal {
-    user_id: string;
-    date_str: string;
     Date: string;
     Source: string;
     DetailedSource: string;
@@ -82,7 +80,7 @@ export default function RawSignalsView({ signals }: RawSignalsViewProps) {
     }, [filteredSignals, currentPage]);
 
     // Reset page when filters change
-    useMemo(() => { setCurrentPage(1); }, [sourceFilter, filterFilter, dateSortOrder]);
+    useEffect(() => { setCurrentPage(1); }, [sourceFilter, filterFilter, dateSortOrder]);
 
     const totalCount = signals.length;
     const filteredCount = signals.filter(s => s.should_filter).length;

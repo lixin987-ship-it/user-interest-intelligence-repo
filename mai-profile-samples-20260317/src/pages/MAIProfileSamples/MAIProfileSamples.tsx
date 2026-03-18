@@ -1,6 +1,7 @@
-import { useState, useMemo } from 'react';
-import { Container, Card, Form, Button, Row, Col, Spinner } from 'react-bootstrap';
+import { useState, useMemo, useCallback } from 'react';
+import { Container, Card, Form, Button, Row, Col, Spinner, Nav } from 'react-bootstrap';
 import MAIProfileView from './MAIProfileView';
+import RawSignalsView from './RawSignalsView';
 import dogfoodRuns from 'virtual:dogfood-data';
 
 interface ParsedRun {
@@ -40,15 +41,48 @@ function MAIProfileSamples() {
     const userIds = parsedRun?.userIds || [];
     const [userId, setUserId] = useState<string>('');
     const [profileData, setProfileData] = useState<any>(null);
+    const [signalData, setSignalData] = useState<any[] | null>(null);
+    const [signalLoading, setSignalLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [isLoading, setIsLoading] = useState(false);
+    const [activeTab, setActiveTab] = useState<'profile' | 'signal'>('profile');
 
     const handleRunChange = (run: string) => {
         setSelectedRun(run);
         setUserId('');
         setProfileData(null);
+        setSignalData(null);
         setErrorMessage('');
+        setActiveTab('profile');
     };
+
+    // Lazy-load signal data for a given run + userId
+    const loadSignalData = useCallback(async (runKey: string, uid: string) => {
+        setSignalLoading(true);
+        setSignalData(null);
+        try {
+            const mod = await import('virtual:dogfood-signal-data');
+            const signalRuns = mod.default;
+            const signalRaw = signalRuns[runKey];
+            if (signalRaw) {
+                const lines = signalRaw.data.trim().split('\n').filter((l: string) => l.trim());
+                const userSignals: any[] = [];
+                for (const line of lines) {
+                    try {
+                        const obj = JSON.parse(line);
+                        if (obj.user_id === uid && Array.isArray(obj.signals)) {
+                            userSignals.push(...obj.signals);
+                        }
+                    } catch { /* skip */ }
+                }
+                setSignalData(userSignals);
+            }
+        } catch {
+            setSignalData(null);
+        } finally {
+            setSignalLoading(false);
+        }
+    }, []);
 
     const handleSubmit = () => {
         const effectiveId = userId || userIds[0] || '';
@@ -66,6 +100,14 @@ function MAIProfileSamples() {
                 throw new Error('No data found for this user.');
             }
             setProfileData(profile);
+
+            // If already on signal tab, reload signal data immediately
+            setSignalData(null);
+            setSignalLoading(false);
+            if (activeTab === 'signal') {
+                loadSignalData(selectedRun, effectiveId);
+            }
+
             if (!userId) setUserId(effectiveId);
         } catch (err: any) {
             setErrorMessage(err.message || 'An error occurred.');
@@ -144,7 +186,51 @@ function MAIProfileSamples() {
             </Card>
 
             {profileData && (
-                <MAIProfileView data={profileData} userId={profileData.user_id || effectiveUserId} />
+                <>
+                    <Nav variant="tabs" className="mb-3">
+                        <Nav.Item>
+                            <Nav.Link
+                                active={activeTab === 'profile'}
+                                onClick={() => setActiveTab('profile')}
+                                style={{ cursor: 'pointer' }}
+                            >
+                                MAI Profile
+                            </Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link
+                                active={activeTab === 'signal'}
+                                onClick={() => {
+                                    setActiveTab('signal');
+                                    // Lazy-load signal data on first click
+                                    if (!signalData && !signalLoading) {
+                                        const uid = profileData?.user_id || effectiveUserId;
+                                        loadSignalData(selectedRun, uid);
+                                    }
+                                }}
+                                style={{ cursor: 'pointer' }}
+                            >
+                                Raw Signal
+                            </Nav.Link>
+                        </Nav.Item>
+                    </Nav>
+
+                    {activeTab === 'profile' && (
+                        <MAIProfileView data={profileData} userId={profileData.user_id || effectiveUserId} runSummary={dogfoodRuns[selectedRun]?.runSummary} />
+                    )}
+                    {activeTab === 'signal' && signalLoading && (
+                        <div className="text-center py-5">
+                            <Spinner animation="border" variant="primary" />
+                            <div className="mt-2 text-muted">Loading raw signals...</div>
+                        </div>
+                    )}
+                    {activeTab === 'signal' && !signalLoading && signalData && (
+                        <RawSignalsView signals={signalData} />
+                    )}
+                    {activeTab === 'signal' && !signalLoading && !signalData && (
+                        <div className="alert alert-warning">No raw signal data available for this run.</div>
+                    )}
+                </>
             )}
         </Container>
     );

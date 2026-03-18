@@ -55,7 +55,7 @@ const metaCellValue: React.CSSProperties = {
 };
 
 /* ── Header (MAI Profile bar from Figma top) ── */
-function HeaderBar({ userId }: { userId: string; data: any }) {
+function HeaderBar({ userId }: { userId: string }) {
     return (
         <div style={{
             backgroundColor: '#FFFFFF', borderBottom: '1px solid #E9ECEF',
@@ -440,21 +440,72 @@ function InterestsSection({ interests }: { interests: any[] }) {
     );
 }
 
+/* ── Run Details (Model_Prompt_Details footer) ── */
+function RunDetailsSection({ summary }: { summary: any }) {
+    if (!summary) return null;
+
+    const config = summary.config || {};
+    const elapsed = summary.run_elapsed_seconds;
+    const minutes = elapsed != null ? `${Math.floor(elapsed / 60)}m ${Math.round(elapsed % 60)}s` : '—';
+
+    const items: { label: string; value: string }[] = [
+        { label: 'Description', value: config.description || summary.description || '—' },
+        { label: 'LLM Model', value: config.llm_model_key || '—' },
+        { label: 'Run Started (UTC)', value: summary.run_started_utc || '—' },
+        { label: 'Run Ended (UTC)', value: summary.run_ended_utc || '—' },
+        { label: 'Elapsed', value: elapsed != null ? `${elapsed.toFixed(1)}s (${minutes})` : '—' },
+        { label: 'Total Users', value: summary.total_users != null ? String(summary.total_users) : '—' },
+        { label: 'Succeeded / Failed', value: `${summary.succeeded ?? '—'} / ${summary.failed ?? '—'}` },
+        { label: 'Raw Data Path', value: config.raw_data_path || '—' },
+        { label: 'Output Root', value: config.output_root || '—' },
+        { label: 'Git Commit', value: summary.git_commit ? `${summary.git_commit.slice(0, 10)}${summary.git_dirty ? ' (dirty)' : ''}` : '—' },
+    ];
+
+    return (
+        <Card style={{
+            borderRadius: '12px', border: '1px solid #E2E8F0',
+            backgroundColor: '#F8FAFC', marginBottom: '24px',
+        }}>
+            <Card.Body style={{ padding: '16px 24px' }}>
+                <div style={{
+                    fontSize: '0.82rem', fontWeight: '700', color: '#64748B',
+                    textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '12px',
+                }}>
+                    🔧 Run Details
+                </div>
+                <div style={{
+                    display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px 32px',
+                    fontSize: '0.82rem',
+                }}>
+                    {items.map((item, i) => (
+                        <div key={i} style={{ display: 'flex', gap: '8px', alignItems: 'baseline' }}>
+                            <span style={{ color: '#94A3B8', fontWeight: '500', minWidth: '130px', flexShrink: 0 }}>{item.label}</span>
+                            <span style={{ color: '#334155', fontWeight: '600', fontFamily: item.label.includes('Git') || item.label.includes('Path') || item.label.includes('Output') ? 'monospace' : 'inherit', fontSize: item.label.includes('Git') || item.label.includes('Path') || item.label.includes('Output') ? '0.78rem' : 'inherit', wordBreak: 'break-all' }}>{item.value}</span>
+                        </div>
+                    ))}
+                </div>
+            </Card.Body>
+        </Card>
+    );
+}
+
 // ─── Main Component ──────────────────────────────────────────────────
 
 interface MAIProfileViewProps {
     data: any;
     userId: string;
+    runSummary?: any;
 }
 
-export default function MAIProfileView({ data, userId }: MAIProfileViewProps) {
+export default function MAIProfileView({ data, userId, runSummary }: MAIProfileViewProps) {
     const interests = data.interests || [];
     return (
         <div>
-            <HeaderBar userId={userId} data={data} />
+            <HeaderBar userId={userId} />
             <BiographySection biography={data.biography} />
             <FactsSection data={data} />
             <InterestsSection interests={interests} />
+            <RunDetailsSection summary={runSummary} />
         </div>
     );
 }
