@@ -520,11 +520,12 @@ function RunDetailsSection({ summary }: { summary: any }) {
     const minutes = elapsed != null ? `${Math.floor(elapsed / 60)}m ${Math.round(elapsed % 60)}s` : '—';
 
     const rows: [string, string, string, string][] = [
-        ['Description', config.description || summary.description || '—', 'LLM Model', config.llm_model_key || '—'],
-        ['Run Started (UTC)', summary.run_started_utc || '—', 'Run Ended (UTC)', summary.run_ended_utc || '—'],
-        ['Elapsed', elapsed != null ? `${elapsed.toFixed(1)}s (${minutes})` : '—', 'Total Users', summary.total_users != null ? String(summary.total_users) : '—'],
-        ['Succeeded / Failed', `${summary.succeeded ?? '—'} / ${summary.failed ?? '—'}`, 'Raw Data Path', config.raw_data_path || '—'],
-        ['Output Root', config.output_root || '—', 'Git Commit', summary.git_commit ? `${summary.git_commit.slice(0, 10)}${summary.git_dirty ? ' (dirty)' : ''}` : '—'],
+        ['Description', config.description || summary.description || '—', 'Submitter', summary.submitter_name || '—'],
+        ['LLM Model', config.llm_model_key || '—', 'Run Started (UTC)', summary.run_started_utc || '—'],
+        ['Run Ended (UTC)', summary.run_ended_utc || '—', 'Elapsed', elapsed != null ? `${elapsed.toFixed(1)}s (${minutes})` : '—'],
+        ['Total Users', summary.total_users != null ? String(summary.total_users) : '—', 'Succeeded / Failed', `${summary.succeeded ?? '—'} / ${summary.failed ?? '—'}`],
+        ['Raw Data Path', config.raw_data_path || '—', 'Output Root', config.output_root || '—'],
+        ['Git Commit', summary.git_commit ? `${summary.git_commit.slice(0, 10)}${summary.git_dirty ? ' (dirty)' : ''}` : '—', '', ''],
     ];
 
     const labelStyle: React.CSSProperties = {
