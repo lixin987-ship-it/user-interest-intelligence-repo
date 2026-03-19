@@ -190,13 +190,74 @@ function FactsSection({ data }: { data: any }) {
     );
 }
 
+/* ── Topic Tag with hover popover ── */
+function TopicTag({ topic }: { topic: any }) {
+    const [hovered, setHovered] = useState(false);
+
+    const confidence = topic.confidence_score != null ? `${Math.round(topic.confidence_score * 100)}%` : '—';
+    const sources = Array.isArray(topic.source) ? topic.source.join(', ') : (topic.source || '—');
+    const evidenceCount = Array.isArray(topic.evidence) ? topic.evidence.length : 0;
+
+    return (
+        <span
+            style={{ position: 'relative', display: 'inline-block' }}
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+        >
+            <span style={{
+                display: 'inline-block', padding: '4px 12px',
+                backgroundColor: hovered ? '#DDD6FE' : '#EEF2FF', borderRadius: '6px',
+                fontSize: '0.78rem', color: '#4F46E5', border: '1px solid #C7D2FE',
+                cursor: 'default', transition: 'background-color 0.15s',
+            }}>{topic.topic}</span>
+
+            {hovered && (
+                <div style={{
+                    position: 'absolute', bottom: '100%', left: '50%', transform: 'translateX(-50%)',
+                    marginBottom: '6px', width: '280px', padding: '12px 14px',
+                    backgroundColor: '#1A1B2E', color: '#E2E8F0', borderRadius: '10px',
+                    fontSize: '0.75rem', lineHeight: '1.6', zIndex: 100,
+                    boxShadow: '0 4px 16px rgba(0,0,0,0.25)', pointerEvents: 'none',
+                }}>
+                    <div style={{ fontWeight: '700', fontSize: '0.82rem', color: '#fff', marginBottom: '6px' }}>{topic.topic}</div>
+                    <div><span style={{ color: '#94A3B8' }}>Confidence:</span> {confidence}</div>
+                    <div><span style={{ color: '#94A3B8' }}>Count:</span> {topic.count ?? '—'}</div>
+                    <div><span style={{ color: '#94A3B8' }}>Source:</span> {sources}</div>
+                    <div><span style={{ color: '#94A3B8' }}>Intent:</span> {topic.intent || '—'}</div>
+                    <div><span style={{ color: '#94A3B8' }}>First Detect:</span> {formatDateShort(topic.first_detect_date) || '—'}</div>
+                    <div><span style={{ color: '#94A3B8' }}>Last Detect:</span> {formatDateShort(topic.last_detect_date) || '—'}</div>
+                    <div><span style={{ color: '#94A3B8' }}>Evidence:</span> {evidenceCount} item{evidenceCount !== 1 ? 's' : ''}</div>
+                    {evidenceCount > 0 && (
+                        <div style={{ marginTop: '6px', borderTop: '1px solid #334155', paddingTop: '6px' }}>
+                            {topic.evidence.slice(0, 3).map((e: any, j: number) => (
+                                <div key={j} style={{ color: '#CBD5E1', fontSize: '0.7rem', marginBottom: '3px' }}>
+                                    <span style={{ color: '#64748B' }}>{e.date}</span>{' '}
+                                    {Array.isArray(e.source) ? e.source.join('/') : e.source} — {e.action}
+                                </div>
+                            ))}
+                            {evidenceCount > 3 && (
+                                <div style={{ color: '#64748B', fontSize: '0.68rem' }}>+{evidenceCount - 3} more</div>
+                            )}
+                        </div>
+                    )}
+                    {/* Arrow */}
+                    <div style={{
+                        position: 'absolute', bottom: '-5px', left: '50%', transform: 'translateX(-50%)',
+                        width: 0, height: 0, borderLeft: '6px solid transparent',
+                        borderRight: '6px solid transparent', borderTop: '6px solid #1A1B2E',
+                    }} />
+                </div>
+            )}
+        </span>
+    );
+}
+
 /* ── Interest Card (Figma layout) ── */
 function InterestCard({ interest }: { interest: any }) {
     const [showEvidence, setShowEvidence] = useState(false);
     const score = getConfidencePercent(interest.confidence_score);
 
     const topics: any[] = interest.topics || [];
-    const topicNames = topics.map((t: any) => t.topic);
 
     // Compute source percentages from topics evidence
     const sourceCounts: Record<string, number> = {};
@@ -304,17 +365,13 @@ function InterestCard({ interest }: { interest: any }) {
                 <strong style={{ color: '#1C1C1E' }}>Inferred:</strong> {interest.inferred_intent || '—'}
             </p>
 
-            {/* INTEREST TOPIC — flat tags */}
-            {topicNames.length > 0 && (
+            {/* INTEREST TOPIC — tags with hover tooltip */}
+            {topics.length > 0 && (
                 <>
                     <div style={sectionLabel}>INTEREST TOPIC</div>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '12px' }}>
-                        {topicNames.map((name: string, i: number) => (
-                            <span key={i} style={{
-                                display: 'inline-block', padding: '4px 12px',
-                                backgroundColor: '#EEF2FF', borderRadius: '6px',
-                                fontSize: '0.78rem', color: '#4F46E5', border: '1px solid #C7D2FE',
-                            }}>{name}</span>
+                        {topics.map((t: any, i: number) => (
+                            <TopicTag key={i} topic={t} />
                         ))}
                     </div>
                 </>
