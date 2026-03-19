@@ -214,10 +214,13 @@ function TopicTag({ topic }: { topic: any }) {
             {hovered && (
                 <div style={{
                     position: 'absolute', bottom: '100%', left: '50%', transform: 'translateX(-50%)',
-                    marginBottom: '6px', width: '280px', padding: '12px 14px',
+                    paddingBottom: '6px', width: '280px', zIndex: 100,
+                }}>
+                <div style={{
+                    width: '100%', padding: '12px 14px',
                     backgroundColor: '#1A1B2E', color: '#E2E8F0', borderRadius: '10px',
-                    fontSize: '0.75rem', lineHeight: '1.6', zIndex: 100,
-                    boxShadow: '0 4px 16px rgba(0,0,0,0.25)', pointerEvents: 'none',
+                    fontSize: '0.75rem', lineHeight: '1.6',
+                    boxShadow: '0 4px 16px rgba(0,0,0,0.25)', position: 'relative',
                 }}>
                     <div style={{ fontWeight: '700', fontSize: '0.82rem', color: '#fff', marginBottom: '6px' }}>{topic.topic}</div>
                     <div><span style={{ color: '#94A3B8' }}>Confidence:</span> {confidence}</div>
@@ -228,16 +231,13 @@ function TopicTag({ topic }: { topic: any }) {
                     <div><span style={{ color: '#94A3B8' }}>Last Detect:</span> {formatDateShort(topic.last_detect_date) || '—'}</div>
                     <div><span style={{ color: '#94A3B8' }}>Evidence:</span> {evidenceCount} item{evidenceCount !== 1 ? 's' : ''}</div>
                     {evidenceCount > 0 && (
-                        <div style={{ marginTop: '6px', borderTop: '1px solid #334155', paddingTop: '6px' }}>
-                            {topic.evidence.slice(0, 3).map((e: any, j: number) => (
+                        <div style={{ marginTop: '6px', borderTop: '1px solid #334155', paddingTop: '6px', maxHeight: '150px', overflowY: 'auto' }}>
+                            {topic.evidence.map((e: any, j: number) => (
                                 <div key={j} style={{ color: '#CBD5E1', fontSize: '0.7rem', marginBottom: '3px' }}>
                                     <span style={{ color: '#64748B' }}>{e.date}</span>{' '}
                                     {Array.isArray(e.source) ? e.source.join('/') : e.source} — {e.action}
                                 </div>
                             ))}
-                            {evidenceCount > 3 && (
-                                <div style={{ color: '#64748B', fontSize: '0.68rem' }}>+{evidenceCount - 3} more</div>
-                            )}
                         </div>
                     )}
                     {/* Arrow */}
@@ -246,6 +246,7 @@ function TopicTag({ topic }: { topic: any }) {
                         width: 0, height: 0, borderLeft: '6px solid transparent',
                         borderRight: '6px solid transparent', borderTop: '6px solid #1A1B2E',
                     }} />
+                </div>
                 </div>
             )}
         </span>
