@@ -2,7 +2,9 @@ import { useState, useMemo, useCallback } from 'react';
 import { Container, Card, Form, Button, Row, Col, Spinner, Nav } from 'react-bootstrap';
 import MAIProfileView from './MAIProfileView';
 import RawSignalsView from './RawSignalsView';
+import IntermediateStepsView from './IntermediateStepsView';
 import dogfoodRuns from 'virtual:dogfood-data';
+import intermediateManifest, { loaders as intermediateLoaders } from 'virtual:dogfood-intermediate-manifest';
 
 interface ParsedRun {
     latestDate: string;
@@ -45,7 +47,7 @@ function MAIProfileSamples() {
     const [signalLoading, setSignalLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [isLoading, setIsLoading] = useState(false);
-    const [activeTab, setActiveTab] = useState<'profile' | 'signal'>('profile');
+    const [activeTab, setActiveTab] = useState<'profile' | 'signal' | 'intermediate'>('profile');
 
     const handleRunChange = (run: string) => {
         setSelectedRun(run);
@@ -117,6 +119,9 @@ function MAIProfileSamples() {
     };
 
     const effectiveUserId = userId || userIds[0] || '';
+
+    // Dates for the selected run from the manifest (tiny, already loaded)
+    const intermediateDates = intermediateManifest[selectedRun] || [];
 
     return (
         <Container className="mt-4">
@@ -212,8 +217,14 @@ function MAIProfileSamples() {
                             >
                                 Raw Signal
                             </Nav.Link>
-                        </Nav.Item>
-                    </Nav>
+                        </Nav.Item>                        <Nav.Item>
+                            <Nav.Link
+                                active={activeTab === 'intermediate'}
+                                onClick={() => setActiveTab('intermediate')}
+                                style={{ cursor: 'pointer' }}
+                            >Intermediate Steps
+                            </Nav.Link>
+                        </Nav.Item>                    </Nav>
 
                     {activeTab === 'profile' && (
                         <MAIProfileView data={profileData} userId={profileData.user_id || effectiveUserId} runSummary={dogfoodRuns[selectedRun]?.runSummary} />
@@ -229,6 +240,17 @@ function MAIProfileSamples() {
                     )}
                     {activeTab === 'signal' && !signalLoading && !signalData && (
                         <div className="alert alert-warning">No raw signal data available for this run.</div>
+                    )}
+                    {activeTab === 'intermediate' && intermediateDates.length > 0 && (
+                        <IntermediateStepsView
+                            userId={profileData.user_id || effectiveUserId}
+                            runKey={selectedRun}
+                            dates={intermediateDates}
+                            loader={(key) => intermediateLoaders[key]()}
+                        />
+                    )}
+                    {activeTab === 'intermediate' && intermediateDates.length === 0 && (
+                        <div className="alert alert-warning">No intermediate data available for this run.</div>
                     )}
                 </>
             )}
