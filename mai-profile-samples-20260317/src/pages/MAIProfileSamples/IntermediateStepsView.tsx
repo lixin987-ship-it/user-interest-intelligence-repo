@@ -159,7 +159,7 @@ const tdStyle: React.CSSProperties = {
 // ─── Sub-Components ──────────────────────────────────────────────────
 
 /* ── Raw JSON viewer button + popover ── */
-function RawJsonButton({ data }: { data: any }) {
+function RawJsonButton({ data, fileName }: { data: any; fileName?: string }) {
     const [open, setOpen] = useState(false);
     const ref = useRef<HTMLSpanElement>(null);
 
@@ -181,22 +181,26 @@ function RawJsonButton({ data }: { data: any }) {
                 style={{
                     fontSize: '0.7rem', padding: '1px 8px', border: '1px solid #adb5bd',
                     borderRadius: 4, background: open ? '#e9ecef' : '#fff', color: '#495057',
-                    cursor: 'pointer', fontFamily: 'monospace', lineHeight: '1.5',
+                    cursor: 'pointer', lineHeight: '1.5',
                 }}
-            >{open ? 'Hide JSON' : '{ }'}</button>
+            >{open ? 'Hide' : 'Raw JSON'}</button>
             {open && (
                 <div style={{
                     position: 'absolute', top: '100%', right: 0, marginTop: 4,
-                    zIndex: 1050, width: 480, maxHeight: 400, overflowY: 'auto',
-                    backgroundColor: '#1e1e2e', color: '#c9d1d9', borderRadius: 8,
+                    zIndex: 1050, width: 520, maxHeight: 420, overflowY: 'auto',
+                    backgroundColor: '#f8f9fa', color: '#212529', borderRadius: 8,
+                    border: '1px solid #dee2e6',
                     padding: '12px 14px', fontSize: '0.72rem', fontFamily: 'monospace',
-                    lineHeight: '1.5', boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
+                    lineHeight: '1.5', boxShadow: '0 4px 16px rgba(0,0,0,0.12)',
                     whiteSpace: 'pre-wrap', wordBreak: 'break-word',
                 }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                        <span style={{ color: '#8b949e', fontSize: '0.7rem' }}>Raw JSON</span>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8,
+                        paddingBottom: 6, borderBottom: '1px solid #dee2e6' }}>
+                        <span style={{ color: '#495057', fontSize: '0.75rem', fontWeight: 600 }}>
+                            {fileName ? `📄 ${fileName}` : 'Raw JSON'}
+                        </span>
                         <span onClick={() => setOpen(false)}
-                            style={{ color: '#8b949e', cursor: 'pointer', fontSize: '0.9rem' }}>&times;</span>
+                            style={{ color: '#6c757d', cursor: 'pointer', fontSize: '1rem', lineHeight: 1 }}>&times;</span>
                     </div>
                     {JSON.stringify(data, null, 2)}
                 </div>
@@ -206,11 +210,11 @@ function RawJsonButton({ data }: { data: any }) {
 }
 
 /* ── Section header with optional JSON button ── */
-function SectionHeader({ style, title, rawJson }: { style: React.CSSProperties; title: string; rawJson?: any }) {
+function SectionHeader({ style, title, rawJson, fileName }: { style: React.CSSProperties; title: string; rawJson?: any; fileName?: string }) {
     return (
         <div style={{ ...style, display: 'flex', alignItems: 'center' }}>
             <span>{title}</span>
-            <RawJsonButton data={rawJson} />
+            <RawJsonButton data={rawJson} fileName={fileName} />
         </div>
     );
 }
@@ -425,7 +429,7 @@ function MergeDecisionsTable({ decisions, rawJson }: { decisions: MergeDecision[
     if (!decisions || decisions.length === 0) {
         return (
             <div>
-                <SectionHeader style={sectionTitle} title="Layer 2 — Merge Decisions" rawJson={rawJson} />
+                <SectionHeader style={sectionTitle} title="Layer 2 — Merge Decisions" rawJson={rawJson} fileName="layer2_merge.jsonl" />
                 <div className="text-muted" style={{ fontSize: '0.82rem' }}>No merge decisions (first window)</div>
             </div>
         );
@@ -433,7 +437,7 @@ function MergeDecisionsTable({ decisions, rawJson }: { decisions: MergeDecision[
 
     return (
         <div>
-            <SectionHeader style={sectionTitle} title={`Layer 2 — Merge Decisions (${decisions.length})`} rawJson={rawJson} />
+            <SectionHeader style={sectionTitle} title={`Layer 2 — Merge Decisions (${decisions.length})`} rawJson={rawJson} fileName="layer2_merge.jsonl" />
             <div style={{ maxHeight: 250, overflowY: 'auto', border: '1px solid #eee', borderRadius: 4 }}>
                 <table style={{ ...tableStyle, tableLayout: 'fixed' }}>
                     <colgroup>
@@ -623,15 +627,15 @@ function DateWindowItem({
                 )}
                 {data && (
                     <>
-                        <SectionHeader style={sectionTitleFirst} title="Layer 0 — Denoised Signals" rawJson={data.rawSignals} />
+                        <SectionHeader style={sectionTitleFirst} title="Layer 0 — Denoised Signals" rawJson={data.rawSignals} fileName="layer0_signal.jsonl" />
                         <SignalSummary signals={data.signals} />
 
-                        <SectionHeader style={sectionTitle} title={`Layer 1 — Delta Interests (${(data.deltaInterests || []).length})`} rawJson={data.rawDelta} />
+                        <SectionHeader style={sectionTitle} title={`Layer 1 — Delta Interests (${(data.deltaInterests || []).length})`} rawJson={data.rawDelta} fileName="layer1_postprocessing.jsonl" />
                         <DeltaInterestDetail interests={data.deltaInterests || []} />
 
                         {!isFirst && (
                             <>
-                                <SectionHeader style={sectionTitle} title={`Previous Snapshot (${(data.prevSnapshot || []).length})`} rawJson={data.rawPrevSnapshot} />
+                                <SectionHeader style={sectionTitle} title={`Previous Snapshot (${(data.prevSnapshot || []).length})`} rawJson={data.rawPrevSnapshot} fileName="prev_layer2_postmerge.jsonl" />
                                 <InterestTable
                                     interests={data.prevSnapshot || []}
                                     title=""
@@ -643,7 +647,7 @@ function DateWindowItem({
                         <MergeDecisionsTable decisions={data.mergeDecisions || []} rawJson={data.rawMerge} />
                         <SnapshotDiff prev={data.prevSnapshot || []} current={data.snapshot || []} />
 
-                        <SectionHeader style={sectionTitle} title={`Layer 2 PostMerge — Current Snapshot (${(data.snapshot || []).length})`} rawJson={data.rawSnapshot} />
+                        <SectionHeader style={sectionTitle} title={`Layer 2 PostMerge — Current Snapshot (${(data.snapshot || []).length})`} rawJson={data.rawSnapshot} fileName="layer2_postmerge.jsonl" />
                         <InterestTable
                             interests={data.snapshot || []}
                             title=""
