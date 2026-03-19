@@ -565,6 +565,29 @@ function SnapshotDiff({ prev, current }: { prev: Interest[]; current: Interest[]
     );
 }
 
+/* ── Collapsible PostMerge Snapshot ── */
+function CollapsibleSnapshot({ interests, rawJson }: { interests: Interest[]; rawJson?: any }) {
+    const [expanded, setExpanded] = useState(false);
+    const count = interests?.length || 0;
+
+    return (
+        <div>
+            <div style={{ ...sectionTitle, display: 'flex', alignItems: 'center' }}>
+                <a href="#" onClick={(e) => { e.preventDefault(); setExpanded(!expanded); }}
+                    style={{ color: '#0d6efd', textDecoration: 'none', fontWeight: 700, fontSize: '0.78rem', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                    {expanded ? '▾' : '▸'} Layer 2 PostMerge — Current Snapshot ({count})
+                </a>
+                <RawJsonButton data={rawJson} fileName="layer2_postmerge.jsonl" />
+            </div>
+            {expanded && (
+                <div style={{ maxWidth: 600 }}>
+                    <InterestTable interests={interests} title="" />
+                </div>
+            )}
+        </div>
+    );
+}
+
 // ─── Per-Date Accordion Item (lazy loaded) ───────────────────────────
 
 function DateWindowItem({
@@ -618,7 +641,7 @@ function DateWindowItem({
                     )}
                 </div>
             </Accordion.Header>
-            <Accordion.Body style={{ padding: '10px 14px' }}>
+            <Accordion.Body style={{ padding: '10px 14px 10px 28px' }}>
                 {loading && (
                     <div className="text-center py-3">
                         <Spinner animation="border" size="sm" variant="primary" />
@@ -647,11 +670,7 @@ function DateWindowItem({
                         <MergeDecisionsTable decisions={data.mergeDecisions || []} rawJson={data.rawMerge} />
                         <SnapshotDiff prev={data.prevSnapshot || []} current={data.snapshot || []} />
 
-                        <SectionHeader style={sectionTitle} title={`Layer 2 PostMerge — Current Snapshot (${(data.snapshot || []).length})`} rawJson={data.rawSnapshot} fileName="layer2_postmerge.jsonl" />
-                        <InterestTable
-                            interests={data.snapshot || []}
-                            title=""
-                        />
+                        <CollapsibleSnapshot interests={data.snapshot || []} rawJson={data.rawSnapshot} />
                     </>
                 )}
                 {loaded && !loading && !data && (
