@@ -66,7 +66,20 @@ interface IntermediateStepsViewProps {
     userId: string;
     runKey: string;
     dates: string[];  // sorted ascending from manifest
-    loader: (key: string) => Promise<{ default: Record<string, string> }>;
+    loader: (key: string, raw?: boolean) => Promise<{ default: Record<string, string> }>;
+}
+
+// ─── Hooks ───────────────────────────────────────────────────────────
+
+function useClickOutside(ref: React.RefObject<HTMLElement | null>, onClose: () => void, active: boolean) {
+    useEffect(() => {
+        if (!active) return;
+        const handler = (e: MouseEvent) => {
+            if (ref.current && !ref.current.contains(e.target as Node)) onClose();
+        };
+        document.addEventListener('mousedown', handler);
+        return () => document.removeEventListener('mousedown', handler);
+    }, [active, ref, onClose]);
 }
 
 // ─── Helpers ─────────────────────────────────────────────────────────
@@ -99,12 +112,9 @@ function parseDateData(raw: Record<string, string>, userId: string, date: string
         const signals = parseJsonlForUser(raw['layer0_signal'], userId);
         if (signals?.signals) {
             const items: Signal[] = signals.signals;
-            win.signals = {
-                total: items.length,
-                kept: items.filter((s: Signal) => !s.should_filter).length,
-                filtered: items.filter((s: Signal) => s.should_filter).length,
-                items,
-            };
+            let filtered = 0;
+            for (const s of items) if (s.should_filter) filtered++;
+            win.signals = { total: items.length, kept: items.length - filtered, filtered, items };
         }
         win.rawSignals = signals;
     }
@@ -140,7 +150,7 @@ const sectionTitle: React.CSSProperties = {
 
 const sectionTitleFirst: React.CSSProperties = {
     ...sectionTitle,
-    borderTop: 'none', paddingTop: 0, marginTop: 0,
+    borderTop: 'none', paddingTop: 0,
 };
 
 const tableStyle: React.CSSProperties = {
@@ -162,15 +172,8 @@ const tdStyle: React.CSSProperties = {
 function RawJsonButton({ data, fileName }: { data: any; fileName?: string }) {
     const [open, setOpen] = useState(false);
     const ref = useRef<HTMLSpanElement>(null);
-
-    useEffect(() => {
-        if (!open) return;
-        const handler = (e: MouseEvent) => {
-            if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
-        };
-        document.addEventListener('mousedown', handler);
-        return () => document.removeEventListener('mousedown', handler);
-    }, [open]);
+    const close = useCallback(() => setOpen(false), []);
+    useClickOutside(ref, close, open);
 
     if (!data) return null;
 
@@ -188,15 +191,15 @@ function RawJsonButton({ data, fileName }: { data: any; fileName?: string }) {
                 <div style={{
                     position: 'absolute', top: '100%', right: 0, marginTop: 4,
                     zIndex: 1050, width: 520, maxHeight: 420, overflowY: 'auto',
-                    backgroundColor: '#f8f9fa', color: '#212529', borderRadius: 8,
+                    backgroundColor: '#f8f9fa', color: '#212529', borderRadius: 6,
                     border: '1px solid #dee2e6',
-                    padding: '12px 14px', fontSize: '0.72rem', fontFamily: 'monospace',
-                    lineHeight: '1.5', boxShadow: '0 4px 16px rgba(0,0,0,0.12)',
+                    padding: '10px 14px', fontSize: '0.72rem', fontFamily: 'monospace',
+                    fontWeight: 400, lineHeight: '1.5', boxShadow: '0 4px 16px rgba(0,0,0,0.12)',
                     whiteSpace: 'pre-wrap', wordBreak: 'break-word',
                 }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8,
                         paddingBottom: 6, borderBottom: '1px solid #dee2e6' }}>
-                        <span style={{ color: '#495057', fontSize: '0.75rem', fontWeight: 600 }}>
+                        <span style={{ color: '#495057', fontSize: '0.75rem', fontWeight: 600, fontFamily: 'inherit' }}>
                             {fileName ? `📄 ${fileName}` : 'Raw JSON'}
                         </span>
                         <span onClick={() => setOpen(false)}
@@ -224,16 +227,8 @@ function DeltaTopicTag({ topic }: { topic: Topic }) {
     const [open, setOpen] = useState(false);
     const ref = useRef<HTMLSpanElement>(null);
     const evidenceCount = Array.isArray(topic.evidence) ? topic.evidence.length : 0;
-
-    // Close on click outside
-    useEffect(() => {
-        if (!open) return;
-        const handler = (e: MouseEvent) => {
-            if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
-        };
-        document.addEventListener('mousedown', handler);
-        return () => document.removeEventListener('mousedown', handler);
-    }, [open]);
+    const close = useCallback(() => setOpen(false), []);
+    useClickOutside(ref, close, open);
 
     return (
         <span ref={ref} style={{ position: 'relative', display: 'inline-block' }}>
@@ -316,9 +311,9 @@ function DeltaInterestDetail({ interests }: { interests: Interest[] }) {
                             <td style={tdStyle}>{interest.temporal || ''}</td>
                             <td style={tdStyle}>{(interest as any).decay != null ? (interest as any).decay : ''}</td>
                             <td style={tdStyle}>
-                                {(interest.topics || []).length > 0 ? (
+                                {interest.topics && interest.topics.length > 0 ? (
                                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
-                                        {(interest.topics || []).map((t, ti) => (
+                                        {interest.topics.map((t, ti) => (
                                             <DeltaTopicTag key={ti} topic={t} />
                                         ))}
                                     </div>
@@ -332,25 +327,23 @@ function DeltaInterestDetail({ interests }: { interests: Interest[] }) {
     );
 }
 
-function SignalSummary({ signals }: { signals: DeltaWindowData['signals'] }) {
+function SignalSummary({ signals, rawJson, first }: { signals: DeltaWindowData['signals']; rawJson?: any; first?: boolean }) {
     const [expanded, setExpanded] = useState(false);
     if (!signals) return <div className="text-muted" style={{ fontSize: '0.82rem' }}>No signal data</div>;
 
     return (
         <div>
-            <div style={{ display: 'flex', gap: 16, alignItems: 'center', fontSize: '0.85rem', marginBottom: 8 }}>
-                <span>Total: {signals.total}</span>
-                <span style={{ color: '#198754', fontWeight: 600 }}>Kept: {signals.kept}</span>
-                <span style={{ color: '#6c757d' }}>Filtered: {signals.filtered}</span>
-                <button
-                    className={expanded ? 'btn btn-sm btn-primary' : 'btn btn-sm btn-outline-primary'}
-                    onClick={() => setExpanded(!expanded)}
-                    style={{ fontSize: '0.78rem', padding: '3px 12px', marginLeft: 8 }}
-                >
-                    {expanded ? 'Hide Signals' : `Show ${signals.kept} Kept Signals ▾`}
-                </button>
+            <div style={{ ...(first ? sectionTitleFirst : sectionTitle), display: 'flex', alignItems: 'center', gap: 10 }}>
+                <a href="#" onClick={(e) => { e.preventDefault(); setExpanded(!expanded); }}
+                    style={{ color: '#0d6efd', textDecoration: 'none', fontWeight: 700, fontSize: '0.78rem', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                    {expanded ? '▾' : '▸'} Layer 0 — Denoised Signals ({signals.total})
+                </a>
+                <Badge bg="success" style={{ fontSize: '0.72rem', fontWeight: 500 }}>Kept {signals.kept}</Badge>
+                <Badge bg="secondary" style={{ fontSize: '0.72rem', fontWeight: 500 }}>Filtered {signals.filtered}</Badge>
+                <RawJsonButton data={rawJson} fileName="layer0_signal.jsonl" />
             </div>
             {expanded && (
+                <div style={{ paddingLeft: 16 }}>
                 <div style={{ maxHeight: 240, overflowY: 'auto', border: '1px solid #dee2e6', borderRadius: 4 }}>
                     <table style={{ ...tableStyle, tableLayout: 'fixed' }}>
                         <colgroup>
@@ -378,6 +371,7 @@ function SignalSummary({ signals }: { signals: DeltaWindowData['signals'] }) {
                             ))}
                         </tbody>
                     </table>
+                </div>
                 </div>
             )}
         </div>
@@ -430,7 +424,7 @@ function MergeDecisionsTable({ decisions, rawJson }: { decisions: MergeDecision[
         return (
             <div>
                 <SectionHeader style={sectionTitle} title="Layer 2 — Merge Decisions" rawJson={rawJson} fileName="layer2_merge.jsonl" />
-                <div className="text-muted" style={{ fontSize: '0.82rem' }}>No merge decisions (first window)</div>
+                <div className="text-muted" style={{ fontSize: '0.82rem', paddingLeft: 16 }}>No merge decisions (first window)</div>
             </div>
         );
     }
@@ -438,13 +432,14 @@ function MergeDecisionsTable({ decisions, rawJson }: { decisions: MergeDecision[
     return (
         <div>
             <SectionHeader style={sectionTitle} title={`Layer 2 — Merge Decisions (${decisions.length})`} rawJson={rawJson} fileName="layer2_merge.jsonl" />
+            <div style={{ paddingLeft: 16 }}>
             <div style={{ maxHeight: 250, overflowY: 'auto', border: '1px solid #eee', borderRadius: 4 }}>
                 <table style={{ ...tableStyle, tableLayout: 'fixed' }}>
                     <colgroup>
-                        <col style={{ width: 60 }} />
-                        <col style={{ width: '22%' }} />
-                        <col style={{ width: '22%' }} />
-                        <col style={{ width: '22%' }} />
+                        <col style={{ width: 80 }} />
+                        <col style={{ width: '20%' }} />
+                        <col style={{ width: '20%' }} />
+                        <col style={{ width: '20%' }} />
                         <col />
                     </colgroup>
                     <thead>
@@ -481,6 +476,7 @@ function MergeDecisionsTable({ decisions, rawJson }: { decisions: MergeDecision[
                         ))}
                     </tbody>
                 </table>
+            </div>
             </div>
         </div>
     );
@@ -519,12 +515,19 @@ function SnapshotDiff({ prev, current }: { prev: Interest[]; current: Interest[]
     return (
         <div>
             <div style={sectionTitle}>
-                <a href="#" onClick={(e) => { e.preventDefault(); setExpanded(!expanded); }}
-                    style={{ color: '#0d6efd', textDecoration: 'none', fontWeight: 700, fontSize: '0.78rem', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
-                    {expanded ? '▾' : '▸'} Snapshot Diff ({rows.length} change{rows.length !== 1 ? 's' : ''})
-                </a>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                    <a href="#" onClick={(e) => { e.preventDefault(); setExpanded(!expanded); }}
+                        style={{ color: '#0d6efd', textDecoration: 'none', fontWeight: 700, fontSize: '0.78rem', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                        {expanded ? '▾' : '▸'} Snapshot Diff
+                    </a>
+                    {added.length > 0 && <Badge bg="success" style={{ fontSize: '0.72rem', fontWeight: 500 }}>+{added.length} added</Badge>}
+                    {removed.length > 0 && <Badge bg="danger" style={{ fontSize: '0.72rem', fontWeight: 500 }}>−{removed.length} removed</Badge>}
+                    {changes.length > 0 && <Badge bg="info" style={{ fontSize: '0.72rem', fontWeight: 500 }}>↕{changes.length} changed</Badge>}
+                    <span style={{ color: '#6c757d', fontSize: '0.78rem' }}>{prev.length} → {current.length} interests</span>
+                </div>
             </div>
             {expanded && (
+                <div style={{ paddingLeft: 16 }}>
                 <div style={{ border: '1px solid #dee2e6', borderRadius: 4, maxHeight: 200, overflowY: 'auto' }}>
                 <table style={tableStyle}>
                     <thead>
@@ -560,6 +563,7 @@ function SnapshotDiff({ prev, current }: { prev: Interest[]; current: Interest[]
                     </tbody>
                 </table>
                 </div>
+                </div>
             )}
         </div>
     );
@@ -580,8 +584,84 @@ function CollapsibleSnapshot({ interests, rawJson }: { interests: Interest[]; ra
                 <RawJsonButton data={rawJson} fileName="layer2_postmerge.jsonl" />
             </div>
             {expanded && (
-                <div style={{ maxWidth: 600 }}>
+                <div style={{ paddingLeft: 16 }}>
                     <InterestTable interests={interests} title="" />
+                </div>
+            )}
+        </div>
+    );
+}
+
+/* ── All Raw JSON Files section (lazy-loaded on expand) ── */
+function RawFilesSection({ userId, rawLoader }: { userId: string; rawLoader: () => Promise<{ default: Record<string, string> }> }) {
+    const [expanded, setExpanded] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [rawFiles, setRawFiles] = useState<Record<string, string> | null>(null);
+    const [openFile, setOpenFile] = useState<string | null>(null);
+    const [parsedCache, setParsedCache] = useState<Record<string, any>>({});
+
+    const handleExpand = useCallback(async () => {
+        if (expanded) { setExpanded(false); return; }
+        setExpanded(true);
+        if (rawFiles) return; // already loaded
+        setLoading(true);
+        try {
+            const mod = await rawLoader();
+            setRawFiles(mod.default);
+        } catch (e) {
+            console.error('Failed to load raw files', e);
+        } finally {
+            setLoading(false);
+        }
+    }, [expanded, rawFiles, rawLoader]);
+
+    const fileNames = rawFiles ? Object.keys(rawFiles).sort().map(k => `${k}.jsonl`) : [];
+
+    const handleFileClick = (name: string) => {
+        if (openFile === name) { setOpenFile(null); return; }
+        setOpenFile(name);
+        const key = name.replace('.jsonl', '');
+        if (!parsedCache[key] && rawFiles && rawFiles[key]) {
+            const parsed = parseJsonlForUser(rawFiles[key], userId);
+            setParsedCache(prev => ({ ...prev, [key]: parsed }));
+        }
+    };
+
+    return (
+        <div>
+            <div style={sectionTitle}>
+                <a href="#" onClick={(e) => { e.preventDefault(); handleExpand(); }}
+                    style={{ color: '#0d6efd', textDecoration: 'none', fontWeight: 700, fontSize: '0.78rem', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                    {expanded ? '▾' : '▸'} ALL Raw JSON Files{rawFiles ? ` (${fileNames.length})` : ''}
+                    {loading && <Spinner animation="border" size="sm" variant="secondary" style={{ marginLeft: 6 }} />}
+                </a>
+            </div>
+            {expanded && rawFiles && (
+                <div style={{ paddingLeft: 16, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4px 24px' }}>
+                    {fileNames.map(name => {
+                        const key = name.replace('.jsonl', '');
+                        const parsed = parsedCache[key];
+                        const isOpen = openFile === name;
+                        return (
+                            <div key={name} style={{ marginBottom: 2, gridColumn: isOpen ? '1 / -1' : undefined }}>
+                                <a href="#" onClick={(e) => { e.preventDefault(); handleFileClick(name); }}
+                                    style={{ color: '#0d6efd', textDecoration: 'none', fontSize: '0.8rem', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                                    {isOpen ? '▾' : '▸'} 📄 {name}
+                                </a>
+                                {isOpen && (
+                                    <div style={{
+                                        marginTop: 4, backgroundColor: '#f8f9fa', border: '1px solid #dee2e6',
+                                        borderRadius: 6, padding: '10px 14px', fontSize: '0.72rem',
+                                        fontFamily: 'monospace', fontWeight: 400, lineHeight: '1.5',
+                                        maxHeight: 400, overflowY: 'auto',
+                                        whiteSpace: 'pre-wrap', wordBreak: 'break-word', color: '#212529',
+                                    }}>
+                                        {parsed ? JSON.stringify(parsed, null, 2) : 'No data for this user'}
+                                    </div>
+                                )}
+                            </div>
+                        );
+                    })}
                 </div>
             )}
         </div>
@@ -595,11 +675,16 @@ function DateWindowItem({
 }: {
     date: string; isFirst: boolean;
     userId: string; runKey: string;
-    loader: (key: string) => Promise<{ default: Record<string, string> }>;
+    loader: (key: string, raw?: boolean) => Promise<{ default: Record<string, string> }>;
 }) {
     const [data, setData] = useState<DeltaWindowData | null>(null);
     const [loading, setLoading] = useState(false);
     const [loaded, setLoaded] = useState(false);
+
+    const rawLoader = useCallback(
+        () => loader(`${runKey}/${date}`, true),
+        [loader, runKey, date]
+    );
 
     const handleEnter = useCallback(async () => {
         if (loaded) return;
@@ -641,7 +726,7 @@ function DateWindowItem({
                     )}
                 </div>
             </Accordion.Header>
-            <Accordion.Body style={{ padding: '10px 14px 10px 28px' }}>
+            <Accordion.Body style={{ padding: '12px 14px 12px 24px' }}>
                 {loading && (
                     <div className="text-center py-3">
                         <Spinner animation="border" size="sm" variant="primary" />
@@ -650,20 +735,23 @@ function DateWindowItem({
                 )}
                 {data && (
                     <>
-                        <SectionHeader style={sectionTitleFirst} title="Layer 0 — Denoised Signals" rawJson={data.rawSignals} fileName="layer0_signal.jsonl" />
-                        <SignalSummary signals={data.signals} />
+                        <SignalSummary signals={data.signals} rawJson={data.rawSignals} first />
 
                         <SectionHeader style={sectionTitle} title={`Layer 1 — Delta Interests (${(data.deltaInterests || []).length})`} rawJson={data.rawDelta} fileName="layer1_postprocessing.jsonl" />
-                        <DeltaInterestDetail interests={data.deltaInterests || []} />
+                        <div style={{ paddingLeft: 16 }}>
+                            <DeltaInterestDetail interests={data.deltaInterests || []} />
+                        </div>
 
                         {!isFirst && (
                             <>
-                                <SectionHeader style={sectionTitle} title={`Previous Snapshot (${(data.prevSnapshot || []).length})`} rawJson={data.rawPrevSnapshot} fileName="prev_layer2_postmerge.jsonl" />
-                                <InterestTable
-                                    interests={data.prevSnapshot || []}
-                                    title=""
-                                    compact
-                                />
+                                <SectionHeader style={sectionTitle} title={`Layer 1 — Previous Snapshot (${(data.prevSnapshot || []).length})`} rawJson={data.rawPrevSnapshot} fileName="prev_layer2_postmerge.jsonl" />
+                                <div style={{ paddingLeft: 16 }}>
+                                    <InterestTable
+                                        interests={data.prevSnapshot || []}
+                                        title=""
+                                        compact
+                                    />
+                                </div>
                             </>
                         )}
 
@@ -671,6 +759,8 @@ function DateWindowItem({
                         <SnapshotDiff prev={data.prevSnapshot || []} current={data.snapshot || []} />
 
                         <CollapsibleSnapshot interests={data.snapshot || []} rawJson={data.rawSnapshot} />
+
+                        <RawFilesSection userId={userId} rawLoader={rawLoader} />
                     </>
                 )}
                 {loaded && !loading && !data && (

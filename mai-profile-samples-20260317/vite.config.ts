@@ -175,10 +175,14 @@ function dogfoodIntermediateManifestPlugin(): Plugin {
 
       // Also generate loader map so Rollup discovers all per-date chunks
       const loaderEntries: string[] = []
+      const rawLoaderEntries: string[] = []
       for (const [runKey, dates] of Object.entries(manifest)) {
         for (const d of dates) {
           loaderEntries.push(
             `  "${runKey}/${d}": () => import("virtual:dogfood-intermediate-date/${runKey}/${d}")`
+          )
+          rawLoaderEntries.push(
+            `  "${runKey}/${d}": () => import("virtual:dogfood-intermediate-raw/${runKey}/${d}")`
           )
         }
       }
@@ -186,6 +190,7 @@ function dogfoodIntermediateManifestPlugin(): Plugin {
       return [
         `export default ${JSON.stringify(manifest)};`,
         `export const loaders = {\n${loaderEntries.join(',\n')}\n};`,
+        `export const rawLoaders = {\n${rawLoaderEntries.join(',\n')}\n};`,
       ].join('\n')
     },
   }
@@ -199,46 +204,71 @@ function dogfoodIntermediateManifestPlugin(): Plugin {
 function dogfoodIntermediateDatePlugin(): Plugin {
   const dogfoodDir = path.resolve(__dirname, '../MaiProfile/maiprofilev3dev/dogfood')
   const PREFIX = 'virtual:dogfood-intermediate-date/'
+  const RAW_PREFIX = 'virtual:dogfood-intermediate-raw/'
   const RESOLVED_PREFIX = '\0' + PREFIX
+  const RESOLVED_RAW_PREFIX = '\0' + RAW_PREFIX
+
+  function parsePath(rest: string) {
+    const parts = rest.split('/')
+    const dateDir = parts[parts.length - 1]
+    const topDir = parts[0]
+    const subDir = parts.slice(1, -1).join('/')
+    const runPath = path.join(dogfoodDir, topDir, subDir)
+    return { dateDir, runPath, datePath: path.join(runPath, dateDir) }
+  }
 
   return {
     name: 'dogfood-intermediate-date',
     resolveId(id) {
       if (id.startsWith(PREFIX)) return '\0' + id
+      if (id.startsWith(RAW_PREFIX)) return '\0' + id
     },
     load(id) {
-      if (!id.startsWith(RESOLVED_PREFIX)) return
-      const rest = id.slice(RESOLVED_PREFIX.length) // e.g. "20260318/ModulizationGPT4oV0.6/20260228"
-      const parts = rest.split('/')
-      const dateDir = parts[parts.length - 1]
-      const topDir = parts[0]
-      const subDir = parts.slice(1, -1).join('/')
-      const runPath = path.join(dogfoodDir, topDir, subDir)
-      const datePath = path.join(runPath, dateDir)
+      // ── Essential layers (loaded on date-window click) ──
+      if (id.startsWith(RESOLVED_PREFIX)) {
+        const { dateDir, runPath, datePath } = parsePath(id.slice(RESOLVED_PREFIX.length))
+        const result: Record<string, string> = {}
 
-      const result: Record<string, string> = {}
-
-      for (const layer of INTERMEDIATE_LAYERS) {
-        const filePath = path.join(datePath, `${layer}.jsonl`)
-        if (fs.existsSync(filePath)) {
-          result[layer] = fs.readFileSync(filePath, 'utf-8')
+        for (const layer of INTERMEDIATE_LAYERS) {
+          const p = path.join(datePath, `${layer}.jsonl`)
+          if (fs.existsSync(p)) {
+            result[layer] = fs.readFileSync(p, 'utf-8')
+          }
         }
+
+        // Find previous date's layer2_postmerge for snapshot diff
+        const allDates = fs.readdirSync(runPath)
+          .filter((d: string) => fs.statSync(path.join(runPath, d)).isDirectory())
+          .sort()
+        const idx = allDates.indexOf(dateDir)
+        if (idx > 0) {
+          const prevDate = allDates[idx - 1]
+          const prevPath = path.join(runPath, prevDate, 'layer2_postmerge.jsonl')
+          if (fs.existsSync(prevPath)) {
+            result['prev_layer2_postmerge'] = fs.readFileSync(prevPath, 'utf-8')
+          }
+        }
+
+        return `export default ${JSON.stringify(result)}`
       }
 
-      // Find previous date's layer2_postmerge for snapshot diff
-      const allDates = fs.readdirSync(runPath)
-        .filter((d: string) => fs.statSync(path.join(runPath, d)).isDirectory())
-        .sort()
-      const idx = allDates.indexOf(dateDir)
-      if (idx > 0) {
-        const prevDate = allDates[idx - 1]
-        const prevPath = path.join(runPath, prevDate, 'layer2_postmerge.jsonl')
-        if (fs.existsSync(prevPath)) {
-          result['prev_layer2_postmerge'] = fs.readFileSync(prevPath, 'utf-8')
-        }
-      }
+      // ── ALL raw files (loaded when Raw JSON Files section is expanded) ──
+      if (id.startsWith(RESOLVED_RAW_PREFIX)) {
+        const { datePath } = parsePath(id.slice(RESOLVED_RAW_PREFIX.length))
+        const result: Record<string, string> = {}
 
-      return `export default ${JSON.stringify(result)}`
+        if (fs.existsSync(datePath)) {
+          const allFiles = fs.readdirSync(datePath)
+            .filter((f: string) => f.endsWith('.jsonl'))
+            .sort()
+          for (const file of allFiles) {
+            const key = file.replace('.jsonl', '')
+            result[key] = fs.readFileSync(path.join(datePath, file), 'utf-8')
+          }
+        }
+
+        return `export default ${JSON.stringify(result)}`
+      }
     },
   }
 }

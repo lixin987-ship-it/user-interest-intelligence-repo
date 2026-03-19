@@ -4,7 +4,7 @@ import MAIProfileView from './MAIProfileView';
 import RawSignalsView from './RawSignalsView';
 import IntermediateStepsView from './IntermediateStepsView';
 import dogfoodRuns from 'virtual:dogfood-data';
-import intermediateManifest, { loaders as intermediateLoaders } from 'virtual:dogfood-intermediate-manifest';
+import intermediateManifest, { loaders as intermediateLoaders, rawLoaders as intermediateRawLoaders } from 'virtual:dogfood-intermediate-manifest';
 
 interface ParsedRun {
     latestDate: string;
@@ -246,7 +246,7 @@ function MAIProfileSamples() {
                             userId={profileData.user_id || effectiveUserId}
                             runKey={selectedRun}
                             dates={intermediateDates}
-                            loader={(key) => intermediateLoaders[key]()}
+                            loader={(key, raw) => raw ? intermediateRawLoaders[key]() : intermediateLoaders[key]()}
                         />
                     )}
                     {activeTab === 'intermediate' && intermediateDates.length === 0 && (
