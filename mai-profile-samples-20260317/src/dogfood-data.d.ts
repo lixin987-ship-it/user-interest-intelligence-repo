@@ -1,10 +1,22 @@
 declare module 'virtual:dogfood-data' {
-  const data: Record<string, { latestDate: string; data: string; runSummary: any | null }>;
+  /** Manifest: metadata only (no profile data) */
+  const data: Record<string, { latestDate: string; runSummary: any | null }>;
+  export default data;
+  /** Per-run lazy loaders: { "runKey": () => Promise<{ default: string }> } */
+  export const runLoaders: Record<string, () => Promise<{ default: string }>>;
+  /** Per-run signal lazy loaders */
+  export const signalLoaders: Record<string, () => Promise<{ default: string }>>;
+}
+
+declare module 'virtual:dogfood-run/*' {
+  /** Raw JSONL string from layer4_postprocessing.jsonl (may be empty) */
+  const data: string;
   export default data;
 }
 
-declare module 'virtual:dogfood-signal-data' {
-  const data: Record<string, { dates: string[]; data: string }>;
+declare module 'virtual:dogfood-signal-run/*' {
+  /** Raw JSONL string: all layer0_signal.jsonl from all dates of this run concatenated */
+  const data: string;
   export default data;
 }
 

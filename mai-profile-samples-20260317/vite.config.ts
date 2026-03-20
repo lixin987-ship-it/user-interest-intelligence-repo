@@ -9,114 +9,138 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 function dogfoodDataPlugin(): Plugin {
   const dogfoodDir = path.resolve(__dirname, '../MaiProfile/maiprofilev3dev/dogfood')
+  const MANIFEST_ID = 'virtual:dogfood-data'
+  const RUN_PREFIX = 'virtual:dogfood-run/'
+  const RESOLVED_MANIFEST = '\0' + MANIFEST_ID
+  const RESOLVED_RUN_PREFIX = '\0' + RUN_PREFIX
+
+  /** Scan the dogfood directory tree and return metadata per run */
+  function scanRuns() {
+    const manifest: Record<string, { latestDate: string; runSummary: any | null }> = {}
+
+    if (!fs.existsSync(dogfoodDir)) return manifest
+
+    const topDirs = fs.readdirSync(dogfoodDir)
+      .filter((d: string) => fs.statSync(path.join(dogfoodDir, d)).isDirectory())
+      .sort()
+
+    for (const topDir of topDirs) {
+      const topPath = path.join(dogfoodDir, topDir)
+      const subDirs = fs.readdirSync(topPath)
+        .filter((d: string) => fs.statSync(path.join(topPath, d)).isDirectory())
+
+      for (const subDir of subDirs) {
+        const runKey = `${topDir}/${subDir}`
+        const runPath = path.join(topPath, subDir)
+        const dateDirs = fs.readdirSync(runPath)
+          .filter((d: string) => fs.statSync(path.join(runPath, d)).isDirectory())
+          .sort()
+
+        const lastDate = dateDirs[dateDirs.length - 1] || ''
+
+        // Read run_summary.json if available
+        const summaryPath = path.join(runPath, 'run_summary.json')
+        let runSummary = null
+        if (fs.existsSync(summaryPath)) {
+          try {
+            runSummary = JSON.parse(fs.readFileSync(summaryPath, 'utf-8'))
+          } catch { /* skip */ }
+        }
+
+        manifest[runKey] = { latestDate: lastDate, runSummary }
+      }
+    }
+    return manifest
+  }
 
   return {
     name: 'dogfood-data',
     resolveId(id) {
-      if (id === 'virtual:dogfood-data') return '\0virtual:dogfood-data'
+      if (id === MANIFEST_ID) return RESOLVED_MANIFEST
+      if (id.startsWith(RUN_PREFIX)) return '\0' + id
     },
     load(id) {
-      if (id !== '\0virtual:dogfood-data') return
-
-      const runs: Record<string, { latestDate: string; data: string; runSummary: any | null }> = {}
-
-      if (!fs.existsSync(dogfoodDir)) {
-        return `export default ${JSON.stringify(runs)}`
+      // ── Manifest: tiny, loaded statically ──
+      if (id === RESOLVED_MANIFEST) {
+        const manifest = scanRuns()
+        // Generate per-run lazy loaders
+        const loaderEntries = Object.keys(manifest).map(
+          key => `  ${JSON.stringify(key)}: () => import("virtual:dogfood-run/${key}")`
+        )
+        const signalLoaderEntries = Object.keys(manifest).map(
+          key => `  ${JSON.stringify(key)}: () => import("virtual:dogfood-signal-run/${key}")`
+        )
+        return [
+          `export default ${JSON.stringify(manifest)};`,
+          `export const runLoaders = {\n${loaderEntries.join(',\n')}\n};`,
+          `export const signalLoaders = {\n${signalLoaderEntries.join(',\n')}\n};`,
+        ].join('\n')
       }
 
-      const topDirs = fs.readdirSync(dogfoodDir)
-        .filter((d: string) => fs.statSync(path.join(dogfoodDir, d)).isDirectory())
-        .sort()
+      // ── Per-run chunk: loaded on demand ──
+      if (id.startsWith(RESOLVED_RUN_PREFIX)) {
+        const runKey = id.slice(RESOLVED_RUN_PREFIX.length)
+        const parts = runKey.split('/')
+        const topDir = parts[0]
+        const subDir = parts.slice(1).join('/')
+        const runPath = path.join(dogfoodDir, topDir, subDir)
 
-      for (const topDir of topDirs) {
-        const topPath = path.join(dogfoodDir, topDir)
-        const subDirs = fs.readdirSync(topPath)
-          .filter((d: string) => fs.statSync(path.join(topPath, d)).isDirectory())
-
-        for (const subDir of subDirs) {
-          const runKey = `${topDir}/${subDir}`
-          const runPath = path.join(topPath, subDir)
+        let data = ''
+        if (fs.existsSync(runPath)) {
           const dateDirs = fs.readdirSync(runPath)
             .filter((d: string) => fs.statSync(path.join(runPath, d)).isDirectory())
             .sort()
-
           const lastDate = dateDirs[dateDirs.length - 1]
-          if (!lastDate) continue
-
-          const jsonlPath = path.join(runPath, lastDate, 'layer4_postprocessing.jsonl')
-          if (!fs.existsSync(jsonlPath)) continue
-
-          const content = fs.readFileSync(jsonlPath, 'utf-8')
-
-          // Read run_summary.json if available
-          const summaryPath = path.join(runPath, 'run_summary.json')
-          let runSummary = null
-          if (fs.existsSync(summaryPath)) {
-            try {
-              runSummary = JSON.parse(fs.readFileSync(summaryPath, 'utf-8'))
-            } catch { /* skip */ }
+          if (lastDate) {
+            const jsonlPath = path.join(runPath, lastDate, 'layer4_postprocessing.jsonl')
+            if (fs.existsSync(jsonlPath)) {
+              data = fs.readFileSync(jsonlPath, 'utf-8')
+            }
           }
-
-          runs[runKey] = { latestDate: lastDate, data: content, runSummary }
         }
-      }
 
-      return `export default ${JSON.stringify(runs)}`
+        return `export default ${JSON.stringify(data)}`
+      }
     },
   }
 }
 
 function dogfoodSignalDataPlugin(): Plugin {
   const dogfoodDir = path.resolve(__dirname, '../MaiProfile/maiprofilev3dev/dogfood')
+  const PREFIX = 'virtual:dogfood-signal-run/'
+  const RESOLVED_PREFIX = '\0' + PREFIX
 
   return {
     name: 'dogfood-signal-data',
     resolveId(id) {
-      if (id === 'virtual:dogfood-signal-data') return '\0virtual:dogfood-signal-data'
+      if (id.startsWith(PREFIX)) return '\0' + id
     },
     load(id) {
-      if (id !== '\0virtual:dogfood-signal-data') return
+      if (!id.startsWith(RESOLVED_PREFIX)) return
 
-      // Shape: { [runKey]: { dates: string[], data: string } }
-      // data = all layer0_signal.jsonl lines from ALL date folders concatenated
-      const runs: Record<string, { dates: string[]; data: string }> = {}
+      const runKey = id.slice(RESOLVED_PREFIX.length)
+      const parts = runKey.split('/')
+      const topDir = parts[0]
+      const subDir = parts.slice(1).join('/')
+      const runPath = path.join(dogfoodDir, topDir, subDir)
 
-      if (!fs.existsSync(dogfoodDir)) {
-        return `export default ${JSON.stringify(runs)}`
-      }
+      let data = ''
+      if (fs.existsSync(runPath)) {
+        const dateDirs = fs.readdirSync(runPath)
+          .filter((d: string) => fs.statSync(path.join(runPath, d)).isDirectory())
+          .sort()
 
-      const topDirs = fs.readdirSync(dogfoodDir)
-        .filter((d: string) => fs.statSync(path.join(dogfoodDir, d)).isDirectory())
-        .sort()
-
-      for (const topDir of topDirs) {
-        const topPath = path.join(dogfoodDir, topDir)
-        const subDirs = fs.readdirSync(topPath)
-          .filter((d: string) => fs.statSync(path.join(topPath, d)).isDirectory())
-
-        for (const subDir of subDirs) {
-          const runKey = `${topDir}/${subDir}`
-          const runPath = path.join(topPath, subDir)
-          const dateDirs = fs.readdirSync(runPath)
-            .filter((d: string) => fs.statSync(path.join(runPath, d)).isDirectory())
-            .sort()
-
-          if (dateDirs.length === 0) continue
-
-          const chunks: string[] = []
-          for (const dateDir of dateDirs) {
-            const jsonlPath = path.join(runPath, dateDir, 'layer0_signal.jsonl')
-            if (fs.existsSync(jsonlPath)) {
-              chunks.push(fs.readFileSync(jsonlPath, 'utf-8'))
-            }
+        const chunks: string[] = []
+        for (const dateDir of dateDirs) {
+          const jsonlPath = path.join(runPath, dateDir, 'layer0_signal.jsonl')
+          if (fs.existsSync(jsonlPath)) {
+            chunks.push(fs.readFileSync(jsonlPath, 'utf-8'))
           }
-          if (chunks.length === 0) continue
-
-          runs[runKey] = { dates: dateDirs, data: chunks.join('\n') }
         }
+        data = chunks.join('\n')
       }
 
-      return `export default ${JSON.stringify(runs)}`
+      return `export default ${JSON.stringify(data)}`
     },
   }
 }

@@ -1,44 +1,44 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import { Container, Card, Form, Button, Row, Col, Spinner, Nav } from 'react-bootstrap';
 import MAIProfileView from './MAIProfileView';
 import RawSignalsView from './RawSignalsView';
 import IntermediateStepsView from './IntermediateStepsView';
-import dogfoodRuns from 'virtual:dogfood-data';
+import dogfoodManifest, { runLoaders, signalLoaders } from 'virtual:dogfood-data';
 import intermediateManifest, { loaders as intermediateLoaders, rawLoaders as intermediateRawLoaders } from 'virtual:dogfood-intermediate-manifest';
 
 interface ParsedRun {
     latestDate: string;
+    runSummary: any | null;
     profiles: Map<string, any>;
     userIds: string[];
 }
 
-function parseRun(raw: { latestDate: string; data: string }): ParsedRun {
+function parseRunData(data: string, latestDate: string, runSummary: any | null): ParsedRun {
     const profiles = new Map<string, any>();
-    const lines = raw.data.trim().split('\n').filter(l => l.trim());
-
-    for (const line of lines) {
-        try {
-            const obj = JSON.parse(line);
-            const userId = obj.user_id;
-            if (userId) profiles.set(userId, obj);
-        } catch {
-            // skip malformed lines
+    if (data) {
+        const lines = data.trim().split('\n').filter(l => l.trim());
+        for (const line of lines) {
+            try {
+                const obj = JSON.parse(line);
+                const userId = obj.user_id;
+                if (userId) profiles.set(userId, obj);
+            } catch {
+                // skip malformed lines
+            }
         }
     }
-
     const userIds = [...profiles.keys()].sort();
-    return { latestDate: raw.latestDate, profiles, userIds };
+    return { latestDate, runSummary, profiles, userIds };
 }
 
 function MAIProfileSamples() {
-    const runKeys = useMemo(() => Object.keys(dogfoodRuns).sort().reverse(), []);
+    const runKeys = useMemo(() => Object.keys(dogfoodManifest).sort().reverse(), []);
     const [selectedRun, setSelectedRun] = useState<string>(runKeys[0] || '');
+    const [parsedRun, setParsedRun] = useState<ParsedRun | null>(null);
+    const [runLoading, setRunLoading] = useState(false);
 
-    const parsedRun = useMemo(() => {
-        const raw = dogfoodRuns[selectedRun];
-        if (!raw) return null;
-        return parseRun(raw);
-    }, [selectedRun]);
+    // Cache loaded runs to avoid re-fetching
+    const runCache = useRef<Record<string, ParsedRun>>({});
 
     const userIds = parsedRun?.userIds || [];
     const [userId, setUserId] = useState<string>('');
@@ -48,6 +48,43 @@ function MAIProfileSamples() {
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [isLoading, setIsLoading] = useState(false);
     const [activeTab, setActiveTab] = useState<'profile' | 'signal' | 'intermediate'>('profile');
+
+    // Lazy-load run profile data when selectedRun changes
+    useEffect(() => {
+        if (!selectedRun) return;
+
+        // Check cache first
+        if (runCache.current[selectedRun]) {
+            setParsedRun(runCache.current[selectedRun]);
+            return;
+        }
+
+        const meta = dogfoodManifest[selectedRun];
+        if (!meta) return;
+
+        const loader = runLoaders[selectedRun];
+        if (!loader) {
+            // No loader means no data — show empty run
+            const empty = parseRunData('', meta.latestDate, meta.runSummary);
+            runCache.current[selectedRun] = empty;
+            setParsedRun(empty);
+            return;
+        }
+
+        setRunLoading(true);
+        setParsedRun(null);
+        loader().then(mod => {
+            const parsed = parseRunData(mod.default, meta.latestDate, meta.runSummary);
+            runCache.current[selectedRun] = parsed;
+            setParsedRun(parsed);
+        }).catch(() => {
+            const empty = parseRunData('', meta.latestDate, meta.runSummary);
+            runCache.current[selectedRun] = empty;
+            setParsedRun(empty);
+        }).finally(() => {
+            setRunLoading(false);
+        });
+    }, [selectedRun]);
 
     const handleRunChange = (run: string) => {
         setSelectedRun(run);
@@ -63,11 +100,12 @@ function MAIProfileSamples() {
         setSignalLoading(true);
         setSignalData(null);
         try {
-            const mod = await import('virtual:dogfood-signal-data');
-            const signalRuns = mod.default;
-            const signalRaw = signalRuns[runKey];
-            if (signalRaw) {
-                const lines = signalRaw.data.trim().split('\n').filter((l: string) => l.trim());
+            const loader = signalLoaders[runKey];
+            if (!loader) { setSignalData(null); return; }
+            const mod = await loader();
+            const rawData: string = mod.default;
+            if (rawData) {
+                const lines = rawData.trim().split('\n').filter((l: string) => l.trim());
                 const userSignals: any[] = [];
                 for (const line of lines) {
                     try {
@@ -141,7 +179,7 @@ function MAIProfileSamples() {
                                     {runKeys.length === 0 && <option value="">No runs available</option>}
                                     {runKeys.map(key => (
                                         <option key={key} value={key}>
-                                            {key} (latest: {dogfoodRuns[key]?.latestDate || '?'})
+                                            {key} (latest: {dogfoodManifest[key]?.latestDate || '?'})
                                         </option>
                                     ))}
                                 </Form.Select>
@@ -179,9 +217,21 @@ function MAIProfileSamples() {
                             </Button>
                         </Col>
                     </Row>
-                    {parsedRun && (
+                    {runLoading && (
+                        <div className="text-center py-2">
+                            <Spinner animation="border" size="sm" variant="primary" className="me-2" />
+                            <span className="text-muted" style={{ fontSize: '0.85rem' }}>Loading run data...</span>
+                        </div>
+                    )}
+                    {!runLoading && parsedRun && parsedRun.userIds.length > 0 && (
                         <div className="text-muted" style={{ fontSize: '0.85rem' }}>
                             Latest date folder: <strong>{parsedRun.latestDate}</strong> · Users: <strong>{userIds.length}</strong>
+                        </div>
+                    )}
+                    {!runLoading && parsedRun && parsedRun.userIds.length === 0 && (
+                        <div className="alert alert-info mt-2 mb-0" style={{ fontSize: '0.85rem' }}>
+                            No <code>layer4_postprocessing.jsonl</code> found for this run{parsedRun.latestDate ? ` (latest date: ${parsedRun.latestDate})` : ' (no date folders)'}.
+                            The run may still be in progress.
                         </div>
                     )}
                     {errorMessage && (
@@ -227,7 +277,7 @@ function MAIProfileSamples() {
                         </Nav.Item>                    </Nav>
 
                     {activeTab === 'profile' && (
-                        <MAIProfileView data={profileData} userId={profileData.user_id || effectiveUserId} runSummary={dogfoodRuns[selectedRun]?.runSummary} />
+                        <MAIProfileView data={profileData} userId={profileData.user_id || effectiveUserId} runSummary={parsedRun?.runSummary} />
                     )}
                     {activeTab === 'signal' && signalLoading && (
                         <div className="text-center py-5">
